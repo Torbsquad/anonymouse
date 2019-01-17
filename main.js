@@ -31,3 +31,4 @@ async function on_message( message ){
 }
 
 bot.login(process.env.anon)
+require("./web")
