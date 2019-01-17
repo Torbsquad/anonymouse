@@ -3,12 +3,12 @@
  ****************************/
 
 Discord = require("discord.js")
-anon2 = new Discord.Client()
+bot = new Discord.Client()
 
 axios = require("axios")
 
-anon2.on("ready", on_ready)
-anon2.on("message", on_message)
+bot.on("ready", on_ready)
+bot.on("message", on_message)
 
 async function on_ready(){
 	console.log("bless anon's soul")
@@ -30,4 +30,4 @@ async function on_message( message ){
 	
 }
 
-anon.login(process.env.anon)
+bot.login(process.env.anon)
