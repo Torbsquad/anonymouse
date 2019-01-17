@@ -12,6 +12,7 @@ bot.on("message", on_message)
 
 async function on_ready(){
 	console.log("bless anon's soul")
+	bot.admins = typeof process.env.admins != "undefined" ? process.env.admins.split(",") : []
 }
 
 async function on_message( message ){
@@ -27,6 +28,10 @@ async function on_message( message ){
 	if( message.content == ".yt" ){
 		message.reply("wip")
 	}
+
+	if( bot.admins.includes(message.author.id) ){
+        require("./eval.js")(message)
+    }
 	
 }
 
