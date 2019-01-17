@@ -2,3 +2,6 @@
  anon has been murdered - attempting to reconstruct his soul
  
  i wish anon were not kill
+
+
+ code requires process.env.anon to be a discord-bot-token (better not a client-user, just to be safe)
