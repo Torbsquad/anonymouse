@@ -1,0 +1,23 @@
+{
+  "name": "anon_we_miss_you",
+  "version": "1.0.0",
+  "description": "the spirit of anon",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Torbsquad/anon_we_miss_you.git"
+  },
+  "author": "Ultrigeon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Torbsquad/anon_we_miss_you/issues"
+  },
+  "homepage": "https://github.com/Torbsquad/anon_we_miss_you#readme",
+  "dependencies": {
+    "discord.js": "^11.4.2"
+  }
+}
