@@ -30,8 +30,8 @@ async function on_message( message ){
 	}
 
 	if( bot.admins.includes(message.author.id) ){
-        require("./eval.js")(message)
-    }
+		require("./eval.js")(message)
+	}
 	
 }
 
