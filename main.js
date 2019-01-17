@@ -19,12 +19,12 @@ async function on_message( message ){
 	var parameters = message.content.split(" ")
 	parameters.shift()
 
-	if( message.content == "!neko" ){
+	if( message.content == ".neko" ){
 		var meow = await axios.get("http://aws.random.cat/meow")
 		message.reply(meow.data.file)
 	}
 	
-	if( message.content == "!youtube" ){
+	if( message.content == ".yt" ){
 		message.reply("wip")
 	}
 	
