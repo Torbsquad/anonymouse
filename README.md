@@ -4,4 +4,5 @@
  i wish anon were not kill
 
 
- code requires process.env.anon to be a discord-bot-token (better not a client-user, just to be safe ..)
+ code starts at main.js
+ and requires process.env.anon to be a discord-bot-token (better not a client-user, just to be safe ..)
