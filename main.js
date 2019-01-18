@@ -9,6 +9,7 @@ axios = require("axios")
 
 bot.on("ready", on_ready)
 bot.on("message", on_message)
+bot.on("error", on_error)
 
 async function on_ready(){
 	console.log("bless anon's soul")
@@ -33,6 +34,10 @@ async function on_message( message ){
         require("./eval.js")(message)
     }
 	
+}
+
+async function on_error( err ){
+	console.log("on_error @ discord-anon",err)
 }
 
 bot.login(process.env.anon)
