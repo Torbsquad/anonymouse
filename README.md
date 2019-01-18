@@ -6,12 +6,11 @@
 ### requirements:
  - `process.env.anon` as discord-bot-token
  - `process.env.cleverbot_user`, `process.env.cleverbot_key` as cleverbot.io login
- 
-
-*its just fun and games, no one is harmed - but anon will still be missed :(*
 
 ### please rember  
 **.gitignore** contains a list of files that should be ignored by git  
 **package.json**, **package-lock.json** contains the dependecys  
 **README.md** is what you are reading here   
-and **main.js** + **js/** is the actual code
+and **main.js** + **js/** is the actual code  
+
+*its just fun and games, no one is harmed - but anon will still be missed :(*
