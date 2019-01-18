@@ -1,10 +1,11 @@
 # anon_we_miss_you
- anon has been murdered and we are now attempting to reconstruct his soul
- 
+ anon has been murdered and we are now attempting to reconstruct his soul   
  i wish anon were not kill
 
-  
- code starts at main.js
- and requires process.env.anon to be a discord-bot-token (better not a client-user, just to be safe ..)
+ **main.js is the starting point** 
+### requirements:
+ - `process.env.anon` as discord-bot-token
+ - `process.env.cleverbot_user`, `process.env.cleverbot_key` as cleverbot.io login
+ 
 
-*its just fun and games, no one has been physically murdered - but anon will still be missed :(*
+*its just fun and games, no one is harmed - but anon will still be missed :(*
