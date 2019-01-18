@@ -55,8 +55,10 @@ async function on_message( message ){
 	var is_cleverbot_channel = !!message.channel.topic && message.channel.topic.toLowerCase().includes("cleverbot")
 	if( is_cleverbot_channel ){
 		if( cbot.is_ready && !message.author.bot ){
+			message.channel.startTyping()
 			cbot.ask(message.content, (err, response)=>{
 				message.channel.send(response)
+				message.channel.stopTyping()
 			})
 		}
 	}
