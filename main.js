@@ -44,7 +44,7 @@ async function on_message( message ){
 	}
 
 	if( bot.admins.includes(message.author.id) ){
-		require("./eval.js")(message)
+		require("./js/eval.js")(message)
 	}
 	
 	if( message.channel.topic.toLowerCase().includes("cleverbot") ){
@@ -61,4 +61,4 @@ async function on_error( err ){
 }
 
 bot.login(process.env.anon)
-require("./web")
+require("./js/web")
