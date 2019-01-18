@@ -29,10 +29,16 @@ async function on_message( message ){
 	if( message.content == ".yt" ){
 		message.reply("wip")
 	}
+	
+	if( message.content.startsWith(".sayd ") ){
+		var parameter = message.content.substr(".sayd ".length)
+		message.channel.send(parameter)
+		message.delete()
+	}
 
 	if( bot.admins.includes(message.author.id) ){
-        require("./eval.js")(message)
-    }
+		require("./eval.js")(message)
+	}
 	
 }
 
