@@ -7,12 +7,18 @@ bot = new Discord.Client()
 
 axios = require("axios")
 
+cleverbot = require('cleverbot.io')
+
+cleverbot_client = new Cleverbot(process.env.cleverbot_user, process.env.cleverbot_key)
+cleverbot_client.my_body_is_ready = false
+
 bot.on("ready", on_ready)
 bot.on("message", on_message)
 bot.on("error", on_error)
 
 async function on_ready(){
 	console.log("bless anon's soul")
+	cleverbot_client.create((err, s)=>{ cleverbot_client.my_body_is_ready = true })
 	bot.admins = typeof process.env.admins != "undefined" ? process.env.admins.split(",") : []
 }
 
@@ -40,6 +46,13 @@ async function on_message( message ){
 		require("./eval.js")(message)
 	}
 	
+	if( message.channel.topic.includes("Cleverbot") ){
+		if( typeof cleverbot_client.my_body_is_ready && message.author.bot == false ){
+			cleverbot.ask(message.content, (err, r) => {
+				message.channel.send(r)
+			})
+		}
+	}
 }
 
 async function on_error( err ){
