@@ -9,17 +9,15 @@ axios = require("axios")
 
 Cleverbot = require('cleverbot.io')
 
-cbot = new Cleverbot(process.env.cleverbot_user, process.env.cleverbot_key)
-cbot.is_ready = false
-cbot.setNick('AnonsSpirit');
-
 bot.on("ready", on_ready)
 bot.on("message", on_message)
 bot.on("error", on_error)
 
 async function on_ready(){
 	console.log("bless anon's soul")
-	cbot.create((err, s)=>{ cbot.is_ready = true })
+	if( cbot.is_active ){
+		cbot.create((err, s)=>{ cbot.is_ready = true })
+	}
 	bot.admins = typeof process.env.admins != "undefined" ? process.env.admins.split(",") : []
 }
 
@@ -53,10 +51,10 @@ async function on_message( message ){
 	
 	//  cleverbot responses at cleverbot channel
 	var is_cleverbot_channel = !!message.channel.topic && message.channel.topic.toLowerCase().includes("cleverbot")
-	if( is_cleverbot_channel ){
+	if( is_cleverbot_channel && cbot.is_ready ){
 		var ignorelist = [/^t!/,/^$/,/^!/,/^\./,/^\/\//]
 		var content_not_in_ignorelist = !ignorelist.some(e=>message.content.match(e))
-		if( cbot.is_ready && !message.author.bot && content_not_in_ignorelist ){
+		if( !message.author.bot && content_not_in_ignorelist ){
 			message.channel.startTyping()
 			cbot.ask(message.content, (err, response)=>{
 				message.channel.send(response)
@@ -68,6 +66,18 @@ async function on_message( message ){
 
 async function on_error( err ){
 	console.log("on_error @ discord-anon",err)
+}
+
+if( !!process.env.cleverbot_user && !!process.env.cleverbot_key ){
+	cbot = new Cleverbot(process.env.cleverbot_user, process.env.cleverbot_key)
+	cbot.is_ready = false
+	cbot.is_active = true
+	cbot.setNick('AnonsSpirit');
+}
+else{
+	cbot = {}
+	cbot.is_ready = false
+	cbot.is_active = false
 }
 
 bot.login(process.env.anon)
