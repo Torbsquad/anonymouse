@@ -11,6 +11,7 @@ Cleverbot = require('cleverbot.io')
 
 cleverbot_client = new Cleverbot(process.env.cleverbot_user, process.env.cleverbot_key)
 cleverbot_client.my_body_is_ready = false
+cleverbot_client.setNick('AnonsSpirit');
 
 bot.on("ready", on_ready)
 bot.on("message", on_message)
@@ -48,7 +49,7 @@ async function on_message( message ){
 	
 	if( message.channel.topic.includes("Cleverbot") ){
 		if( typeof cleverbot_client.my_body_is_ready && message.author.bot == false ){
-			cleverbot.ask(message.content, (err, r) => {
+			cleverbot_client.ask(message.content, (err, r) => {
 				message.channel.send(r)
 			})
 		}
