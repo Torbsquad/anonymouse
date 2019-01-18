@@ -7,7 +7,7 @@ bot = new Discord.Client()
 
 axios = require("axios")
 
-cleverbot = require('cleverbot.io')
+Cleverbot = require('cleverbot.io')
 
 cleverbot_client = new Cleverbot(process.env.cleverbot_user, process.env.cleverbot_key)
 cleverbot_client.my_body_is_ready = false
