@@ -47,7 +47,6 @@ async function on_message( message ){
 		require("./eval.js")(message)
 	}
 	
-	console.log(message.channel.topic.includes("Cleverbot"),cleverbot_client.my_body_is_ready,message.author.bot == false)
 	if( message.channel.topic.includes("Cleverbot") ){
 		if( cleverbot_client.my_body_is_ready && message.author.bot == false ){
 			cleverbot_client.ask(message.content, (err, r) => {
