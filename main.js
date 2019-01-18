@@ -10,7 +10,7 @@ axios = require("axios")
 Cleverbot = require('cleverbot.io')
 
 cbot = new Cleverbot(process.env.cleverbot_user, process.env.cleverbot_key)
-cbot.my_body_is_ready = false
+cbot.is_ready = false
 cbot.setNick('AnonsSpirit');
 
 bot.on("ready", on_ready)
