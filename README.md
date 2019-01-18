@@ -7,6 +7,9 @@
  - `process.env.anon` as discord-bot-token
  - `process.env.cleverbot_user`, `process.env.cleverbot_key` as cleverbot.io login
 
+### optional:
+ - `process.env.admins` with discord-user-ids for access for the eval code injection
+
 ### please rember  
  - **.gitignore** contains a list of things that should be ignored by git  
  - **package.json**, **package-lock.json** has dependencies like the discord.js library  
