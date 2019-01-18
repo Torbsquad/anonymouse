@@ -9,7 +9,7 @@
 
 ### please rember  
 **.gitignore** contains a list of files that should be ignored by git  
-**package.json**, **package-lock.json** contains the dependecys  
+**package.json**, **package-lock.json** contains the dependencies  
 **README.md** is what you are reading here   
 and **main.js** + **js/** is the actual code  
 
