@@ -5,9 +5,9 @@
  **main.js is the starting point** 
 ### requirements:
  - `process.env.anon` as discord-bot-token
- - `process.env.cleverbot_user`, `process.env.cleverbot_key` as cleverbot.io login
 
 ### optional:
+ - `process.env.cleverbot_user`, `process.env.cleverbot_key` as cleverbot.io login
  - `process.env.admins` with comma separated discord-user-ids for access for the eval code injection
 
 ### please rember  
