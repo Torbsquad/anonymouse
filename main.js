@@ -57,7 +57,7 @@ async function on_message( message ){
 		if( !message.author.bot && content_not_in_ignorelist ){
 			message.channel.startTyping()
 			cbot.ask(message.content, (err, response)=>{
-				response.replace(/\*/g,"\\*")
+				response = response.replace(/\*/g,"\\*")
 				message.channel.send(response)
 				message.channel.stopTyping()
 			})
