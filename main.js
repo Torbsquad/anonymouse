@@ -52,7 +52,7 @@ async function on_message( message ){
 	//  cleverbot responses at cleverbot channel
 	var is_cleverbot_channel = !!message.channel.topic && message.channel.topic.toLowerCase().includes("cleverbot")
 	if( is_cleverbot_channel && cbot.is_ready ){
-		var ignorelist = [/^t!/,/^$/,/^!/,/^\./,/^\/\//]
+		var ignorelist = [/^t!/,/^$/,/^!/,/^\./,/^\/\//,/```js/]
 		var content_not_in_ignorelist = !ignorelist.some(e=>message.content.match(e))
 		if( !message.author.bot && content_not_in_ignorelist ){
 			message.channel.startTyping()
