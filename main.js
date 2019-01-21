@@ -83,7 +83,10 @@ async function on_error( err ){
 	console.log("on_error @ discord-anon",err)
 }
 
+
+// if no cleverbot.io token is given, should no cleverbot be prepared
 if( !!process.env.cleverbot_user && !!process.env.cleverbot_key ){
+	// loging in at cleverbot
 	cbot = new Cleverbot(process.env.cleverbot_user, process.env.cleverbot_key)
 	cbot.is_ready = false
 	cbot.is_active = true
@@ -95,5 +98,6 @@ else{
 	cbot.is_active = false
 }
 
+// loging in at discord
 bot.login(process.env.anon)
 require("./js/web")
