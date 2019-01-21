@@ -24,12 +24,16 @@ async function on_ready(){
 async function on_message( message ){
 	var input = {
 		command: {
-			cs: message.content.split(" ")[0], 						// case-senstivie, unmodified
-			ci: message.content.toLowerCase().split(" ")[0]			// case-insenstivie, pushed to lowercase
+			// case-senstivie, unmodified
+			cs: message.content.split(" ")[0],
+			// case-insenstivie, pushed to lowercase
+			ci: message.content.toLowerCase().split(" ")[0]
 		},
 		parameters: {
-			cs: message.content.split(" ").slice(1),				// case-senstivie, unmodified
-			ci: message.content.toLowerCase().split(" ").slice(1)	// case-insenstivie, pushed to lowercase
+			// case-senstivie, unmodified
+			cs: message.content.split(" ").slice(1),
+			// case-insenstivie, pushed to lowercase
+			ci: message.content.toLowerCase().split(" ").slice(1)
 		}
 	}
 	
