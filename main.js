@@ -52,7 +52,7 @@ async function on_message( message ){
 	}
 	
 	//  say and delete command
-	if( input.command.ci == ".sayd " ){
+	if( input.command.ci == ".sayd" ){
 		var response = input.parameters.cs.join(" ")
 		message.channel.send(response)
 		message.delete()
