@@ -22,29 +22,35 @@ async function on_ready(){
 }
 
 async function on_message( message ){
-	var input = message.content.toLowerCase()
-	var parameters = message.content.split(" ")
-	parameters.shift()
-
+	var input = {
+		command: {
+			cs: message.content.split(" ")[0], 						// case-senstivie, unmodified
+			ci: message.content.toLowerCase().split(" ")[0]			// case-insenstivie, pushed to lowercase
+		},
+		parameters: {
+			cs: message.content.split(" ").slice(1),				// case-senstivie, unmodified
+			ci: message.content.toLowerCase().split(" ").slice(1)	// case-insenstivie, pushed to lowercase
+		}
+	}
+	
 	//  neko command
-	if( message.content == ".neko" ){
+	if( input.command.ci == ".neko" ){
 		var meow = await axios.get("http://aws.random.cat/meow")
 		message.reply(meow.data.file)
 	}
 	
 	//  youtube command
-	if( message.content == ".yt" ){
-		message.reply("wip")
-		var search = parameters.join(" ")
+	if( input.command.ci == ".yt" ){
+		var search = input.parameters.cs.join(" ")
 		var url = encodeURI(`https://www.youtube.com/results?search_query=${search}`)
 		var youtube_video_id = /"\/watch\?v=(.*?)"/.exec((await axios.get(url)).data)[1]
 		message.reply(`https://www.youtube.com/watch?v=${youtube_video_id}`)
 	}
 	
 	//  say and delete command
-	if( message.content.startsWith(".sayd ") ){
-		var parameter = message.content.substr(".sayd ".length)
-		message.channel.send(parameter)
+	if( input.command.ci == ".sayd " ){
+		var response = input.parameters.cs.join(" ")
+		message.channel.send(response)
 		message.delete()
 	}
 
