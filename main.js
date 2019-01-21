@@ -67,10 +67,13 @@ async function on_message( message ){
 	var is_cleverbot_channel = !!message.channel.topic && message.channel.topic.toLowerCase().includes("cleverbot")
 	if( cbot.is_ready && ( is_cleverbot_channel || message.isMentioned(bot.user) ) ){
 		var ignorelist = [/^t!/,/^$/,/^!/,/^\./,/^\/\//,/```js/]
-		var content_not_in_ignorelist = !ignorelist.some(e=>message.content.match(e))
+		var question = message.cleanContent
+		
+		var content_not_in_ignorelist = !ignorelist.some(e=>question.match(e))
+		question = question.split(bot.user.username).join(cbot.nick).replace(/@/g,"")
 		if( !message.author.bot && content_not_in_ignorelist ){
 			message.channel.startTyping()
-			cbot.ask(message.content, (err, response)=>{
+			cbot.ask(question, (err, response)=>{
 				response = response.replace(/\*/g,"\\*")
 				message.channel.send(response)
 				message.channel.stopTyping()
