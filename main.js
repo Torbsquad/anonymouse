@@ -108,9 +108,7 @@ function _on_error(err){
 	}
 }
 async function on_error( err ){
-	try{
-		console.log("on_error @ discord-anon",err)
-	}
+	console.log("on_error @ discord-anon",err)
 }
 
 // if no cleverbot.io token is given, should no cleverbot be prepared
