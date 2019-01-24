@@ -9,10 +9,19 @@ axios = require("axios")
 
 Cleverbot = require('cleverbot.io')
 
-bot.on("ready", on_ready)
-bot.on("message", on_message)
-bot.on("error", on_error)
+bot.on("ready", _on_ready)
+bot.on("message", _on_message)
+bot.on("error", _on_error)
 
+
+function _on_ready(){
+	try{
+		on_ready()
+	}
+	catch(err){
+		console.log("on_ready error:",err)
+	}
+}
 async function on_ready(){
 	console.log("bless anon's soul")
 	if( cbot.is_active ){
@@ -21,6 +30,14 @@ async function on_ready(){
 	bot.admins = typeof process.env.admins != "undefined" ? process.env.admins.split(",") : []
 }
 
+function _on_message(message){
+	try{
+		on_message(message)
+	}
+	catch(err){
+		console.log("on_message error:",err)
+	}
+}
 async function on_message( message ){
 	var input = {
 		command: {
@@ -82,10 +99,19 @@ async function on_message( message ){
 	}
 }
 
-async function on_error( err ){
-	console.log("on_error @ discord-anon",err)
+function _on_error(err){
+	try{
+		on_error(err)
+	}
+	catch(err){
+		console.log("on_error error:",err)
+	}
 }
-
+async function on_error( err ){
+	try{
+		console.log("on_error @ discord-anon",err)
+	}
+}
 
 // if no cleverbot.io token is given, should no cleverbot be prepared
 if( !!process.env.cleverbot_user && !!process.env.cleverbot_key ){
