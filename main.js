@@ -90,7 +90,7 @@ async function on_message( message ){
 		response.push("RGB-Liste also [R,G,B] ([255,0,255], [123, 234, 45])")
 		response.push("Oder einer dieser Farben: (klein geschriebenes wird groß)\n`'DEFAULT', 'AQUA', 'GREEN', 'BLUE', 'PURPLE', 'LUMINOUS_VIVID_PINK', 'GOLD', 'ORANGE', 'RED', 'GREY', 'DARKER_GREY', 'NAVY', 'DARK_AQUA', 'DARK_GREEN', 'DARK_BLUE', 'DARK_PURPLE', 'DARK_VIVID_PINK', 'DARK_GOLD', 'DARK_ORANGE', 'DARK_RED', 'DARK_GREY', 'LIGHT_GREY', 'DARK_NAVY', 'RANDOM'`")
 
-		message.channel.send(response.split("\n"))
+		message.channel.send(response.join("\n"))
 	}
 	
 	//  say and delete command
