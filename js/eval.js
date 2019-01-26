@@ -17,9 +17,19 @@
 
 module.exports = (message) => {
     try{
-        message.content.split("\`\`\`").filter(el=>el.startsWith("js\n")).forEach(el=>eval(el.substr(3)))
+        message.content.split("\`\`\`").filter(el=>el.startsWith("js\n")).forEach(el=>evalorino(el.substr(3)))
     }
     catch(err){
         message.reply(err.message)
+    }
+}
+
+function evalorino(el){
+    var schleep = "var sleep = time=>new Promise((res,rej)=>{setTimeout(function(){res()},time*1000)})\n"
+    if( el.includes("//noasync") ){
+        eval(schleep+el)
+    }
+    else{
+        eval(schleep+`async function main(){${el}}main()`)
     }
 }
