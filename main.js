@@ -85,7 +85,7 @@ async function on_message( message ){
 	if( [".colors",".colours"].includes(input.command.ci) ){
 		message.channel.send("https://discord.js.org/#/docs/main/stable/typedef/ColorResolvable")
 
-		var response = ["https://discord.js.org/#/docs/main/stable/typedef/ColorResolvable"]
+		var response = []
 		response.push("__ColorResolvable:__")
 		response.push("Hexadezimalausdrücke als Zahl oder Wort (`#123ABC`, `0x123ABC`, `123ABC`, ...)")
 		response.push("eigentlich auch Ganzzahl selbst (`0x123ABC`, bzw. `18*256*256 + 58*256 + 188` <:WaitWhat:401709165585760266>, `1194684`, ...)\*")
