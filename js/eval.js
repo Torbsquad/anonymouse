@@ -15,8 +15,11 @@
  * authorisation very recommended tho, dangerous in wrong hands
  */
 
-module.exports = (message) => {
+var message = ""
+
+module.exports = (m) => {
     try{
+        message = m
         message.content.split("\`\`\`").filter(el=>el.startsWith("js\n")).forEach(el=>evalorino(el.substr(3)))
     }
     catch(err){
