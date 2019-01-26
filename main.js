@@ -74,7 +74,12 @@ async function on_message( message ){
 	if( input.command.ci == ".color" || input.command.ci == ".colour" ){
 		var target_member = message.guild.members.find(member => member.id == message.author.id)
 		var target_role = target_member.roles.find(role => role.name == "Farbe")
-		target_role.setColor(JSON.parse(input.parameters.raw.toUpperCase()))
+		if( !input.parameters.includes("[") ){
+			target_role.setColor(input.parameters.raw.toUpperCase())
+		}
+		else{
+			target_role.setColor(JSON.parse(input.parameters.raw))
+		}
 	}
 	
 	//  say and delete command
