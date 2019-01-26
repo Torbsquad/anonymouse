@@ -85,15 +85,20 @@ async function on_message( message ){
 	if( [".colors",".colours"].includes(input.command.ci) ){
 		message.channel.send("https://discord.js.org/#/docs/main/stable/typedef/ColorResolvable")
 
-		var response = []
-		response.push("__ColorResolvable:__")
-		response.push("Hexadezimalausdrücke als Zahl oder Wort\n→ (`#123ABC`, `0x123ABC`, `123ABC`, ...)")
-		response.push("~~eigentlich auch Ganzzahl selbst\n→ (`0x123ABC`, bzw. `18*256*256 + 58*256 + 188` <:WaitWhat:401709165585760266>, `1194684`, ...)~~ <:WaitWhat:401709165585760266><:WaitWhat:401709165585760266><:WaitWhat:401709165585760266>")
-		response.push("RGB-Liste also [R,G,B]\n→ (`[255,0,255]`, `[123, 234, 45]`)")
-		response.push("Oder einer dieser Farben: *(in .color wird klein geschriebenes groß)*")
-		response.push("→ `DEFAULT`, `AQUA`, `GREEN`, `BLUE`, `PURPLE`, `LUMINOUS_VIVID_PINK`, `GOLD`, `ORANGE`, `RED`, `GREY`, `DARKER_GREY`, `NAVY`, `DARK_AQUA`, `DARK_GREEN`, `DARK_BLUE`, `DARK_PURPLE`, `DARK_VIVID_PINK`, `DARK_GOLD`, `DARK_ORANGE`, `DARK_RED`, `DARK_GREY`, `LIGHT_GREY`, `DARK_NAVY`, `RANDOM`")
+		var response = `__ColorResolvable:__
+						Hexadezimalausdrücke als Zahl oder Wort
+						→ (\`#123ABC\`, \`0x123ABC\`, \`123ABC\`, ...)")
 
-		message.channel.send(response.join("\n"))
+						~~eigentlich auch Ganzzahl selbst
+						→ (\`0x123ABC\`, bzw. \`18*256*256 + 58*256 + 188\` <:WaitWhat:401709165585760266>, \`1194684\`, ...)~~ <:WaitWhat:401709165585760266><:WaitWhat:401709165585760266><:WaitWhat:401709165585760266>")
+
+						RGB-Liste also [R,G,B]
+						→ (\`[255,0,255]\`, \`[123, 234, 45]\`)
+
+						Oder einer dieser Farben: *(in .color wird klein geschriebenes groß)*
+						→ \`DEFAULT\`, \`AQUA\`, \`GREEN\`, \`BLUE\`, \`PURPLE\`, \`LUMINOUS_VIVID_PINK\`, \`GOLD\`, \`ORANGE\`, \`RED\`, \`GREY\`, \`DARKER_GREY\`, \`NAVY\`, \`DARK_AQUA\`, \`DARK_GREEN\`, \`DARK_BLUE\`, \`DARK_PURPLE\`, \`DARK_VIVID_PINK\`, \`DARK_GOLD\`, \`DARK_ORANGE\`, \`DARK_RED\`, \`DARK_GREY\`, \`LIGHT_GREY\`, \`DARK_NAVY\`, \`RANDOM\`")
+		`
+		message.channel.send(response.replace(/\n\t\t\t\t\t\t/g,"\n"))
 	}
 	
 	//  say and delete command
