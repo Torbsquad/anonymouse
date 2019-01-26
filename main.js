@@ -50,7 +50,9 @@ async function on_message( message ){
 			// case-senstivie, unmodified
 			cs: message.content.split(" ").slice(1),
 			// case-insenstivie, pushed to lowercase
-			ci: message.content.toLowerCase().split(" ").slice(1)
+			ci: message.content.toLowerCase().split(" ").slice(1),
+			// complete ((without)) split
+			raw: message.content.split(" ").slice(1).join(" ")
 		}
 	}
 	
@@ -66,6 +68,13 @@ async function on_message( message ){
 		var url = encodeURI(`https://www.youtube.com/results?search_query=${search}`)
 		var youtube_video_id = /"\/watch\?v=(.*?)"/.exec((await axios.get(url)).data)[1]
 		message.reply(`https://www.youtube.com/watch?v=${youtube_video_id}`)
+	}
+
+	// color-command
+	if( input.command.ci == ".color" ){
+		var target_member = message.guild.members.find(member => member.id == message.author.id)
+		var target_role = target_member.roles.find(role => role.name == "Farbe")
+		target_role.setColor(input.parameters.raw)
 	}
 	
 	//  say and delete command
