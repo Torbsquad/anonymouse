@@ -71,10 +71,10 @@ async function on_message( message ){
 	}
 
 	// color-command
-	if( input.command.ci == ".color" ){
+	if( input.command.ci == ".color" || input.command.ci == ".colour" ){
 		var target_member = message.guild.members.find(member => member.id == message.author.id)
 		var target_role = target_member.roles.find(role => role.name == "Farbe")
-		target_role.setColor(input.parameters.raw)
+		target_role.setColor(JSON.parse(input.parameters.raw.toUpperCase()))
 	}
 	
 	//  say and delete command
