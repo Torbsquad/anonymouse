@@ -71,7 +71,7 @@ async function on_message( message ){
 	}
 
 	// color-command
-	if( input.command.ci == ".color" || input.command.ci == ".colour" ){
+	if( [".color",".colour"].includes(input.command.ci) ){
 		var target_member = message.guild.members.find(member => member.id == message.author.id)
 		var colorrole = role => role.name == "Farbe" || role.name == target_member.name || role.name[0] == "ܿ"
 		var target_role = target_member.roles.find(colorrole)
@@ -81,6 +81,16 @@ async function on_message( message ){
 		else{
 			target_role.setColor(JSON.parse(input.parameters.raw))
 		}
+	}
+	if( [".colors",".colours"].includes(input.command.ci) ){
+		var response = ["https://discord.js.org/#/docs/main/stable/typedef/ColorResolvable"]
+		response.push("__ColorResolvable__")
+		response.push("Hexadezimalausdrücke als Zahl oder Wort (#123ABC, 0x123ABC, 123ABC, ...)")
+		response.push("Ganzzahl selbst (0x123ABC, bzw. 18*256*256 + 58*256 + 188, 1194684, ...) <:WaitWhat:401709165585760266>")
+		response.push("RGB-Liste also [R,G,B] ([255,0,255], [123, 234, 45])")
+		response.push("Oder einer dieser Farben: (klein geschriebenes wird groß)\n`'DEFAULT', 'AQUA', 'GREEN', 'BLUE', 'PURPLE', 'LUMINOUS_VIVID_PINK', 'GOLD', 'ORANGE', 'RED', 'GREY', 'DARKER_GREY', 'NAVY', 'DARK_AQUA', 'DARK_GREEN', 'DARK_BLUE', 'DARK_PURPLE', 'DARK_VIVID_PINK', 'DARK_GOLD', 'DARK_ORANGE', 'DARK_RED', 'DARK_GREY', 'LIGHT_GREY', 'DARK_NAVY', 'RANDOM'`")
+
+		message.channel.send(response.split("\n"))
 	}
 	
 	//  say and delete command
