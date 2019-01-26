@@ -73,7 +73,8 @@ async function on_message( message ){
 	// color-command
 	if( input.command.ci == ".color" || input.command.ci == ".colour" ){
 		var target_member = message.guild.members.find(member => member.id == message.author.id)
-		var target_role = target_member.roles.find(role => role.name == "Farbe" || role.name == target_member.name)
+		var colorrole = role => role.name == "Farbe" || role.name == target_member.name || role.name[0] == "ܿ"
+		var target_role = target_member.roles.find(colorrole)
 		if( !input.parameters.raw.match(/^\[.{1,}?\,.{1,}?\,.{1,}?\]$/) ){
 			target_role.setColor(input.parameters.raw.toUpperCase())
 		}
