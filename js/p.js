@@ -1,5 +1,7 @@
-module.exports = main
 var sleep = time=>new Promise((res,rej)=>{setTimeout(function(){res()},time*1000)})
+var axios = require("axios")
+
+module.exports = main
 
 async function main(bot){
 	var prochans = bot.channels.find(channel=>channel.type=="category"&&channel.name=="pr0gramm").children
@@ -13,11 +15,8 @@ async function main(bot){
 
 
 async function tick(channel){
-	var target_channel = channel
-	
-	var axios = require("axios")
-
-	var e = await axios.get(target_channel.topic)
+	console.log(channel)
+	var e = await axios.get(channel.topic)
 	var b = e.data.items.filter(d=>d.user!="pr0gramm")
 
 	var img = {
@@ -29,10 +28,10 @@ async function tick(channel){
 	
 	if(img.type){
 		var link = `https://${img.type}.pr0gramm.com/${img.suffix}`
-		var already_there = await does_already_contain(link,target_channel)
+		var already_there = await does_already_contain(link,channel)
 		if(!already_there){
 			console.log(`trying to send ${link}`)
-			target_channel.send(link)
+			channel.send(link)
 		}
 	}
 	
