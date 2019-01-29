@@ -4,7 +4,7 @@ var axios = require("axios")
 module.exports = main
 
 async function main(bot){
-	var prochans = bot.channels.find(channel=>channel.type=="category"&&channel.name=="pr0gramm").children
+	var prochans = bot.channels.find(channel=>channel.type=="category"&&channel.name=="pr0gramm").children.array()
 	while(true){
 		for(var prochan of prochans){
 			tick(prochan)
