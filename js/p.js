@@ -4,11 +4,16 @@ var axios = require("axios")
 module.exports = main
 
 async function main(bot){
-	var prochans = bot.channels.find(channel=>channel.type=="category"&&channel.name=="pr0gramm").children.array()
 	while(true){
+		var prochans = bot.channels.find(channel=>channel.type=="category"&&channel.name=="pr0gramm").children.array()
 		for(var prochan of prochans){
-			tick(prochan)
-			await sleep(20)
+			try{
+				tick(prochan)
+				await sleep(60)
+			}
+			catch(err){
+				console.log(err)
+			}
 		}
 	}
 }
