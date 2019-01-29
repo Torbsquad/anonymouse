@@ -29,10 +29,10 @@ async function does_already_contain(message,channel){
 }
 
 function datatype(t){
-	if(t.image.match(/.*?\.(gif|png|jpg)$/)){
+	if(t.match(/.*?\.(gif|png|jpg)$/)){
 		return "img"
 	}
-	if(t.image.match(/.*?\.(gif|png|jpg)$/)){
+	if(t.match(/.*?\.(mp4)$/)){
 		return "vid"
 	}
 	return false
