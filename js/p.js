@@ -1,8 +1,14 @@
 module.exports = main
+var sleep = time=>new Promise((res,rej)=>{setTimeout(function(){res()},time*1000)})
 
 async function main(bot){
 	var prochans = bot.channels.find(channel=>channel.type=="category"&&channel.name=="pr0gramm").children
-	prochans.forEach(tick)
+	while(true){
+		for(var prochan of prochans){
+			tick(prochan)
+			await sleep(60)
+		}
+	}
 }
 
 
