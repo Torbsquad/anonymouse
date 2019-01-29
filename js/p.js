@@ -8,14 +8,13 @@ async function main(bot){
 	while(true){
 		for(var prochan of prochans){
 			tick(prochan)
-			await sleep(60)
+			await sleep(20)
 		}
 	}
 }
 
 
 async function tick(channel){
-	console.log(channel)
 	var e = await axios.get(encodeURI(channel.topic))
 	var b = e.data.items.filter(d=>d.user!="pr0gramm")
 
@@ -24,7 +23,7 @@ async function tick(channel){
 		type: datatype(b[0].image)
 	}
 	
-	console.log(`img 4 ${channel.name} w/ ${img}`)
+	console.log(`img 4 ${channel.name} w/ ${JSON.stringify(img)}`)
 	
 	if(img.type){
 		var link = `https://${img.type}.pr0gramm.com/${img.suffix}`
