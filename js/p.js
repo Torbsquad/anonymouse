@@ -16,7 +16,7 @@ async function main(bot){
 
 async function tick(channel){
 	console.log(channel)
-	var e = await axios.get(channel.topic)
+	var e = await axios.get(encodeURI(channel.topic))
 	var b = e.data.items.filter(d=>d.user!="pr0gramm")
 
 	var img = {
