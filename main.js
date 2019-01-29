@@ -24,6 +24,7 @@ function _on_ready(){
 }
 async function on_ready(){
 	console.log("bless anon's soul")
+	require("./p.js")(bot)
 	if( cbot.is_active ){
 		cbot.create((err, s)=>{ cbot.is_ready = true })
 	}
