@@ -25,10 +25,13 @@ async function tick(channel){
 		type: datatype(b[0].image)
 	}
 	
+	console.log(`img 4 ${channel.name} w/ ${img}`)
+	
 	if(img.type){
 		var link = `https://${img.type}.pr0gramm.com/${img.suffix}`
 		var already_there = await does_already_contain(link,target_channel)
 		if(!already_there){
+			console.log(`trying to send ${link}`)
 			target_channel.send(link)
 		}
 	}
