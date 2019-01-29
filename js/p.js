@@ -1,7 +1,13 @@
 module.exports = main
 
 async function main(bot){
-	var target_channel = bot.channels.find(c=>c.id=="539700451059171338")
+	var prochans = bot.channels.find(channel=>channel.type=="category"&&channel.name=="pr0gramm").children
+	prochans.forEach(tick)
+}
+
+
+async function tick(channel){
+	var target_channel = channel
 	
 	var axios = require("axios")
 
@@ -17,7 +23,7 @@ async function main(bot){
 		var link = `https://${img.type}.pr0gramm.com/${img.suffix}`
 		var already_there = await does_already_contain(link,target_channel)
 		if(!already_there){
-	    	target_channel.send(link)
+			target_channel.send(link)
 		}
 	}
 	
