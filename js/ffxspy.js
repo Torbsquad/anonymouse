@@ -18,6 +18,7 @@ async function stalk(channel){
   ls(random_number, function (err, data) {
     richtext.setColor("b6dd8c")
     richtext.setThumbnail(data.avatar)
+    richtext.setImage(data.portrait)
     for( var ding of dinge ){
       content.push(`**${ding}**: ${data[ding]||"keins lol"}`)
     }
