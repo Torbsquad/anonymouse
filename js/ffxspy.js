@@ -26,7 +26,7 @@ async function stalk(channel){
     if(channel.topic != result){
       channel.setTopic(result)
       richtext.addField(data.name,result)
-      channel.send('',{embed:richtext})
+      channel.send('@everyone',{embed:richtext})
     }
   })
 }
