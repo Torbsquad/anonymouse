@@ -6,6 +6,7 @@ Discord = require("discord.js")
 bot = new Discord.Client()
 
 axios = require("axios")
+sleep = require("./js/sleep")
 
 Cleverbot = require('cleverbot.io')
 
@@ -143,6 +144,19 @@ async function on_message( message ){
 		catch(err){
 		    message.reply(err.message)
 		}
+	}
+	
+	if( input.command.ci == ".dice" ){
+		let dice = Math.floor(Math.random()*6+1)
+		message.channel.send(dice)
+	}
+	
+	if( input.command.ci == ".coinflip" ){
+		let response = `${message.author} warf eine Münze!`
+		let response_message = await message.channel.send(response)
+		await sleep(1000)
+		let coin = Math.round(Math.random()) ? "Kopf" : "Zahl"
+		response_message.edit( `${response.content} ${coin}!` )
 	}
 }
 
