@@ -155,7 +155,7 @@ async function on_message( message ){
 		if( dice_parameter && dice_parameter[2] ){
 			dices.sides = dice_parameter[2]
 		}
-		let response_text = `${message.author} warf ${dices.count == 1? "einen " : dices.count}d${dices.sides}!`
+		let response_text = `🎲${message.author} warf ${dices.count == 1? "einen " : dices.count}d${dices.sides}!`
 		let response = await message.channel.send(response_text)
 		await sleep(1)
 		let result = "🤔"
