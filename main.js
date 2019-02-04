@@ -152,11 +152,12 @@ async function on_message( message ){
 	}
 	
 	if( input.command.ci == ".coinflip" ){
-		let response = `${message.author} warf eine Münze!`
-		let response_message = await message.channel.send(response)
+		let response_text = `${message.author} warf eine Münze!`
+		let response = await message.channel.send(response_text)
 		await sleep(1)
 		let coin = Math.round(Math.random()) ? "Kopf" : "Zahl"
-		response_message.edit( `${response.content} ${coin}!` )
+		response_text += ` - ${coin}!`
+		response.edit(response_text)
 	}
 }
 
