@@ -147,8 +147,12 @@ async function on_message( message ){
 	}
 	
 	if( input.command.ci == ".dice" ){
+		let response_text = `${message.author} warf einen d6-Würfel!`
+		let response = await message.channel.send(response_text)
+		await sleep(1)
 		let dice = Math.floor(Math.random()*6+1)
-		message.channel.send(dice)
+		response_text += ` ${dice}!`
+		response.edit(response_text)
 	}
 	
 	if( input.command.ci == ".coinflip" ){
@@ -156,7 +160,7 @@ async function on_message( message ){
 		let response = await message.channel.send(response_text)
 		await sleep(1)
 		let coin = Math.round(Math.random()) ? "Kopf" : "Zahl"
-		response_text += ` - ${coin}!`
+		response_text += ` ${coin}!`
 		response.edit(response_text)
 	}
 }
