@@ -149,10 +149,10 @@ async function on_message( message ){
 	if( input.command.ci == ".dice" ){
 		let dices = {count: 1, sides: 6}
 		let dice_parameter = input.parameters.raw.match(/([0-9]{0,})d([0-9]{1,})/)
-		if( dice_parameter[1] ){
+		if( dice_parameter && dice_parameter[1] ){
 			dices.count = dice_parameter[1]
 		}
-		if( dice_parameter[2] ){
+		if( dice_parameter && dice_parameter[2] ){
 			dices.sides = dice_parameter[2]
 		}
 		let response_text = `${message.author} warf ${dices.count == 1? "einen " : dices.count}d${dices.sides}!`
