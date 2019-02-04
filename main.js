@@ -168,7 +168,7 @@ async function on_message( message ){
 			while( dices.count-->0 ){
 				let dice = Math.floor(Math.random()*dices.sides+1)
 				sum += dice
-				dices.push(dice)
+				dices.push(+dice)
 		      	}
 			result = `${dices.join(" + ")} = ${sum}`
 		}
