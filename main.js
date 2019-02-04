@@ -147,11 +147,33 @@ async function on_message( message ){
 	}
 	
 	if( input.command.ci == ".dice" ){
-		let response_text = `${message.author} warf einen d6-Würfel!`
+		let dices = {count: 1, sides: 6}
+		let dice_parameter = input.parameters.raw.match(/([0-9]{0,})d([0-9]{1,})/)
+		if( dice_parameter[1] ){
+			dices.count = dice_parameter[1]
+		}
+		if( dice_parameter[2] ){
+			dices.sides = dice_parameter[2]
+		}
+		let response_text = `${message.author} warf ${dices.count == 1? "einen " : dices.count}d${dices.sides}!`
 		let response = await message.channel.send(response_text)
 		await sleep(1)
-		let dice = Math.floor(Math.random()*6+1)
-		response_text += ` ${dice}!`
+		let result = "🤔"
+		if( dices.count == 1 ){
+			let result = Math.floor(Math.random()*dices.sides+1)
+		}
+		else{
+			let result = ""
+			let sum = 0
+			let dices = []
+			while( dices.count-->0 ){
+				let dice = Math.floor(Math.random()*dices.sides+1)
+				sum += dice
+				dices.push(dice)
+		      	}
+			result = `${dices.join(" + ")} = ${sum}`
+		}
+		response_text += ` ${result}!`
 		response.edit(response_text)
 	}
 	
