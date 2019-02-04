@@ -160,10 +160,9 @@ async function on_message( message ){
 		await sleep(1)
 		let result = "🤔"
 		if( dices.count == 1 ){
-			let result = Math.floor(Math.random()*dices.sides+1)
+			result = Math.floor(Math.random()*dices.sides+1)
 		}
 		else{
-			let result = ""
 			let sum = 0
 			let dices = []
 			while( dices.count-->0 ){
