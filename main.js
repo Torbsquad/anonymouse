@@ -164,13 +164,13 @@ async function on_message( message ){
 		}
 		else{
 			let sum = 0
-			let dices = []
+			let thrown_dices = []
 			while( dices.count-->0 ){
 				let dice = Math.floor(Math.random()*dices.sides+1)
 				sum += dice
-				dices.push(+dice)
+				thrown_dices.push(+dice)
 		      	}
-			result = `${dices.join(" + ")} = ${sum}`
+			result = `${thrown_dices.join(" + ")} = ${sum}`
 		}
 		response_text += ` ${result}!`
 		response.edit(response_text)
