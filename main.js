@@ -78,7 +78,7 @@ async function on_message( message ){
 
     //  eval block
     if( bot.admins.includes(message.author.id) ){
-        require("./js/eval.js")(message)
+        require("./js/eval.js")(bot, message)
     }
     
     //  cleverbot responses at cleverbot channel
