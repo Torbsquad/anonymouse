@@ -10,31 +10,21 @@ sleep = require("./js/sleep")
 
 Cleverbot = require('cleverbot.io')
 
-bot.on("ready", () => {
-	try{
-		on_ready()
-	}
-	catch(err){
-		console.log("on_ready error:",err)
-	}
+fs = require("fs")
+
+bot.on("ready",()=>{
+	try{on_ready()}
+	catch(err){console.log("on_ready error:",err)}
 })
 
-bot.on("message", (message) => {
-	try{
-		on_message(message)
-	}
-	catch(err){
-		console.log("on_message error:",err)
-	}
+bot.on("message",(message)=>{
+	try{on_message(message)}
+	catch(err){console.log("on_message error:",err)}
 })
 
-bot.on("error", (err) => {
-	try{
-		on_error(err)
-	}
-	catch(err){
-		console.log("on_error error:",err)
-	}
+bot.on("error",(err)=>{
+	try{on_error(err)}
+	catch(err){console.log("on_error error:",err)}
 })
 
 async function on_ready(){
