@@ -29,13 +29,13 @@ bot.on("error",(err)=>{
 })
 
 async function on_ready(){
-	console.log("bless anon's soul")
-	require("./js/p.js")(bot)
-	require("./js/ffxspy.js")(bot)
-	if( cbot.is_active ){
-		cbot.create((err, s)=>{ cbot.is_ready = true })
-	}
-	bot.admins = typeof process.env.admins != "undefined" ? process.env.admins.split(",") : []
+    console.log("bless anon's soul")
+    require("./js/p.js")(bot)
+    require("./js/ffxspy.js")(bot)
+    if( cbot.is_active ){
+        cbot.create((err, s)=>{ cbot.is_ready = true })
+    }
+    bot.admins = typeof process.env.admins != "undefined" ? process.env.admins.split(",") : []
 
     var files = fs.readdirSync(`${__dirname}/commands/`)
     var prefix = "."
@@ -127,59 +127,7 @@ async function on_message( message ){
 			})
 		}
 	}
-	
-	if( input.command.ci == ".temp" ){
-		let city = input.parameters.raw
-		let apiKey = process.env.open_weather_map_token
-		let apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${encodeURI(city)}&units=metric&appid=${apiKey}`
-		
-		try{
-		    wetter = await axios.get(apiUrl)
-		    message.reply(`Es ist in ${city} ${wetter.data.main.temp}°C`)
-		}
-		catch(err){
-		    message.reply(err.message)
-		}
-	}
-	
-	if( input.command.ci == ".dice" ){
-		let dices = {count: 1, sides: 6}
-		let dice_parameter = input.parameters.raw.match(/([0-9]{0,})d([0-9]{1,})/)
-		if( dice_parameter && dice_parameter[1] ){
-			dices.count = dice_parameter[1]
-		}
-		if( dice_parameter && dice_parameter[2] ){
-			dices.sides = dice_parameter[2]
-		}
-		let response_text = `🎲${message.author} warf ${dices.count == 1? "einen " : dices.count}d${dices.sides}!`
-		let response = await message.channel.send(response_text)
-		await sleep(1)
-		let result = "🤔"
-		if( dices.count == 1 ){
-			result = Math.floor(Math.random()*dices.sides+1)
-		}
-		else{
-			let sum = 0
-			let thrown_dices = []
-			while( dices.count-->0 ){
-				let dice = Math.floor(Math.random()*dices.sides+1)
-				sum += dice
-				thrown_dices.push(+dice)
-		      	}
-			result = `${thrown_dices.join(" + ")} = ${sum}`
-		}
-		response_text += ` ${result}!`
-		response.edit(response_text)
-	}
-	
-	if( input.command.ci == ".coinflip" ){
-		let response_text = `${message.author} warf eine Münze!`
-		let response = await message.channel.send(response_text)
-		await sleep(1)
-		let coin = Math.round(Math.random()) ? "Kopf" : "Zahl"
-		response_text += ` ${coin}!`
-		response.edit(response_text)
-	}
+
 }
 
 async function on_error( err ){
