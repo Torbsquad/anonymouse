@@ -11,6 +11,7 @@ sleep = require("./js/sleep")
 Cleverbot = require('cleverbot.io')
 
 fs = require("fs")
+var commands = {}
 
 bot.on("ready",()=>{
 	try{on_ready()}
@@ -35,6 +36,11 @@ async function on_ready(){
 		cbot.create((err, s)=>{ cbot.is_ready = true })
 	}
 	bot.admins = typeof process.env.admins != "undefined" ? process.env.admins.split(",") : []
+
+    var files = fs.readdirSync(`${__dirname}/commands/`)
+    files.forEach(file=>{
+        commands[file] = require(`${__dirname}/commands/${file}`)
+    })
 }
 
 async function on_message( message ){
@@ -55,6 +61,10 @@ async function on_message( message ){
 		}
 	}
 	
+    if( commands[input.command.ci] ){
+       commands[input.command.ci](bot, message, input.parameters.raw)
+    }
+    
 	//  neko command
 	if( input.command.ci == ".neko" ){
 		var meow = await axios.get("http://aws.random.cat/meow")
