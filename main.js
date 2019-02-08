@@ -40,7 +40,7 @@ async function on_ready(){
     var files = fs.readdirSync(`${__dirname}/commands/`)
     var prefix = "."
     files.forEach(file=>{
-	var name = file.match(/(.*?)\.js$/)[1]
+        var name = file.match(/(.*?)\.js$/)[1]
         commands[prefix+name] = require(`${__dirname}/commands/${file}`)
     })
 }
@@ -64,46 +64,8 @@ async function on_message( message ){
 	}
 	
     if( commands[input.command.ci] ){
-       commands[input.command.ci](bot, message, input.parameters.raw)
+        commands[input.command.ci](bot, message, input.parameters.raw)
     }
-    
-	
-	//  youtube command
-	if( input.command.ci == ".yt" ){
-		var search = input.parameters.cs.join(" ")
-		var url = encodeURI(`https://www.youtube.com/results?search_query=${search}`)
-		var youtube_video_id = /"\/watch\?v=(.*?)"/.exec((await axios.get(url)).data)[1]
-		message.reply(`https://www.youtube.com/watch?v=${youtube_video_id}`)
-	}
-
-	// color-command
-	if( [".color",".colour"].includes(input.command.ci) ){
-		var target_member = message.guild.members.find(member => member.id == message.author.id)
-		var colorrole = role => role.name == "Farbe" || role.name == target_member.name || role.name[0] == "ܿ"
-		var target_role = target_member.roles.find(colorrole)
-		if( !input.parameters.raw.match(/^\[.{1,}?\,.{1,}?\,.{1,}?\]$/) ){
-			target_role.setColor(input.parameters.raw.toUpperCase())
-		}
-		else{
-			target_role.setColor(JSON.parse(input.parameters.raw))
-		}
-	}
-	if( [".colors",".colours"].includes(input.command.ci) ){
-		var response = `__ColorResolvable:__
-			Hexadezimalausdrücke als Zahl oder Wort
-			→ (\`#123ABC\`, \`0x123ABC\`, \`123ABC\`, ...)
-
-			eigentlich auch Ganzzahl selbst,.... eigentlich
-
-			RGB-Liste also [R,G,B]
-			→ (\`[255,0,255]\`, \`[123, 234, 45]\`)
-
-			Oder einer dieser Farben: *(in .color wird klein geschriebenes groß)*
-			→ \`DEFAULT\`, \`AQUA\`, \`GREEN\`, \`BLUE\`, \`PURPLE\`, \`LUMINOUS_VIVID_PINK\`, \`GOLD\`, \`ORANGE\`, \`RED\`, \`GREY\`, \`DARKER_GREY\`, \`NAVY\`, \`DARK_AQUA\`, \`DARK_GREEN\`, \`DARK_BLUE\`, \`DARK_PURPLE\`, \`DARK_VIVID_PINK\`, \`DARK_GOLD\`, \`DARK_ORANGE\`, \`DARK_RED\`, \`DARK_GREY\`, \`LIGHT_GREY\`, \`DARK_NAVY\`, \`RANDOM\``
-		message.channel.send(response.replace(/\n\t+/g,"\n"))
-		
-		message.channel.send("https://discord.js.org/#/docs/main/stable/typedef/ColorResolvable")
-	}
 
 	//  eval block
 	if( bot.admins.includes(message.author.id) ){
