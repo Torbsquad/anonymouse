@@ -67,11 +67,6 @@ async function on_message( message ){
        commands[input.command.ci](bot, message, input.parameters.raw)
     }
     
-	//  neko command
-	if( input.command.ci == ".neko" ){
-		var meow = await axios.get("http://aws.random.cat/meow")
-		message.reply(meow.data.file)
-	}
 	
 	//  youtube command
 	if( input.command.ci == ".yt" ){
