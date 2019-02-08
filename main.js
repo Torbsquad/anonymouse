@@ -38,8 +38,10 @@ async function on_ready(){
 	bot.admins = typeof process.env.admins != "undefined" ? process.env.admins.split(",") : []
 
     var files = fs.readdirSync(`${__dirname}/commands/`)
+    var prefix = "."
     files.forEach(file=>{
-        commands[file] = require(`${__dirname}/commands/${file}`)
+	var name = file.match(/(.*?)\.js$/)[1]
+        commands[prefix+name] = require(`${__dirname}/commands/${file}`)
     })
 }
 
