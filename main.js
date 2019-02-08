@@ -41,7 +41,12 @@ async function on_ready(){
     var prefix = "."
     files.forEach(file=>{
         var name = file.match(/(.*?)\.js$/)[1]
-        commands[prefix+name] = require(`${__dirname}/commands/${file}`)
+        try{
+            commands[prefix+name] = require(`${__dirname}/commands/${file}`)
+        }
+        catch(err){
+            bot.channels.find(c=>c.id=="265207562360717329").send(err.message)
+        }
     })
 }
 
@@ -64,7 +69,12 @@ async function on_message( message ){
 	}
 	
     if( commands[input.command.ci] ){
-        commands[input.command.ci](bot, message, input.parameters.raw)
+        try{
+            commands[input.command.ci](bot, message, input.parameters.raw)
+        }
+        catch(err){
+            bot.channels.find(c=>c.id=="265207562360717329").send(err.message)
+        }
     }
 
 	//  eval block
