@@ -104,13 +104,6 @@ async function on_message( message ){
 		
 		message.channel.send("https://discord.js.org/#/docs/main/stable/typedef/ColorResolvable")
 	}
-	
-	//  say and delete command
-	if( input.command.ci == ".sayd" ){
-		var response = input.parameters.cs.join(" ")
-		message.channel.send(response)
-		message.delete()
-	}
 
 	//  eval block
 	if( bot.admins.includes(message.author.id) ){
