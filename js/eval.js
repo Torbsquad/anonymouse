@@ -16,10 +16,12 @@
  */
 
 var message = ""
+var bot = ""
 
-module.exports = (m) => {
+module.exports = (b, m) => {
     try{
         message = m
+        bot = b
         message.content.split("\`\`\`").filter(el=>el.startsWith("js\n")).forEach(el=>evalorino(el.substr(3)))
     }
     catch(err){
