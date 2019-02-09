@@ -1,5 +1,4 @@
-module.exports = (bot, message, args) => {
-  var args = "grün"
+module.exports = (bot, message, args) => {  
   var color_to_status = {
     "grün": "online",
     "gelb": "idle",
