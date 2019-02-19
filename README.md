@@ -1,5 +1,5 @@
 # anon_we_miss_you
- anon has been murdered and we are now attempting to reconstruct his soul   
+ anon has been murdered by discord and we are now attempting to reconstruct his soul   
  i wish anon were not kill
 
  **main.js is the starting point** 
