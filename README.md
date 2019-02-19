@@ -13,6 +13,7 @@
 ### please rember  
  - **.gitignore** contains a list of things that should be ignored by git  
  - **package.json**, **package-lock.json** has dependencies like the discord.js library  
+ - **Procfile** describes in our case the way the scripts are going to be started (with main.js)  
  - **README.md** is this right here   
  - and **main.js** + **js/** + **commands/** is actual code  
 
