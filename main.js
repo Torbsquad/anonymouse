@@ -31,6 +31,7 @@ async function on_ready(){
     console.log("bless anon's soul")
     require("./js/p.js")(bot)
     require("./js/ffxspy.js")(bot)
+    require("./js/db.js")(bot)
     if( cbot.is_active ){
         cbot.create((err, s)=>{ cbot.is_ready = true })
     }
