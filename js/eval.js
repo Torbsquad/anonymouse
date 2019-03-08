@@ -35,6 +35,6 @@ function evalorino(el){
         eval(schleep+el)
     }
     else{
-        eval(schleep+`async function main(){${el}}main()`)
+        eval(schleep+`async function main(){try{${el}}catch(err){message.reply(err.message)}}main()`)
     }
 }
