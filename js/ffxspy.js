@@ -4,7 +4,7 @@ const toFetch = ["id", "title", "world", "race", "gender", "clan"]
 const Discord = require("discord.js")
 
 module.exports = function(bot){
-  setInterval(main,100000,bot.channels.find(c=>c.name=="👀"),toSee,toFetch)
+  setTimeout(main,1000,bot.channels.find(c=>c.name=="👀"),toSee,toFetch)
 }
 
 async function main(channel, target_ids, target_attributes){
