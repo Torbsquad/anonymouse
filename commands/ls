@@ -1,9 +1,9 @@
 const ls = require('lodestonejs')
 
-module.exports = function(bot, message, args){
-  message.reply(await als.name)
+module.exports = async function(bot, message, args){
+  message.reply(await als(args).name)
 }
 
-als = new Promise( (resolve, reject) => {
+als = (args) => new Promise( (resolve, reject) => {
   ls(args, (err, data)=>resolve(data))
 })
