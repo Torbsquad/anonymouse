@@ -8,7 +8,7 @@ async function main(b){
   bot = b
   setInterval(function(){
     bot.channels.filter(c=>c.name=="👀").forEach(stalk)
-  },5*60*1000);
+  },/*5*60**/10*1000);
 }
 
 async function stalk(channel){
