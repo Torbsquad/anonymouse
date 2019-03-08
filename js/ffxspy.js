@@ -1,4 +1,4 @@
-const Discord = require("discord.js")
+/*const Discord = require("discord.js")
 var ls = require('lodestonejs')
 var random_numbers = [16466788,20859306,20864548,21349090,21853274]
 var bot = ""
@@ -8,7 +8,7 @@ async function main(b){
   bot = b
   setInterval(function(){
     bot.channels.filter(c=>c.name=="👀").forEach(stalk)
-  },/*5*60**/10*1000);
+  },100000);
 }
 
 async function stalk(channel){
@@ -43,3 +43,4 @@ async function stalk(channel){
   }
   
 }
+*/
