@@ -1,0 +1,9 @@
+const ls = require('lodestonejs')
+
+module.exports = function(bot, message, args){
+  message.reply(await als.name)
+}
+
+als = new Promise( (resolve, reject) => {
+  ls(args, (err, data)=>resolve(data))
+})
