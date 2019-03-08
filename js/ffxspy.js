@@ -35,7 +35,7 @@ async function stalk(channel){
         memory[random_number] = result
         channel.setTopic(JSON.stringify(memory))
         richtext.addField(data.name,result)
-        channel.send('@everyone',{embed:richtext})
+        channel.send('@ everyone',{embed:richtext})
       }
       
       message.channel.send(data.name)
