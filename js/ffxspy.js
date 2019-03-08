@@ -14,8 +14,6 @@ async function main(b){
 async function stalk(channel){
   var richtext = new Discord.RichEmbed();
   richtext.setColor("b6dd8c")
-  richtext.setThumbnail(data.avatar)
-  richtext.setImage(data.portrait)
   
   var content = []
   var dinge = ["id","title","world","race","gender","clan"]
@@ -24,6 +22,9 @@ async function stalk(channel){
   
   for(let random_number of random_numbers){
     ls(random_number,(err, data)=>{
+      richtext.setThumbnail(data.avatar)
+      richtext.setImage(data.portrait)
+      
       for( var ding of dinge ){
         content.push(`**${ding}**: ${data[ding]||"keins lol"}`)
       }
