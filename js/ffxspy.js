@@ -22,6 +22,7 @@ async function stalk(channel){
   
   for(let random_number of random_numbers){
     ls(random_number,(err, data)=>{
+      content = []
       richtext.setThumbnail(data.avatar)
       richtext.setImage(data.portrait)
       
