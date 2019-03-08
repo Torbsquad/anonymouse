@@ -4,14 +4,16 @@ const toFetch = ["id", "title", "world", "race", "gender", "clan"]
 const Discord = require("discord.js")
 
 module.exports = function(bot){
-  setTimeout(main,1000,bot.channels.find(c=>c.name=="👀"),toSee,toFetch)
+  setInterval(main,100000,bot.channels.find(c=>c.name=="👀"),toSee,toFetch)
 }
 
 async function main(channel, target_ids, target_attributes){
   var memory = JSON.parse(channel.topic);
   for(let id of target_ids){
+    console.log(id)
     var char = await getlstatus(target_attributes, id)
     if( !memory[id] || memory[id] != char.string ){
+      console.log("!!!")
       memory[id] = char.string
 
       var richtext = new Discord.RichEmbed();
