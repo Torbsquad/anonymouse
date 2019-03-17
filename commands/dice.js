@@ -1,3 +1,5 @@
+const sleep = require("../js/sleep.js")
+
 module.exports = async (bot, message, args) => {
   let dices = {count: 1, sides: 6}
   let dice_parameter = args.toLowerCase().match(/([0-9]{0,})d([0-9]{1,})/)
