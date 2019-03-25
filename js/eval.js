@@ -31,7 +31,7 @@ module.exports = (b, m) => {
 
 function evalorino(el){
     var schleep = "var sleep = time=>new Promise((res,rej)=>{setTimeout(function(){res()},time*1000)})\n"
-    if( el.includes("//noasync") ){
+    if( el.includes("//sync") ){
         eval(schleep+el)
     }
     else{
