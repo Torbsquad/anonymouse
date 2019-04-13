@@ -1,42 +1,51 @@
-const ls = require('lodestonejs')
-const toSee = [16466788,20859306,20864548,21349090,21853274]
-const toFetch = ["id", "world", "race", "gender", "clan"]
-const Discord = require("discord.js")
+const ls = require("lodestonejs");
+const toSee = [16466788, 20859306, 20864548, 21349090, 21853274];
+const toFetch = ["id", "world", "race", "gender", "clan"];
+const Discord = require("discord.js");
 
-module.exports = function(bot){
-  setInterval(main,100000,bot.channels.find(c=>c.name=="👀"),toSee,toFetch)
-}
+module.exports = function(bot) {
+  setInterval(
+    main,
+    100000,
+    bot.channels.find(c => c.name == "👀"),
+    toSee,
+    toFetch
+  );
+};
 
-async function main(channel, target_ids, target_attributes){
+async function main(channel, target_ids, target_attributes) {
   var memory = JSON.parse(channel.topic);
-  for(let id of target_ids){
-    console.log(id)
-    var char = await getlstatus(target_attributes, id)
-    if( !memory[id] || memory[id] != char.string ){
-      console.log("!!!")
-      memory[id] = char.string
+  for (let id of target_ids) {
+    console.log(id);
+    var char = await getlstatus(target_attributes, id);
+    if (!memory[id] || memory[id] != char.string) {
+      console.log("!!!");
+      memory[id] = char.string;
 
       var richtext = new Discord.RichEmbed();
 
-      richtext.setThumbnail(char.data.avatar)
-      richtext.setImage(char.data.portrait)
-      richtext.addField(char.data.name,char.string)
+      richtext.setThumbnail(char.data.avatar);
+      richtext.setImage(char.data.portrait);
+      richtext.addField(char.data.name, char.string);
 
-      channel.send('@everyone',{embed:richtext})
+      channel.send("@everyone", { embed: richtext });
     }
-    await channel.setTopic(JSON.stringify(memory))
+    await channel.setTopic(JSON.stringify(memory));
   }
 }
 
-async function getlstatus(toFetch, uid){
-  let char = await als(uid)
-  return {string: toFetch.map(f=>`${f}: ${char[f]}`).join('\n'), data: char}
+async function getlstatus(toFetch, uid) {
+  let char = await als(uid);
+  return {
+    string: toFetch.map(f => `${f}: ${char[f]}`).join("\n"),
+    data: char
+  };
 }
 
-function als(args){
+function als(args) {
   return new Promise((resolve, reject) => {
-    ls(args, (err,data)=>resolve(data))
-  })
+    ls(args, (err, data) => resolve(data));
+  });
 }
 
 /*const Discord = require("discord.js")

@@ -1,3 +1,3 @@
 module.exports = (bot, message, args) => {
-  message.reply("pong")
-}
+  message.reply("pong");
+};
