@@ -1,4 +1,4 @@
-const { Command } = requrie("vnft-commandhandler");
+const { Command } = require("vnft-commandhandler");
 const axios = require("axios");
 
 const youtube = new Command();
