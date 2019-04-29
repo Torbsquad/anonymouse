@@ -1,6 +1,11 @@
+const { Script } = require("vnft-commandhandler");
 const pg_promise = require("pg-promise")();
-module.exports = bot => {
+
+const db = new Script();
+db.funct = bot => {
   if (process.env["DATABASE_JSON"]) {
     bot.db = pg_promise(JSON.parse(process.env.DATABASE_JSON));
   }
 };
+
+module.exports = db;

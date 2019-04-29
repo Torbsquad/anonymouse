@@ -1,4 +1,6 @@
-const ls = require("lodestonejs");
+module.exports = ()=>{}
+
+/*const ls = require("lodestonejs");
 const toSee = [16466788, 20859306, 20864548, 21349090, 21853274];
 const toFetch = ["id", "world", "race", "gender", "clan"];
 const Discord = require("discord.js");
