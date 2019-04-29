@@ -1,5 +1,5 @@
 const { Command } = require("vnft-commandhandler");
-const sleep = require("../js/sleep");
+const sleep = require("../../js/sleep");
 
 const coinflip = new Command();
 coinflip.name = "coinflip";
