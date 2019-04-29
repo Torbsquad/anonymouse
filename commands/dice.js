@@ -1,6 +1,9 @@
+const { Command } = require("vnft-commandhandler");
 const sleep = require("../js/sleep.js");
 
-module.exports = async (bot, message, args) => {
+const dice = new Command();
+dice.name = "dice";
+dice.funct = async (bot, message, args) => {
   let dices = { count: 1, sides: 6 };
   let dice_parameter = args.toLowerCase().match(/([0-9]{0,})d([0-9]{1,})/);
   if (dice_parameter && dice_parameter[1]) {
@@ -28,3 +31,5 @@ module.exports = async (bot, message, args) => {
   response_text += ` ${result}!`;
   response.edit(response_text);
 };
+
+module.exports = dice;

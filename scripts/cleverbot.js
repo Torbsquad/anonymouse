@@ -16,7 +16,6 @@ cleverbot.funct = bot => {
     });
 
     bot.on("message", message => {
-      console.log(1);
       var cleverbotChannel = !!message.channel.topic && message.channel.topic.toLowerCase().includes("cleverbot");
       if (cleverbot.is_ready && (cleverbotChannel || message.isMentioned(bot.user))) {
         cleverbot.onMessage(message);
