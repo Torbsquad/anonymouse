@@ -1,4 +1,4 @@
-module.exports = ()=>{}
+module.exports = () => {};
 
 /*const ls = require("lodestonejs");
 const toSee = [16466788, 20859306, 20864548, 21349090, 21853274];

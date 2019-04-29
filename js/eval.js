@@ -32,14 +32,10 @@ module.exports = (b, m) => {
 };
 
 function evalorino(el) {
-  var schleep =
-    "var sleep = time=>new Promise((res,rej)=>{setTimeout(function(){res()},time*1000)})\n";
+  var schleep = "var sleep = time=>new Promise((res,rej)=>{setTimeout(function(){res()},time*1000)})\n";
   if (el.includes("//sync")) {
     eval(schleep + el);
   } else {
-    eval(
-      schleep +
-        `async function main(){try{${el}}catch(err){message.reply(err.message)}}main()`
-    );
+    eval(schleep + `async function main(){try{${el}}catch(err){message.reply(err.message)}}main()`);
   }
 }
