@@ -2,11 +2,9 @@ const { Command } = require("vnft-commandhandler");
 
 const color = new Command();
 color.name = "color";
-color.funct = colorCommand;
+color.addAlias("colour")
 
-const colour = new Command();
-colour.name = "colour";
-colour.funct = colorCommand;
+color.funct = colorCommand;
 
 function colorCommand(bot, message, args) {
   var target_member = message.guild.members.find(member => member.id == message.author.id);
@@ -19,4 +17,4 @@ function colorCommand(bot, message, args) {
   }
 }
 
-module.exports = [color, colour];
+module.exports = color;

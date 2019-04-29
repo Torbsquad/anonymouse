@@ -1,4 +1,5 @@
 const { Command } = require("vnft-commandhandler");
+
 const status = new Command();
 status.name = "setStatus";
 status.funct = (bot, message, args) => {
