@@ -14,7 +14,7 @@ bot.on("ready", () => {
 bot.admins = typeof process.env.admins != "undefined" ? process.env.admins.split(",") : [];
 
 bot.loadCommands(path.join(__dirname, "commands"));
-bot.loadScripts(path.join(__dirname, "js"));
+bot.loadScripts(path.join(__dirname, "scripts"));
 
 bot.login(process.env.anon);
 
