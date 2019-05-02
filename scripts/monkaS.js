@@ -7,9 +7,13 @@ monkaScript.funct = (bot) => {
   const monkaS = bot.emojis.find(e => e.id == monkasId);
   
   bot.on("message", message => {
-    let hasMonkas = message.content.match(/monkas/gi);
-    if (hasMonkas && !message.author.bot) {
-      message.channel.send(monkaS.toString());
+    let countMonkas = ( message.content.match(/monkas/gi) || [] ).length;
+    if (countMonkas && !message.author.bot) {
+      let response = ""
+      for (let i = 0; i < countMonkas; i++) {
+        response += monkaS.toString()
+      }
+      message.channel.send(response);
     }
   });
 };
