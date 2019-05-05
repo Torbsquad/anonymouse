@@ -8,7 +8,7 @@ const TARGET_ATTRIBUTES = ["Name", "Server", "Race", "Gender"];
 
 const attribute_translations = {
   "Name": ["Genderless", "Male", "Female"],
-  "Server": ["Zero",1,2,"Lalafell","Miqo'te",5,"Au Ra"]
+  "Race": ["Zero",1,2,"Lalafell","Miqo'te",5,"Au Ra"]
 }
 
 const test = new Script();
@@ -31,11 +31,15 @@ test.funct = async bot => {
         let before = data[id][attribute] || "null";
         let after = chardata[attribute] || "null";
         
+        console.log(attribute_translations,attribute)
         if( attribute_translations[attribute]){
+          console.log(1)
           if( attribute_translations[attribute][before] ){
+            console.log(2)
             before = attribute_translations[attribute][before]
           }
           if( attribute_translations[attribute][after] ){
+            console.log(3)
             after = attribute_translations[attribute][after]
           }
         }
