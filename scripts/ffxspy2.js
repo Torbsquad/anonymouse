@@ -8,7 +8,7 @@ const TARGET_ATTRIBUTES = ["Name", "Server", "Race", "Gender"];
 
 const TRANSLATIONS = {
   "Gender": ["Genderless", "Male", "Female"],
-  "Race": ["Zero",1,2,"Lalafell","Miqo'te",5,"Au Ra"]
+  "Race": ["Missing No. 0",1,2,"Lalafell","Miqo'te",5,"Au Ra"]
 }
 
 const test = new Script();
@@ -26,6 +26,7 @@ test.funct = async bot => {
     let hasChanged = JSON.stringify(chardata) != JSON.stringify(data[id]);
     if (hasChanged) {
       let response = new RichEmbed();
+      response.setColor("GREEN")
       
       for( let attribute of TARGET_ATTRIBUTES ){
         let before = data[id][attribute] || "null";
