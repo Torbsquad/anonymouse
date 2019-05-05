@@ -35,7 +35,7 @@ test.funct = async bot => {
           if( TRANSLATIONS[attribute][before] ){
             before = TRANSLATIONS[attribute][before]
           }
-          if( attribute_translations[attribute][after] ){
+          if( TRANSLATIONS[attribute][after] ){
             after = TRANSLATIONS[attribute][after]
           }
         }
