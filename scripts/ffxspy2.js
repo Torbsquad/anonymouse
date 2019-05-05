@@ -41,10 +41,10 @@ test.funct = async bot => {
         }
         
         if( before == after ){
-          richtext.addField(attribute, after);
+          response.addField(attribute, after);
         }
         else{
-          richtext.addField(attribute, `${before} -> **${after}**`);
+          response.addField(attribute, `${before} -> **${after}**`);
         }
       }
       
