@@ -6,8 +6,8 @@ const TARGET_CHANNEL = "539802587239677963";
 const TARGET_CHARACTERS = [16466788, 20859306, 20864548, 21349090, 21853274];
 const TARGET_ATTRIBUTES = ["Name", "Server", "Race", "Gender"];
 
-const attribute_translations = {
-  "Name": ["Genderless", "Male", "Female"],
+const TRANSLATIONS = {
+  "Gender": ["Genderless", "Male", "Female"],
   "Race": ["Zero",1,2,"Lalafell","Miqo'te",5,"Au Ra"]
 }
 
@@ -31,16 +31,12 @@ test.funct = async bot => {
         let before = data[id][attribute] || "null";
         let after = chardata[attribute] || "null";
         
-        console.log(attribute_translations,attribute)
-        if( attribute_translations[attribute]){
-          console.log(1)
-          if( attribute_translations[attribute][before] ){
-            console.log(2)
-            before = attribute_translations[attribute][before]
+        if( TRANSLATIONS[attribute]){
+          if( TRANSLATIONS[attribute][before] ){
+            before = TRANSLATIONS[attribute][before]
           }
           if( attribute_translations[attribute][after] ){
-            console.log(3)
-            after = attribute_translations[attribute][after]
+            after = TRANSLATIONS[attribute][after]
           }
         }
         
