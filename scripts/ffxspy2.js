@@ -45,7 +45,7 @@ test.funct = async bot => {
           response.addField(attribute, after);
         }
         else{
-          response.addField(attribute, `${before} **→ ${after}**`);
+          response.addField(attribute, `${before} **🡆 ${after}**`);
         }
       }
       
