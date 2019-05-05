@@ -41,12 +41,9 @@ test.funct = async bot => {
           }
         }
         
-        if( before == after ){
-          response.addField(attribute, after);
-        }
-        else{
-          response.addField(attribute, `${before} **🡆 ${after}**`);
-        }
+        let label = `__**${attribute}**__`;
+        let text = before == after ? after : `${before} **🡆 ${after}**`;
+        response.addField(label, text);
       }
       
       channel.send("@everyone", {embed: response});
