@@ -42,7 +42,7 @@ test.funct = async bot => {
         }
         
         let label = `__**${attribute}**__`;
-        let text = before == after ? after : `${before} **🡆 ${after}**`;
+        let text = before == after ? after : `${before} **⇛ ${after}**`;
         response.addField(label, text);
       }
       
