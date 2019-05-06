@@ -7,7 +7,7 @@ monkaScript.funct = (bot) => {
   const monkaS = bot.emojis.find(e => e.id == monkasId);
   
   bot.on("message", message => {
-    let countMonkas = ( message.content.match(/monkas/gi) || [] ).length;
+    let countMonkas = ( message.content.match(/m[^a-z]*?[0o][^a-z]*?n[^a-z]*?k[^a-z]*?[a4][^a-z]*?[s5]/gi) || [] ).length;
     if (countMonkas && !message.author.bot) {
       let response = ""
       for (let i = 0; i < countMonkas; i++) {
