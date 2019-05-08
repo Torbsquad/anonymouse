@@ -7,7 +7,9 @@ monkaScript.funct = (bot) => {
   const monkasId = "573255283044778009";
   const monkaS = bot.emojis.find(e => e.id == monkasId);
   const monkaHash = [
-    "4d0762077b3378c33c1b0bdd03decc210fe81ffa383a018e1fe187e3801f00bf"
+    "4d0762077b3378c33c1b0bdd03decc210fe81ffa383a018e1fe187e3801f00bf",
+    "1468151451",
+    "2434766319"
   ]
   
   bot.on("message", async message => {
@@ -55,6 +57,28 @@ app.get("/:a/:b/:c", (req, res) => {
     imageHash(url, 16, false, (err, data) => {
         res.send(data)
     })
+})
+var { imageHash } = require("image-hash")
+const axios = require('axios');
+const stringHash = require("string-hash")
+
+var url = "https://media.discordapp.net/attachments/417402196926398465/575759168347308035/3.png"
+url = "https://cdn.discordapp.com/attachments/417402196926398465/575758109021306891/huehuehue.jpg"
+
+
+var express = require("@runkit/runkit/express-endpoint/1.0.0");
+var app = express(exports);
+
+app.get("/:a/:b/:c", async (req, res) => {
+    let url = "https://media.discordapp.net/attachments/"
+    url += [req.params.a,req.params.b,req.params.c].join("/")
+    
+    let e = await axios.get(url)
+    res.send(stringHash(e.data).toString())/*
+    
+    imageHash(url, 16, false, (err, data) => {
+        res.send(data)
+    })*/
 })
 
 */
