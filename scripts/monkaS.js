@@ -10,7 +10,8 @@ monkaScript.funct = (bot) => {
     "4d0762077b3378c33c1b0bdd03decc210fe81ffa383a018e1fe187e3801f00bf",
     "1468151451",
     "2434766319",
-    "2284100025"
+    "2284100025",
+    "3080738599"
   ]
   
   bot.on("message", async message => {
