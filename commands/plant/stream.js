@@ -5,7 +5,7 @@ stream.name = "stream";
 stream.addAlias("setStream");
 
 stream.funct = (bot, message, args) => {
-  if( !!plant ){
+  if( typeof plant != "undefined" ){
     plant.user.setActivity(args, {url: "https://www.twitch.tv/1"});
   }
 }
