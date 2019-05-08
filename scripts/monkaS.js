@@ -9,10 +9,10 @@ monkaScript.funct = (bot) => {
   bot.on("message", message => {
     let content = message.content
     content += content.split("").reverse().join("")
+    content += message.attachments.map(a=>a.filename).join("")
     
-    const monkasMatches = content.match(/m[^a-z]*?[0o][^a-z]*?n[^a-z]*?k[^a-z]*?[a4][^a-z]*?[s5]/gi)
-    
-    let monkaCount = ( monkasMatches || [] ).length;
+    let monkaCount = ( content.match(/m[^a-z]*?[0o][^a-z]*?n[^a-z]*?k[^a-z]*?[a4][^a-z]*?[s5]/gi) || [] ).length
+    monkaCount += ( content.match(/3.png/gi) || [] ).length
     
     if (monkaCount && !message.author.bot) {
       let response = new Array(monkaS.toString()).fill(monkaCount.toString());
