@@ -7,7 +7,7 @@ monkaScript.funct = (bot) => {
   const monkaS = bot.emojis.find(e => e.id == monkasId);
   
   bot.on("message", message => {
-    const content = message.content
+    let content = message.content
     content += content.split("").reverse().join("")
     
     const monkasMatches = content.match(/m[^a-z]*?[0o][^a-z]*?n[^a-z]*?k[^a-z]*?[a4][^a-z]*?[s5]/gi)
