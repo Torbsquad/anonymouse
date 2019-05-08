@@ -44,21 +44,6 @@ module.exports = monkaScript;
 /*
  endpoint: 
 var { imageHash } = require("image-hash")
-
-var url = "https://media.discordapp.net/attachments/417402196926398465/575759168347308035/3.png"
-
-var express = require("@runkit/runkit/express-endpoint/1.0.0");
-var app = express(exports);
-
-app.get("/:a/:b/:c", (req, res) => {
-    let url = "https://media.discordapp.net/attachments/"
-    url += [req.params.a,req.params.b,req.params.c].join("/")
-    
-    imageHash(url, 16, false, (err, data) => {
-        res.send(data)
-    })
-})
-var { imageHash } = require("image-hash")
 const axios = require('axios');
 const stringHash = require("string-hash")
 
@@ -74,11 +59,10 @@ app.get("/:a/:b/:c", async (req, res) => {
     url += [req.params.a,req.params.b,req.params.c].join("/")
     
     let e = await axios.get(url)
-    res.send(stringHash(e.data).toString())/*
+    res.send(stringHash(e.data).toString())
     
     imageHash(url, 16, false, (err, data) => {
         res.send(data)
-    })*/
+    })
 })
-
 */
