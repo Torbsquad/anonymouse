@@ -7,13 +7,16 @@ monkaScript.funct = (bot) => {
   const monkaS = bot.emojis.find(e => e.id == monkasId);
   
   bot.on("message", message => {
-    let countMonkas = ( message.content.match(/m[^a-z]*?[0o][^a-z]*?n[^a-z]*?k[^a-z]*?[a4][^a-z]*?[s5]/gi) || [] ).length;
-    if (countMonkas && !message.author.bot) {
-      let response = ""
-      for (let i = 0; i < countMonkas; i++) {
-        response += monkaS.toString()
-      }
-      message.channel.send(response);
+    const content = message.content
+    content += content.split("").reverse().join("")
+    
+    const monkasMatches = content.match(/m[^a-z]*?[0o][^a-z]*?n[^a-z]*?k[^a-z]*?[a4][^a-z]*?[s5]/gi)
+    
+    let monkaCount = ( monkasMatches || [] ).length;
+    
+    if (monkaCount && !message.author.bot) {
+      let response = new Array(monkaCount).fill(monkaCount.toString());
+      message.channel.send(response.join(" "));
     }
   });
 };
