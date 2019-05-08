@@ -19,11 +19,13 @@ monkaScript.funct = (bot) => {
     let monkaCount = ( content.match(/m[^a-z]*?[0o][^a-z]*?n[^a-z]*?k[^a-z]*?[a4][^a-z]*?[s5]/gi) || [] ).length
     
     for(let image of images){
-      let urlsnippet = image.match(/\/([0-9]*?)\/([0-9]*?)\/(.*?)$/)
-      let hash = (await axios.get("https://untitled-p9bey7ap3m46.runkit.sh/"+urlsnippet)).data
-      console.log(hash)
-      if ( monkaHash.includes(hash) ) {
-        monkaCount++
+      let urlsnippet = image.match(/\/[0-9]*?\/[0-9]*?\/.*?$/)
+      if( urlsnippet ){
+        let hash = (await axios.get("https://untitled-p9bey7ap3m46.runkit.sh/"+urlsnippet[0])).data
+        console.log(hash)
+        if ( monkaHash.includes(hash) ) {
+          monkaCount++
+        }
       }
     }
     
