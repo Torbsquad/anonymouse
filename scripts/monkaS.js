@@ -15,7 +15,7 @@ monkaScript.funct = (bot) => {
     let monkaCount = ( monkasMatches || [] ).length;
     
     if (monkaCount && !message.author.bot) {
-      let response = new Array(monkaCount).fill(monkaCount.toString());
+      let response = new Array(monkaS.toString()).fill(monkaCount.toString());
       message.channel.send(response.join(" "));
     }
   });
