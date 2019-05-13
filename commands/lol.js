@@ -20,9 +20,10 @@ const applyText = (canvas, text) => {
 };
 
 const lol = new Command();
+lol.name = "lol";
 lol.funct = async (bot, message, args) => {
-	const member = bot.users.find(u=>u.username=="VonFriedricht");
-	const channel = bot.channels.find(c=>c.id=="265207562360717329");
+	const member = message.author;
+	const channel = message.channel;
 	if (!channel) return;
 
 	const canvas = Canvas.createCanvas(700, 250);
@@ -52,8 +53,7 @@ lol.funct = async (bot, message, args) => {
 	const avatar = await Canvas.loadImage(member.displayAvatarURL);
 	ctx.drawImage(avatar, 25, 25, 200, 200);
 
-	const attachment = new Discord.Attachment(canvas.toBuffer(), 'welcome-image.png');
-	console.log(123)
+	const attachment = new Discord.Attachment(canvas.toBuffer(), `hi ${member.username}.png`);
 	channel.send(`Welcome to the server, ${member}!`, attachment);
 }
 
