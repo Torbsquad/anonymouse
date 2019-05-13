@@ -1,12 +1,23 @@
 const { Command } = require("vnft-commandhandler");
 
-const login = new Command();
-login.name = "psay";
+const psay = new Command();
+psay.name = "psay";
 
-login.funct = (bot, message, args) => {
+psay.funct = (bot, message, args) => {
   if( typeof plant != "undefined" ){
     plant.channels.find(c=>c.id==message.channel.id).send(args)
   }
 }
 
-module.exports = login;
+
+const psayd = new Command();
+psayd.name = "psayd";
+
+psayd.funct = (bot, message, args) => {
+  if( typeof plant != "undefined" ){
+    plant.channels.find(c=>c.id==message.channel.id).send(args)
+  }
+  message.delete()
+}
+
+module.exports = [psay, psayd];
