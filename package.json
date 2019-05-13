@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Torbsquad/anon_we_miss_you#readme",
   "dependencies": {
     "axios": "^0.18.0",
+    "canvas": "^2.5.0",
     "cleverbot.io": "^1.0.4",
     "discord.js": "^11.4.2",
     "express": "^4.16.4",
