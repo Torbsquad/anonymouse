@@ -10,6 +10,6 @@ login.funct = (bot, message, args) => {
     plant = new Discord.Client();
     plant.login(process.env.plant);
   }
-}
+};
 
 module.exports = login;

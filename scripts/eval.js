@@ -1,10 +1,10 @@
-const {Script} = require("vnft-commandhandler")
+const { Script } = require("vnft-commandhandler");
 
-const eva = new Script()
+const eva = new Script();
 
 eva.funct = b => {
-  bot = b
-  b.on("message", (m)=>{
+  bot = b;
+  b.on("message", m => {
     try {
       message = m;
       bot = b;
@@ -15,8 +15,8 @@ eva.funct = b => {
     } catch (err) {
       message.reply(err.message);
     }
-  })
-}
+  });
+};
 
 function evalorino(el) {
   var schleep = "var sleep = time=>new Promise((res,rej)=>{setTimeout(function(){res()},time*1000)})\n";
@@ -27,4 +27,4 @@ function evalorino(el) {
   }
 }
 
-module.exports = eva
+module.exports = eva;

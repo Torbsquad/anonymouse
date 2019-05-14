@@ -2,7 +2,7 @@ const { Command } = require("vnft-commandhandler");
 
 const colors = new Command();
 colors.name = "colors";
-colors.addAlias("colours")
+colors.addAlias("colours");
 
 colors.funct = colorsCommand;
 

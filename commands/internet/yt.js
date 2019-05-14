@@ -12,4 +12,4 @@ youtube.funct = async (bot, message, args) => {
   message.reply(`https://www.youtube.com/watch?v=${youtube_video_id}`);
 };
 
-module.exports = youtube
+module.exports = youtube;
