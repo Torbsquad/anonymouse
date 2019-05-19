@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "node main.js",
+    "postinstall": "git submodule foreach git pull origin master",
     "test": "node secret.main.js"
   },
   "repository": {
