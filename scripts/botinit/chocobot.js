@@ -1,1 +1,1 @@
-require("../chocobot/main.js")
+require("../../chocobot/main.js")
