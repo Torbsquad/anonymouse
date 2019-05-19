@@ -1,0 +1,1 @@
+require("../chocobot/main.js")
