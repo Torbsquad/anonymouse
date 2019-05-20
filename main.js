@@ -4,7 +4,7 @@
 
 const path = require("path");
 
-const { CommandHandler } = require("vnft-commandhandler");
+const { CommandHandler } = require("vnftjs");
 const bot = new CommandHandler();
 
 bot.on("ready", () => {

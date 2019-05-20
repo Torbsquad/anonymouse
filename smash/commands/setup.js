@@ -1,6 +1,6 @@
 const SmashScreen = require("../class/SmashScreen");
 const Player = require("../class/Player");
-const { Command } = require("vnft-commandhandler");
+const { Command } = require("vnftjs");
 const stages = require("../stages");
 
 const setup = new Command();
