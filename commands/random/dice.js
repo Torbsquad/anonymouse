@@ -1,4 +1,4 @@
-const { Command } = require("vnft-commandhandler");
+const { Command } = require("vnftjs");
 const sleep = require("../../js/sleep");
 
 const dice = new Command();
