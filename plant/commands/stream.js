@@ -1,4 +1,4 @@
-const { Command } = require("vnft-commandhandler");
+const { Command } = require("vnftjs");
 
 const stream = new Command();
 stream.name = "stream";

@@ -1,6 +1,6 @@
 const Canvas = require("canvas");
 const Discord = require("discord.js");
-const { Command } = require("vnft-commandhandler");
+const { Command } = require("vnftjs");
 
 // Pass the entire Canvas object because you'll need to access its width, as well its context
 const applyText = (canvas, text) => {

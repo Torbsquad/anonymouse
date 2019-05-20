@@ -1,4 +1,4 @@
-const { Script } = require("vnft-commandhandler");
+const { Script } = require("vnftjs");
 const pg_promise = require("pg-promise")();
 
 const db = new Script();

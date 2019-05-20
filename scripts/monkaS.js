@@ -1,4 +1,4 @@
-const { Script } = require("vnft-commandhandler");
+const { Script } = require("vnftjs");
 const axios = require("axios");
 
 const monkaScript = new Script();

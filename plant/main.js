@@ -1,7 +1,8 @@
-const { CommandHandler } = require("vnft-commandhandler");
+const { CommandHandler } = require("vnftjs");
 const path = require("path");
 
 const plant = new CommandHandler();
+plant.enableHelp();
 plant.prefix = "p"
 
 plant.loadCommands(path.join(__dirname,"commands"));

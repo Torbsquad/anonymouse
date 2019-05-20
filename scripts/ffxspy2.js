@@ -1,4 +1,4 @@
-const { Script } = require("vnft-commandhandler");
+const { Script } = require("vnftjs");
 const { get } = require("axios");
 const { RichEmbed } = require("discord.js");
 

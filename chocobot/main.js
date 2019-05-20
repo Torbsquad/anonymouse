@@ -1,4 +1,4 @@
-const { CommandHandler } = require("vnft-commandhandler");
+const { CommandHandler } = require("vnftjs");
 const path = require("path");
 
 const bot = new CommandHandler();

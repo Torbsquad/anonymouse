@@ -25,6 +25,6 @@
     "express": "^4.16.4",
     "lodestonejs": "^5.0.7",
     "pg-promise": "^8.5.5",
-    "vnft-commandhandler": "latest"
+    "vnftjs": "latest"
   }
 }

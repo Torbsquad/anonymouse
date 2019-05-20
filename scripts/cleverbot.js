@@ -1,4 +1,4 @@
-const { Script } = require("vnft-commandhandler");
+const { Script } = require("vnftjs");
 const Cleverbot = require("cleverbot.io");
 
 const cleverbot = new Script();
