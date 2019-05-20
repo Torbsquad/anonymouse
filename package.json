@@ -21,10 +21,10 @@
     "axios": "^0.18.0",
     "canvas": "^2.5.0",
     "cleverbot.io": "^1.0.4",
-    "discord.js": "^11.4.2",
-    "express": "^4.16.4",
+    "discord.js": "^11.5.0",
+    "express": "^4.17.0",
     "lodestonejs": "^5.0.7",
-    "pg-promise": "^8.5.5",
-    "vnftjs": "latest"
+    "pg-promise": "^8.7.2",
+    "vnftjs": "^1.1.4"
   }
 }
