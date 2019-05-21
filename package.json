@@ -23,6 +23,7 @@
     "cleverbot.io": "^1.0.4",
     "discord.js": "^11.5.0",
     "express": "^4.17.0",
+    "image-hash": "^3.3.7",
     "lodestonejs": "^5.0.7",
     "pg-promise": "^8.7.2",
     "vnftjs": "^1.1.4"
