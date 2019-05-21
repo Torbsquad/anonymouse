@@ -1,5 +1,5 @@
 const { Command } = require("vnftjs");
-const analyse = require("../../js/emojiAnalysis");
+const analyse = require("../js/emojiAnalysis");
 
 const analyseEmoji = new Command();
 analyseEmoji.name = "analyse";
