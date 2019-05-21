@@ -26,6 +26,7 @@
     "image-hash": "^3.3.7",
     "lodestonejs": "^5.0.7",
     "pg-promise": "^8.7.2",
+    "vnft-tools": "^1.0.9-b",
     "vnftjs": "^1.1.4"
   }
 }
