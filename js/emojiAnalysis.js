@@ -2,7 +2,7 @@ var { imageHash } = require("image-hash")
 
 function asyncImageHash(uri){
     return new Promise((res, rej)=>{
-        imageHash(uri,24,false,(e,d)=>{res(d)})
+        imageHash(uri,16,false,(e,d)=>{res(d)})
     })
 }
 
