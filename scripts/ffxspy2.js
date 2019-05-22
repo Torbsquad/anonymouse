@@ -24,12 +24,11 @@ test.funct = async bot => {
     TARGET_ATTRIBUTES.forEach(a => (chardata[a] = char[a]));
     
     if (!data[id]) {
-      data[id] = chardata;
-      hasChanged = true;
+      data[id] = {};
+      TARGET_ATTRIBUTES.forEach(a => (data[id][a] = "unknown"));
     }
-    else{
-      let hasChanged = JSON.stringify(chardata) != JSON.stringify(data[id]);
-    }
+    
+    let hasChanged = JSON.stringify(chardata) != JSON.stringify(data[id]);
 
     if (hasChanged) {
       let response = new RichEmbed();
