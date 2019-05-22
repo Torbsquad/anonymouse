@@ -3,7 +3,7 @@ const { get } = require("axios");
 const { RichEmbed } = require("discord.js");
 
 const TARGET_CHANNEL = "539802587239677963";
-const TARGET_CHARACTERS = [16466788, 20859306, 20864548, 21349090, 21853274];
+const TARGET_CHARACTERS = [16466788, 20859306, 20864548, 21349090, 21853274, 23945254];
 const TARGET_ATTRIBUTES = ["Name", "Server", "Race", "Gender"];
 
 const TRANSLATIONS = {
