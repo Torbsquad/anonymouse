@@ -21,9 +21,16 @@ test.funct = async bot => {
     let char = (await get(`https://xivapi.com/character/${id}`)).data.Character;
 
     let chardata = {};
-    TARGET_ATTRIBUTES.map(a => (chardata[a] = char[a]));
+    TARGET_ATTRIBUTES.forEach(a => (chardata[a] = char[a]));
+    
+    if (!data[id]) {
+      data[id] = chardata;
+      hasChanged = true;
+    }
+    else{
+      let hasChanged = JSON.stringify(chardata) != JSON.stringify(data[id]);
+    }
 
-    let hasChanged = JSON.stringify(chardata) != JSON.stringify(data[id]);
     if (hasChanged) {
       let response = new RichEmbed();
       response.setColor("GREEN");
