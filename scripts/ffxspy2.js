@@ -6,6 +6,7 @@ const TARGET_CHANNEL = "539802587239677963";
 const TARGET_CHARACTERS = [16466788, 20859306, 20864548, 21349090, 21853274, 23945254, 18579752, 6862438];
 const TARGET_ATTRIBUTES = ["Name", "Server", "Race", "Gender"];
 const TARGET_FREECOMPANY = ["Name"];
+const FCPREFIX = "Free Company-"
 
 const TRANSLATIONS = {
   Gender: ["Genderless", "Male", "Female"],
@@ -25,12 +26,12 @@ test.funct = async bot => {
 
     const chardata = {};
     TARGET_ATTRIBUTES.forEach(a => (chardata[a] = char[a]));
-    TARGET_FREECOMPANY.forEach(a => (chardata["fc-"+a] = (!fc ? "unknown" : fc[a]) ));
+    TARGET_FREECOMPANY.forEach(a => (chardata[FCPREFIX+a] = (!fc ? "unknown" : fc[a]) ));
 
     if (!data[id]) {
       data[id] = {};
       TARGET_ATTRIBUTES.forEach(a => (data[id][a] = "unknown"));
-      TARGET_FREECOMPANY.forEach(a => (data[id]["fc-"+a] = "unknown"));
+      TARGET_FREECOMPANY.forEach(a => (data[id][FCPREFIX+a] = "unknown"));
     }
     
     const hasChanged = JSON.stringify(chardata) != JSON.stringify(data[id]);
@@ -41,7 +42,7 @@ test.funct = async bot => {
 
       const TARGET = [].concat(
         TARGET_ATTRIBUTES,
-        TARGET_FREECOMPANY.map(fc => "fc-"+fc)
+        TARGET_FREECOMPANY.map(fc => FCPREFIX+fc)
       );
 
       for (let attribute of TARGET) {
