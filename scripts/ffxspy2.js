@@ -25,7 +25,7 @@ test.funct = async bot => {
 
     const chardata = {};
     TARGET_ATTRIBUTES.forEach(a => (chardata[a] = char[a]));
-    TARGET_FREECOMPANY.forEach(a => (chardata["fc-"+a] = fc[a]));
+    TARGET_FREECOMPANY.forEach(a => (chardata["fc-"+a] = (!fc ? "unknown" : fc[a]) ));
 
     if (!data[id]) {
       data[id] = {};
