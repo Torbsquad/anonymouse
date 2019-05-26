@@ -5,6 +5,7 @@ const { RichEmbed } = require("discord.js");
 const TARGET_CHANNEL = "539802587239677963";
 const TARGET_CHARACTERS = [16466788, 20859306, 20864548, 21349090, 21853274, 23945254, 18579752];
 const TARGET_ATTRIBUTES = ["Name", "Server", "Race", "Gender"];
+const TARGET_FREECOMPANY = ["Name"];
 
 const TRANSLATIONS = {
   Gender: ["Genderless", "Male", "Female"],
@@ -14,27 +15,36 @@ const TRANSLATIONS = {
 const test = new Script();
 test.intervalTime = 60000;
 test.funct = async bot => {
-  let channel = bot.channels.find(c => c.id == TARGET_CHANNEL);
-  let data = JSON.parse(channel.topic);
+  const channel = bot.channels.find(c => c.id == TARGET_CHANNEL);
+  const data = JSON.parse(channel.topic);
 
   for (let id of TARGET_CHARACTERS) {
-    let char = (await get(`https://xivapi.com/character/${id}`)).data.Character;
+    const target = (await get(`https://xivapi.com/character/${id}?data=FC`)).data;
+    const char = target.Character;
+    const fc = target.FreeCompany;
 
-    let chardata = {};
+    const chardata = {};
     TARGET_ATTRIBUTES.forEach(a => (chardata[a] = char[a]));
-    
+    TARGET_FREECOMPANY.forEach(a => (chardata["fc-"+a] = fc[a]));
+
     if (!data[id]) {
       data[id] = {};
       TARGET_ATTRIBUTES.forEach(a => (data[id][a] = "unknown"));
+      TARGET_FREECOMPANY.forEach(a => (data[id]["fc-"+a] = "unknown"));
     }
     
-    let hasChanged = JSON.stringify(chardata) != JSON.stringify(data[id]);
+    const hasChanged = JSON.stringify(chardata) != JSON.stringify(data[id]);
 
     if (hasChanged) {
       let response = new RichEmbed();
       response.setColor("GREEN");
 
-      for (let attribute of TARGET_ATTRIBUTES) {
+      const TARGET = [].concat(
+        TARGET_ATTRIBUTES,
+        TARGET_FREECOMPANY.map(fc => "fc-"+fc)
+      );
+
+      for (let attribute of TARGET) {
         let before = data[id][attribute] || "null";
         let after = chardata[attribute] || "null";
 
