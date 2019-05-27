@@ -13,7 +13,7 @@ rgb.funct = async (bot, message, args) => {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   const attachment = new Discord.Attachment(canvas.toBuffer(), `color ${args}.png`);
-  channel.send(`Color ${args} looks like this:`, attachment);
+  message.channel.send(`Color ${args} looks like this:`, attachment);
 };
 
 module.exports = rgb;
