@@ -8,5 +8,5 @@ client.enableHelp();
 client.helpColor = [247,225,57];
 
 client.loadCommands(path.join(__dirname, "commands"));
-client.loadCommands(path.join(__dirname, "scripts"));
+client.loadScripts(path.join(__dirname, "scripts"));
 client.login(process.env.chocobot);
