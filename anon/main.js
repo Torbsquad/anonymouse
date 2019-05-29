@@ -16,8 +16,6 @@ bot.admins = typeof process.env.admins != "undefined" ? process.env.admins.split
 bot.loadCommands(path.join(__dirname, "commands"));
 bot.loadScripts(path.join(__dirname, "scripts"));
 
-bot.loadCommands(path.join(__dirname, "smash", "commands"));
-
 bot.login(process.env.anon);
 
-require("./js/web");
+require("../js/web");
