@@ -8,7 +8,8 @@ youtube.addAlias("youtube");
 youtube.funct = async (bot, message, args) => {
   var search = args;
   var url = encodeURI(`https://www.youtube.com/results?search_query=${search}`);
-  var youtube_video_id = /"\/watch\?v=(.*?)"/.exec(JSON.parse(await got(url)).body)[1];
+  const youtubeSite = await got(url);
+  var youtube_video_id = /"\/watch\?v=(.*?)"/.exec(JSON.parse(youtubeSite.body))[1];
   message.reply(`https://www.youtube.com/watch?v=${youtube_video_id}`);
 };
 

@@ -4,7 +4,8 @@ async function curl(bot, message, url) {
   if (!url.startsWith("http")) {
     url = "http://" + url;
   }
-  message.channel.send((await got(url)).body);
+  const curlSite = await got(url)
+  message.channel.send(curlSite.body);
 }
 
 module.exports = curl;
