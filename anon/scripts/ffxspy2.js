@@ -1,5 +1,5 @@
 const { Script } = require("vnftjs");
-const { get } = require("axios");
+const got= require("got");
 const { RichEmbed } = require("discord.js");
 
 const TARGET_CHANNEL = "539802587239677963";
@@ -20,7 +20,7 @@ test.funct = async bot => {
   const data = JSON.parse(channel.topic);
 
   for (let id of TARGET_CHARACTERS) {
-    const target = (await get(`https://xivapi.com/character/${id}?data=FC`)).data;
+    const target = JSON.parse(await got(`https://xivapi.com/character/${id}?data=FC`));
     const char = target.Character;
     const fc = target.FreeCompany;
 

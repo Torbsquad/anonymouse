@@ -4,7 +4,7 @@ var sleep = time =>
       res();
     }, time * 1000);
   });
-var axios = require("axios");
+var got = require("got");
 
 module.exports = main;
 
@@ -25,7 +25,7 @@ async function main(bot) {
 }
 
 async function tick(channel) {
-  var e = await axios.get(encodeURI(channel.topic));
+  var e = await got(encodeURI(channel.topic));
   var b = e.data.items.filter(d => d.user != "pr0gramm");
 
   var img = {

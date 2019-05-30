@@ -1,5 +1,5 @@
 const { Script } = require("vnftjs");
-const axios = require("axios");
+const got = require("got");
 
 const monkaScript = new Script();
 
@@ -28,7 +28,7 @@ monkaScript.funct = bot => {
     for (let image of images) {
       let urlsnippet = image.match(/\/[0-9]*?\/[0-9]*?\/.*?$/);
       if (urlsnippet) {
-        let hash = (await axios.get("https://untitled-p9bey7ap3m46.runkit.sh/" + urlsnippet[0])).data.toString();
+        let hash = (await got("https://untitled-p9bey7ap3m46.runkit.sh/" + urlsnippet[0])).toString();
         console.log(hash);
         if (monkaHash.includes(hash)) {
           monkaCount++;
@@ -44,29 +44,3 @@ monkaScript.funct = bot => {
 };
 
 module.exports = monkaScript;
-
-/*
- endpoint: 
-var { imageHash } = require("image-hash")
-const axios = require('axios');
-const stringHash = require("string-hash")
-
-var url = "https://media.discordapp.net/attachments/417402196926398465/575759168347308035/3.png"
-url = "https://cdn.discordapp.com/attachments/417402196926398465/575758109021306891/huehuehue.jpg"
-
-
-var express = require("@runkit/runkit/express-endpoint/1.0.0");
-var app = express(exports);
-
-app.get("/:a/:b/:c", async (req, res) => {
-    let url = "https://media.discordapp.net/attachments/"
-    url += [req.params.a,req.params.b,req.params.c].join("/")
-    
-    let e = await axios.get(url)
-    res.send(stringHash(e.data).toString())
-    
-    imageHash(url, 16, false, (err, data) => {
-        res.send(data)
-    })
-})
-*/

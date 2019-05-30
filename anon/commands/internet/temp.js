@@ -1,6 +1,6 @@
 const { Command } = require("vnftjs");
 
-const axios = require("axios");
+const got = require("got");
 const temp = new Command();
 temp.name = "temp";
 temp.funct = async (bot, message, args) => {
@@ -9,7 +9,7 @@ temp.funct = async (bot, message, args) => {
   let apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${encodeURI(city)}&units=metric&appid=${apiKey}`;
 
   try {
-    wetter = await axios.get(apiUrl);
+    wetter = JSON.parse(await got(apiUrl));
     message.reply(`Es ist in ${city} ${wetter.data.main.temp}°C`);
   } catch (err) {
     message.reply(err.message);
