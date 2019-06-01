@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "node main.js",
-    "test": "node secret.main.js"
+    "test": "mocha",
+    "secret": "node secret.main.js"
   },
   "repository": {
     "type": "git",
@@ -28,5 +29,8 @@
     "pg-promise": "^8.7.2",
     "vnft-tools": "^1.0.9-b",
     "vnftjs": "^1.1.4"
+  },
+  "devDependencies": {
+    "mocha": "^6.1.4"
   }
 }
