@@ -3,7 +3,7 @@ const got= require("got");
 const { RichEmbed } = require("discord.js");
 
 const TARGET_CHANNEL = "539802587239677963";
-const TARGET_CHARACTERS = [16466788, 20859306, 20864548, 21349090, 21853274, 23945254, 18579752, 6862438, 21900342];
+const TARGET_CHARACTERS = [16466788, 20859306, 20864548, 21349090, 21853274, 23945254, 6862438];
 const TARGET_ATTRIBUTES = ["Name", "Server", "Race", "Gender"];
 const TARGET_FREECOMPANY = ["Name"];
 const FCPREFIX = "Free Company-"
