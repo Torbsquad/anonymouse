@@ -39,7 +39,7 @@ test.funct = async bot => {
 
     if (hasChanged) {
       let response = new RichEmbed();
-      response.setColor([20,45,75]);
+      response.setColor("YELLOW");
 
       const TARGET = [].concat(
         TARGET_ATTRIBUTES,
