@@ -1,5 +1,5 @@
 const { Script } = require("vnftjs");
-const got= require("got");
+const { get } = require("axios");
 const { RichEmbed } = require("discord.js");
 
 const TARGET_CHANNEL = "539802587239677963";

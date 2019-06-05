@@ -1,11 +1,14 @@
-const got = require("got");
+const { Command } = require("vnftjs");
+const { get } = require("axios");
 
-async function curl(bot, message, url) {
+const curl = new Command();
+curl.name = "curl";
+curl.funct = async function (bot, message, url) {
   if (!url.startsWith("http")) {
     url = "http://" + url;
   }
-  const curlSite = await got(url)
-  message.channel.send(curlSite.body);
+  const curlSite = await get(url)
+  message.channel.send(curlSite.data);
 }
 
 module.exports = curl;
