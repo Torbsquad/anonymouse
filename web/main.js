@@ -13,4 +13,5 @@ app.use(express.static(__dirname + '/public', {
 const privateKey = process.env.privateKey;
 const certificate = process.env.certificate;
 
-server(app, privateKey, certificate);
+app.listen(process.env.PORT);
+//server(app, privateKey, certificate);
