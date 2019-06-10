@@ -10,4 +10,6 @@ app.use(express.static(__dirname + '/public', {
   extensions: ['html']
 }));
 
-server(app,"","");
+const cert = process.env.certificate;
+const key = process.env.privatekey;
+server(app,key,cert);
