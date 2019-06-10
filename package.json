@@ -24,7 +24,6 @@
     "cleverbot.io": "^1.0.4",
     "discord.js": "^11.5.0",
     "express": "^4.17.0",
-    "got": "^9.6.0",
     "image-hash": "^3.3.7",
     "pg-promise": "^8.7.2",
     "vnft-tools": "^1.1.6",
