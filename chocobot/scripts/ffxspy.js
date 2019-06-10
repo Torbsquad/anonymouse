@@ -20,8 +20,8 @@ test.funct = async bot => {
   const data = JSON.parse(channel.topic);
 
   for (let id of TARGET_CHARACTERS) {
-    const targetSite = await got(`https://xivapi.com/character/${id}?data=FC`)
-    const target = JSON.parse(targetSite.body);
+    const targetSite = await get(`https://xivapi.com/character/${id}?data=FC`)
+    const target = targetSite.data;
     const char = target.Character;
     const fc = target.FreeCompany;
 

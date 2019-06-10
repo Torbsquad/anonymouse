@@ -1,5 +1,5 @@
 const { Script } = require("vnftjs");
-const got = require("got");
+const { get } = require("axios");
 
 const monkaScript = new Script();
 
@@ -28,7 +28,7 @@ monkaScript.funct = bot => {
     for (let image of images) {
       let urlsnippet = image.match(/\/[0-9]*?\/[0-9]*?\/.*?$/);
       if (urlsnippet) {
-        let hash = (await got("https://untitled-p9bey7ap3m46.runkit.sh/" + urlsnippet[0])).body.toString();
+        let hash = (await get("https://untitled-p9bey7ap3m46.runkit.sh/" + urlsnippet[0])).data.toString();
         console.log(hash);
         if (monkaHash.includes(hash)) {
           monkaCount++;
