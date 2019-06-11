@@ -4,6 +4,7 @@ const key = process.env.privatekey;
 const connect = require('connect')
 const serveStatic = require('serve-static')
 const vhost = require('vhost')
+const { server } = require("vnft-tools")
  
 const mainapp = connect()
 
