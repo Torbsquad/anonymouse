@@ -1,23 +1,28 @@
 const cert = process.env.certificate;
 const key = process.env.privatekey;
 
-const express = require("express");
-const { server } = require("vnft-tools");
+const connect = require('connect')
+const serveStatic = require('serve-static')
+const vhost = require('vhost')
+ 
+const mainapp = connect()
 
-const app = express();
-app.get("/", function(req, res, next) {
-  if (req.headers.host != "api.vnft.cc") next();
-  res.json({ status: "OK" });
+mainapp.use(function(req, res, next){
+  res.send("1")
 });
 
-app.get("/", function(req, res) {
-  res.send("Hello World!");
-});
+const userapp = connect()
+ 
+userapp.use(function(req, res, next){
+  var username = req.vhost[0]
+  req.originalUrl = req.url
+  req.url = '/' + username + req.url
+  next()
+})
+userapp.use(serveStatic('public'))
 
-app.use(
-  express.static(__dirname + "/public", {
-    extensions: ["html"]
-  })
-);
+const app = connect()
+app.use(vhost('vnft.cc', mainapp))
+app.use(vhost('api.vnft.cc', userapp))
 
 server(app, key, cert);
