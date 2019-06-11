@@ -11,6 +11,7 @@ app.get("/", function(req, res, next) {
     console.log(req.headers.host)
     res.send("hi!");
   }
+  res.json({status: "OK"});
 });
 
 app.get("/", function(req, res, next) {
