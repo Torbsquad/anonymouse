@@ -7,7 +7,7 @@ const { server } = require("vnft-tools");
 const app = express();
 app.get("/", function(req, res) {
   res.send("Hello I am running in anonymouse!");
-  console.log(res)
+  console.log(req.headers)
 });
 
 app.use(express.static(__dirname + '/public', {
