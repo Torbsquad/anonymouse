@@ -6,17 +6,12 @@ const { server } = require("vnft-tools");
 
 const app = express();
 app.get("/", function(req, res, next) {
-  if(req.headers.host != "api.vnft.cc"){
-    next(); // i dont like this solution
-    console.log(req.headers.host)
-    res.send("hi!");
-  }
+  if(req.headers.host != "api.vnft.cc") next();
   res.json({status: "OK"});
 });
 
-app.get("/", function(req, res, next) {
-  console.log(req.headers.host)
-  res.send("ho!");
+app.get("/", function(req, res) {
+  res.send("Hello World!");
 });
 
 app.use(express.static(__dirname + '/public', {
