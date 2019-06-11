@@ -9,7 +9,7 @@ temp.funct = async (bot, message, args) => {
   let apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${encodeURI(city)}&units=metric&appid=${apiKey}`;
 
   try {
-    const wetterSite = await get(apiUrl)
+    const wetterSite = await get(apiUrl);
     wetter = wetterSite.data;
     message.reply(`Es ist in ${city} ${wetter.main.temp}°C`);
   } catch (err) {

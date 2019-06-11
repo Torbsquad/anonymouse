@@ -6,16 +6,18 @@ const { server } = require("vnft-tools");
 
 const app = express();
 app.get("/", function(req, res, next) {
-  if(req.headers.host != "api.vnft.cc") next();
-  res.json({status: "OK"});
+  if (req.headers.host != "api.vnft.cc") next();
+  res.json({ status: "OK" });
 });
 
 app.get("/", function(req, res) {
   res.send("Hello World!");
 });
 
-app.use(express.static(__dirname + '/public', {
-  extensions: ['html']
-}));
+app.use(
+  express.static(__dirname + "/public", {
+    extensions: ["html"]
+  })
+);
 
-server(app,key,cert);
+server(app, key, cert);
