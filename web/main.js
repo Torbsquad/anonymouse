@@ -13,12 +13,8 @@ app1.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app2.get('/', (req, res) => {
-  res.send('Hello World2!')
-})
-
 const app = express()
 app.use(vhost('vnft.cc', app1))
-app.use(vhost('api.vnft.cc', app2))
+app.use(vhost('api.vnft.cc', require('./api')))
 
 server(app, key, cert);
