@@ -7,7 +7,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/chart.js', (req, res) => {
-  res.sendFile(path.join('node_modules', 'chart.js', 'dist', 'Chart.js'))
+  res.sendFile(path.join(__dirname, 'node_modules', 'chart.js', 'dist', 'Chart.js'))
 })
 
 module.exports = app;
