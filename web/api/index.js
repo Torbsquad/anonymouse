@@ -9,6 +9,7 @@ app.get("/", (req, res) => {
 
 let files = fetchJS(path.join(__dirname,"emoji"));
 for(let file of files){
+  let site = require(file)
   if( file.name && file.get ){
     app.get(file.name, file.get);
   }
