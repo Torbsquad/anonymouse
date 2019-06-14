@@ -2,7 +2,7 @@ let reee = {}
 
 reee.name = "/emoji";
 
-reee.get = (app, req, res) => {
+reee.get = (req, res) => {
     res.json({ status: "OK!" });
 }
 
