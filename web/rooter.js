@@ -9,5 +9,6 @@ const { server } = require("vnft-tools");
 const app = express();
 app.use(vhost("vnft.cc", require("./root")));
 app.use(vhost("api.vnft.cc", require("./api")));
+app.use(vhost("localhost", require("./root")));
 
 server(app, key, cert);
