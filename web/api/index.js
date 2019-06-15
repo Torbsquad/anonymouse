@@ -7,7 +7,8 @@ app.get("/", (req, res) => {
   res.json({ status: "OK!" });
 });
 
-let files = fetchJS(path.join(__dirname, "emoji"));
+let files;
+files = fetchJS(path.join(__dirname, "emoji"));
 for (let file of files) {
   let site = require(file);
   if (site.name && site.get) {
@@ -15,7 +16,7 @@ for (let file of files) {
   }
 }
 
-let files = fetchJS(path.join(__dirname, "derp"));
+files = fetchJS(path.join(__dirname, "derp"));
 for (let file of files) {
   let site = require(file);
   if (site.name && site.get) {
