@@ -24,6 +24,8 @@ reee.get = async (req, res) => {
         $(datatype),
         $(url)
       )
+    ON CONFLICT (HASH)
+    DO UPDATE SET POINTS = EMOJIS.POINTS + 1
   `,emoji);
 
   const ergebnis = await pg.any(`
