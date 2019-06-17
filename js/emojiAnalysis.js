@@ -19,6 +19,10 @@ async function emojiAnalysis(string) {
     emoji.datatype = emoji.animated ? "gif" : "png";
     emoji.url = `https://cdn.discordapp.com/emojis/${emoji.id}.${emoji.datatype}`;
     emoji.hash = await asyncImageHash(emoji.url);
+    if(!emoji.hash){
+      let url = `https://cdn.discordapp.com/emojis/${emoji.id}.png`;
+      emoji.hash = await asyncImageHash(url);
+    }
   }
 
   return emoji;
