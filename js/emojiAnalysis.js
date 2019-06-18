@@ -23,9 +23,11 @@ async function emojiAnalysis(string) {
       let url = `https://cdn.discordapp.com/emojis/${emoji.id}.png`;
       emoji.hash = await asyncImageHash(url);
     }
+    
+    return emoji;
   }
-
-  return emoji;
+  
+  return false;
 }
 
 module.exports = emojiAnalysis;
