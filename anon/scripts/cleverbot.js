@@ -43,11 +43,4 @@ cleverbot.onMessage = message => {
   }
 };
 
-async function on_message(message) {
-  //  eval block
-  if (bot.admins.includes(message.author.id)) {
-    require("./js/eval.js")(bot, message);
-  }
-}
-
 module.exports = cleverbot;
