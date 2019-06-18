@@ -15,7 +15,7 @@ dice.funct = async (bot, message, args) => {
   let response_text = `🎲${message.author} warf ${dices.count == 1 ? "einen " : dices.count}d${dices.sides}!`;
   let response = await message.channel.send(response_text);
   await sleep(1);
-  let result = "🤔";
+  let result;
   if (dices.count == 1) {
     result = Math.floor(Math.random() * dices.sides + 1);
   } else {
