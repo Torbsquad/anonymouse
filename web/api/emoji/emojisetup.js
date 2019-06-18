@@ -1,9 +1,9 @@
-let reee = {};
 const pg = require("../../db");
 
-reee.name = "/emojisetup";
+const { Site } = require("vnft-tools");
+const site = new Site("/emoji/setup");
 
-reee.get = async (req, res) => {
+site.get = async (req, res) => {
   await pg.query(`
         DROP TABLE IF EXISTS EMOJIS;
         CREATE TABLE EMOJIS(
@@ -38,4 +38,4 @@ reee.get = async (req, res) => {
   res.json(ergebnis);
 };
 
-module.exports = reee;
+module.exports = site;

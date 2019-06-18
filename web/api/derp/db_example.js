@@ -1,9 +1,9 @@
-let reee = {};
 const pg = require("../../db");
 
-reee.name = "/db_example";
+const { Site } = require("vnft-tools");
+const db_example = new Site("/db_example");
 
-reee.get = async (req, res) => {
+db_example.get = async (req, res) => {
   await pg.query(`
         DROP TABLE IF EXISTS BEPIS;
         CREATE TABLE BEPIS(
@@ -27,4 +27,4 @@ reee.get = async (req, res) => {
   res.json(ergebnis);
 };
 
-module.exports = reee;
+module.exports = db_example;

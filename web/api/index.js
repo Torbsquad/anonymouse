@@ -1,27 +1,14 @@
 const express = require("express");
 const app = express();
-const { fetchJS } = require("vnft-tools");
+const { SiteHandler } = require("vnft-tools");
+const siteHandler = new SiteHandler(app);
 const path = require("path");
 
 app.get("/", (req, res) => {
   res.json({ status: "OK!" });
 });
 
-let files;
-files = fetchJS(path.join(__dirname, "emoji"));
-for (let file of files) {
-  let site = require(file);
-  if (site.name && site.get) {
-    app.get(site.name, site.get);
-  }
-}
-
-files = fetchJS(path.join(__dirname, "derp"));
-for (let file of files) {
-  let site = require(file);
-  if (site.name && site.get) {
-    app.get(site.name, site.get);
-  }
-}
+siteHandler.loadFolder(path.join(__dirname, "emoji"));
+siteHandler.loadFolder(path.join(__dirname, "derp"));
 
 module.exports = app;

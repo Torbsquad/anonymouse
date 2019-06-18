@@ -1,7 +1,8 @@
 const pg = require("../../db");
-let all = {};
 
-all.name = "/emoji/all";
+const { Site } = require("vnft-tools");
+const all = new Site("/emoji");
+
 all.get = async (req, res) => {
   res.json(await pg.any("SELECT * FROM EMOJIS"));
 };

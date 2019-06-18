@@ -1,11 +1,10 @@
-const analyse = require("../../../js/emojiAnalysis");
 const pg = require("../../db");
+const analyse = require("../../../js/emojiAnalysis");
 
-let reee = {};
+const { Site } = require("vnft-tools");
+const add = new Site("/emoji/add/:emoji");
 
-reee.name = "/emoji/add/:emoji";
-
-reee.get = async (req, res) => {
+add.get = async (req, res) => {
   let emoji = await analyse(req.params.emoji);
   if(!emoji.hash){
     res.send(`${req.params.emoji} is not valid`);
@@ -35,4 +34,4 @@ reee.get = async (req, res) => {
   res.json(ergebnis);
 };
 
-module.exports = reee;
+module.exports = add;
