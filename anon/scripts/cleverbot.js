@@ -1,46 +1,46 @@
-const { Script } = require("vnftjs");
-const Cleverbot = require("cleverbot.io");
+const { Script } = require('vnftjs')
+const Cleverbot = require('cleverbot.io')
 
-const cleverbot = new Script();
+const cleverbot = new Script()
 
-cleverbot.user = new Cleverbot(process.env.cleverbot_user, process.env.cleverbot_key);
-cleverbot.is_ready = false;
-cleverbot.bot = "";
+cleverbot.user = new Cleverbot(process.env.cleverbot_user, process.env.cleverbot_key)
+cleverbot.is_ready = false
+cleverbot.bot = ''
 cleverbot.funct = bot => {
-  cleverbot.bot = bot;
-  let hasTokens = !!process.env.cleverbot_user && !!process.env.cleverbot_key;
+  cleverbot.bot = bot
+  let hasTokens = !!process.env.cleverbot_user && !!process.env.cleverbot_key
   if (hasTokens) {
-    cleverbot.user.setNick("AnonsSpirit");
+    cleverbot.user.setNick('AnonsSpirit')
     cleverbot.user.create((err, s) => {
-      cleverbot.is_ready = true;
-    });
+      cleverbot.is_ready = true
+    })
 
-    bot.on("message", message => {
-      var cleverbotChannel = !!message.channel.topic && message.channel.topic.toLowerCase().includes("cleverbot");
+    bot.on('message', message => {
+      var cleverbotChannel = !!message.channel.topic && message.channel.topic.toLowerCase().includes('cleverbot')
       if (cleverbot.is_ready && (cleverbotChannel || message.isMentioned(bot.user))) {
-        cleverbot.onMessage(message);
+        cleverbot.onMessage(message)
       }
-    });
+    })
   }
-};
+}
 
 cleverbot.onMessage = message => {
-  var ignorelist = [/^t!/, /^$/, /^!/, /^\./, /^\/\//, /```js/];
-  var question = message.cleanContent;
+  var ignorelist = [/^t!/, /^$/, /^!/, /^\./, /^\/\//, /```js/]
+  var question = message.cleanContent
 
-  var shouldIgnore = ignorelist.some(e => question.match(e));
+  var shouldIgnore = ignorelist.some(e => question.match(e))
   question = question
     .split(cleverbot.bot.user.username)
     .join(cleverbot.user.nick)
-    .replace(/@/g, "");
+    .replace(/@/g, '')
   if (!message.author.bot && !shouldIgnore) {
-    message.channel.startTyping();
+    message.channel.startTyping()
     cleverbot.user.ask(question, (err, response) => {
-      response = response.replace(/\*/g, "\\*");
-      message.channel.send(response);
-      message.channel.stopTyping();
-    });
+      response = response.replace(/\*/g, '\\*')
+      message.channel.send(response)
+      message.channel.stopTyping()
+    })
   }
-};
+}
 
-module.exports = cleverbot;
+module.exports = cleverbot

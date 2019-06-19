@@ -1,9 +1,9 @@
 const config = {
   singleQuote: true,
   printWidth: 120,
-  trailingComma: "all",
+  trailingComma: 'all',
   semi: false,
-  tabWidth: 2
-};
+  tabWidth: 2,
+}
 
 module.exports = config

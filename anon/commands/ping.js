@@ -1,9 +1,9 @@
-const { Command } = require("vnftjs");
+const { Command } = require('vnftjs')
 
-const ping = new Command();
-ping.name = "ping";
+const ping = new Command()
+ping.name = 'ping'
 ping.funct = (bot, message, args) => {
-  message.reply("pong");
-};
+  message.reply('pong')
+}
 
-module.exports = ping;
+module.exports = ping

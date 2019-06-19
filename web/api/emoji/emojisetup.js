@@ -1,7 +1,7 @@
-const pg = require("../../db");
+const pg = require('../../db')
 
-const { Site } = require("vnft-tools");
-const site = new Site("/emoji/setup");
+const { Site } = require('vnft-tools')
+const site = new Site('/emoji/setup')
 
 site.get = async (req, res) => {
   await pg.query(`
@@ -15,7 +15,7 @@ site.get = async (req, res) => {
             URL varchar(64),
             POINTS integer DEFAULT 1
         )
-    `);
+    `)
 
   await pg.query(`
         INSERT INTO EMOJIS 
@@ -29,13 +29,13 @@ site.get = async (req, res) => {
               'png',
               'https://cdn.discordapp.com/emojis/256868979270877185.png'
             )
-    `);
+    `)
 
   const ergebnis = await pg.any(`
         SELECT * FROM EMOJIS
-    `);
+    `)
 
-  res.json(ergebnis);
-};
+  res.json(ergebnis)
+}
 
-module.exports = site;
+module.exports = site

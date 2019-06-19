@@ -1,17 +1,18 @@
-const pg = require("../../db");
-const analyse = require("../../../js/emojiAnalysis");
+const pg = require('../../db')
+const analyse = require('../../../js/emojiAnalysis')
 
-const { Site } = require("vnft-tools");
-const add = new Site("/emoji/add/:emoji");
+const { Site } = require('vnft-tools')
+const add = new Site('/emoji/add/:emoji')
 
 add.get = async (req, res) => {
-  let emoji = await analyse(req.params.emoji);
-  if(!emoji.hash){
-    res.send(`${req.params.emoji} is not valid`);
-    return 0;
+  let emoji = await analyse(req.params.emoji)
+  if (!emoji.hash) {
+    res.send(`${req.params.emoji} is not valid`)
+    return 0
   }
-  
-  await pg.query(`
+
+  await pg.query(
+    `
     INSERT INTO EMOJIS 
       (HASH, ANIMATED, NAME, ID, DATATYPE, URL)
       VALUES
@@ -25,13 +26,15 @@ add.get = async (req, res) => {
       )
     ON CONFLICT (HASH)
     DO UPDATE SET POINTS = EMOJIS.POINTS + 1
-  `,emoji);
+  `,
+    emoji,
+  )
 
   const ergebnis = await pg.any(`
     SELECT * FROM EMOJIS
-  `);
+  `)
 
-  res.json(ergebnis);
-};
+  res.json(ergebnis)
+}
 
-module.exports = add;
+module.exports = add

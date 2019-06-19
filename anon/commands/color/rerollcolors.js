@@ -1,12 +1,12 @@
-const { Command } = require("vnftjs");
+const { Command } = require('vnftjs')
 
-const reroll = new Command();
-reroll.name = "rerollcolors";
+const reroll = new Command()
+reroll.name = 'rerollcolors'
 reroll.funct = (bot, message, args) => {
-  var target_guild = message.guild;
-  var target_roles = target_guild.roles.filter(r => r.name[0] == "ܿ");
+  var target_guild = message.guild
+  var target_roles = target_guild.roles.filter(r => r.name[0] == 'ܿ')
 
-  target_roles.forEach(role => role.setColor("RANDOM"));
-};
+  target_roles.forEach(role => role.setColor('RANDOM'))
+}
 
-module.exports = reroll;
+module.exports = reroll

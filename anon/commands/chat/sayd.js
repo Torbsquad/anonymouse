@@ -1,10 +1,10 @@
-const { Command } = require("vnftjs");
+const { Command } = require('vnftjs')
 
-const sayd = new Command();
-sayd.name = "sayd";
+const sayd = new Command()
+sayd.name = 'sayd'
 sayd.funct = (bot, message, args) => {
-  message.channel.send(args);
-  message.delete();
-};
+  message.channel.send(args)
+  message.delete()
+}
 
-module.exports = sayd;
+module.exports = sayd
