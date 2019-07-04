@@ -1,4 +1,4 @@
-const pg = require('../../db')
+const pg = require('../../../db')
 const analyse = require('../../../js/emojiAnalysis')
 
 const { Site } = require('vnft-tools')

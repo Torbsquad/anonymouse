@@ -1,3 +1,4 @@
+const db = require('../../db')
 const { Script } = require('vnftjs')
 const { get } = require('axios')
 const { RichEmbed } = require('discord.js')
@@ -15,7 +16,7 @@ const TARGET_CHARACTERS = [
   15530979, //Ava Aoyagi
   9894204, //Miyoki Malicera
   22149004, //Nai Suru
-  23076248 //Atinuviel I'lave
+  23076248, //Atinuviel I'lave
   //12506676 G'anta Kasper
 ]
 
@@ -28,11 +29,19 @@ const TRANSLATIONS = {
   Race: ['Missing No. 0', 1, 2, 'Lalafell', "Miqo'te", 5, 'Au Ra'],
 }
 
+async function pg_get() {
+  return (await pg.query(`SELECT CONTENT FROM FFXSPY LIMIT 1`))[0].content
+}
+
+async function pg_set(value) {
+  return await pg.query(`UPDATE FFXSPY SET CONTENT = $1 WHERE true`, [value])
+}
+
 const test = new Script()
 test.intervalTime = 120000
 test.funct = async bot => {
   const channel = bot.channels.find(c => c.id == TARGET_CHANNEL)
-  const data = JSON.parse(channel.topic)
+  const data = JSON.parse(await pg_get())
 
   for (let id of TARGET_CHARACTERS) {
     const targetSite = await get(`https://xivapi.com/character/${id}?data=FC`)
@@ -83,7 +92,7 @@ test.funct = async bot => {
     }
   }
 
-  channel.setTopic(JSON.stringify(data))
+  await pg_set(data)
 }
 
 module.exports = test

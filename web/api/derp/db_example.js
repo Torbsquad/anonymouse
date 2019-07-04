@@ -1,4 +1,4 @@
-const pg = require('../../db')
+const pg = require('../../../db')
 
 const { Site } = require('vnft-tools')
 const db_example = new Site('/db_example')
