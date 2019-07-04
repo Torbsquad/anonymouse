@@ -3,7 +3,22 @@ const { get } = require('axios')
 const { RichEmbed } = require('discord.js')
 
 const TARGET_CHANNEL = '539802587239677963'
-const TARGET_CHARACTERS = [20859306, 20864548, 21349090, 21853274, 23945254, 6862438, 25212840, 3206978, 15530979, 9894204, 22149004, 23076248, 12506676]
+const TARGET_CHARACTERS = 
+      [
+  20859306, //Bellini Lewo
+  20864548, //Na'il Lateef
+  21349090, //Diya Na'il
+  21853274, //Eava Wright
+  23945254, //Lily Rose (Sakura Lily)
+  6862438, //Lena Lorien
+  25212840, //Aba Remillard
+  3206978, //Abaddon Seraph
+  15530979, //Ava Aoyagi
+  9894204, //Miyoki Malicera
+  22149004, //Nai Suru
+  23076248, //Atinuviel I'lave
+  12506676 //G'anta Kasper
+  ]
 const TARGET_ATTRIBUTES = ['Name', 'Server', 'Race', 'Gender']
 const TARGET_FREECOMPANY = ['Name']
 const FCPREFIX = 'Free Company-'
