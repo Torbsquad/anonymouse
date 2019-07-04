@@ -1,4 +1,4 @@
-const db = require('../../db')
+const pg = require('../../db')
 const { Script } = require('vnftjs')
 const { get } = require('axios')
 const { RichEmbed } = require('discord.js')
@@ -37,9 +37,9 @@ async function pg_set(value) {
   return await pg.query(`UPDATE FFXSPY SET CONTENT = $1 WHERE true`, [value])
 }
 
-const test = new Script()
-test.intervalTime = 120000
-test.funct = async bot => {
+const spy = new Script()
+spy.intervalTime = 120000
+spy.funct = async bot => {
   const channel = bot.channels.find(c => c.id == TARGET_CHANNEL)
   const data = JSON.parse(await pg_get())
 
@@ -95,4 +95,4 @@ test.funct = async bot => {
   await pg_set(data)
 }
 
-module.exports = test
+module.exports = spy
