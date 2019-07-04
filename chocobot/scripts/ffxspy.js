@@ -3,8 +3,7 @@ const { get } = require('axios')
 const { RichEmbed } = require('discord.js')
 
 const TARGET_CHANNEL = '539802587239677963'
-const TARGET_CHARACTERS = 
-      [
+const TARGET_CHARACTERS = [
   20859306, //Bellini Lewo
   20864548, //Na'il Lateef
   21349090, //Diya Na'il
@@ -18,7 +17,8 @@ const TARGET_CHARACTERS =
   22149004, //Nai Suru
   23076248, //Atinuviel I'lave
   12506676 //G'anta Kasper
-  ]
+]
+
 const TARGET_ATTRIBUTES = ['Name', 'Server', 'Race', 'Gender']
 const TARGET_FREECOMPANY = ['Name']
 const FCPREFIX = 'Free Company-'
