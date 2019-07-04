@@ -15,7 +15,7 @@ const TARGET_CHARACTERS = [
   15530979, //Ava Aoyagi
   9894204, //Miyoki Malicera
   22149004, //Nai Suru
-  23076248, //Atinuviel I'lave
+  23076248 //Atinuviel I'lave
   //12506676 G'anta Kasper
 ]
 
