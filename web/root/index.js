@@ -3,7 +3,7 @@ const app = express()
 const path = require('path')
 
 app.get('/', (req, res) => {
-  res.send('A')
+  res.send('Hallo Welt!')
 })
 
 app.get('/chart.js', (req, res) => {
