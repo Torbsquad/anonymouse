@@ -7,12 +7,11 @@ fetchorino.interval = 10000
 async function fetchMessages(channel_id, message_id) {
   let channel = bot.channels.find(c => c.id === channel_id)
   let messages = await channel.fetchMessages({ after: message_id, limit: 100 })
-  pg.query(
-    `
-	  UPDATE EMOJI_CRAWL SET 
-        LAST_MESSAGE_ID = $(lastMessage),
-        LAST_FETCH = NOW()
-        WHERE CHANNEL_ID = $(channelId)
+  pg.query(`
+    UPDATE EMOJI_CRAWL SET 
+      LAST_MESSAGE_ID = $(lastMessage),
+      LAST_FETCH = NOW()
+      WHERE CHANNEL_ID = $(channelId)
     `,
     {
       lastMessage: messages.first().id,
@@ -34,7 +33,7 @@ function readMessage(message) {
 fetchorino.funct = async bot => {
   const ergebnis = await pg.one(`
     SELECT * FROM EMOJI_CRAWL 
-      ORDER BY last_fetch desc 
+      ORDER BY last_fetch asc 
       LIMIT 1
   `)
 
