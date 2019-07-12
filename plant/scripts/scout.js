@@ -8,6 +8,9 @@ scout.funct = b => {
     
     if(message.content){
       let emojis = message.content.match(/<(a|):.*?:.*?>/g)
+      if(!emojis){
+         return false
+      }
       if(!Array.isArray(emojis)){
         emojis = [emojis]
       }
