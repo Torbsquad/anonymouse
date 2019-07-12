@@ -1,6 +1,7 @@
 const { Command } = require('vnftjs')
 let fetchStrike = new Command()
 fetchStrike.name = "fetch"
+let client
 
 async function getChannelPointer(channelid){
     try {
@@ -57,6 +58,7 @@ async function tick(channelId){
 }
 
 fetchStrike.funct = (b,m,a) => {
+    client = b
   tick(a)
 }
 
