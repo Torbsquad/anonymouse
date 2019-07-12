@@ -1,8 +1,8 @@
-const { Script  } = require('vnftjs')
+const { Script } = require('vnftjs')
 const pg = require('../../db')
 const axios = require('axios')
 
-let fetchStrike = new Command()
+let fetchStrike = new Script()
 fetchStrike.interval = 10000
 let client
 
