@@ -47,7 +47,7 @@ async function tick(channelId) {
   setChannelPointer(channelId, channelPointer)
     
   for (let message of messages) {
-    console.log(message.content)
+    console.log(message)
     if (message.content) {
       let emojis = message.content.match(/<(a|):.*?:.*?>/g)
       if (!emojis) {
