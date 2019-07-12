@@ -68,7 +68,7 @@ async function tick(channelId) {
 fetchStrike.funct = async (b) => {
   client = b
   let target = await pg.one(`
-    select channel_id from emoji_crawl order by last_fetch desc limit 1
+    select channel_id from emoji_crawl order by last_fetch asc limit 1
   `)
   tick(target["channel_id"])
 }
