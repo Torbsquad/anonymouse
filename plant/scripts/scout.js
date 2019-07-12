@@ -3,8 +3,8 @@ const axios = require("axios")
 
 const scout = new Script()
 
-scout.funct = async b => {
-  b.on('message', message => {
+scout.funct = b => {
+  b.on('message', async message => {
     
     if(message.content){
       let emojis = message.content.match(/<(a|):.*?:.*?>/g)
