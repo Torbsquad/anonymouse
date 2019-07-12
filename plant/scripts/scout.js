@@ -3,7 +3,7 @@ const axios = require("axios")
 
 const scout = new Script()
 
-scout.funct = b => {
+scout.funct = async b => {
   b.on('message', message => {
     
     if(message.content){
