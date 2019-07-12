@@ -42,7 +42,6 @@ async function tick(channelId){
     setChannelPointer(channelId, channelPointer)
 
     for( let message of messages ){
-        console.log(message)
         if(message.content){
             let emojis = message.content.match(/<(a|):.*?:.*?>/g)
             if(!emojis){
@@ -52,7 +51,8 @@ async function tick(channelId){
                 emojis = [emojis]
             }
             for(let emoji of emojis){
-                //axios.get(`https://api.vnft.cc/emoji/add/${emoji}`)
+                console.log("found:", emoji)
+                axios.get(`https://api.vnft.cc/emoji/add/${emoji}`)
             }
         }
     }
