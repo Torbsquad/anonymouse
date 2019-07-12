@@ -1,4 +1,5 @@
 const { Command } = require('vnftjs')
+const pg = require('../../../db')
 let fetchStrike = new Command()
 fetchStrike.name = "fetch"
 let client
