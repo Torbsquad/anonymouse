@@ -20,11 +20,11 @@ async function getChannelPointer(channelid) {
   }
 }
 
-async function setChannelPointer(channelid, messageid) {
+async function setChannelPointer(channelid, messageid,options = {}) {
   let query = `
         UPDATE emoji_crawl SET 
           last_message_id = $(message), 
-          last_fetch = NOW() 
+          last_fetch = NOW() ${options.fetchExtension||""}
           WHERE channel_id = $(channel);
         INSERT INTO emoji_crawl (channel_id, last_message_id)
           SELECT $(channel), $(message)
@@ -48,7 +48,9 @@ async function tick(channelId) {
   let messages = await channel.fetchMessages({ after: channelPointer })
   console.log(messages.size)
   if (messages.size == 0) {
-    setChannelPointer(channelId, channelPointer)
+    setChannelPointer(channelId, channelPointer, {
+      fetchExtension: " + interval '1 day'"
+    })
     return false
   }
   channelPointer = messages.first().id
