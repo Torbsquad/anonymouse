@@ -33,11 +33,11 @@ async function setChannelPointer(channelid, messageid,options = {}) {
           );
     `
   console.log(query)
-  let options = {
+  let queryOptions = {
     channel: channelid,
     message: messageid
   }
-  await pg.query(query, options)
+  await pg.query(query, queryOptions)
 }
 
 async function tick(channelId) {
