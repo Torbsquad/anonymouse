@@ -48,6 +48,7 @@ async function tick(channelId) {
   let messages = await channel.fetchMessages({ after: channelPointer })
   console.log(messages.size)
   if (messages.size == 0) {
+    setChannelPointer(channelId, channelPointer)
     return false
   }
   channelPointer = messages.first().id
