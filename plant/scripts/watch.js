@@ -32,6 +32,7 @@ async function setChannelPointer(channelid, messageid) {
             SELECT 1 FROM emoji_crawl WHERE channel_id=$(channel)
           );
     `
+  console.log(query)
   let options = {
     channel: channelid,
     message: messageid
