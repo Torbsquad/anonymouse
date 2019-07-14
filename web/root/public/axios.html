@@ -7,6 +7,7 @@
 
 var mainContainer = document.getElementById("main-container")
 var currentSearch = ""
+var typingSearch = ""
 
 async function init(){
     let emojis = await axios.get('https://api.vnft.cc/emoji/page/0')
@@ -21,15 +22,19 @@ async function init(){
 async function loop(){
     let searchbox = document.getElementById("searchbox")
     if(currentSearch != searchbox.value){
-        mainContainer.innerHTML = ""
-        let page = 0
-        let emojis = await axios.get(`https://api.vnft.cc/emoji/search/${searchbox.value}/${page}`)
-        for(let emoji of emojis.data){
-            let emojiElement = document.createElement("img")
-            emojiElement.src = emoji.url
-            emojiElement.title = emoji.name
-            mainContainer.appendChild(emojiElement)
+        if(typingSearch == searchbox.value){
+            mainContainer.innerHTML = ""
+            currentSearch = searchbox.value
+            let page = 0
+            let emojis = await axios.get(`https://api.vnft.cc/emoji/search/${searchbox.value}/${page}`)
+            for(let emoji of emojis.data){
+                let emojiElement = document.createElement("img")
+                emojiElement.src = emoji.url
+                emojiElement.title = emoji.name
+                mainContainer.appendChild(emojiElement)
+            }
         }
+        typingSearch = searchbox.value
     }
 }
 
