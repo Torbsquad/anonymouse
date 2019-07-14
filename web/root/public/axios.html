@@ -1,6 +1,6 @@
 <script src="/axios.js"></script>
 
-<input type="text" onkeyup="javascript:searchUpdate()"/>
+<input id="searchbox" type="text" onkeyup="javascript:searchUpdate()">
 <div id="main-container"></div>
 
 <script>
@@ -16,9 +16,9 @@ async function init(){
 }
 
 async function searchUpdate(){
-    console.log(this)
+    let searchbox = document.getElementById("searchbox")
     mainContainer.innerHTML = ""
-    let emojis = await axios.get(`https://api.vnft.cc/emoji/search/${this.value}/0`)
+    let emojis = await axios.get(`https://api.vnft.cc/emoji/search/${searchbox.value}/0`)
     for(let emoji of emojis.data){
         let emojiElement = document.createElement("img")
         emojiElement.src = emoji.url
