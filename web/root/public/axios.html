@@ -1,16 +1,28 @@
 <script src="/axios.js"></script>
 
+<input type="text" onkeyup="javascript:searchUpdate()"/>
 <div id="main-container"></div>
 
 <script>
 
 var mainContainer = document.getElementById("main-container")
 async function init(){
-    let rems = await axios.get('https://api.vnft.cc/emoji/search/rem/0')
-    for(let rem of rems.data){
-        let remElement = document.createElement("img")
-        remElement.src = rem.url
-        mainContainer.appendChild(remElement)
+    let emojis = await axios.get('https://api.vnft.cc/emoji/page/0')
+    for(let emoji of emojis.data){
+        let emojiElement = document.createElement("img")
+        emojiElement.src = emoji.url
+        mainContainer.appendChild(emojiElement)
+    }
+}
+
+async function searchUpdate(){
+    console.log(this)
+    mainContainer.innerHTML = ""
+    let emojis = await axios.get(`https://api.vnft.cc/emoji/search/${this.value}/0`)
+    for(let emoji of emojis.data){
+        let emojiElement = document.createElement("img")
+        emojiElement.src = emoji.url
+        mainContainer.appendChild(emojiElement)
     }
 }
 
