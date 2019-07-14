@@ -4,9 +4,7 @@
 
 <script>
 
-document.on("ready",init)
 var mainContainer = document.getElementById("main-container")
-
 async function init(){
     let rems = await axios.get('https://api.vnft.cc/emoji/search/rem/0')
     for(let rem of rems.data){
@@ -16,4 +14,5 @@ async function init(){
     }
 }
 
+init()
 </script>
