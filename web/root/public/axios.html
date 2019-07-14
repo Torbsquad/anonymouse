@@ -1,5 +1,19 @@
 <script src="/axios.js"></script>
 
+<div id="main-container"></div>
+
 <script>
-    axios.get('https://api.github.com/users/codeheaven-io')
+
+document.on("ready",init)
+var mainContainer = document.getElementById("main-container")
+
+async function init(){
+    let rems = await axios.get('https://api.vnft.cc/emoji/search/rem/0')
+    for(let rem of rems.data){
+        let remElement = document.createElement("img")
+        remElement.src = rem.url
+        mainContainer.appendChild(remElement)
+    }
+}
+
 </script>
