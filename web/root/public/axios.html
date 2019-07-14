@@ -1,11 +1,13 @@
 <script src="/axios.js"></script>
 
-<input id="searchbox" type="text" onkeyup="javascript:searchUpdate()">
+<input id="searchbox" type="text">
 <div id="main-container"></div>
 
 <script>
 
 var mainContainer = document.getElementById("main-container")
+var currentSearch = ""
+
 async function init(){
     let emojis = await axios.get('https://api.vnft.cc/emoji/page/0')
     for(let emoji of emojis.data){
@@ -13,16 +15,21 @@ async function init(){
         emojiElement.src = emoji.url
         mainContainer.appendChild(emojiElement)
     }
+    setInterval(loop,1000)
 }
 
-async function searchUpdate(){
+async function loop(){
     let searchbox = document.getElementById("searchbox")
-    mainContainer.innerHTML = ""
-    let emojis = await axios.get(`https://api.vnft.cc/emoji/search/${searchbox.value}/0`)
-    for(let emoji of emojis.data){
-        let emojiElement = document.createElement("img")
-        emojiElement.src = emoji.url
-        mainContainer.appendChild(emojiElement)
+    if(currentSearch != searchbox.value){
+        mainContainer.innerHTML = ""
+        let page = 0
+        let emojis = await axios.get(`https://api.vnft.cc/emoji/search/${searchbox.value}/${page}`)
+        for(let emoji of emojis.data){
+            let emojiElement = document.createElement("img")
+            emojiElement.src = emoji.url
+            emojiElement.title = emoji.name
+            mainContainer.appendChild(emojiElement)
+        }
     }
 }
 
