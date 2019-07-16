@@ -1,4 +1,4 @@
-const pg = require('../../db')
+const pg = require('../../../db')
 
 const { Command } = require('vnftjs')
 
