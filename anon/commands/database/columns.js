@@ -26,7 +26,7 @@ command.funct = async (bot, message, args) => {
   let response = [
       `╒═${repeattext("═",namesLength)}══╤═${repeattext("═",typesLength)}══╕`,
       `│ ${fillup("name",namesLength)}  │ ${fillup("type",typesLength)}  │`,
-      `╞═${repeattext("─",namesLength)}══╪═${repeattext("═",typesLength)}══╡`
+      `╞═${repeattext("═",namesLength)}══╪═${repeattext("═",typesLength)}══╡`
   ]
   for(let result of results){
       response.push(`│ ${fillup(result.column_name,namesLength)}  │ ${fillup(result.data_type,typesLength)}  │`)
