@@ -17,7 +17,7 @@ const TARGET_CHARACTERS = [
   9894204, //Miyoki Malicera
   22149004, //Nai Suru
   23076248, //Atinuviel I'lave
-  12506676 //G'anta Kasper
+  12506676, //G'anta Kasper
 ]
 
 const TARGET_ATTRIBUTES = ['Name', 'Server', 'Race', 'Gender']

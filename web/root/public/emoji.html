@@ -1,42 +1,41 @@
 <script src="/axios.js"></script>
 
-<input id="searchbox" type="text">
+<input id="searchbox" type="text" />
 <div id="main-container"></div>
 
 <script>
+  var mainContainer = document.getElementById('main-container')
+  var currentSearch = ''
+  var typingSearch = ''
 
-var mainContainer = document.getElementById("main-container")
-var currentSearch = ""
-var typingSearch = ""
-
-async function init(){
+  async function init() {
     let emojis = await axios.get('https://api.vnft.cc/emoji/page/0')
-    for(let emoji of emojis.data){
-        let emojiElement = document.createElement("img")
-        emojiElement.src = emoji.url
-        mainContainer.appendChild(emojiElement)
+    for (let emoji of emojis.data) {
+      let emojiElement = document.createElement('img')
+      emojiElement.src = emoji.url
+      mainContainer.appendChild(emojiElement)
     }
-    setInterval(loop,500)
-}
+    setInterval(loop, 500)
+  }
 
-async function loop(){
-    let searchbox = document.getElementById("searchbox")
-    if(currentSearch != searchbox.value){
-        if(typingSearch == searchbox.value){
-            mainContainer.innerHTML = ""
-            currentSearch = searchbox.value
-            let page = 0
-            let emojis = await axios.get(`https://api.vnft.cc/emoji/search/${searchbox.value}/${page}`)
-            for(let emoji of emojis.data){
-                let emojiElement = document.createElement("img")
-                emojiElement.src = emoji.url
-                emojiElement.title = emoji.name
-                mainContainer.appendChild(emojiElement)
-            }
+  async function loop() {
+    let searchbox = document.getElementById('searchbox')
+    if (currentSearch != searchbox.value) {
+      if (typingSearch == searchbox.value) {
+        mainContainer.innerHTML = ''
+        currentSearch = searchbox.value
+        let page = 0
+        let emojis = await axios.get(`https://api.vnft.cc/emoji/search/${searchbox.value}/${page}`)
+        for (let emoji of emojis.data) {
+          let emojiElement = document.createElement('img')
+          emojiElement.src = emoji.url
+          emojiElement.title = emoji.name
+          mainContainer.appendChild(emojiElement)
         }
-        typingSearch = searchbox.value
+      }
+      typingSearch = searchbox.value
     }
-}
+  }
 
-init()
+  init()
 </script>

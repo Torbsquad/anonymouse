@@ -8,11 +8,12 @@ let client
 
 async function getChannelPointer(channelid) {
   try {
-    let queryResult = await pg.one(`
+    let queryResult = await pg.one(
+      `
           select last_message_id from emoji_crawl 
           where channel_id=$(channel) limit 1
         `,
-      { channel: channelid }
+      { channel: channelid },
     )
     return queryResult['last_message_id']
   } catch (err) {
@@ -20,11 +21,11 @@ async function getChannelPointer(channelid) {
   }
 }
 
-async function setChannelPointer(channelid, messageid,options = {}) {
+async function setChannelPointer(channelid, messageid, options = {}) {
   let query = `
         UPDATE emoji_crawl SET 
           last_message_id = $(message), 
-          last_fetch = NOW() ${options.fetchExtension||""}
+          last_fetch = NOW() ${options.fetchExtension || ''}
           WHERE channel_id = $(channel);
         INSERT INTO emoji_crawl (channel_id, last_message_id)
           SELECT $(channel), $(message)
@@ -35,7 +36,7 @@ async function setChannelPointer(channelid, messageid,options = {}) {
   console.log(query)
   let queryOptions = {
     channel: channelid,
-    message: messageid
+    message: messageid,
   }
   await pg.query(query, queryOptions)
 }
@@ -49,13 +50,13 @@ async function tick(channelId) {
   console.log(messages.size)
   if (messages.size == 0) {
     setChannelPointer(channelId, channelPointer, {
-      fetchExtension: " + interval '1 day'"
+      fetchExtension: " + interval '1 day'",
     })
     return false
   }
   channelPointer = messages.first().id
   setChannelPointer(channelId, channelPointer)
-    
+
   for (let message of messages) {
     console.log(message)
     if (message.content) {
@@ -74,12 +75,12 @@ async function tick(channelId) {
   }
 }
 
-fetchStrike.funct = async (b) => {
+fetchStrike.funct = async b => {
   client = b
   let target = await pg.one(`
     select channel_id from emoji_crawl order by last_fetch asc limit 1
   `)
-  tick(target["channel_id"])
+  tick(target['channel_id'])
 }
 
 module.exports = fetchStrike

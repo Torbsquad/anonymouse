@@ -7,11 +7,12 @@ let client
 
 async function getChannelPointer(channelid) {
   try {
-    let queryResult = await pg.one(`
+    let queryResult = await pg.one(
+      `
           select last_message_id from emoji_crawl 
           where channel_id=$(channel) limit 1
         `,
-      { channel: channelid }
+      { channel: channelid },
     )
     return queryResult['last_message_id']
   } catch (err) {
@@ -28,7 +29,7 @@ async function setChannelPointer(channelid, messageid) {
     `
   let options = {
     channel: channelid,
-    message: messageid
+    message: messageid,
   }
   await pg.query(query, options)
 }
@@ -45,7 +46,7 @@ async function tick(channelId) {
   }
   channelPointer = messages.first().id
   setChannelPointer(channelId, channelPointer)
-    
+
   for (let message of messages) {
     console.log(message)
     if (message.content) {
