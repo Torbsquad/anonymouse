@@ -1,4 +1,4 @@
-const pg = require('../../../db')
+const pg = require('../../../../db')
 
 const { Site } = require('vnft-tools')
 const status = new Site('/emoji/status')
