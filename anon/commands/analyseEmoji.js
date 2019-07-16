@@ -1,9 +1,9 @@
 const { Command } = require('vnftjs')
 const analyse = require('../../js/emojiAnalysis')
 
-const analyseEmoji = new Command()
-analyseEmoji.name = 'analyse'
-analyseEmoji.funct = async (bot, message, args) => {
+const command = new Command()
+command.name = 'analyse'
+command.funct = async (bot, message, args) => {
   let analysis = await analyse(args)
   if (analysis) {
     message.channel.send('`' + JSON.stringify(analysis) + '`')
@@ -12,4 +12,4 @@ analyseEmoji.funct = async (bot, message, args) => {
   }
 }
 
-module.exports = analyseEmoji
+module.exports = command

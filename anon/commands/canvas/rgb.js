@@ -2,10 +2,10 @@ const Canvas = require('canvas')
 const Discord = require('discord.js')
 const { Command } = require('vnftjs')
 
-const rgb = new Command()
-rgb.name = 'rgb'
+const command = new Command()
+command.name = 'rgb'
 
-rgb.funct = async (bot, message, args) => {
+command.funct = async (bot, message, args) => {
   const canvas = Canvas.createCanvas(50, 50)
   const ctx = canvas.getContext('2d')
 
@@ -16,4 +16,4 @@ rgb.funct = async (bot, message, args) => {
   message.channel.send(`Color ${args} looks like this:`, attachment)
 }
 
-module.exports = rgb
+module.exports = command

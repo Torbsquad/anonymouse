@@ -1,10 +1,10 @@
 const { Command } = require('vnftjs')
 
-const color = new Command()
-color.name = 'color'
-color.addAlias('colour')
+const command = new Command()
+command.name = 'color'
+command.addAlias('colour')
 
-color.funct = colorCommand
+command.funct = colorCommand
 
 function colorCommand(bot, message, args) {
   var target_member = message.guild.members.find(member => member.id == message.author.id)
@@ -17,4 +17,4 @@ function colorCommand(bot, message, args) {
   }
 }
 
-module.exports = color
+module.exports = command

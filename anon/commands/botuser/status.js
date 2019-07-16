@@ -1,8 +1,8 @@
 const { Command } = require('vnftjs')
 
-const status = new Command()
-status.name = 'setStatus'
-status.funct = (bot, message, args) => {
+const command = new Command()
+command.name = 'setStatus'
+command.funct = (bot, message, args) => {
   var color_to_status = {
     grün: 'online',
     gelb: 'idle',
@@ -12,4 +12,4 @@ status.funct = (bot, message, args) => {
   bot.user.setStatus(color_to_status[args])
 }
 
-module.exports = status
+module.exports = command

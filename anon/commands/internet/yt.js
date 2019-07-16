@@ -1,11 +1,11 @@
 const { Command } = require('vnftjs')
 const get = require('axios')
 
-const youtube = new Command()
-youtube.name = 'yt'
-youtube.addAlias('youtube')
+const command = new Command()
+command.name = 'yt'
+command.addAlias('youtube')
 
-youtube.funct = async (bot, message, args) => {
+command.funct = async (bot, message, args) => {
   var search = args
   var url = encodeURI(`https://www.youtube.com/results?search_query=${search}`)
   const youtubeSite = await get(url)
@@ -13,4 +13,4 @@ youtube.funct = async (bot, message, args) => {
   message.reply(`https://www.youtube.com/watch?v=${youtube_video_id}`)
 }
 
-module.exports = youtube
+module.exports = command

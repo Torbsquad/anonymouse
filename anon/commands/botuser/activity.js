@@ -1,13 +1,13 @@
 const { Command } = require('vnftjs')
 
-const activity = new Command()
-activity.name = 'setActivity'
-activity.addAlias('activity')
+const command = new Command()
+command.name = 'setActivity'
+command.addAlias('activity')
 
-activity.funct = (bot, message, args) => {
+command.funct = (bot, message, args) => {
   bot.user.setActivity(args)
 }
 
-activity.addUserWhitelist(u => u.id == '397063436049186818')
+command.addUserWhitelist(u => u.id == '397063436049186818')
 
-module.exports = activity
+module.exports = command

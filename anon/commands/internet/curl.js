@@ -1,9 +1,9 @@
 const { Command } = require('vnftjs')
 const { get } = require('axios')
 
-const curl = new Command()
-curl.name = 'curl'
-curl.funct = async function(bot, message, url) {
+const command = new Command()
+command.name = 'curl'
+command.funct = async function(bot, message, url) {
   if (!url.startsWith('http')) {
     url = 'http://' + url
   }
@@ -11,4 +11,4 @@ curl.funct = async function(bot, message, url) {
   message.channel.send(curlSite.data)
 }
 
-module.exports = curl
+module.exports = command

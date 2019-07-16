@@ -19,9 +19,9 @@ const applyText = (canvas, text) => {
   return ctx.font
 }
 
-const lol = new Command()
-lol.name = 'lol'
-lol.funct = async (bot, message, args) => {
+const command = new Command()
+command.name = 'lol'
+command.funct = async (bot, message, args) => {
   const member = message.author
   const channel = message.channel
   if (!channel) return
@@ -57,4 +57,4 @@ lol.funct = async (bot, message, args) => {
   channel.send(`Welcome to the server, ${member}!`, attachment)
 }
 
-module.exports = lol
+module.exports = command

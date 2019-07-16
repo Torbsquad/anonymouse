@@ -1,9 +1,9 @@
 const { Command } = require('vnftjs')
 const { sleep } = require('vnft-tools')
 
-const dice = new Command()
-dice.name = 'dice'
-dice.funct = async (bot, message, args) => {
+const command = new Command()
+command.name = 'dice'
+command.funct = async (bot, message, args) => {
   let dices = { count: 1, sides: 6 }
   let dice_parameter = args.toLowerCase().match(/([0-9]{0,})d([0-9]{1,})/)
   if (dice_parameter && dice_parameter[1]) {
@@ -32,4 +32,4 @@ dice.funct = async (bot, message, args) => {
   response.edit(response_text)
 }
 
-module.exports = dice
+module.exports = command

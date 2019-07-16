@@ -1,10 +1,10 @@
 const { Command } = require('vnftjs')
 
-const colors = new Command()
-colors.name = 'colors'
-colors.addAlias('colours')
+const command = new Command()
+command.name = 'colors'
+command.addAlias('colours')
 
-colors.funct = colorsCommand
+command.funct = colorsCommand
 
 function colorsCommand(bot, message, args) {
   var response = `__ColorResolvable:__
@@ -23,4 +23,4 @@ function colorsCommand(bot, message, args) {
   message.channel.send('https://discord.js.org/#/docs/main/stable/typedef/ColorResolvable')
 }
 
-module.exports = colors
+module.exports = command
