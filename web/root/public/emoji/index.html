@@ -9,39 +9,44 @@
   var currentSearch = ''
   var typingSearch = ''
 
-  async function init() {
-    let emojis = await axios.get('https://api.vnft.cc/emoji/lead/0')
-    for (let emoji of emojis.data) {
-      let emojiElement = createEmojiElement(emoji)
-      mainContainer.appendChild(emojiElement)
-    }
-    setInterval(loop, 500)
-  }
-
   async function loop() {
     let searchbox = document.getElementById('searchbox')
     if (currentSearch != searchbox.value) {
       if (typingSearch == searchbox.value) {
-        mainContainer.innerHTML = ''
-        currentSearch = searchbox.value
-        let page = 0
-        let emojis = await axios.get(`https://api.vnft.cc/emoji/search/${searchbox.value}/${page}`)
-        for (let emoji of emojis.data) {
-          let emojiElement = createEmojiElement(emoji)
-          mainContainer.appendChild(emojiElement)
-        }
+        rebuildList()
       }
       typingSearch = searchbox.value
     }
   }
 
+  async function rebuildList(){
+    mainContainer.innerHTML = ''
+    currentSearch = searchbox.value
+
+    if(searchbox.value == ""){
+      let emojis = await axios.get('https://api.vnft.cc/emoji/lead/0')
+      for (let emoji of emojis.data) {
+        let emojiElement = createEmojiElement(emoji)
+        mainContainer.appendChild(emojiElement)
+      }
+    }
+    else{
+      let page = 0
+      let emojis = await axios.get(`https://api.vnft.cc/emoji/search/${searchbox.value}/${page}`)
+      for (let emoji of emojis.data) {
+        let emojiElement = createEmojiElement(emoji)
+        mainContainer.appendChild(emojiElement)
+      }
+    }
+  }
+  
   function createEmojiElement(emoji){
     let div = document.createElement('div')
     let el = document.createElement('img')
     div.appendChild(el)
     
-    div.className = "img"
-    el.className = "parent"
+    div.className = "parent"
+    el.className = "img"
 
     el.src = emoji.url
     el.title = emoji.name
@@ -49,5 +54,6 @@
     return div
   }
 
-  init()
+  rebuildList()
+  setInterval(loop, 500)
 </script>
