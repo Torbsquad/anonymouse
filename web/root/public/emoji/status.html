@@ -1,18 +1,19 @@
 <script src="/axios.js"></script>
 
+<pre>
 <p>Emojicount: <span id="emojicount"></span></p>
-<p>Open Channels: <pre id="openchannels"></pre></p>
+<p>Open Channels: <span id="openchannels"></span></p>
+</pre>
 
 <script>
+  var emojicount = document.getElementById('emojicount')
+  var openchannels = document.getElementById('openchannels')
 
-var emojicount = document.getElementById("emojicount")
-var openchannels = document.getElementById("openchannels")
-
-axios.get('https://api.vnft.cc/emoji/count').then(
-    e => emojicount.innerHTML = e.data
-)
-axios.get('https://api.vnft.cc/emoji/status/open').then(
-    e => openchannels.innerHTML = JSON.stringify(e.data,null,2)
-)
-
+  axios
+    .get('https://api.vnft.cc/emoji/count')
+    .then(e => (emojicount.innerHTML = e.data))
+    
+  axios
+    .get('https://api.vnft.cc/emoji/status/open')
+    .then(e => (openchannels.innerHTML = JSON.stringify(e.data, null, 2)))
 </script>
