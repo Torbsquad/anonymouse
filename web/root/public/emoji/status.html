@@ -8,6 +8,22 @@
 
 <script>
   
+  const emojicount = document.getElementById('emojicount')
+  const openchannels = document.getElementById('openchannels')
+  let emojicountData
+  let openchannelsData
+ 
+  async function main() {
+    emojicountData = ( await axios.get('https://api.vnft.cc/emoji/count') ).data
+    emojicount.innerHTML = emojicountData
+    
+    openchannelsData = ( await axios.get('https://api.vnft.cc/emoji/status/open') ).data
+  }
+  
+  async function render() {
+    openchannels.innerHTML = openchannelsDisplay(openchannelsData)
+  }
+   
   function openchannelsDisplay(channels){
     for( let i in channels ){
       let channel = channels[i]
@@ -16,22 +32,9 @@
     return JSON.stringify(channels, null, 2)
   }
   
-  const emojicount = document.getElementById('emojicount')
-  const openchannels = document.getElementById('openchannels')
-
-  async function main() {
-    
-    axios
-      .get('https://api.vnft.cc/emoji/count')
-      .then(e => (emojicount.innerHTML = e.data))
-    
-    axios
-      .get('https://api.vnft.cc/emoji/status/open')
-      .then(e => (openchannels.innerHTML = openchannelsDisplay(e.data)))
-    
-  }
-  
   main()
   setInterval(main,10*1000)
+  render()
+  setInterval(render,100)
   
 </script>
