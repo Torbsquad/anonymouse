@@ -15,7 +15,7 @@ last.get = async (req, res) => {
   }
   let mainResult = await pg.any(mainQuery, mainOptions)
 
-  res.json(mainResult)
+  res.json(mainResult.reverse())
 }
 
 module.exports = last
