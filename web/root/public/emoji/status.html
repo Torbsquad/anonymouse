@@ -6,14 +6,22 @@
 </pre>
 
 <script>
-  var emojicount = document.getElementById('emojicount')
-  var openchannels = document.getElementById('openchannels')
+  
+  const emojicount = document.getElementById('emojicount')
+  const openchannels = document.getElementById('openchannels')
 
-  axios
-    .get('https://api.vnft.cc/emoji/count')
-    .then(e => (emojicount.innerHTML = e.data))
+  async function main() {
     
-  axios
-    .get('https://api.vnft.cc/emoji/status/open')
-    .then(e => (openchannels.innerHTML = JSON.stringify(e.data, null, 2)))
+    axios
+      .get('https://api.vnft.cc/emoji/count')
+      .then(e => (emojicount.innerHTML = e.data))
+    
+    axios
+      .get('https://api.vnft.cc/emoji/status/open')
+      .then(e => (openchannels.innerHTML = JSON.stringify(e.data, null, 2)))
+    
+  }
+  
+  setInterval(main,10*1000)
+  
 </script>
