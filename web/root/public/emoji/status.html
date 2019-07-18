@@ -27,7 +27,7 @@
   function openchannelsDisplay(channels){
     let result = {}
     for( let i in channels ){
-      let result[i] = channels[i]
+      result[i] = channels[i]
       result.last_fetch = ( new Date() - new Date(result.last_fetch) ) / 1000 + "s ago"
     }
     return JSON.stringify(result, null, 2)
