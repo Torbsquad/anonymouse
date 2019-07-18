@@ -10,7 +10,7 @@ last.get = async (req, res) => {
   
   let mainQuery = 'select * from emojis offset $(offset) limit $(limit)'
   let mainOptions = {
-    offset: offset - Number(req.params.page) * 100,
+    offset: offset - Number(req.params.page) * 100 - 100,
     limit: 100,
   }
   let mainResult = await pg.any(mainQuery, mainOptions)
