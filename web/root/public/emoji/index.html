@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="./index.css" />
 <script src="/axios.js"></script>
 
 <input id="searchbox" type="text" />
@@ -9,10 +10,9 @@
   var typingSearch = ''
 
   async function init() {
-    let emojis = await axios.get('https://api.vnft.cc/emoji/page/0')
+    let emojis = await axios.get('https://api.vnft.cc/emoji/lead/0')
     for (let emoji of emojis.data) {
-      let emojiElement = document.createElement('img')
-      emojiElement.src = emoji.url
+      let emojiElement = createEmojiElement(emoji)
       mainContainer.appendChild(emojiElement)
     }
     setInterval(loop, 500)
@@ -27,14 +27,26 @@
         let page = 0
         let emojis = await axios.get(`https://api.vnft.cc/emoji/search/${searchbox.value}/${page}`)
         for (let emoji of emojis.data) {
-          let emojiElement = document.createElement('img')
-          emojiElement.src = emoji.url
-          emojiElement.title = emoji.name
+          let emojiElement = createEmojiElement(emoji)
           mainContainer.appendChild(emojiElement)
         }
       }
       typingSearch = searchbox.value
     }
+  }
+
+  function createEmojiElement(emoji){
+    let div = document.createElement('div')
+    let el = document.createElement('img')
+    div.appendChild(el)
+    
+    div.className = "img"
+    el.className = "parent"
+
+    el.src = emoji.url
+    el.title = emoji.name
+
+    return div
   }
 
   init()
