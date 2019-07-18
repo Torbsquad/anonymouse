@@ -7,9 +7,14 @@ command.name = 'db'
 command.addUserWhitelist(u => u.id == '397063436049186818')
 
 command.funct = async (bot, message, args) => {
-  let ergebnis = await pg.any(args)
-  ergebnis = JSON.stringify(ergebnis, null, 2)
-  message.channel.send('```' + ergebnis + '```')
+  try {
+    let ergebnis = await pg.any(args)
+    ergebnis = JSON.stringify(ergebnis, null, 2)
+    message.channel.send('```' + ergebnis + '```')
+  }
+  catch(err) {
+    message.channel.send(err.message)
+  }
 }
 
 module.exports = command
