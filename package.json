@@ -38,7 +38,7 @@
     "vnftjs": "^1.2.5"
   },
   "devDependencies": {
-    "mocha": "^6.1.4",
+    "mocha": "^6.2.0",
     "prettier": "^1.18.2"
   }
 }
