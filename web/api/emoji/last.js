@@ -7,7 +7,7 @@ last.get = async (req, res) => {
   let offsetQuery = 'select count(*) from emojis'
   let offsetResult = await pg.one(offsetQuery)
   let offset = offsetResult.count
-  
+
   let mainQuery = 'select * from emojis offset $(offset) limit $(limit)'
   let mainOptions = {
     offset: offset - Number(req.params.page) * 100 - 100,

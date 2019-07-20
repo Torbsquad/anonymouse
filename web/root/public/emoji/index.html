@@ -19,18 +19,17 @@
     }
   }
 
-  async function rebuildList(){
+  async function rebuildList() {
     mainContainer.innerHTML = ''
     currentSearch = searchbox.value
 
-    if(searchbox.value == ""){
+    if (searchbox.value == '') {
       let emojis = await axios.get('https://api.vnft.cc/emoji/lead/0')
       for (let emoji of emojis.data) {
         let emojiElement = createEmojiElement(emoji)
         mainContainer.appendChild(emojiElement)
       }
-    }
-    else{
+    } else {
       let page = 0
       let emojis = await axios.get(`https://api.vnft.cc/emoji/search/${searchbox.value}/${page}`)
       for (let emoji of emojis.data) {
@@ -39,14 +38,14 @@
       }
     }
   }
-  
-  function createEmojiElement(emoji){
+
+  function createEmojiElement(emoji) {
     let div = document.createElement('div')
     let el = document.createElement('img')
     div.appendChild(el)
-    
-    div.className = "parent"
-    el.className = "img"
+
+    div.className = 'parent'
+    el.className = 'img'
 
     el.src = emoji.url
     el.title = emoji.name

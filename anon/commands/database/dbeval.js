@@ -11,8 +11,7 @@ command.funct = async (bot, message, args) => {
     let ergebnis = await pg.any(args)
     ergebnis = JSON.stringify(ergebnis, null, 2)
     message.channel.send('```' + ergebnis + '```')
-  }
-  catch(err) {
+  } catch (err) {
     message.channel.send(err.message)
   }
 }
