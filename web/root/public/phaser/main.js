@@ -23,3 +23,7 @@ function create() {
 
   emitter.startFollow(logo)
 }
+
+function windowResize(event) {
+  console.log(event)
+}
