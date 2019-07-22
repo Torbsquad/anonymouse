@@ -1,3 +1,27 @@
+var game
+var logo
+
+function main(event) {
+  game = new Phaser.Game({
+    type: Phaser.AUTO,
+    width: 500,
+    height: 600,
+    physics: {
+      default: 'arcade',
+      arcade: {
+        gravity: { y: 300 },
+      },
+    },
+    scene: {
+      preload: preload,
+      create: create,
+      update: update
+    },
+  })
+  window.addEventListener('resize', windowResize)
+  windowResize()
+}
+
 function preload() {
   this.load.image('sky', 'assets/skies/space3.png')
   this.load.image('logo', 'assets/sprites/phaser3-logo.png')
@@ -15,15 +39,31 @@ function create() {
     blendMode: 'ADD',
   })
 
-  var logo = this.physics.add.image(400, 100, 'logo')
-
-  logo.setVelocity(100, 200)
-  logo.setBounce(1, 1)
-  logo.setCollideWorldBounds(true)
+  logo = this.add.sprite(400, 100, 'logo')
+  logo.setCrop(10,10,200,200)
 
   emitter.startFollow(logo)
+
+  console.log(logo)
+}
+
+function update(){
+  logo.toggleFlipX()
 }
 
 function windowResize(event) {
-  console.log(event)
+  var canvas = document.getElementsByTagName("canvas")[0]
+  let windowScale = window.innerHeight/window.innerWidth
+  let canvasScale = canvas.height/canvas.width
+
+  if(windowScale < canvasScale){
+    canvas.style.width = "auto"
+    canvas.style.height = window.innerHeight + "px"
+  }
+  else{
+    canvas.style.width = window.innerWidth + "px"
+    canvas.style.height = "auto"
+  }
+
+  console.log(window)
 }
