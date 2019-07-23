@@ -29,6 +29,12 @@
         let emojiElement = createEmojiElement(emoji)
         mainContainer.appendChild(emojiElement)
       }
+    } else if (searchbox.value == '!latest') {
+      let emojis = await axios.get('https://api.vnft.cc/emoji/last/0')
+      for (let emoji of emojis.data) {
+        let emojiElement = createEmojiElement(emoji)
+        mainContainer.appendChild(emojiElement)
+      }
     } else {
       let page = 0
       let emojis = await axios.get(`https://api.vnft.cc/emoji/search/${searchbox.value}/${page}`)
