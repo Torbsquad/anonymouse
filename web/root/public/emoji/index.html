@@ -8,6 +8,8 @@
   var mainContainer = document.getElementById('main-container')
   var currentSearch = ''
   var typingSearch = ''
+  var page = 0
+  var site = ''
 
   async function loop() {
     let searchbox = document.getElementById('searchbox')
@@ -17,32 +19,40 @@
       }
       typingSearch = searchbox.value
     }
+    if (window.scrollMaxY - window.scrollY < 100 && page != -1) {
+      page++
+      let wasEmpty = await addEmojisFromGET()
+      if (wasEmpty == true) {
+        page = -1
+      }
+    }
   }
 
   async function rebuildList() {
     mainContainer.innerHTML = ''
     currentSearch = searchbox.value
+    page = 0
 
     if (searchbox.value == '') {
-      let emojis = await axios.get('https://api.vnft.cc/emoji/lead/0')
-      for (let emoji of emojis.data) {
-        let emojiElement = createEmojiElement(emoji)
-        mainContainer.appendChild(emojiElement)
-      }
+      site = 'https://api.vnft.cc/emoji/lead'
     } else if (searchbox.value == '!latest') {
-      let emojis = await axios.get('https://api.vnft.cc/emoji/last/0')
-      for (let emoji of emojis.data) {
-        let emojiElement = createEmojiElement(emoji)
-        mainContainer.appendChild(emojiElement)
-      }
+      site = 'https://api.vnft.cc/emoji/last'
     } else {
-      let page = 0
-      let emojis = await axios.get(`https://api.vnft.cc/emoji/search/${searchbox.value}/${page}`)
-      for (let emoji of emojis.data) {
-        let emojiElement = createEmojiElement(emoji)
-        mainContainer.appendChild(emojiElement)
-      }
+      site = `https://api.vnft.cc/emoji/search/${searchbox.value}`
     }
+
+    addEmojisFromGET()
+  }
+
+  async function addEmojisFromGET(url = `${site}/${page}`) {
+    let wasEmpty = true
+    let emojis = await axios.get(url)
+    for (let emoji of emojis.data) {
+      wasEmpty = false
+      let emojiElement = createEmojiElement(emoji)
+      mainContainer.appendChild(emojiElement)
+    }
+    return wasEmpty
   }
 
   function createEmojiElement(emoji) {
