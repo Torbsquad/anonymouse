@@ -26,9 +26,26 @@ add.get = async (req, res) => {
       )
     ON CONFLICT (HASH)
     DO UPDATE SET POINTS = EMOJIS.POINTS + 1
-  `,
+    `,
     emoji,
   )
+
+  try {
+    await pg.query(
+      `
+      INSERT INTO EMOJI_ALIAS 
+        (HASH, NAME)
+        VALUES
+        (
+          $(hash),
+          $(name)
+        )
+      `,
+      emoji,
+    )
+  } catch (err) {
+    console.log(err)
+  }
 
   const ergebnis = await pg.any(`
     SELECT * FROM EMOJIS
