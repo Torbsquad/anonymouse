@@ -5,7 +5,7 @@ const search = new Site('/emoji/search/:search/:page')
 search.get = async (req, res) => {
   let query = `
     SELECT * FROM EMOJIS 
-      WHERE name like $(search) 
+      WHERE LOWER(name) like LOWER($(search))
       ORDER BY points desc 
       OFFSET $(offset) LIMIT $(limit)
     `
