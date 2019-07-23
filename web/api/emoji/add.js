@@ -40,6 +40,7 @@ add.get = async (req, res) => {
           $(hash),
           $(name)
         )
+      ON CONFLICT DO NOTHING
       `,
       emoji,
     )
