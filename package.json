@@ -8,7 +8,8 @@
     "test": "mocha",
     "prettier": "prettier --write --print-width 120 ./{*,*/*,*/*/*,*/*/*/*,*/*/*/*/*,*/*/*/*/*/*}.{html,js,ts,json,css}",
     "prettierrc": "prettier --write --config .prettierrc ./{*,*/*,*/*/*,*/*/*/*,*/*/*/*/*,*/*/*/*/*/*}.{html,js,ts,json,css}",
-    "secret": "node secret.main.js"
+    "secret": "node secret.main.js",
+    "localhost": "node ./web/rooter.js"
   },
   "repository": {
     "type": "git",
