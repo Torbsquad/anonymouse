@@ -36,11 +36,8 @@ async function setChannelPointer(channelid, messageid) {
 
 async function tick(channelId) {
   let channel = client.channels.find(c => c.id == channelId)
-  console.log(channel.name)
   let channelPointer = await getChannelPointer(channelId)
-  console.log(channelPointer)
   let messages = await channel.fetchMessages({ after: channelPointer })
-  console.log(messages.size)
   if (messages.size == 0) {
     return false
   }
@@ -48,7 +45,6 @@ async function tick(channelId) {
   setChannelPointer(channelId, channelPointer)
 
   for (let message of messages) {
-    console.log(message)
     if (message.content) {
       let emojis = message.content.match(/<(a|):.*?:.*?>/g)
       if (!emojis) {
