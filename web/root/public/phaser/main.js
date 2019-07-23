@@ -15,7 +15,7 @@ function main(event) {
     scene: {
       preload: preload,
       create: create,
-      update: update
+      update: update,
     },
   })
   window.addEventListener('resize', windowResize)
@@ -40,29 +40,28 @@ function create() {
   })
 
   logo = this.add.sprite(400, 100, 'logo')
-  logo.setCrop(10,10,200,200)
+  logo.setCrop(10, 10, 200, 200)
 
   emitter.startFollow(logo)
 
   console.log(logo)
 }
 
-function update(){
+function update() {
   logo.toggleFlipX()
 }
 
 function windowResize(event) {
-  var canvas = document.getElementsByTagName("canvas")[0]
-  let windowScale = window.innerHeight/window.innerWidth
-  let canvasScale = canvas.height/canvas.width
+  var canvas = document.getElementsByTagName('canvas')[0]
+  let windowScale = window.innerHeight / window.innerWidth
+  let canvasScale = canvas.height / canvas.width
 
-  if(windowScale < canvasScale){
-    canvas.style.width = "auto"
-    canvas.style.height = window.innerHeight + "px"
-  }
-  else{
-    canvas.style.width = window.innerWidth + "px"
-    canvas.style.height = "auto"
+  if (windowScale < canvasScale) {
+    canvas.style.width = 'auto'
+    canvas.style.height = window.innerHeight + 'px'
+  } else {
+    canvas.style.width = window.innerWidth + 'px'
+    canvas.style.height = 'auto'
   }
 
   console.log(window)
