@@ -24,12 +24,18 @@
   }
 
   function openchannelsDisplay(channels) {
-    let result = {}
+    let response = {}
+    channels = channels.sort((a, b) => a.channel_id > b.channel_id)
     for (let i in channels) {
-      result[i] = channels[i]
-      result.last_fetch = (new Date() - new Date(result.last_fetch)) / 1000 + 's ago'
+      let channel = channels[i]
+
+      let entity = {}
+      entity['last fetch'] = `${(new Date() - new Date(channel.last_fetch)) / 1000}s ago`
+      entity['last message'] = channel.last_message_id
+
+      response[channel.channel_id] = entity
     }
-    return JSON.stringify(result, null, 2)
+    return JSON.stringify(response, null, 2)
   }
 
   main()
