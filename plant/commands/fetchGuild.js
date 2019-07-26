@@ -67,7 +67,7 @@ fetchStrike.funct = async (b, m, a) => {
 
   let guild = b.guilds.find(g => g.id === a)
   if (!guild.available) return false
-  let channels = guild.channels
+  let channels = guild.channels.array()
 
   for (let channel of channels) {
     if (channel.type == 'text') {
