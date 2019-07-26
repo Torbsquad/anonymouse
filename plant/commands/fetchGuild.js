@@ -3,7 +3,7 @@ const pg = require('../../db')
 const axios = require('axios')
 const { sleep } = require('vnft-tools')
 let fetchStrike = new Command()
-fetchStrike.name = 'fetch'
+fetchStrike.name = 'fetchguild'
 let client
 
 async function getChannelPointer(channelid) {
