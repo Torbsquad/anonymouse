@@ -72,7 +72,7 @@ fetchStrike.funct = async (b, m, a) => {
   for (let channel of channels) {
     if (channel.type == 'text') {
       tick(channel.id)
-      sleep(1000)
+      await sleep(1000)
     }
   }
 }
