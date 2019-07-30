@@ -2,7 +2,7 @@ const { CommandHandler } = require('vnftjs')
 const path = require('path')
 
 const client = new CommandHandler()
-client.prefix = 'beemoviescript'
+client.prefix = 'choco'
 
 client.enableHelp()
 client.helpColor = [247, 225, 57]
