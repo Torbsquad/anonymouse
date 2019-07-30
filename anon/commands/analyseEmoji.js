@@ -3,6 +3,8 @@ const analyse = require('../../js/emojiAnalysis')
 
 const command = new Command()
 command.name = 'analyse'
+command.description = 'showing metadata to the following emoji'
+
 command.funct = async (bot, message, args) => {
   let analysis = await analyse(args)
   if (analysis) {
