@@ -14,7 +14,7 @@ bot.on('ready', () => {
 bot.admins = typeof process.env.admins != 'undefined' ? process.env.admins.split(',') : []
 
 bot.enableHelp()
-bot.helpColor = [100,255,0]
+bot.helpColor = [255, 128, 128]
 
 bot.loadCommands(path.join(__dirname, 'commands'))
 bot.loadScripts(path.join(__dirname, 'scripts'))
