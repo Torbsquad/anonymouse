@@ -10,11 +10,11 @@ const TARGET_CHARACTERS = [
   21349090, // Diya Na'il
   21853274, // Eava Wright
   23945254, // Lily Rose (Sakura Lily)
-  6862438,  // Lena Lorien
+  6862438, //  Lena Lorien
   25212840, // Aba Remillard
-  3206978,  // Abaddon Seraph
+  3206978, //  Abaddon Seraph
   15530979, // Ava Aoyagi
-  9894204,  // Miyoki Malicera
+  9894204, //  Miyoki Malicera
   22149004, // Nai Suru
   23076248, // Atinuviel I'lave
   12506676, // G'anta Kasper
