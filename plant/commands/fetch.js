@@ -22,10 +22,10 @@ async function getChannelPointer(channelid) {
 
 async function setChannelPointer(channelid, messageid) {
   let query = `
-        UPDATE emoji_crawl SET last_message_id=$(message) WHERE channel_id=$(channel);
-        INSERT INTO emoji_crawl (channel_id, last_message_id)
-           SELECT $(channel), $(message)
-           WHERE NOT EXISTS (SELECT 1 FROM emoji_crawl WHERE channel_id=$(channel));
+      UPDATE emoji_crawl SET last_message_id=$(message) WHERE channel_id=$(channel);
+      INSERT INTO emoji_crawl (channel_id, last_message_id)
+        SELECT $(channel), $(message)
+        WHERE NOT EXISTS (SELECT 1 FROM emoji_crawl WHERE channel_id=$(channel));
     `
   let options = {
     channel: channelid,
