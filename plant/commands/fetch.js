@@ -7,8 +7,7 @@ let client
 
 async function getChannelPointer(channelid) {
   try {
-    let queryResult = await pg.one(
-      `
+    let queryResult = await pg.one(`
           select last_message_id from emoji_crawl 
           where channel_id=$(channel) limit 1
         `,
