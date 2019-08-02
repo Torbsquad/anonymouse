@@ -10,7 +10,7 @@ const { server } = require('vnft-tools')
 
 const Server = server(app, key, cert)
 
-global.io = require('socket.io').listen(Server)
+global.io = require('socket.io').listen(Server.https)
 global.root_directory = path.resolve('../')
 
 app.use(vhost('vnft.cc', require('./root')))
