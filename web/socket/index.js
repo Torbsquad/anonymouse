@@ -8,8 +8,7 @@ app.get('/', (req, res) => {
   res.json({ status: 'OK!' })
 })
 
-var socket = global.io()
-socket.on('connection', function(socket) {
+io.on('connection', function(socket) {
   console.log("someone connected!")
 })
 

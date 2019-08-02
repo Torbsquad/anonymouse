@@ -24,10 +24,18 @@ app.get('/phaser.js', (req, res) => {
   res.sendFile(path.join(__dirname, '..', '..', 'node_modules', 'phaser', 'dist', 'phaser.js'))
 })
 
+app.get('/socket.js', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', '..', 'node_modules', 'socket.io-client', 'dist', 'socket.io.js'))
+})
+
 app.use(
   express.static(__dirname + '/public', {
     extensions: ['html'],
   }),
 )
+
+global.io.on("connection",socket=>{
+  console.log("a connection!")
+})
 
 module.exports = app
