@@ -1,2 +1,2 @@
-const postgres = require('pg-promise')()(process.env.DATABASE_URL + '?ssl=true')
+const postgres = require('pg-promise')()(process.env.db + '?ssl=true')
 module.exports = postgres
