@@ -4,7 +4,7 @@ const { Site } = require('vnft-tools')
 const all = new Site('/emoji/lead/:page')
 
 all.get = async (req, res) => {
-  let query = `SELECT * FROM EMOJIS ORDER BY POINTS DESC OFFSET $(offset) LIMIT $(limit)`
+  let query = `SELECT * FROM EMOJIS2 ORDER BY POINTS DESC OFFSET $(offset) LIMIT $(limit)`
   let options = {
     offset: Number(req.params.page) * 100,
     limit: 100,
