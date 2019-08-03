@@ -25,7 +25,7 @@ add.get = async (req, res) => {
         $(url)
       )
     ON CONFLICT (HASH)
-    DO UPDATE SET POINTS = EMOJIS.POINTS + 1
+    DO UPDATE SET POINTS = EMOJIS2.POINTS + 1
     `,
     emoji,
   )
