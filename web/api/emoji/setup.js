@@ -38,4 +38,4 @@ site.get = async (req, res) => {
   res.json(ergebnis)
 }
 
-module.exports = site
+//module.exports = site
