@@ -5,8 +5,8 @@ const site = new Site('/emoji/setup')
 
 site.get = async (req, res) => {
   await pg.query(`
-    DROP TABLE IF EXISTS EMOJIS;
-    CREATE TABLE EMOJIS(
+    DROP TABLE IF EXISTS EMOJIS2;
+    CREATE TABLE EMOJIS2(
       HASH varchar(64) NOT NULL PRIMARY KEY,
       ANIMATED boolean,
       NAME varchar(64),
@@ -18,7 +18,7 @@ site.get = async (req, res) => {
   `)
 
   await pg.query(`
-    INSERT INTO EMOJIS 
+    INSERT INTO EMOJIS2 
       (HASH, ANIMATED, NAME, ID, DATATYPE, URL)
       VALUES
       (
@@ -32,7 +32,7 @@ site.get = async (req, res) => {
   `)
 
   const ergebnis = await pg.any(`
-    SELECT * FROM EMOJIS
+    SELECT * FROM EMOJIS2
   `)
 
   res.json(ergebnis)
