@@ -78,4 +78,4 @@ fetchStrike.funct = async b => {
   tick(target['channel_id'])
 }
 
-module.exports = fetchStrike
+//module.exports = fetchStrike
