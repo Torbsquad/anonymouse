@@ -13,7 +13,7 @@ add.get = async (req, res) => {
 
   await pg.query(
     `
-    INSERT INTO EMOJIS 
+    INSERT INTO EMOJIS2 
       (HASH, ANIMATED, NAME, ID, DATATYPE, URL)
       VALUES
       (
@@ -30,29 +30,7 @@ add.get = async (req, res) => {
     emoji,
   )
 
-  try {
-    await pg.query(
-      `
-      INSERT INTO EMOJI_ALIAS 
-        (HASH, NAME)
-        VALUES
-        (
-          $(hash),
-          $(name)
-        )
-      ON CONFLICT DO NOTHING
-      `,
-      emoji,
-    )
-  } catch (err) {
-    console.log(err)
-  }
-
-  const ergebnis = await pg.any(`
-    SELECT * FROM EMOJIS
-  `)
-
-  res.json(ergebnis)
+  res.json({done: true})
 }
 
 module.exports = add
