@@ -4,11 +4,11 @@ const { Site } = require('vnft-tools')
 const last = new Site('/emoji/last/:page')
 
 last.get = async (req, res) => {
-  let offsetQuery = 'select count(*) from emojis'
+  let offsetQuery = 'select count(*) from emojis2'
   let offsetResult = await pg.one(offsetQuery)
   let offset = offsetResult.count
 
-  let mainQuery = 'select * from emojis offset $(offset) limit $(limit)'
+  let mainQuery = 'select * from emojis2 offset $(offset) limit $(limit)'
   let mainOptions = {
     offset: offset - Number(req.params.page) * 100 - 100,
     limit: 100,
