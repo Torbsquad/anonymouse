@@ -1,13 +1,4 @@
 const { CommandHandler } = require('vnftjs')
-const path = require('path')
-
-const plant = new CommandHandler()
-plant.enableHelp()
-plant.helpColor = 'PURPLE'
-
-plant.prefix = 'p'
-
-plant.loadCommands(path.join(__dirname, 'commands'))
-plant.loadScripts(path.join(__dirname, 'scripts'))
-
-plant.login(process.env.plant)
+const client = new CommandHandler()
+client.loadScripts('./nuu/scripts')
+client.login(process.env.plant)
