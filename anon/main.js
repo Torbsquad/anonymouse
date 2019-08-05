@@ -20,5 +20,3 @@ bot.loadCommands(path.join(__dirname, 'commands'))
 bot.loadScripts(path.join(__dirname, 'scripts'))
 
 bot.login(process.env.anon)
-
-require('../nuu/main.js')
