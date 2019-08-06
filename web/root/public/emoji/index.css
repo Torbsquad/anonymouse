@@ -26,6 +26,8 @@ input {
   border: none;
   font-size: 1em;
   color: white;
+  margin-bottom: 5px;
+  padding: 1 5;
 }
 
 input[type='button'] {
