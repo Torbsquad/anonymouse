@@ -3,7 +3,8 @@
 
 <div id="siteContainer">
   <input id="searchbox" type="text" />
-  <input id="latest" type="button" value="latest" onclick="searchprefix('latest')" />
+  <input onclick="searchprefix('lead')" value="lead"  type="button"/>
+  <input onclick="searchprefix('latest')" value="latest" type="button" />
   <div id="mainContainer"></div>
 </div>
 
@@ -41,7 +42,7 @@
     page = 0
     window.history.pushState('emoji', 'Title', '/emoji/?'+currentSearch);
 
-    if (searchbox.value == '') {
+    if (searchbox.value == '' || searchbox.value == '!lead') {
       site = 'https://api.vnft.cc/emoji/lead'
     } else if (searchbox.value == '!latest') {
       site = 'https://api.vnft.cc/emoji/last'
