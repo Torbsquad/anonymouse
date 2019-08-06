@@ -3,6 +3,7 @@
 
 <div id="siteContainer">
   <input id="searchbox" type="text" />
+  <input id="latest" type="button" value="latest" onclick="searchprefix('latest')" />
   <div id="mainContainer"></div>
 </div>
 
@@ -11,8 +12,8 @@
 
   var mainContainer = document.getElementById('mainContainer')
   var searchbox = document.getElementById('searchbox')
-
   searchbox.value = search
+
   var currentSearch = ''
   var typingSearch = ''
   var page = 0
@@ -74,6 +75,10 @@
     el.title = emoji.name
 
     return div
+  }
+
+  function searchprefix(a) {
+    searchbox.value = "!"+a
   }
 
   rebuildList()
