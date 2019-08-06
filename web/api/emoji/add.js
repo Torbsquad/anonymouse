@@ -30,7 +30,7 @@ add.get = async (req, res) => {
     emoji,
   )
 
-  res.json({done: true})
+  res.json({ done: true })
 }
 
 module.exports = add

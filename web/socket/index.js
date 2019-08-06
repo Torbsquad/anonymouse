@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 })
 
 io.on('connection', function(socket) {
-  console.log("someone connected!")
+  console.log('someone connected!')
 })
 
 module.exports = app

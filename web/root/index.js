@@ -34,8 +34,8 @@ app.use(
   }),
 )
 
-global.io.on("connection",socket=>{
-  console.log("a connection!")
+global.io.on('connection', socket => {
+  console.log('a connection!')
 })
 
 module.exports = app
