@@ -1,10 +1,23 @@
 #selectionHolder{
+    position: relative;
     margin: 0 auto;
     max-width: 1200px;
+    max-height: 675px;
+    height: auto;
 }
 
 #selection{
+    position: absolute;
+    top: 0;
+    left: 0;
     margin: auto;
     width: 100%;
     max-width: 1200px;
+}
+
+.strike{
+    position: absolute;
+    width: 13%;
+    height: 100%;
+    background: red;
 }
