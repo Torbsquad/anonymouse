@@ -7,14 +7,18 @@
 </div>
 
 <script>
+  let search = document.location.search.substr(1)
+
   var mainContainer = document.getElementById('mainContainer')
+  var searchbox = document.getElementById('searchbox')
+
+  searchbox.value = search
   var currentSearch = ''
   var typingSearch = ''
   var page = 0
   var site = ''
 
   async function loop() {
-    let searchbox = document.getElementById('searchbox')
     if (currentSearch != searchbox.value) {
       if (typingSearch == searchbox.value) {
         rebuildList()
@@ -34,6 +38,7 @@
     mainContainer.innerHTML = ''
     currentSearch = searchbox.value
     page = 0
+    window.history.pushState('emoji', 'Title', '/emoji/?'+currentSearch);
 
     if (searchbox.value == '') {
       site = 'https://api.vnft.cc/emoji/lead'
