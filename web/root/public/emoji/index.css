@@ -20,3 +20,14 @@
 body {
   background: #111;
 }
+
+input {
+  background: #333;
+  border: none;
+  font-size: 1em;
+  color: white;
+}
+
+input[type='button'] {
+  background: #222;
+}
