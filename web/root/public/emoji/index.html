@@ -1,22 +1,26 @@
-<meta content="Discord - Free Voice and Text Chat" property="og:title">
-<meta content="All-in-one voice and text chat for gamers that's free, secure, and works on both your desktop and phone.
-Stop paying for TeamSpeak servers and hassling with Skype. Simplify your life." property="og:description">
-<meta content='https://discordapp.com/assets/ba74954dde74ff40a32ff58069e78c36.png' property='og:image'>
+<html>
 
-<meta name="theme-color" content="#7289DA">
-<meta name="twitter:card" content="summary_large_image">
-<link type="application/json+oembed" href="./embed.json" />
+<head>
+  <meta content="vnft.cc/emoji" property="og:title">
+  <meta content="display of the emoji-collection of a plant" property="og:description">
+  <meta content="./preview.png" property="og:image">
+  <meta name="theme-color" content="#15ff74">
+  <meta name="twitter:card" content="summary_large_image">
+  <link type="application/json+oembed" href="./embed.json" />
 
-<link rel="stylesheet" type="text/css" href="./index.css" />
+  <link rel="stylesheet" type="text/css" href="./index.css" />
+</head>
+
+<body>
+  <div id="siteContainer">
+    <input id="searchbox" type="text" />
+    <input onclick="searchprefix('lead')" value="lead" type="button" />
+    <input onclick="searchprefix('latest')" value="latest" type="button" />
+    <div id="mainContainer"></div>
+  </div>
+</body>
+
 <script src="/axios.js"></script>
-
-<div id="siteContainer">
-  <input id="searchbox" type="text" />
-  <input onclick="searchprefix('lead')" value="lead" type="button" />
-  <input onclick="searchprefix('latest')" value="latest" type="button" />
-  <div id="mainContainer"></div>
-</div>
-
 <script>
   let search = document.location.search.substr(1)
 
@@ -94,3 +98,5 @@ Stop paying for TeamSpeak servers and hassling with Skype. Simplify your life." 
   rebuildList()
   setInterval(loop, 500)
 </script>
+
+</html>
