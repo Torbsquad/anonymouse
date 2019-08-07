@@ -9,7 +9,7 @@ app.use(function(req, res, next) {
 })
 
 app.get('/', (req, res) => {
-  res.send('Hallo Welt!')
+  res.redirect("https://twitter.com/VonFriedricht")
 })
 
 app.get('/chart.js', (req, res) => {
