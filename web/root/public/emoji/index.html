@@ -1,102 +1,100 @@
 <html>
+  <head>
+    <meta content="vnft.cc/emoji" property="og:title" />
+    <meta content="Display of the Emoji-Collection by a literal plant" property="og:description" />
+    <meta content="https://vnft.cc/emoji/preview.png" property="og:image" />
+    <meta name="theme-color" content="#6644AA" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link type="application/json+oembed" href="https://vnft.cc/emoji/embed.json" />
 
-<head>
-  <meta content="vnft.cc/emoji" property="og:title">
-  <meta content="Display of the Emoji-Collection by a literal plant" property="og:description">
-  <meta content="https://vnft.cc/emoji/preview.png" property="og:image">
-  <meta name="theme-color" content="#6644AA">
-  <meta name="twitter:card" content="summary_large_image">
-  <link type="application/json+oembed" href="https://vnft.cc/emoji/embed.json" />
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+  </head>
 
-  <link rel="stylesheet" type="text/css" href="./index.css" />
-</head>
+  <body>
+    <div id="siteContainer">
+      <input id="searchbox" type="text" />
+      <input onclick="searchprefix('lead')" value="lead" type="button" />
+      <input onclick="searchprefix('latest')" value="latest" type="button" />
+      <div id="mainContainer"></div>
+    </div>
+  </body>
 
-<body>
-  <div id="siteContainer">
-    <input id="searchbox" type="text" />
-    <input onclick="searchprefix('lead')" value="lead" type="button" />
-    <input onclick="searchprefix('latest')" value="latest" type="button" />
-    <div id="mainContainer"></div>
-  </div>
-</body>
+  <script src="/axios.js"></script>
+  <script>
+    let search = document.location.search.substr(1)
 
-<script src="/axios.js"></script>
-<script>
-  let search = document.location.search.substr(1)
+    var mainContainer = document.getElementById('mainContainer')
+    var searchbox = document.getElementById('searchbox')
+    searchbox.value = search
 
-  var mainContainer = document.getElementById('mainContainer')
-  var searchbox = document.getElementById('searchbox')
-  searchbox.value = search
+    var currentSearch = ''
+    var typingSearch = ''
+    var page = 0
+    var site = ''
 
-  var currentSearch = ''
-  var typingSearch = ''
-  var page = 0
-  var site = ''
-
-  async function loop() {
-    if (currentSearch != searchbox.value) {
-      if (typingSearch == searchbox.value) {
-        rebuildList()
+    async function loop() {
+      if (currentSearch != searchbox.value) {
+        if (typingSearch == searchbox.value) {
+          rebuildList()
+        }
+        typingSearch = searchbox.value
       }
-      typingSearch = searchbox.value
-    }
-    if (window.scrollMaxY - window.scrollY < 100 && page != -1) {
-      page++
-      let wasEmpty = await addEmojisFromGET()
-      if (wasEmpty == true) {
-        page = -1
+      if (window.scrollMaxY - window.scrollY < 100 && page != -1) {
+        page++
+        let wasEmpty = await addEmojisFromGET()
+        if (wasEmpty == true) {
+          page = -1
+        }
       }
     }
-  }
 
-  async function rebuildList() {
-    mainContainer.innerHTML = ''
-    currentSearch = searchbox.value
-    page = 0
-    window.history.pushState('emoji', 'Title', '/emoji/?' + currentSearch)
+    async function rebuildList() {
+      mainContainer.innerHTML = ''
+      currentSearch = searchbox.value
+      page = 0
+      window.history.pushState('emoji', 'Title', '/emoji/?' + currentSearch)
 
-    if (searchbox.value == '' || searchbox.value == '!lead') {
-      site = 'https://api.vnft.cc/emoji/lead'
-    } else if (searchbox.value == '!latest') {
-      site = 'https://api.vnft.cc/emoji/last'
-    } else {
-      site = `https://api.vnft.cc/emoji/search/${searchbox.value}`
+      if (searchbox.value == '' || searchbox.value == '!lead') {
+        site = 'https://api.vnft.cc/emoji/lead'
+      } else if (searchbox.value == '!latest') {
+        site = 'https://api.vnft.cc/emoji/last'
+      } else {
+        site = `https://api.vnft.cc/emoji/search/${searchbox.value}`
+      }
+
+      addEmojisFromGET()
     }
 
-    addEmojisFromGET()
-  }
-
-  async function addEmojisFromGET(url = `${site}/${page}`) {
-    let wasEmpty = true
-    let emojis = await axios.get(url)
-    for (let emoji of emojis.data) {
-      wasEmpty = false
-      let emojiElement = createEmojiElement(emoji)
-      mainContainer.appendChild(emojiElement)
+    async function addEmojisFromGET(url = `${site}/${page}`) {
+      let wasEmpty = true
+      let emojis = await axios.get(url)
+      for (let emoji of emojis.data) {
+        wasEmpty = false
+        let emojiElement = createEmojiElement(emoji)
+        mainContainer.appendChild(emojiElement)
+      }
+      return wasEmpty
     }
-    return wasEmpty
-  }
 
-  function createEmojiElement(emoji) {
-    let div = document.createElement('div')
-    let el = document.createElement('img')
-    div.appendChild(el)
+    function createEmojiElement(emoji) {
+      let div = document.createElement('div')
+      let el = document.createElement('img')
+      div.appendChild(el)
 
-    div.className = 'parent'
-    el.className = 'img'
+      div.className = 'parent'
+      el.className = 'img'
 
-    el.src = emoji.url
-    el.title = emoji.name
+      el.src = emoji.url
+      el.title = emoji.name
 
-    return div
-  }
+      return div
+    }
 
-  function searchprefix(a) {
-    searchbox.value = '!' + a
-  }
+    function searchprefix(a) {
+      searchbox.value = '!' + a
+    }
 
-  rebuildList()
-  setInterval(loop, 500)
-</script>
-
+    rebuildList()
+    setInterval(loop, 500)
+  </script>
 </html>
