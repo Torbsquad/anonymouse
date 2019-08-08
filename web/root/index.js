@@ -9,7 +9,7 @@ app.use(function(req, res, next) {
 })
 
 app.get('/', (req, res) => {
-  res.redirect("https://twitter.com/VonFriedricht")
+  res.redirect('https://twitter.com/VonFriedricht')
 })
 
 app.get('/chart.js', (req, res) => {
