@@ -2,13 +2,16 @@ const nazrin = require('../../../nazrin')
 const analyse = require('../../../js/emojiAnalysis')
 
 const { Site } = require('vnft-tools')
-const site = new Site('/nazrin/serverEmojis/:id')
+const site = new Site('/nazrin/serverEmojisWithHash/:id')
 const emojiproperties = ["animated", "id", "name", "url"]
 
 site.get = async (req, res) => {
     try{
         let server = nazrin.guilds.find(g=>g.id==req.params.id)
-        let emojis = server.emojis.map(e=>emojiproperties.map(f=>e[f]))
+        let emojis = server.emojis.map(e=>e.toString())
+        for(i in emojis){
+            emojis[i] = await analyse(emojis[i])
+        }
         res.json(emojis)
     }
     catch(err){
