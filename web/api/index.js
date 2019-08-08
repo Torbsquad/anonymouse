@@ -16,5 +16,6 @@ app.get('/', (req, res) => {
 
 siteHandler.loadFolder(path.join(__dirname, 'emoji'))
 siteHandler.loadFolder(path.join(__dirname, 'derp'))
+siteHandler.loadFolder(path.join(__dirname, 'nazrin'))
 
 module.exports = app
