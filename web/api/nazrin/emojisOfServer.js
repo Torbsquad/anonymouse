@@ -1,7 +1,7 @@
 const nazrin = require('../../../nazrin')
 
 const { Site } = require('vnft-tools')
-const site = new Site('/emoji/add/:emoji')
+const site = new Site('/serverEmojis')
 
 site.get = async (req, res) => {
     console.log(nazrin)
