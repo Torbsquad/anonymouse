@@ -1,0 +1,52 @@
+<html>
+  <body>
+    <div id="siteContainer">
+      <input id="searchbox" type="text" />
+      <input onclick="switchServer()" value="switch server" type="button" />
+      <div id="mainContainer"></div>
+    </div>
+  </body>
+
+  <script src="/axios.js"></script>
+  <script>
+    let search = document.location.search.substr(1)
+
+    var mainContainer = document.getElementById('mainContainer')
+    var searchbox = document.getElementById('searchbox')
+    searchbox.value = search
+
+    function switchServer(){
+      let newServer = searchbox.value
+      window.history.pushState('emoji/server', 'Title', '/emoji/server?' + newServer)
+      addEmojisFromGET(`https://api.vnft.cc/nazrin/serverEmojis/${newServer}`)
+    }
+    
+    async function addEmojisFromGET(url = `${site}/${page}`) {
+      let wasEmpty = true
+      let emojis = await axios.get(url)
+      for (let emoji of emojis.data) {
+        wasEmpty = false
+        let emojiElement = createEmojiElement(emoji)
+        mainContainer.appendChild(emojiElement)
+      }
+      return wasEmpty
+    }
+
+    function createEmojiElement(emoji) {
+      let div = document.createElement('div')
+      let el = document.createElement('img')
+      div.appendChild(el)
+
+      div.className = 'parent'
+      el.className = 'img'
+
+      el.src = emoji.url
+      el.title = emoji.name
+
+      return div
+    }
+
+    rebuildList()
+    setInterval(loop, 500)
+  </script>
+</html>
