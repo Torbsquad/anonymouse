@@ -3,7 +3,7 @@ const pg = require('../../../db')
 const analyse = require('../../../js/emojiAnalysis')
 
 const { Site } = require('vnft-tools')
-const add = new Site('/nazrin/backup/:id')
+const add = new Site('/nazrin/backup/put/:id')
 
 add.get = async (req, res) => {
   let emoji = nazrin.emojis.find(e => e.id == req.params.id)
