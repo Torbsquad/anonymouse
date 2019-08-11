@@ -1,19 +1,23 @@
+const nazrin = require('../../../nazrin')
 const pg = require('../../../db')
 
 const { Site } = require('vnft-tools')
-const add = new Site('/nazrin/backup/:hash/:name/:serverid')
+const add = new Site('/nazrin/backup/:id')
 
 add.get = async (req, res) => {
-  await pg.query(
-    `
+  let emoji = nazrin.emojis.find(e => e.id == req.params.id)
+  res.send(emoji.name)
+
+  /*
+  await pg.query(`
     INSERT INTO emoji_server_backup
-        ("hash", "name", "server_id")
+      ("hash","name", "server_id")
     values
-        (
-         $(hash),
-         $(name),
-         $(server_id)
-        )
+    (
+      $(hash),
+      $(name),
+      $(server_id)
+    )
     `,
     {
       hash: req.params.hash,
@@ -23,6 +27,7 @@ add.get = async (req, res) => {
   )
 
   res.json({ done: true })
+  */
 }
 
 module.exports = add
