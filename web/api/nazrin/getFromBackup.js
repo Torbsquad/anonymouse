@@ -1,5 +1,5 @@
 const nazrin = require('../../../nazrin')
-const analyse = require('../../../js/emojiAnalysis')
+const pg = require('../../../db')
 
 const { Site } = require('vnft-tools')
 const site = new Site('/nazrin/backup/get/:serverid')
