@@ -1,5 +1,4 @@
 const pg = require('../../../db')
-const analyse = require('../../../js/emojiAnalysis')
 
 const { Site } = require('vnft-tools')
 const add = new Site('/nazrin/backup/:hash/:name/:serverid')
