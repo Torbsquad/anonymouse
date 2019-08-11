@@ -7,6 +7,7 @@
       <input id="searchbox" type="text" />
       <input onclick="switchServer()" value="switch server" type="button" />
       <div id="mainContainer"></div>
+      <div id="backupContainer"></div>
     </div>
   </body>
 
@@ -15,6 +16,7 @@
     let search = document.location.search.substr(1)
 
     var mainContainer = document.getElementById('mainContainer')
+    var backupContainer = document.getElementById('backupContainer')
     var searchbox = document.getElementById('searchbox')
     searchbox.value = search
 
@@ -22,16 +24,17 @@
       mainContainer.innerHTML = ''
       let newServer = searchbox.value
       window.history.pushState('emoji/server', 'Title', '/emoji/server?' + newServer)
-      addEmojisFromGET(`https://api.vnft.cc/nazrin/serverEmojis/${newServer}`)
+      addEmojisFromGET(mainContainer, `https://api.vnft.cc/nazrin/serverEmojis/${newServer}`)
+      addEmojisFromGET(backupContainer, `https://api.vnft.cc/nazrin/backup/get/${newServer}`)
     }
 
-    async function addEmojisFromGET(url = `${site}/${page}`) {
+    async function addEmojisFromGET(parent, url = `${site}/${page}`) {
       let wasEmpty = true
       let emojis = await axios.get(url)
       for (let emoji of emojis.data) {
         wasEmpty = false
         let emojiElement = createEmojiElement(emoji)
-        mainContainer.appendChild(emojiElement)
+        parent.appendChild(emojiElement)
       }
       return wasEmpty
     }
