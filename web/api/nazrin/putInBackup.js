@@ -5,8 +5,8 @@ const { Site } = require('vnft-tools')
 const add = new Site('/nazrin/backup/:hash/:name/:serverid')
 
 add.get = async (req, res) => {
-
-  await pg.query(`
+  await pg.query(
+    `
     INSERT INTO emoji_server_backup
         ("hash", "name", "server_id")
     values
@@ -17,9 +17,9 @@ add.get = async (req, res) => {
         )
     `,
     {
-        hash: req.params.hash,
-        name: req.params.name,
-        server_id: req.params.serverid
+      hash: req.params.hash,
+      name: req.params.name,
+      server_id: req.params.serverid,
     },
   )
 

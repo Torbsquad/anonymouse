@@ -19,7 +19,7 @@
     searchbox.value = search
 
     function switchServer() {
-      mainContainer.innerHTML = ""
+      mainContainer.innerHTML = ''
       let newServer = searchbox.value
       window.history.pushState('emoji/server', 'Title', '/emoji/server?' + newServer)
       addEmojisFromGET(`https://api.vnft.cc/nazrin/serverEmojis/${newServer}`)
@@ -49,7 +49,7 @@
 
       return div
     }
-    
+
     switchServer()
   </script>
 </html>
