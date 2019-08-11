@@ -7,7 +7,7 @@ const add = new Site('/nazrin/backup/:id')
 
 add.get = async (req, res) => {
   let emoji = nazrin.emojis.find(e => e.id == req.params.id)
-  let emojiData = analyse(emoji.toString())
+  let emojiData = await analyse(emoji.toString())
   res.json(emojiData)
 
   /*
