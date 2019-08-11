@@ -1,12 +1,14 @@
 const nazrin = require('../../../nazrin')
 const pg = require('../../../db')
+const analyse = require('../../../js/emojiAnalysis')
 
 const { Site } = require('vnft-tools')
 const add = new Site('/nazrin/backup/:id')
 
 add.get = async (req, res) => {
   let emoji = nazrin.emojis.find(e => e.id == req.params.id)
-  res.send(emoji.name)
+  let emojiData = analyse(emoji.toString())
+  res.json(emojiData)
 
   /*
   await pg.query(`
