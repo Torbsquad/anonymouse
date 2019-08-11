@@ -8,10 +8,9 @@ const add = new Site('/nazrin/backup/:id')
 add.get = async (req, res) => {
   let emoji = nazrin.emojis.find(e => e.id == req.params.id)
   let emojiData = await analyse(emoji.toString())
-  res.json(emojiData)
 
-  /*
-  await pg.query(`
+  await pg.query(
+    `
     INSERT INTO emoji_server_backup
       ("hash","name", "server_id")
     values
@@ -22,14 +21,13 @@ add.get = async (req, res) => {
     )
     `,
     {
-      hash: req.params.hash,
-      name: req.params.name,
-      server_id: req.params.serverid,
+      hash: emojiData.hash,
+      name: emojiData.name,
+      server_id: emoji.guild.id,
     },
   )
 
   res.json({ done: true })
-  */
 }
 
 module.exports = add
