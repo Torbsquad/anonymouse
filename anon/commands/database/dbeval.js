@@ -8,7 +8,7 @@ command.addUserWhitelist(u => u.id == '397063436049186818')
 
 command.funct = async (bot, message, args) => {
   try {
-    let ergebnis = await pg.any(args)
+    let ergebnis = await pg.any(args.replace(/\n/g,""))
     ergebnis = JSON.stringify(ergebnis, null, 2)
     message.channel.send('```' + ergebnis + '```')
   } catch (err) {
