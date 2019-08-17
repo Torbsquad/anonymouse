@@ -2,7 +2,7 @@ const pg = require('../../../db')
 const { Site } = require('vnft-tools')
 const T = require('./client')
 
-const site = new Site('/emoji/search/:search/:page')
+const site = new Site('/twitter/followers')
 
 function getFollowers(cursor = -1) {
   return new Promise(function(res, rej) {
