@@ -1,6 +1,7 @@
 const pg = require('../../../db')
 const { Site } = require('vnft-tools')
 const T = require('./client')
+const axios = require('axios')
 
 const site = new Site('/twitter/followers')
 
@@ -30,25 +31,27 @@ site.get = async (req, res) => {
 
   let query = `
     insert into twitter_followers
-      (target_id, follower_id, followers, following, pic_url, name)
+      (target_id, follower_id, followers, following, pic_url, name, screen_name, picture)
       values
-      ('0', $(id),$(followers),$(following),$(profilepic),$(name))
+      ('0', $(id),$(followers),$(following),$(profilepic),$(name), $(screen_name), $(picture))
       on conflict (target_id, follower_id) do nothing
   `
 
-  let followerArray = allFollowers.map(u => {
-    return {
-      created_at: u.created_at,
-      name: u.name,
-      id: u.id_str,
-      description: u.description,
-      followers: u.followers_count,
-      following: u.friends_count,
-      profilepic: u.profile_image_url_https,
+  let followerArray = []
+  for (let user of allFollowers) {
+    let picture = await axios.get(user.profile_image_url_https, { responseType: 'arraybuffer' })
+    let follower = {
+      created_at: user.created_at,
+      name: user.name,
+      id: user.id_str,
+      description: user.description,
+      followers: user.followers_count,
+      following: user.friends_count,
+      profilepic: user.profile_image_url_https,
+      screen_name: user.screen_name,
+      picture: picture.data
     }
-  })
-
-  for (let follower of followerArray) {
+    followerArray.push(follower)
     await pg.query(query, follower)
   }
 
