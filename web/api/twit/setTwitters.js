@@ -33,7 +33,7 @@ site.get = async (req, res) => {
       (target_id, follower_id, followers, following, pic_url, name)
       values
       ('0', $(id),$(followers),$(following),$(profilepic),$(name))
-      on conflict (follower_id) do nothing
+      on conflict (target_id, follower_id) do nothing
   `
 
   let followerArray = allFollowers.map(u => {
