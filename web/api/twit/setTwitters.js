@@ -26,33 +26,33 @@ async function getAllFollowers() {
 }
 
 site.get = async (req, res) => {
-  /*  let query = `
-    SELECT * FROM EMOJIS2 
-      WHERE LOWER(EMOJIS2.NAME) like LOWER($(search))
-      ORDER BY points desc
-      OFFSET $(offset) LIMIT $(limit)
-    `
-  let options = {
-    offset: Number(req.params.page) * 100,
-    limit: 100,
-    search: `%${req.params.search}%`,
-  }
-*/
   var allFollowers = await getAllFollowers()
 
-  res.json(
-    allFollowers.map(u => {
-      return {
-        created_at: u.created_at,
-        name: u.name,
-        id: u.id_str,
-        description: u.description,
-        followers: u.followers_count,
-        following: u.friends_count,
-        profilepic: u.profile_image_url_https,
-      }
-    }),
-  )
+  let query = `
+    insert into twitter_followers
+      (target_id, follower_id, followers, following, pic_url, name)
+      values
+      ('0', $(id),$(followers),$(following),$(profilepic),$(name))
+      on conflict (follower_id) do nothing
+  `
+
+  let followerArray = allFollowers.map(u => {
+    return {
+      created_at: u.created_at,
+      name: u.name,
+      id: u.id_str,
+      description: u.description,
+      followers: u.followers_count,
+      following: u.friends_count,
+      profilepic: u.profile_image_url_https,
+    }
+  })
+
+  for (let follower of followerArray) {
+    await pg.query(query, follower)
+  }
+
+  res.json(follower)
 }
 
 module.exports = site

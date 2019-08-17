@@ -6,17 +6,17 @@ const site = new Site('/emoji/random')
 site.get = async (req, res) => {
   let coinflip = Math.round(Math.random())
   let result = false
-  
+
   if (coinflip) {
     // wip get random unlisted
     // if no queryresult, result = false
   }
-  
+
   if (!result) {
     // wip get random listed or unlisted
-    res.json({status:"dbd"})
+    res.json({ status: 'dbd' })
   }
-  
+
   /*
     let offsetQuery = 'select count(*) from emojis2'
     let offsetResult = await pg.one(offsetQuery)
