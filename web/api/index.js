@@ -14,6 +14,7 @@ app.get('/', (req, res) => {
   res.json({ status: 'OK!' })
 })
 
+siteHandler.loadFolder(path.join(__dirname, 'twit'))
 siteHandler.loadFolder(path.join(__dirname, 'emoji'))
 siteHandler.loadFolder(path.join(__dirname, 'derp'))
 siteHandler.loadFolder(path.join(__dirname, 'nazrin'))
