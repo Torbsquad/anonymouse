@@ -52,7 +52,7 @@ site.get = async (req, res) => {
     await pg.query(query, follower)
   }
 
-  res.json(follower)
+  res.json(followerArray)
 }
 
 module.exports = site
