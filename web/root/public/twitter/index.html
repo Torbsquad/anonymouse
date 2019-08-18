@@ -30,7 +30,7 @@
       var image = document.createElement('img')
       image.src = 'data:image/png;base64,' + _arrayBufferToBase64(data.picture.data)
 
-      let entryContent = `<a href="https://twitter.com/${data.name}">${data.name}</a> <a class="sidenote" href="https://twitter.com/${data.screen_name}">@${data.screen_name}</a>
+      let entryContent = `<a href="https://twitter.com/${data.screen_name}">${data.name}</a> <a class="sidenote" href="https://twitter.com/${data.screen_name}">@${data.screen_name}</a>
         Followers: ${data.followers}
         Following: ${data.following}
         Follow-Rate: ${round(data.followers / data.following, 2)}
