@@ -1,6 +1,12 @@
 <script src="/axios.js"></script>
 <link href="./style.css" rel="stylesheet" />
-<div id="mainContainer">The main point of this website is to alert me if a follower gets suspended<br /><br /></div>
+<div id="mainContainer">
+  List of everyone that ever followed <a href="https://twitter.com/VonFriedricht">@VonFriedricht</a>
+  <br />
+  <span class="sidenote">The main point of this site is to alert me if a follower gets suspended.</span>
+
+  <br /><br />
+</div>
 <script>
   let mainContainer = document.getElementById('mainContainer')
   function _arrayBufferToBase64(buffer) {
@@ -12,6 +18,9 @@
     }
     return window.btoa(binary)
   }
+  function round(x,digits){
+    return Math.round(Math.pow(10,digits)*x)/Math.pow(10,digits)
+  }
   async function main() {
     let e = await axios.get('https://api.vnft.cc/twitter/followers2')
     for (let data of e.data) {
@@ -21,17 +30,20 @@
       var image = document.createElement('img')
       image.src = 'data:image/png;base64,' + _arrayBufferToBase64(data.picture.data)
 
-      let imagelessData = data
-      delete imagelessData.picture
-      imagelessData.twitter_handle = '@' + imagelessData.screen_name
-      delete imagelessData.screen_name
-      content.innerHTML = JSON.stringify(imagelessData, null, 2)
+      let entryContent = `<a href="https://twitter.com/${data.name}">${data.name}</a> <a class="sidenote" href="https://twitter.com/${data.screen_name}">@${data.screen_name}</a>
+        Followers: ${data.followers}
+        Following: ${data.following}
+        Follow-Rate: ${round(data.followers / data.following, 2)}
+        id: ${data.follower_id}
+      `.replace(/\n/g,"<br />")
+
+      content.innerHTML = entryContent
 
       entry.appendChild(image)
       entry.appendChild(content)
       mainContainer.appendChild(entry)
     }
-    console.log(e)
+    console.log(e.data)
   }
   main()
 </script>
