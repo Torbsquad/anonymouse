@@ -1,11 +1,13 @@
 <script src="/axios.js"></script>
 <div id="mainContainer"></div>
 <script>
-    let mainContainer = document.getElementById("mainContainer")
-    async function main(){
-        let e = await axios.get("https://api.vnft.cc/twitter/followers2")
-        console.log(e)
-        mainContainer.innerHTML = e.data
-    }
-    main()
+  let mainContainer = document.getElementById('mainContainer')
+  async function main() {
+    let pre = document.createElement('pre')
+    let e = await axios.get('https://api.vnft.cc/twitter/followers2')
+    pre.innerHTML = JSON.stringify(e.data, null, 2)
+    console.log(e)
+    mainContainer.appendChild(pre)
+  }
+  main()
 </script>
