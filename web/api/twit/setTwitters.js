@@ -49,7 +49,7 @@ site.get = async (req, res) => {
       following: user.friends_count,
       profilepic: user.profile_image_url_https,
       screen_name: user.screen_name,
-      picture: picture.data
+      picture: picture.data,
     }
     followerArray.push(follower)
     await pg.query(query, follower)
