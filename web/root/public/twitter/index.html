@@ -26,10 +26,25 @@
     for (let data of e.data) {
       var entry = document.createElement('div')
       entry.className = 'entry'
-      var content = document.createElement('div')
+      mainContainer.appendChild(entry)
+      
+      
+      var picarea = document.createElement('div')
+      var linkedImage = document.createElement("a")
       var image = document.createElement('img')
+      
+      picarea.className = "picarea"
+      linkedImage.href = `https://twitter.com/${data.screen_name}`
       image.src = 'data:image/png;base64,' + _arrayBufferToBase64(data.picture.data)
-
+      
+      linkedImage.appendChild(image)
+      picarea.appendChild(linkedImage)
+      entry.appendChild(picarea)
+      
+      
+      var content = document.createElement('div')
+      entry.appendChild(content)
+      
       let entryContent = `<a href="https://twitter.com/${data.screen_name}">${data.name}</a> <a class="sidenote" href="https://twitter.com/${data.screen_name}">@${data.screen_name}</a>
         Followers: ${data.followers}
         Following: ${data.following}
@@ -38,10 +53,6 @@
       `.replace(/\n/g,"<br />")
 
       content.innerHTML = entryContent
-
-      entry.appendChild(image)
-      entry.appendChild(content)
-      mainContainer.appendChild(entry)
     }
     console.log(e.data)
   }
