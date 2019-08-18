@@ -1,5 +1,6 @@
 <script src="/axios.js"></script>
-<div id="mainContainer"></div>
+<link href="./style.css" rel="stylesheet" />
+<div id="mainContainer">The main point of this website is to alert me if a follower gets suspended<br /><br /></div>
 <script>
   let mainContainer = document.getElementById('mainContainer')
   function _arrayBufferToBase64(buffer) {
@@ -15,13 +16,16 @@
     let e = await axios.get('https://api.vnft.cc/twitter/followers2')
     for (let data of e.data) {
       var entry = document.createElement('div')
-      var content = document.createElement('pre')
+      entry.className = 'entry'
+      var content = document.createElement('div')
       var image = document.createElement('img')
       image.src = 'data:image/png;base64,' + _arrayBufferToBase64(data.picture.data)
 
       let imagelessData = data
       delete imagelessData.picture
-      content.innerHTML = JSON.stringify(imagelessData,null,2)
+      imagelessData.twitter_handle = '@' + imagelessData.screen_name
+      delete imagelessData.screen_name
+      content.innerHTML = JSON.stringify(imagelessData, null, 2)
 
       entry.appendChild(image)
       entry.appendChild(content)

@@ -1,0 +1,21 @@
+body {
+  background: black;
+  font-family: 'Segoe UI';
+  color: white;
+}
+
+#mainContainer {
+  border-left: 1px solid rgb(121, 75, 196);
+  padding: 0.5em;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.entry {
+  padding: 1em;
+  text-align: block;
+  word-wrap: break-word;
+  border: 1px solid #333333;
+  border-bottom: 0px solid #333333;
+}

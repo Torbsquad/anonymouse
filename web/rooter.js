@@ -13,8 +13,11 @@ const Server = server(app, key, cert)
 global.io = require('socket.io').listen(Server.https)
 global.root_directory = path.resolve('../')
 
-app.use(vhost('vnft.cc', require('./root')))
-app.use(vhost('socket.vnft.cc', require('./socket')))
-app.use(vhost('api.vnft.cc', require('./api')))
-app.use(vhost('localhost', require('./root')))
-app.use(vhost('anon-spirit.herokuapp.com', require('./core')))
+if (process.env.NODE_ENV == 'dev') {
+  app.use(vhost('localhost', require('./root')))
+} else {
+  app.use(vhost('vnft.cc', require('./root')))
+  app.use(vhost('socket.vnft.cc', require('./socket')))
+  app.use(vhost('api.vnft.cc', require('./api')))
+  app.use(vhost('anon-spirit.herokuapp.com', require('./core')))
+}
