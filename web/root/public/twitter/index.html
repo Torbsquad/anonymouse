@@ -18,7 +18,11 @@
       var content = document.createElement('pre')
       var image = document.createElement('img')
       image.src = 'data:image/png;base64,' + _arrayBufferToBase64(data.picture.data)
-      content.innerHTML = data.filter(e => typeof e == 'string')
+
+      let imagelessData = data
+      delete imagelessData.picture
+      content.innerHTML = JSON.stringify(imagelessData,null,2)
+
       entry.appendChild(image)
       entry.appendChild(content)
       mainContainer.appendChild(entry)
