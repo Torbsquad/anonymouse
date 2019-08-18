@@ -2,12 +2,23 @@
 <div id="mainContainer"></div>
 <script>
   let mainContainer = document.getElementById('mainContainer')
+  function _arrayBufferToBase64(buffer) {
+    var binary = ''
+    var bytes = new Uint8Array(buffer)
+    var len = bytes.byteLength
+    for (var i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i])
+    }
+    return window.btoa(binary)
+  }
   async function main() {
-    let pre = document.createElement('pre')
     let e = await axios.get('https://api.vnft.cc/twitter/followers2')
-    pre.innerHTML = JSON.stringify(e.data, null, 2)
+    for (let data of e.data) {
+      var image = document.getElementById('image')
+      image.src = 'data:image/png;base64,' + _arrayBufferToBase64(data.picture.data)
+      mainContainer.appendChild(image)
+    }
     console.log(e)
-    mainContainer.appendChild(pre)
   }
   main()
 </script>
