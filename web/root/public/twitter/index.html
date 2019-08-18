@@ -14,9 +14,14 @@
   async function main() {
     let e = await axios.get('https://api.vnft.cc/twitter/followers2')
     for (let data of e.data) {
-      var image = document.createElement("img")
+      var entry = document.createElement('div')
+      var content = document.createElement('pre')
+      var image = document.createElement('img')
       image.src = 'data:image/png;base64,' + _arrayBufferToBase64(data.picture.data)
-      mainContainer.appendChild(image)
+      content.innerHTML = data.filter(e => typeof e == 'string')
+      entry.appendChild(image)
+      entry.appendChild(content)
+      mainContainer.appendChild(entry)
     }
     console.log(e)
   }
