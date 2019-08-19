@@ -28,12 +28,12 @@ async function getAllFollowers() {
 
 site.get = async (req, res) => {
   var allFollowers = await getAllFollowers()
-
+  
   let query = `
     insert into twitter_followers
-      (target_id, follower_id, followers, following, pic_url, name, screen_name, picture)
+      (target_id, follower_id, followers, following, pic_url, name, screen_name, picture, still_following)
       values
-      ('0', $(id),$(followers),$(following),$(profilepic),$(name), $(screen_name), $(picture))
+      ('0', $(id),$(followers),$(following),$(profilepic),$(name), $(screen_name), $(picture),'t')
       on conflict (target_id, follower_id) 
         do update 
           set followers=$(followers),
@@ -42,6 +42,7 @@ site.get = async (req, res) => {
               name=$(name),
               screen_name=$(screen_name),
               picture=$(picture)
+              still_following = 't'
           where 
               target_id = '0' and 
               follower_id = $(id)
@@ -65,6 +66,13 @@ site.get = async (req, res) => {
     await pg.query(query, follower)
   }
 
+  let stillFollowing = followerArray.map(f=>f.id)
+  await pg.query(`
+    update twitter_followers 
+    set still_following = 'f' 
+    where follower_id != ANY($1)
+  `,stillFollowing)
+  
   res.json(followerArray)
 }
 
