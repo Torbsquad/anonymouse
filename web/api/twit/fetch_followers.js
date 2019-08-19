@@ -42,6 +42,9 @@ site.get = async (req, res) => {
               name=$(name),
               screen_name=$(screen_name),
               picture=$(picture)
+          where 
+              target_id = '0' and 
+              follower_id = $(id)
   `
 
   let followerArray = []
