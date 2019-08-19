@@ -40,7 +40,7 @@ site.get = async (req, res) => {
               following=$(following),
               pic_url=$(profilepic),
               name=$(name),
-              screem_name=$(screen_name),
+              screen_name=$(screen_name),
               picture=$(picture)
   `
 
