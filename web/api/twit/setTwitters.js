@@ -34,7 +34,14 @@ site.get = async (req, res) => {
       (target_id, follower_id, followers, following, pic_url, name, screen_name, picture)
       values
       ('0', $(id),$(followers),$(following),$(profilepic),$(name), $(screen_name), $(picture))
-      on conflict (target_id, follower_id) do nothing
+      on conflict (target_id, follower_id) 
+        do update 
+          set followers=$(followers),
+              following=$(following),
+              pic_url=$(profilepic),
+              name=$(name),
+              screem_name=$(screen_name),
+              picture=$(picture)
   `
 
   let followerArray = []
