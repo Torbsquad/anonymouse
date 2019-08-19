@@ -41,7 +41,7 @@ site.get = async (req, res) => {
               pic_url=$(profilepic),
               name=$(name),
               screen_name=$(screen_name),
-              picture=$(picture)
+              picture=$(picture),
               still_following = 't'
           where 
               target_id = '0' and 
@@ -67,16 +67,11 @@ site.get = async (req, res) => {
   }
 
   var stillFollowing = followerArray.map(f=>f.id)
-  try{
-    await pg.query(`
-      update twitter_followers 
-      set still_following = 'f' 
-      where follower_id != ALL('{${stillFollowing.join(',')}}'::text[])
-    `)
-  }
-  catch(err){
-    res.json({err,stillFollowing})
-  }
+  await pg.query(`
+    update twitter_followers 
+    set still_following = 'f' 
+    where follower_id != ALL('{${stillFollowing.join(',')}}'::text[])
+  `)
   res.json(followerArray)
 }
 
