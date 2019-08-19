@@ -1,11 +1,10 @@
-
-<link href="./style.css" rel="stylesheet" type="text/css">
+<link href="./style.css" rel="stylesheet" type="text/css" />
 <div class="mainContainer">
-    <div class="containertitle">Starters</div>
-    <div class="stageContainer" id="starters" style="overflow:hidden"></div>
-<br />
-    <div class="containertitle">Counterpicks</div>
-    <div class="stageContainer" id="counterpicks" style="overflow:hidden"></div>
+  <div class="containertitle">Starters</div>
+  <div class="stageContainer" id="starters" style="overflow:hidden"></div>
+  <br />
+  <div class="containertitle">Counterpicks</div>
+  <div class="stageContainer" id="counterpicks" style="overflow:hidden"></div>
 </div>
 
 <pre style="font-family:Arial, Helvetica, sans-serif">
@@ -19,36 +18,34 @@
     Sieger striked insgesammt 3 von den 10 starter+counterpick stages
     Verlierer wählt eine Stage aus
 </pre>
-    
+
 <script>
+  class Stage {
+    constructor(name, path, parent) {
+      let el = document.getElementById(parent)
+      let stage = document.createElement('div')
+      stage.className = 'stage'
+      let img = document.createElement('img')
+      img.src = path
+      let stageTitle = document.createElement('div')
+      stageTitle.className = 'stageTitle'
 
-class Stage{
-    constructor(name,path,parent){
-        let el = document.getElementById(parent)
-        let stage = document.createElement("div")
-        stage.className = "stage"
-        let img = document.createElement("img")
-        img.src = path
-        let stageTitle = document.createElement("div")
-        stageTitle.className = "stageTitle"
-
-        stageTitle.innerHTML = "</br>"+name
-        stage.appendChild(img)
-        stage.appendChild(stageTitle)
-        el.appendChild(stage)
+      stageTitle.innerHTML = '</br>' + name
+      stage.appendChild(img)
+      stage.appendChild(stageTitle)
+      el.appendChild(stage)
     }
-}
+  }
 
-new Stage("Battlefield", "./battlefield.png", "starters")
-new Stage("Final Destination", "./finaldestination.png", "starters")
-new Stage("Smashville", "./smashville.png", "starters")
-new Stage("Pokemon Stadium 2", "./ps2.png", "starters")
-new Stage("Town & City", "./townandcity.png", "starters")
+  new Stage('Battlefield', './battlefield.png', 'starters')
+  new Stage('Final Destination', './finaldestination.png', 'starters')
+  new Stage('Smashville', './smashville.png', 'starters')
+  new Stage('Pokemon Stadium 2', './ps2.png', 'starters')
+  new Stage('Town & City', './townandcity.png', 'starters')
 
-new Stage("Kalos Pokémon League", "./kalos.png", "counterpicks")
-new Stage("Yoshi´s Story", "./yoshis island.png", "counterpicks")
-new Stage("Lylat Cruise", "./lylat cruise.png", "counterpicks")
-new Stage("Yoshi´s Island: Brawl", "./yoshis island brawl.png", "counterpicks")
-new Stage("Yggdrasil´s Altar", "./yggas altar.png", "counterpicks")
-
+  new Stage('Kalos Pokémon League', './kalos.png', 'counterpicks')
+  new Stage('Yoshi´s Story', './yoshis island.png', 'counterpicks')
+  new Stage('Lylat Cruise', './lylat cruise.png', 'counterpicks')
+  new Stage('Yoshi´s Island: Brawl', './yoshis island brawl.png', 'counterpicks')
+  new Stage('Yggdrasil´s Altar', './yggas altar.png', 'counterpicks')
 </script>

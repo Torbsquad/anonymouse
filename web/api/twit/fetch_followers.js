@@ -28,7 +28,7 @@ async function getAllFollowers() {
 
 site.get = async (req, res) => {
   var allFollowers = await getAllFollowers()
-  
+
   let query = `
     insert into twitter_followers
       (target_id, follower_id, followers, following, pic_url, name, screen_name, picture, still_following, listed_since)
@@ -63,7 +63,7 @@ site.get = async (req, res) => {
     await pg.query(query, follower)
   }
 
-  var stillFollowing = followerArray.map(f=>f.id)
+  var stillFollowing = followerArray.map(f => f.id)
   await pg.query(`
     update twitter_followers 
     set still_following = 'f' 

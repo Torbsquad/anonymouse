@@ -1,14 +1,14 @@
-body{
-    background: black;
+body {
+  background: black;
 }
 
-.canvasholder{
-    margin: auto;
-    max-width: 500px;
-    max-height: 500px;
+.canvasholder {
+  margin: auto;
+  max-width: 500px;
+  max-height: 500px;
 }
 
-canvas{
-    border: 1px solid #222222;
-    background-color: #111111;
+canvas {
+  border: 1px solid #222222;
+  background-color: #111111;
 }

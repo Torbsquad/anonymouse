@@ -22,13 +22,13 @@ body {
   width: 100%;
 }
 
-.picarea{
+.picarea {
   float: left;
   padding-top: 0.5em;
   padding-right: 1em;
 }
 
-.contentarea{
+.contentarea {
   overflow: hidden;
 }
 
