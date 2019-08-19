@@ -70,7 +70,7 @@ site.get = async (req, res) => {
   try{
     await pg.query(`
       update twitter_followers 
-      set still_following = 'f'
+      set still_following = 'f' 
       where follower_id != ALL('{${stillFollowing.join(',')}}'::text[])
     `)
   }
