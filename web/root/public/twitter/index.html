@@ -22,7 +22,7 @@
     return Math.round(Math.pow(10,digits)*x)/Math.pow(10,digits)
   }
   async function main() {
-    let e = await axios.get('https://api.vnft.cc/twitter/followers2')
+    let e = await axios.get('https://api.vnft.cc/twitter/all_followers')
     for (let data of e.data) {
       var entry = document.createElement('div')
       entry.className = 'entry'
