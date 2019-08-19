@@ -24,6 +24,12 @@ body {
 
 .picarea{
   float: left;
+  padding-top: 0.5em;
+  padding-right: 1em;
+}
+
+.contentarea{
+  overflow: hidden;
 }
 
 a {
