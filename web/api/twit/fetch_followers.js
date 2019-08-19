@@ -66,13 +66,17 @@ site.get = async (req, res) => {
     await pg.query(query, follower)
   }
 
-  let stillFollowing = followerArray.map(f=>f.id)
-  await pg.query(`
-    update twitter_followers 
-    set still_following = 'f'
-    where follower_id != ALL('{${stillFollowing.join(',')}}'::text[])
-  `,stillFollowing)
-  
+  try{
+    let stillFollowing = followerArray.map(f=>f.id)
+    await pg.query(`
+      update twitter_followers 
+      set still_following = 'f'
+      where follower_id != ALL('{${stillFollowing.join(',')}}'::text[])
+    `,stillFollowing)
+  }
+  catch(err){
+    res.json({err,stillFollowing})
+  }
   res.json(followerArray)
 }
 
