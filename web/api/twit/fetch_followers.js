@@ -31,9 +31,9 @@ site.get = async (req, res) => {
   
   let query = `
     insert into twitter_followers
-      (target_id, follower_id, followers, following, pic_url, name, screen_name, picture, still_following)
+      (target_id, follower_id, followers, following, pic_url, name, screen_name, picture, still_following, listed_since)
       values
-      ('0', $(id),$(followers),$(following),$(profilepic),$(name), $(screen_name), $(picture),'t')
+      ('0', $(id),$(followers),$(following),$(profilepic),$(name), $(screen_name), $(picture),'t', now())
       on conflict (target_id, follower_id) 
         do update 
           set followers=$(followers),
