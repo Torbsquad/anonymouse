@@ -32,3 +32,12 @@ body {
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.resetbutton {
+  width: 100px;
+  height: 100px;
+  margin: 4em;
+  background: #111111;
+  color: #666666;
+  border: 0px;
+}

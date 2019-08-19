@@ -5,6 +5,8 @@
   <br />
   <div class="containertitle">Counterpicks</div>
   <div class="stageContainer" id="counterpicks" style="overflow:hidden"></div>
+
+  <input type="button" value="Reset Strikes" class="resetbutton" onclick="javascript:RESET()" />
 </div>
 
 <pre style="font-family:Arial, Helvetica, sans-serif">
@@ -20,8 +22,12 @@
 </pre>
 
 <script>
+  STAGES = []
+  RESET = () => STAGES.map(e => e.unstrike())
+
   class Stage {
     constructor(name, path, parent) {
+      STAGES.push(this)
       let el = document.getElementById(parent)
       let stage = document.createElement('div')
       stage.className = 'stage'
@@ -30,10 +36,26 @@
       let stageTitle = document.createElement('div')
       stageTitle.className = 'stageTitle'
 
+      this.strike = document.createElement('img')
+      this.strike.style.position = 'absolute'
+      this.strike.src = './strike.png'
+      this.unstrike()
+
+      this.strike.onclick = function() {
+        this.style.opacity = '1'
+      }
+
       stageTitle.innerHTML = '</br>' + name
+      stage.appendChild(this.strike)
       stage.appendChild(img)
       stage.appendChild(stageTitle)
       el.appendChild(stage)
+    }
+    strike() {
+      this.strike.style.opacity = '1'
+    }
+    unstrike() {
+      this.strike.style.opacity = '0'
     }
   }
 
