@@ -50,6 +50,7 @@
         Following: ${data.following}
         Follow-Rate: ${round(data.followers / data.following, 2)}
         id: ${data.follower_id}
+        still following: <span style="color:${still_following?"green":"grey"}">${data.still_following}</span>
       `.replace(/\n/g,"<br />")
 
       content.innerHTML = entryContent
