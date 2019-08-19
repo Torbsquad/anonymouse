@@ -22,8 +22,11 @@ body {
   width: 100%;
 }
 
-.entry img{
+.picarea{
   float: left;
+}
+
+.entry img{
   margin: 0.5em 1em 4em 0em;
 }
 
