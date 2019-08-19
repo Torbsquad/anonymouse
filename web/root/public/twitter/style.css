@@ -26,10 +26,6 @@ body {
   float: left;
 }
 
-.entry img{
-  margin: 0.5em 1em 4em 0em;
-}
-
 a {
   color: rgb(121, 75, 196);
   text-decoration: none;
