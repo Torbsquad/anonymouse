@@ -3,7 +3,7 @@ const { Site } = require('vnft-tools')
 const T = require('./client')
 const axios = require('axios')
 
-const site = new Site('/twitter/followers')
+const site = new Site('/twitter/fetch_followers')
 
 function getFollowers(cursor = -1) {
   return new Promise(function(res, rej) {
