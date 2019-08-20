@@ -41,13 +41,12 @@
       this.strike.src = './strike.png'
       this.unstrike()
 
-      this.strike.onclick = function() {
+      this.strike.strike = function(){
         this.style.opacity = '1'
       }
       
-      this.strike.onmousedown = function() {
-        this.style.opacity = '1'
-      }
+      this.strike.onclick = this.strike.strike
+      this.strike.onmousedown = this.strike.strike
 
       stageTitle.innerHTML = '</br>' + name
       stage.appendChild(this.strike)
