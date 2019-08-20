@@ -39,6 +39,9 @@
       linkedImage.appendChild(image)
       picarea.appendChild(linkedImage)
       entry.appendChild(picarea)
+      if (!data.still_following) {
+        entry.style.opacity = '0.3'
+      }
 
       var content = document.createElement('div')
       content.className = 'contentarea'
