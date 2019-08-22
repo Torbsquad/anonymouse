@@ -77,4 +77,4 @@ fetchStrike.funct = async (b, m, a) => {
   }
 }
 
-module.exports = fetchStrike
+//module.exports = fetchStrike
