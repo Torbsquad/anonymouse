@@ -66,4 +66,4 @@ fetchStrike.funct = (b, m, a) => {
   tick(a)
 }
 
-module.exports = fetchStrike
+//module.exports = fetchStrike
