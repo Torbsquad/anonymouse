@@ -8,4 +8,4 @@ stream.funct = (plant, message, args) => {
   plant.user.setActivity(args, { url: 'https://www.twitch.tv/1' })
 }
 
-module.exports = stream
+//module.exports = stream
