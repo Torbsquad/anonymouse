@@ -11,14 +11,14 @@ body {
 
 .stageContainer {
   margin: 0 auto;
-  max-width: 1000px;
+  max-width: 1200px;
   align-content: center;
 }
 
 .stage {
   float: left;
   text-align: center;
-  margin: 0.5em;
+  margin: 0em;
 }
 
 .containertitle {
