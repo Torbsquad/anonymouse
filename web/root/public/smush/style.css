@@ -17,7 +17,7 @@ body {
 .stage {
   float: left;
   text-align: center;
-  margin: 0em;
+  margin: 0.5em;
 }
 
 .containertitle {
