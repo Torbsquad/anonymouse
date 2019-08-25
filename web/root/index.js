@@ -12,6 +12,10 @@ app.get('/', (req, res) => {
   res.redirect('https://twitter.com/VonFriedricht')
 })
 
+app.get('/nazrin', (req, res) => {
+  res.redirect('https://discordapp.com/oauth2/authorize?client_id=553204804843864084&scope=bot&permissions=1073744896')
+})
+
 app.get('/chart.js', (req, res) => {
   res.sendFile(path.join(__dirname, '..', '..', 'node_modules', 'chart.js', 'dist', 'Chart.js'))
 })
