@@ -8,19 +8,14 @@ site.get = async (req, res) => {
   let members = targetGuild.members
   let channels = targetGuild.channels.filter(c => c.type == 'text')
 
-  let response = channels.map(channel => {
+  let rights = channels.map(channel => {
     return {
       name: channel.name,
-      userViewRights: channel.members.map(member => {
-        return {
-          name: member.user.username,
-          canView: channel.permissionsFor(member).has('VIEW_CHANNEL')
-        }
-      })
+      members: channel.members.map(member => member.user.username)
     }
   })
 
-  res.json(response)
+  res.json({ members, rights })
 }
 
 module.exports = site
