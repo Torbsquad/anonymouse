@@ -17,7 +17,9 @@ class Grid {
       this.getTile(x, y + 2) * 4 +
       this.getTile(x + 1, y) * 8 +
       this.getTile(x + 1, y + 1) * 16 +
-      this.getTile(x + 1, y + 2) * 32
+      this.getTile(x + 1, y + 2) * 32 +
+      this.getTile(x, y + 3) * 64 +
+      this.getTile(x + 1, y + 3) * 128
     return this.characters[index]
   }
 
@@ -26,26 +28,90 @@ class Grid {
     var pointerX = 0
     var pointerY = 0
 
-    while (this.grid.length % 3) this.grid.push([0, 0])
+    while (this.grid.length % 4) this.grid.push([0, 0])
 
     while (this.grid.length > pointerY) {
       pointerX = 0
       while (
         this.grid[pointerY].length > pointerX ||
         this.grid[pointerY + 1].length > pointerX ||
-        this.grid[pointerY + 2].length > pointerX
+        this.grid[pointerY + 2].length > pointerX||
+        this.grid[pointerY + 3].length > pointerX
       ) {
         var character = this.getCharacter(pointerX, pointerY)
         blind += character
         pointerX += 2
       }
       blind += '\n'
-      pointerY += 3
+      pointerY += 4
     }
 
     return blind
   }
 }
+
+class Table {
+	constructor(grid=[[0],[0]]) {
+		this.grid = grid
+    this.el = document.createElement("table")
+    this.el.className = "noselect"
+		this.update()
+	}
+	
+	setTile(x, y, value) {
+		while(this.grid.length < y) this.grid.push([])
+		while(this.grid[y].length < x) this.grid[y].push(0)
+		this.grid[y][x] = value
+	}
+  
+  resizeTo(width, height) {
+    if( width <= 0 || height <= 0 ){
+      throw new Error("width and height must me over 0")
+    }
+
+    while(this.grid.length > height) this.grid.pop()
+    while(this.grid.length < height) this.grid.push([0])
+
+    for(let y = 0; y < height; y++){
+      while(this.grid[y].length > width) this.grid[y].pop()
+      while(this.grid[y].length < width) this.grid[y].push(0)
+    }
+
+    this.update()
+  }
+  
+	update() {
+		this.el.innerHTML = this.grid.map((row, y)=>`<tr>${row.map((cell, x)=>`<td data-x="${x}" data-y="${y}" class="cell" onmousemove="toggle(event, this)" onmousedown="toggle(true, this)" class="noselect" style="background:${cell?"black":"white"}"></td>`).join("")}</tr>`).join("")
+	}
+}
+
+DRAWMODE = -1;
+
+function resize() {
+  var width = document.getElementById("width")
+  var height = document.getElementById("height")
+
+  table.resizeTo(width.value, height.value)
+}
+
+function toggle(event, el){
+  if( event === true || event.buttons != 0 ){
+    if( DRAWMODE == -1 ){
+      DRAWMODE = ( el.innerHTML == 0 ) * 1
+    }
+    el.innerHTML = DRAWMODE
+    el.style.background = DRAWMODE ? "black" : "white"
+    table.setTile(el.getAttribute("data-x"), el.getAttribute("data-y"),DRAWMODE)
+    grid.grid = table.grid
+    output.innerHTML = grid.toBlind()
+  }
+  else{
+    DRAWMODE = -1;
+  }
+}
+
+var output = document.getElementById('output')
+var drawBoard = document.getElementById('drawBoard')
 
 var grid = new Grid([
   [0, 0],
@@ -55,5 +121,8 @@ var grid = new Grid([
   [0, 1, 1, 1, 0, 1]
 ])
 
-var output = document.getElementById('output')
+var table = new Table(grid.grid)
+resize()
+
 output.innerHTML = grid.toBlind()
+drawBoard.appendChild(table.el)
