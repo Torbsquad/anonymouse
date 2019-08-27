@@ -1,5 +1,3 @@
-// rip Friedrichts Router
-
 class Grid {
   constructor(grid) {
     this.characters =
@@ -49,7 +47,13 @@ class Grid {
   }
 }
 
-var grid = new Grid([[0, 0], [0, 1], [1, 0, 1, 1], [0, 0], [0, 1, 1, 1, 0, 1]])
+var grid = new Grid([
+  [0, 0],
+  [0, 1],
+  [1, 0, 1, 1],
+  [0, 0],
+  [0, 1, 1, 1, 0, 1]
+])
 
 var output = document.getElementById('output')
 output.innerHTML = grid.toBlind()
