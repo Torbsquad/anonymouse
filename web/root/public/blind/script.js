@@ -35,7 +35,7 @@ class Grid {
       while (
         this.grid[pointerY].length > pointerX ||
         this.grid[pointerY + 1].length > pointerX ||
-        this.grid[pointerY + 2].length > pointerX||
+        this.grid[pointerY + 2].length > pointerX ||
         this.grid[pointerY + 3].length > pointerX
       ) {
         var character = this.getCharacter(pointerX, pointerY)
@@ -51,75 +51,80 @@ class Grid {
 }
 
 class Table {
-	constructor(grid=[[0],[0]]) {
-		this.grid = grid
-    this.el = document.createElement("table")
-    this.el.className = "noselect"
-		this.update()
-	}
-	
-	setTile(x, y, value) {
-		while(this.grid.length < y) this.grid.push([])
-		while(this.grid[y].length < x) this.grid[y].push(0)
-		this.grid[y][x] = value
-	}
-  
+  constructor(grid = [[0], [0]]) {
+    this.grid = grid
+    this.el = document.createElement('table')
+    this.el.className = 'noselect'
+    this.update()
+  }
+
+  setTile(x, y, value) {
+    while (this.grid.length < y) this.grid.push([])
+    while (this.grid[y].length < x) this.grid[y].push(0)
+    this.grid[y][x] = value
+  }
+
   resizeTo(width, height) {
-    if( width <= 0 || height <= 0 ){
-      throw new Error("width and height must me over 0")
+    if (width <= 0 || height <= 0) {
+      throw new Error('width and height must me over 0')
     }
 
-    while(this.grid.length > height) this.grid.pop()
-    while(this.grid.length < height) this.grid.push([0])
+    while (this.grid.length > height) this.grid.pop()
+    while (this.grid.length < height) this.grid.push([0])
 
-    for(let y = 0; y < height; y++){
-      while(this.grid[y].length > width) this.grid[y].pop()
-      while(this.grid[y].length < width) this.grid[y].push(0)
+    for (let y = 0; y < height; y++) {
+      while (this.grid[y].length > width) this.grid[y].pop()
+      while (this.grid[y].length < width) this.grid[y].push(0)
     }
 
     this.update()
   }
-  
-	update() {
-		this.el.innerHTML = this.grid.map((row, y)=>`<tr>${row.map((cell, x)=>`<td data-x="${x}" data-y="${y}" class="cell" onmousemove="toggle(event, this)" onmousedown="toggle(true, this)" class="noselect" style="background:${cell?"black":"white"}"></td>`).join("")}</tr>`).join("")
-	}
+
+  update() {
+    this.el.innerHTML = this.grid
+      .map(
+        (row, y) =>
+          `<tr>${row
+            .map(
+              (cell, x) =>
+                `<td data-x="${x}" data-y="${y}" class="cell" onmousemove="toggle(event, this)" onmousedown="toggle(true, this)" class="noselect" style="background:${
+                  cell ? 'black' : 'white'
+                }"></td>`,
+            )
+            .join('')}</tr>`,
+      )
+      .join('')
+  }
 }
 
-DRAWMODE = -1;
+DRAWMODE = -1
 
 function resize() {
-  var width = document.getElementById("width")
-  var height = document.getElementById("height")
+  var width = document.getElementById('width')
+  var height = document.getElementById('height')
 
   table.resizeTo(width.value, height.value)
 }
 
-function toggle(event, el){
-  if( event === true || event.buttons != 0 ){
-    if( DRAWMODE == -1 ){
-      DRAWMODE = ( el.innerHTML == 0 ) * 1
+function toggle(event, el) {
+  if (event === true || event.buttons != 0) {
+    if (DRAWMODE == -1) {
+      DRAWMODE = (el.innerHTML == 0) * 1
     }
     el.innerHTML = DRAWMODE
-    el.style.background = DRAWMODE ? "black" : "white"
-    table.setTile(el.getAttribute("data-x"), el.getAttribute("data-y"),DRAWMODE)
+    el.style.background = DRAWMODE ? 'black' : 'white'
+    table.setTile(el.getAttribute('data-x'), el.getAttribute('data-y'), DRAWMODE)
     grid.grid = table.grid
     output.innerHTML = grid.toBlind()
-  }
-  else{
-    DRAWMODE = -1;
+  } else {
+    DRAWMODE = -1
   }
 }
 
 var output = document.getElementById('output')
 var drawBoard = document.getElementById('drawBoard')
 
-var grid = new Grid([
-  [0, 0],
-  [0, 1],
-  [1, 0, 1, 1],
-  [0, 0],
-  [0, 1, 1, 1, 0, 1]
-])
+var grid = new Grid([[0, 0], [0, 1], [1, 0, 1, 1], [0, 0], [0, 1, 1, 1, 0, 1]])
 
 var table = new Table(grid.grid)
 resize()
