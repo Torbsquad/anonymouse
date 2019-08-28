@@ -16,10 +16,21 @@
 
 .bordered {
   border: 1px solid grey;
+  margin-top: 5px;
 }
 
 #output {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: inline-block;
-  margin: 0;
+}
+
+#mainContainer {
+  margin: auto;
+  max-width: 1000px;
+}
+
+h2 {
+  font-size: 1em;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 6px;
 }
