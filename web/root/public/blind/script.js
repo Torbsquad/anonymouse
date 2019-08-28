@@ -121,6 +121,13 @@ function toggle(event, el) {
   }
 }
 
+function tableClear(x=6, y=6) {
+  grid.grid = new Array(y).fill(0).map(e=>new Array(x).fill(0))
+  table.grid = grid.grid
+  table.update()  
+  output.innerHTML = grid.toBlind()
+}
+
 var output = document.getElementById('output')
 var drawBoard = document.getElementById('drawBoard')
 
