@@ -121,10 +121,21 @@ function toggle(event, el) {
   }
 }
 
-function tableClear(x=6, y=6) {
-  grid.grid = new Array(y).fill(0).map(e=>new Array(x).fill(0))
+function tableClear(x = 6, y = 6) {
+  grid.grid = new Array(y).fill(0).map(e => new Array(x).fill(0))
   table.grid = grid.grid
-  table.update()  
+  output.innerHTML = grid.toBlind()
+  table.update()
+}
+
+function tableSave() {
+  prompt('Save it somewhere:', JSON.stringify(grid.grid))
+}
+
+function tableLoad() {
+  let data = prompt('Enter saved Data:')
+  grid.grid = JSON.parse(data)
+  table.grid = grid.grid
   output.innerHTML = grid.toBlind()
 }
 
