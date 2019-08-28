@@ -13,3 +13,13 @@
   font-size: 0;
   padding: 0;
 }
+
+.bordered {
+  border: 1px solid grey;
+}
+
+#output {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: inline-block;
+  margin: 0;
+}

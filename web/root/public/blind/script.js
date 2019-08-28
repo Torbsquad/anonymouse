@@ -127,6 +127,7 @@ var drawBoard = document.getElementById('drawBoard')
 var grid = new Grid([[0, 0], [0, 1], [1, 0, 1, 1], [0, 0], [0, 1, 1, 1, 0, 1]])
 
 var table = new Table(grid.grid)
+table.el.className = 'noselect bordered'
 resize()
 
 output.innerHTML = grid.toBlind()
