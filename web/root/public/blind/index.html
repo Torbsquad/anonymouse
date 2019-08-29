@@ -1,14 +1,19 @@
-<div id="mainContainer">
-  <h2>DrawArea</h2>
+<head>
   <link rel="stylesheet" type="text/css" href="style.css" />
-  <input id="clear" value="clear" type="button" onclick="javascript:tableClear()" />
-  <input id="save" value="save" type="button" onclick="javascript:tableSave()" />
-  <input id="load" value="load" type="button" onclick="javascript:tableLoad()" />
-  <input id="width" type="number" value="7" onchange="javascript:resize()" style="width:50px" />
-  <input id="height" type="number" value="5" onchange="javascript:resize()" style="width:50px" /><br />
-  <div id="drawBoard" style="display: inline-block; vertical-align: top"></div>
-  <pre id="output" class="bordered"></pre>
-  <script src="script.js"></script>
+</head>
+<body>
+  <div id="mainContainer">
+    <h2>DrawArea</h2>
+    <input id="clear" value="clear" type="button" onclick="javascript:tableClear()" />
+    <input id="save" value="save" type="button" onclick="javascript:tableSave()" />
+    <input id="load" value="load" type="button" onclick="javascript:tableLoad()" />
+    <input id="width" type="number" value="7" onchange="javascript:resize()" style="width:50px" />
+    <input id="height" type="number" value="5" onchange="javascript:resize()" style="width:50px" /><br />
+    <div id="drawBoard" style="display: inline-block; vertical-align: top"></div>
+    <pre id="output" class="bordered"></pre>
 
-  <!--h2>Default Block (character without pixels)</h2-->
-</div>
+    <!--h2>Default Block (character without pixels)</h2-->
+  </div>
+
+  <script src="script.js"></script>
+</body>

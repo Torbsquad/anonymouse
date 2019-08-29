@@ -21,10 +21,9 @@ class Grid {
       this.getTile(x + 1, y + 2) * 32 +
       this.getTile(x, y + 3) * 64 +
       this.getTile(x + 1, y + 3) * 128
-    if( index == 0 ){
+    if (index == 0) {
       return this.characters[this.emptychar]
-    }
-    else{
+    } else {
       return this.characters[index]
     }
   }
