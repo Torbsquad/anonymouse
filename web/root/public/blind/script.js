@@ -104,6 +104,8 @@ function resize() {
   var height = document.getElementById('height')
 
   table.resizeTo(width.value, height.value)
+  grid.grid = table.grid
+  output.innerHTML = grid.toBlind()
 }
 
 function toggle(event, el) {
@@ -122,6 +124,8 @@ function toggle(event, el) {
 }
 
 function tableClear(x = 6, y = 6) {
+  width.value = x
+  height.value = y
   grid.grid = new Array(y).fill(0).map(e => new Array(x).fill(0))
   table.grid = grid.grid
   output.innerHTML = grid.toBlind()
