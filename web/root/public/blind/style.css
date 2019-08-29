@@ -19,6 +19,11 @@
   margin-top: 5px;
 }
 
+.inline {
+  display: inline-block;
+  vertical-align: top;
+}
+
 #output {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: inline-block;
