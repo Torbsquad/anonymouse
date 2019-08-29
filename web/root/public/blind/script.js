@@ -60,7 +60,9 @@ class Table {
     this.grid = grid
     this.el = document.createElement('table')
     this.el.className = 'noselect'
-    this.cellToggle = function(event){console.log(1)}
+    this.cellToggle = function(event) {
+      console.log(1)
+    }
     this.update()
   }
 
@@ -92,24 +94,24 @@ class Table {
   }
 
   update() {
-    var tableBody = document.createElement("tbody")
-    for(let y = 0; y < this.grid.length; y++){
-      var tr = document.createElement("tr")
-      for(let x = 0; x < this.grid[y].length; x++){
+    var tableBody = document.createElement('tbody')
+    for (let y = 0; y < this.grid.length; y++) {
+      var tr = document.createElement('tr')
+      for (let x = 0; x < this.grid[y].length; x++) {
         var cell = this.grid[y][x]
-        var td = document.createElement("td")
-        td.className = "noselect cell"
+        var td = document.createElement('td')
+        td.className = 'noselect cell'
         td.onmousedown = this.cellToggle
         td.onmousemove = this.cellToggle
-        td.setAttribute("data-x", x)
-        td.setAttribute("data-y", y)
+        td.setAttribute('data-x', x)
+        td.setAttribute('data-y', y)
         td.innerHTML = cell
         td.style.background = cell ? 'black' : 'white'
         tr.appendChild(td)
       }
       tableBody.appendChild(tr)
     }
-    this.el.innerHTML = ""
+    this.el.innerHTML = ''
     this.el.appendChild(tableBody)
   }
 }
@@ -160,7 +162,6 @@ function tableLoad() {
   output.innerHTML = grid.toBlind()
 }
 
-
 var output = document.getElementById('output')
 var drawBoard = document.getElementById('drawBoard')
 var defaultBlock = document.getElementById('defaultBlock')
@@ -169,9 +170,9 @@ grid = new Grid([[0, 0], [0, 1], [1, 0, 1, 1], [0, 0], [0, 1, 1, 1, 0, 1]])
 
 var table = new Table(grid.grid)
 table.el.className = 'noselect bordered'
-table.cellToggle = function(event){
-  if ( event.buttons != 0 ) {
-    if (DRAWMODE == -1 || event.type == "mousedown") {
+table.cellToggle = function(event) {
+  if (event.buttons != 0) {
+    if (DRAWMODE == -1 || event.type == 'mousedown') {
       DRAWMODE = (this.innerHTML == 0) * 1
     }
     this.innerHTML = DRAWMODE
@@ -184,10 +185,11 @@ table.cellToggle = function(event){
   }
 }
 
-defaultBlockTable = new Table([[0,0],[0,0],[0,0],[0,0]])
+defaultBlockTable = new Table([[0, 0], [0, 0], [0, 0], [0, 0]])
 defaultBlockTable.el.className = 'noselect bordered'
-defaultBlockTable.value = function(x=0, y=0) {
-  return this.getTile(x, y) * 1 +
+defaultBlockTable.value = function(x = 0, y = 0) {
+  return (
+    this.getTile(x, y) * 1 +
     this.getTile(x, y + 1) * 2 +
     this.getTile(x, y + 2) * 4 +
     this.getTile(x + 1, y) * 8 +
@@ -195,10 +197,11 @@ defaultBlockTable.value = function(x=0, y=0) {
     this.getTile(x + 1, y + 2) * 32 +
     this.getTile(x, y + 3) * 64 +
     this.getTile(x + 1, y + 3) * 128
+  )
 }
 defaultBlockTable.cellToggle = function(event) {
-  if ( event.buttons != 0 ) {
-    if (DRAWMODE == -1 || event.type == "mousedown") {
+  if (event.buttons != 0) {
+    if (DRAWMODE == -1 || event.type == 'mousedown') {
       DRAWMODE = (this.innerHTML == 0) * 1
     }
     this.innerHTML = DRAWMODE
