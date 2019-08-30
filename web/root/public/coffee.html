@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>yeet</title>
+    <script src="/axios.js"></script>
+  </head>
+  <body onload="javascript:main()">
+    <div id="mainContainer"></div>
+    <script>
+      const mainContainer = document.getElementById('mainContainer')
+      async function main() {
+        let coffee = await axios.get('https://api.vnft.cc/nazrin/coffee')
+        let coffeeData = coffee.data
+        console.log(coffeeData.members)
+        mainContainer.innerHTML = coffeeData.members.join('<br />')
+      }
+    </script>
+  </body>
+</html>
