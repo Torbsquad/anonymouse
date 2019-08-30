@@ -5,14 +5,37 @@
   </head>
   <body onload="javascript:main()">
     <div id="mainContainer"></div>
+    <table id="mainTable" border="1"></table>
     <script>
       const mainContainer = document.getElementById('mainContainer')
+      const mainTable = document.getElementById("mainTable")
       async function main() {
         let coffee = await axios.get('https://api.vnft.cc/nazrin/coffee')
         let coffeeData = coffee.data
-        mainContainer.innerHTML += coffeeData.members.join(', ')
-        mainContainer.innerHTML += '<br />'
-        mainContainer.innerHTML += coffeeData.rights.map(channel => channel.name).join(', ')
+        
+        let headLine = document.createElement("tr")
+        let topLeft = document.createElement("td")
+        headLine.appendChild(topLeft)
+        for( let channel of coffeeData.rights ){
+          let name = document.createElement("td")
+          name.innerHTML = channel.name
+          headLine.appendChild(name)
+        }
+        mainTable.appendChild(headLine)
+
+        for( let member of coffeeData.members ){
+          let row = document.createElement("tr")
+          let name = document.createElement("td")
+          name.innerHTML = member
+          row.appendChild(name)
+          for( let channel of coffeeData.rights ){
+            let cell = document.createElement("td")
+            cell.innerHTML = channel.name + " <br />x<br /> " + member
+            row.appendChild(cell)
+          }
+          mainTable.appendChild(row)
+        }
+
       }
     </script>
   </body>
