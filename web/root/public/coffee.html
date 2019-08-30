@@ -10,8 +10,9 @@
       async function main() {
         let coffee = await axios.get('https://api.vnft.cc/nazrin/coffee')
         let coffeeData = coffee.data
-        console.log(coffeeData.members)
-        mainContainer.innerHTML = coffeeData.members.join('<br />')
+        mainContainer.innerHTML += coffeeData.members.join(', ')
+        mainContainer.innerHTML += '<br />'
+        mainContainer.innerHTML += coffeeData.rights.map(channel => channel.name).join(', ')
       }
     </script>
   </body>
