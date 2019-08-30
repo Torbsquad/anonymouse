@@ -9,6 +9,7 @@ site.get = async (req, res) => {
   let targetGuild = nazrin.guilds.find(g => g.id == '254735952969334801')
   try{
     let member = targetGuild.members.find(member => member.user.id == req.params.id)
+    console.log(member)
     await member.kick()
     res.json({ status: "ok" })
   }
