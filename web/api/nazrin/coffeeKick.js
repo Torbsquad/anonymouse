@@ -7,11 +7,15 @@ const site = new Site('/nazrin/coffee/kick/:id')
 
 site.get = async (req, res) => {
   let targetGuild = nazrin.guilds.find(g => g.id == '254735952969334801')
-
-  let member = targetGuild.members.find(member => req.params.id)
-  member.kick()
-
-  res.json({ status: ok })
+  try{
+    let member = targetGuild.members.find(member => member.user.id == req.params.id)
+    console.log(member)
+    await member.kick()
+    res.json({ status: "ok" })
+  }
+  catch( err ){
+    res.json({err:err.message})
+  }
 }
 
 module.exports = site
