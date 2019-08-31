@@ -63,7 +63,6 @@ async function tick(channelId) {
         emojis = [emojis]
       }
       for (let emoji of emojis) {
-        console.log('found:', emoji)
         axios.get(`https://api.vnft.cc/emoji/add/${emoji}`)
       }
     }

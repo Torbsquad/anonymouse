@@ -60,9 +60,7 @@ class Table {
     this.grid = grid
     this.el = document.createElement('table')
     this.el.className = 'noselect'
-    this.cellToggle = function(event) {
-      console.log(1)
-    }
+    this.cellToggle = function(event) {}
     this.update()
   }
 

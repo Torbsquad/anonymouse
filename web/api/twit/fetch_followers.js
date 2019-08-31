@@ -18,7 +18,6 @@ async function getAllFollowers() {
   let pointer = await getFollowers(-1)
 
   do {
-    console.log(pointer)
     followers = followers.concat(pointer.users)
     pointer = await getFollowers(pointer.next_cursor)
   } while (pointer.next_cursor != 0 && !pointer.errors)

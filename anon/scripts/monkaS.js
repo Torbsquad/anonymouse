@@ -29,7 +29,6 @@ monkaScript.funct = bot => {
       let urlsnippet = image.match(/\/[0-9]*?\/[0-9]*?\/.*?$/)
       if (urlsnippet) {
         let hash = (await get('https://untitled-p9bey7ap3m46.runkit.sh/' + urlsnippet[0])).data.toString()
-        console.log(hash)
         if (monkaHash.includes(hash)) {
           monkaCount++
         }
