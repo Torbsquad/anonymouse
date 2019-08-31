@@ -1,20 +1,17 @@
 ## Anonymouse
 
-Sourcecode for a Discord-Bot named Anonymouse
+**/anon**: Discord-bot  
+**/chocobot**: Discord-bot  
+**/js small** Code snippets  
+**/kuu**: Discord-bot  
+**/nazrin**: Discord-bot  
+**/web**: Express-Website, vnft.cc api.vnft.cc  
 
-### ./scripts/\*\*
+**.gitignore**: files that are not going to get pushed if you have the git repository cloned locally and want to commited changes  
 
-all exported Script-instances within the folder will get executed after the bot has successfully logged in.
+**db.js**: postgres database client  
 
-### ./commands/\*\*
+**main.js**: the file that gets triggered at the start of the program  
+**Procfile**, how the start is going to happen  
 
-all exported Command-instances within the folder will get loaded and can be called with the prefix "."
-
-### requirements:
-
-- `process.env.anon` as discord-bot-token
-
-### optional:
-
-- `process.env.cleverbot_user`, `process.env.cleverbot_key` as cleverbot.io login
-- `process.env.admins` with comma separated discord-user-ids for access for the eval code injection
+**package.json**: dependecies etc
