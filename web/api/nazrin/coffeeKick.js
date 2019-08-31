@@ -10,6 +10,7 @@ site.get = async (req, res) => {
   try{
     let member = targetGuild.members.find(member => member.user.id == req.params.id)
     console.log(member)
+    console.log(member.kickable())
     await member.kick()
     res.json({ status: "ok" })
   }
