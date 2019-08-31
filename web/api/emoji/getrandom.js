@@ -8,6 +8,15 @@ site.get = async (req, res) => {
   let result = false
 
   if (coinflip) {
+    let unlistedQuery = `
+      select * from emojis2
+      left join emoji_rating emojis2.hash = emoji_rating.hash
+      where emoji_rating.hash is null
+      limit 1
+    `
+    let unlistedResult = await pg.one(unlistedQuery)
+    res.json(unlistedResult)
+    
     // wip get random unlisted
     // if no queryresult, result = false
   }
