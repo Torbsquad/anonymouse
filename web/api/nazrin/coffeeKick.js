@@ -7,15 +7,14 @@ const site = new Site('/nazrin/coffee/kick/:id')
 
 site.get = async (req, res) => {
   let targetGuild = nazrin.guilds.find(g => g.id == '254735952969334801')
-  try{
+  try {
     let member = targetGuild.members.find(member => member.user.id == req.params.id)
     console.log(member)
     console.log(member.kickable())
     await member.kick()
-    res.json({ status: "ok" })
-  }
-  catch( err ){
-    res.json({err:err.message})
+    res.json({ status: 'ok' })
+  } catch (err) {
+    res.json({ err: err.message })
   }
 }
 
