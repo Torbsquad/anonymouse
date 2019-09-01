@@ -9,7 +9,7 @@ site.get = async (req, res) => {
 
   if (coinflip) {
     let unlistedQuery = `
-      select * from emojis2
+      select *, emojis2.hash from emojis2
       left join emoji_rating on emojis2.hash = emoji_rating.hash
       where emoji_rating.hash is null
       limit 1
