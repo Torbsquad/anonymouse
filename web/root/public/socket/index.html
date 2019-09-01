@@ -1,0 +1,8 @@
+<script src="/socket.js"></script>
+<script>
+  var socket = io('https://sakurai-discord.herokuapp.com/')
+
+  socket.on('data', data => {
+    console.log(data)
+  })
+</script>
