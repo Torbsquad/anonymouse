@@ -11,19 +11,42 @@ site.get = async (req, res) => {
     let unlistedQuery = `
       select *, emojis2.hash from emojis2
       left join emoji_rating on emojis2.hash = emoji_rating.hash
-      where emoji_rating.hash is null
+      where emoji_rating.hash is null and random() < 0.001
       limit 1
     `
-    let unlistedResult = await pg.one(unlistedQuery)
-    res.json(unlistedResult)
-    
-    // wip get random unlisted
-    // if no queryresult, result = false
+
+    try {
+      result = await pg.one(unlistedQuery)
+      res.json({
+        type: 'unlisted',
+        result: result,
+      })
+    } catch (err) {
+      result = false
+    }
   }
 
   if (!result) {
-    // wip get random listed or unlisted
-    res.json({ status: 'dbd' })
+    let listedQuery = `
+      select *, emojis2.hash from emojis2
+      left join emoji_rating on emojis2.hash = emoji_rating.hash
+      where random() < 0.001 
+      limit 1
+    `
+
+    try {
+      result = await pg.one(listedQuery)
+      res.json({
+        type: 'listed or unlisted',
+        result: result,
+      })
+    } catch (err) {
+      result = false
+      res.json({
+        type: 'listed or unlisted',
+        result: result,
+      })
+    }
   }
 
   /*
