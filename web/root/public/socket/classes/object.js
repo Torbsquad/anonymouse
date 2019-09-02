@@ -1,5 +1,5 @@
 class GameObject {
-  constructor(){
+  constructor() {
     objects.push(this)
   }
 }

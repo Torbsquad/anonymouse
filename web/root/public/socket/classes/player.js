@@ -9,22 +9,22 @@ class Player {
   }
 
   logic() {
-    if( inputs["ArrowUp"] || inputs["w"] ){
+    if (inputs['ArrowUp'] || inputs['w']) {
       this.y -= this.speed
     }
-    if( inputs["ArrowDown"] || inputs["s"] ){
+    if (inputs['ArrowDown'] || inputs['s']) {
       this.y += this.speed
     }
-    if( inputs["ArrowLeft"] || inputs["a"] ){
+    if (inputs['ArrowLeft'] || inputs['a']) {
       this.x -= this.speed
     }
-    if( inputs["ArrowRight"] || inputs["d"] ){
+    if (inputs['ArrowRight'] || inputs['d']) {
       this.x += this.speed
     }
-   // console.log(inputs)
+    // console.log(inputs)
   }
 
-  draw(ctx, o=this) {
+  draw(ctx, o = this) {
     ctx.fillRect(o.x, o.y, o.width, o.height)
   }
 
@@ -33,8 +33,7 @@ class Player {
       x: this.x,
       y: this.y,
       width: this.width,
-      height: this.height
+      height: this.height,
     }
   }
-
 }
