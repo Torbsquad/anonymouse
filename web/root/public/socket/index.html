@@ -1,8 +1,14 @@
-<script src="/socket.js"></script>
-<script>
-  var socket = io('https://sakurai-discord.herokuapp.com/')
-
-  socket.on('data', data => {
-    console.log(data)
-  })
-</script>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css"> 
+  </head>
+  <body onload="javascript:main()">
+    <canvas id="game"></canvas>
+    <script src="socket.js"></script>
+    <script src="classes/player.js"></script>
+    <script src="classes/object.js"></script>
+    <script src="classes/block.js"></script>
+    <script src="input.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
