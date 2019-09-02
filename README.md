@@ -2,7 +2,7 @@
 
 **/anon**: Discord-bot  
 **/chocobot**: Discord-bot  
-**/js small** Code snippets  
+**/js** small Code snippets  
 **/kuu**: Discord-bot  
 **/nazrin**: Discord-bot  
 **/web**: Express-Website, vnft.cc api.vnft.cc  
