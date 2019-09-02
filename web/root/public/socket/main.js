@@ -5,6 +5,23 @@ var players = {}
 var objects = []
 
 var client = new Player()
+
+canvas.fullscreen = function() {
+  let wH = window.innerHeight
+  let wW = window.innerWidth
+
+  if (wH * 16 < wW * 9) {
+    canvas.width = (wH * 16) / 9
+    canvas.style.width = canvas.width
+    canvas.height = wH
+    canvas.style.height = canvas.height
+  } else {
+    canvas.width = wW
+    canvas.style.width = canvas.width
+    canvas.height = (wW * 9) / 16
+    canvas.style.height = canvas.height
+  }
+}
 canvas.fullscreen()
 
 function main() {
@@ -57,22 +74,5 @@ if (!window.cancelAnimationFrame)
   window.cancelAnimationFrame = function(id) {
     clearTimeout(id)
   }
-
-canvas.fullscreen = function() {
-  let wH = window.innerHeight
-  let wW = window.innerWidth
-
-  if (wH * 16 < wW * 9) {
-    canvas.width = (wH * 16) / 9
-    canvas.style.width = canvas.width
-    canvas.height = wH
-    canvas.style.height = canvas.height
-  } else {
-    canvas.width = wW
-    canvas.style.width = canvas.width
-    canvas.height = (wW * 9) / 16
-    canvas.style.height = canvas.height
-  }
-}
 
 window.onresize = canvas.fullscreen
