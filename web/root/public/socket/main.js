@@ -5,6 +5,8 @@ var players = {}
 var objects = []
 
 var client = new Player()
+var world = new Block()
+var camera = new Camera()
 
 canvas.fullscreen = function() {
   let wH = window.innerHeight
@@ -41,12 +43,16 @@ function loop() {
   cx.clearRect(0, 0, canvas.width, canvas.height)
   window.requestAnimationFrame(loop)
 
+  camera.slideTowards(client.x+client.width/2, client.y+client.height/2, 10)
   client.logic(cx)
-  client.draw(cx)
 
+  for (let id in objects) {
+    let obj = objects[id]
+    GameObject.draw_(cx, obj, canvas, camera)
+  }
   for (let id in players) {
     let p = players[id]
-    cx.fillRect(p.x, p.y, p.width, p.height)
+    GameObject.draw_(cx, p, canvas, camera)
   }
 }
 
