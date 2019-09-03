@@ -30,13 +30,15 @@ function main() {
   canvas.fullscreen()
 
   socket.on('data', data => {
-    players[data.id] = data.data
+    if( !players[data.id] ) players[data.id] = data.data
+    players[data.id].data = data.data
+    players[data.id].lastTick = new Date()
   })
 
   window.requestAnimationFrame(loop)
   setInterval(() => {
     socket.emit('data', client.toData())
-  }, 1000 / 30)
+  }, 1000 / 20)
 }
 
 function loop() {
@@ -46,13 +48,21 @@ function loop() {
   camera.slideTowards(client.x+client.width/2, client.y+client.height/2, 10)
   client.logic(cx)
 
+  for( let id in players ){   
+    for( let attr in players[id].data ){
+      players[id][attr] += (players[id].data[attr] - players[id][attr])/3
+    }
+  }
+
   for (let id in objects) {
     let obj = objects[id]
     GameObject.draw_(cx, obj, canvas, camera)
   }
   for (let id in players) {
     let p = players[id]
-    GameObject.draw_(cx, p, canvas, camera)
+    if ( new Date() - p.lastTick < 10000 ){
+      GameObject.draw_(cx, p, canvas, camera)
+    }
   }
 }
 
