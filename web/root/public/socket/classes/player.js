@@ -1,5 +1,6 @@
-class Player {
+class Player extends GameObject {
   constructor() {
+    super()
     this.x = 10
     this.y = 10
     this.width = 20
@@ -22,10 +23,6 @@ class Player {
       this.x += this.speed
     }
     // console.log(inputs)
-  }
-
-  draw(ctx, o = this) {
-    ctx.fillRect(o.x, o.y, o.width, o.height)
   }
 
   toData() {
