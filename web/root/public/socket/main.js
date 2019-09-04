@@ -70,7 +70,11 @@ function loop() {
 
   for (let id in players) {
     for (let attr in players[id].data) {
-      players[id][attr] += (players[id].data[attr] - players[id][attr]) / 3
+      if (attr == 'x' || attr == 'y') {
+        players[id][attr] += (players[id].data[attr] - players[id][attr]) / 3
+      } else {
+        players[id][attr] = players[id].data[attr]
+      }
     }
   }
 
@@ -81,7 +85,11 @@ function loop() {
   for (let id in players) {
     let p = players[id]
     if (new Date() - p.lastTick < 10000) {
+      if (p.animFrame != 0) {
+        cx.fillStyle = 'red'
+      }
       GameObject.draw_(cx, p, canvas, camera)
+      cx.fillStyle = 'black'
     }
   }
 }
