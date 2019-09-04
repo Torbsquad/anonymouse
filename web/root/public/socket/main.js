@@ -1,17 +1,19 @@
 var socket = io('https://sakurai-discord.herokuapp.com/')
 var canvas = document.getElementById('game')
 var cx = canvas.getContext('2d')
+
 var players = {}
 var objects = []
-var grid = new Array(30).fill(0).map(e=>new Array(30).fill(0).map(f=>
-  [Math.round(18+Math.random()),Math.round(8+Math.random())]
-))
+
+var grid = new Array(30)
+  .fill(0)
+  .map(e => new Array(30).fill(0).map(f => [Math.round(18 + Math.random()), Math.round(8 + Math.random())]))
 
 var client = new Player()
 var world = new Block()
 var camera = new Camera()
-var mainTileset = new Tileset("img/tilesets/tileset_waterworld.png")
-var overworldTileset = new Tileset("img/tilesets/tiles.png")
+var mainTileset = new Tileset('img/tilesets/tileset_waterworld.png')
+var overworldTileset = new Tileset('img/tilesets/tiles.png')
 
 canvas.fullscreen = function() {
   let wH = window.innerHeight
@@ -32,7 +34,7 @@ function main() {
   canvas.fullscreen()
 
   socket.on('data', data => {
-    if( !players[data.id] ) players[data.id] = data.data
+    if (!players[data.id]) players[data.id] = data.data
     players[data.id].data = data.data
     players[data.id].lastTick = new Date()
   })
@@ -47,18 +49,28 @@ function loop() {
   cx.clearRect(0, 0, canvas.width, canvas.height)
   window.requestAnimationFrame(loop)
 
-  camera.slideTowards(client.x+client.width/2, client.y+client.height/2, 10)
+  camera.slideTowards(client.x + client.width / 2, client.y + client.height / 2, 10)
   client.logic(cx)
 
-  for(let y = 0; y < grid.length; y++){
-    for(let x = 0; x < grid[y].length; x++){
-      cx.drawImage(overworldTileset.image, 16*grid[y][x][0], 16*grid[y][x][1], 16, 16, Math.round(x*32 + canvas.width/2 - camera.x), Math.round(y*32 + canvas.height/2 - camera.y), 32, 32)
+  for (let y = 0; y < grid.length; y++) {
+    for (let x = 0; x < grid[y].length; x++) {
+      cx.drawImage(
+        overworldTileset.image,
+        16 * grid[y][x][0],
+        16 * grid[y][x][1],
+        16,
+        16,
+        Math.round(x * 32 + canvas.width / 2 - camera.x),
+        Math.round(y * 32 + canvas.height / 2 - camera.y),
+        32,
+        32,
+      )
     }
   }
-  
-  for( let id in players ){   
-    for( let attr in players[id].data ){
-      players[id][attr] += (players[id].data[attr] - players[id][attr])/3
+
+  for (let id in players) {
+    for (let attr in players[id].data) {
+      players[id][attr] += (players[id].data[attr] - players[id][attr]) / 3
     }
   }
 
@@ -68,7 +80,7 @@ function loop() {
   }
   for (let id in players) {
     let p = players[id]
-    if ( new Date() - p.lastTick < 10000 ){
+    if (new Date() - p.lastTick < 10000) {
       GameObject.draw_(cx, p, canvas, camera)
     }
   }
