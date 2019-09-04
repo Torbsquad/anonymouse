@@ -5,7 +5,7 @@ class Camera {
   }
 
   slideTowards(x, y, speed) {
-    this.x += (x - this.x)/speed
-    this.y += (y - this.y)/speed
+    this.x = Math.round(this.x + (x - this.x)/speed)
+    this.y = Math.round(this.y + (y - this.y)/speed)
   }
 }
