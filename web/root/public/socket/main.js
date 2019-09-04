@@ -33,8 +33,8 @@ canvas.fullscreen = function() {
   let wH = window.innerHeight
   let wW = window.innerWidth
 
-  wH = wH < 720 ? wH : 720
-  wW = wW < 1280 ? wW : 1280
+  wH = wH < 1104 ? wH : 1104
+  wW = wW < 1936 ? wW : 1936
 
   canvas.width = wW
   canvas.height = wH
@@ -68,7 +68,7 @@ function loop() {
 
   for(let y = 0; y < grid.length; y++){
     for(let x = 0; x < grid[y].length; x++){
-      cx.drawImage(overworldTileset.image, 16*grid[y][x][0], 16*grid[y][x][1], 16, 16, x*32 + canvas.width/2 - camera.x, y*32 + canvas.height/2 - camera.y, 32, 32)
+      cx.drawImage(overworldTileset.image, 16*grid[y][x][0], 16*grid[y][x][1], 16, 16, Math.round(x*32 + canvas.width/2 - camera.x), Math.round(y*32 + canvas.height/2 - camera.y), 32, 32)
     }
   }
   

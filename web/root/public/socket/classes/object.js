@@ -9,6 +9,8 @@ class GameObject {
   }
 
   static draw_(ctx, obj = this, canvas, camera) {
-    ctx.fillRect(obj.x + canvas.width/2 - camera.x, obj.y + canvas.height/2 - camera.y, obj.width, obj.height)
+    ctx.fillRect(
+      Math.round(obj.x + canvas.width/2 - camera.x),
+      Math.round(obj.y + canvas.height/2 - camera.y), obj.width, obj.height)
   }
 }
