@@ -43,6 +43,7 @@
   },
   "devDependencies": {
     "mocha": "^6.2.0",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "sass": "^1.23.0-module.beta.1"
   }
 }
