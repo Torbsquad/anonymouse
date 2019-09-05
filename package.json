@@ -9,6 +9,7 @@
     "prettier": "prettier --write --print-width 120 ./{*,*/*,*/*/*,*/*/*/*,*/*/*/*/*,*/*/*/*/*/*}.{html,js,ts,json,css}",
     "prettierrc": "prettier --write --config .prettierrc ./{*,*/*,*/*/*,*/*/*/*,*/*/*/*/*,*/*/*/*/*/*}.{html,js,ts,json,css}",
     "secret": "node secret.main.js",
+    "soos": "sass ./web/root/public/canvas/style",
     "localhost": "node ./web/devroot.js"
   },
   "repository": {
