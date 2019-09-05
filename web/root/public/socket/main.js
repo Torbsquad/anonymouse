@@ -56,14 +56,11 @@ function loop() {
     for (let x = 0; x < grid[y].length; x++) {
       cx.drawImage(
         overworldTileset.image,
-        16 * grid[y][x][0],
-        16 * grid[y][x][1],
-        16,
-        16,
+        16 * grid[y][x][0], 16 * grid[y][x][1],
+        16, 16,
         Math.round(x * 32 + canvas.width / 2 - camera.x),
         Math.round(y * 32 + canvas.height / 2 - camera.y),
-        32,
-        32,
+        32, 32,
       )
     }
   }
