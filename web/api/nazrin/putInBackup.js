@@ -3,9 +3,9 @@ const pg = require('../../../db')
 const analyse = require('../../../js/emojiAnalysis')
 
 const { Site } = require('vnft-tools')
-const add = new Site('/nazrin/backup/put/:id')
+const site = new Site('/nazrin/backup/put/:id')
 
-add.get = async (req, res) => {
+site.get = async (req, res) => {
   let emoji = nazrin.emojis.find(e => e.id == req.params.id)
   let emojiData = await analyse(emoji.toString())
 
@@ -30,4 +30,4 @@ add.get = async (req, res) => {
   res.json({ done: true })
 }
 
-module.exports = add
+module.exports = site
