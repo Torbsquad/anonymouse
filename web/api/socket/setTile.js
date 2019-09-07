@@ -1,9 +1,9 @@
 const pg = require('../../../db')
 
 const { Site } = require('vnft-tools')
-const count = new Site('/socket/setTile/:cx/:cy/:x/:y/:tile')
+const site = new Site('/socket/setTile/:cx/:cy/:x/:y/:tile')
 
-count.get = async (req, res) => {
+site.get = async (req, res) => {
   let query = await pg.query(`
     UPDATE socket_chunks SET chunk[$(y)][$(x)] = $(tile)
       WHERE x = $(cx) and y = $(cy)
@@ -18,4 +18,4 @@ count.get = async (req, res) => {
   res.json({status:"ok"})
 }
 
-module.exports = count
+module.exports = site
