@@ -1,8 +1,8 @@
 const pg = require('../../../db')
 const { Site } = require('vnft-tools')
 
-const search = new Site('/twitter/all_followers')
-search.get = async (req, res) => {
+const site = new Site('/twitter/all_followers')
+site.get = async (req, res) => {
   let query = `
     SELECT * FROM twitter_followers 
     ORDER BY listed_since ASC
@@ -10,4 +10,4 @@ search.get = async (req, res) => {
   res.json(await pg.any(query))
 }
 
-module.exports = search
+module.exports = site
