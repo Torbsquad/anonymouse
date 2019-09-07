@@ -1,9 +1,9 @@
 const pg = require('../../../db')
 
 const { Site } = require('vnft-tools')
-const count = new Site('/socket/getChunk/:x/:y')
+const site = new Site('/socket/getChunk/:x/:y')
 
-count.get = async (req, res) => {
+site.get = async (req, res) => {
   let chunk = await pg.any(`
     SELECT chunk FROM socket_chunks where x = $(x) and y = $(y)
   `,
@@ -14,4 +14,4 @@ count.get = async (req, res) => {
   res.json(chunk)
 }
 
-module.exports = count
+module.exports = site
