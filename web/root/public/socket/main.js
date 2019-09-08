@@ -61,7 +61,7 @@ function loop() {
     var tpX = Math.floor(canvas.width / 2 - camera.x)
     for (let x = 0; x < grid[y].length; x++) {
       let t = idToTile[grid[y][x]]
-      cx.drawImage(tilesets[t[0]].image, t[1], t[2], 16, 16, tpX, tpY, 32.5, 32.5)
+      cx.drawImage(tilesets[t[0]].image, t[1], t[2], 16, 16, tpX, tpY, 32.2, 32.2)
       tpX += 32
     }
     tpY += 32
