@@ -14,13 +14,7 @@ body {
 }
 
 #game {
-  background: #84ff84;
-  margin: auto;
-  image-rendering: pixelated;
-}
-
-img {
-  image-rendering: pixelated;
+  background: rgb(30, 127, 184);
 }
 
 body {

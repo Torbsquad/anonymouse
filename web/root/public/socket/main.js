@@ -5,15 +5,19 @@ var cx = canvas.getContext('2d')
 var players = {}
 var objects = []
 
-var grid = new Array(30)
-  .fill(0)
-  .map(e => new Array(30).fill(0).map(f => [Math.round(18 + Math.random()), Math.round(8 + Math.random())]))
+var grid = [[]]
 
 var client = new Player()
 var world = new Block()
 var camera = new Camera()
-var mainTileset = new Tileset('img/tilesets/tileset_waterworld.png')
-var overworldTileset = new Tileset('img/tilesets/tiles.png')
+
+var tilesets = [new Tileset('img/armm1998/Overworld.png')]
+
+var idToTile = [[0, 0, 0], [0, 3 * 16, 6 * 16]]
+
+axios.get('https://api.vnft.cc/socket/getChunk/0/0').then(e => {
+  grid = e.data.chunk
+})
 
 canvas.fullscreen = function() {
   let wH = window.innerHeight
@@ -52,17 +56,15 @@ function loop() {
   camera.slideTowards(client.x + client.width / 2, client.y + client.height / 2, 10)
   client.logic(cx)
 
+  var tpY = Math.floor(canvas.height / 2 - camera.y)
   for (let y = 0; y < grid.length; y++) {
+    var tpX = Math.floor(canvas.width / 2 - camera.x)
     for (let x = 0; x < grid[y].length; x++) {
-      cx.drawImage(
-        overworldTileset.image,
-        16 * grid[y][x][0], 16 * grid[y][x][1],
-        16, 16,
-        Math.round(x * 32 + canvas.width / 2 - camera.x),
-        Math.round(y * 32 + canvas.height / 2 - camera.y),
-        32, 32,
-      )
+      let t = idToTile[grid[y][x]]
+      cx.drawImage(tilesets[t[0]].image, t[1], t[2], 16, 16, tpX, tpY, 32.5, 32.5)
+      tpX += 32
     }
+    tpY += 32
   }
 
   for (let id in players) {
