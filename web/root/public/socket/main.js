@@ -40,14 +40,29 @@ function main() {
   canvas.fullscreen()
 
   socket.on('data', data => {
-    if (!players[data.id]) players[data.id] = data.data
-    players[data.id].data = data.data
-    players[data.id].lastTick = new Date()
+    let type = data.data.type
+    let id = data.id
+    let content = data.data.data
+    
+    if( type == "positionUpdate" ){
+      if (!players[id]) players[id] = content
+      players[id].data = content
+      players[id].lastTick = new Date()
+    }
+    else if( type == "tileUpdate" ){
+      let chunkName = `${content.cx},${content.cy}`
+      if( chunks[chunkName] ){
+        chunks[chunkName][content.ty][content.tx] = content.value
+      }
+    }
   })
 
   window.requestAnimationFrame(loop)
   setInterval(() => {
-    socket.emit('data', client.toData())
+    socket.emit('data', {
+      type: "positionUpdate",
+      data: client.toData()
+    })
   }, 1000 / 20)
 }
 
@@ -88,6 +103,17 @@ function loop() {
       cx.fillStyle = 'black'
     }
   }
+}
+
+function updateTile(cx, cy, tx, ty, value) {
+  let chunkName = `${content.cx},${content.cy}`
+  if( chunks[chunkName] ){
+    chunks[chunkName][content.ty][content.tx] = content.value
+  }
+  socket.emit('data', {
+    type: "tileUpdate",
+    data: {cx, cy, tx, ty, value}
+  })
 }
 
 // requestAnimationFrame polyfill by Erik Moeller
