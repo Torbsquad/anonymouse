@@ -10,14 +10,14 @@ var grid = [[]]
 var client = new Player()
 var world = new Block()
 var camera = new Camera()
+var chunks = {}
 
 var tilesets = [new Tileset('img/armm1998/Overworld.png')]
 
 var idToTile = [[0, 0, 0], [0, 3 * 16, 6 * 16]]
 
-axios.get('https://api.vnft.cc/socket/getChunk/0/0').then(e => {
-  grid = e.data.chunk
-})
+chunks['0,0'] = new Chunk(0, 0)
+chunks['1,0'] = new Chunk(1, 0)
 
 canvas.fullscreen = function() {
   let wH = window.innerHeight
@@ -56,15 +56,10 @@ function loop() {
   camera.slideTowards(client.x + client.width / 2, client.y + client.height / 2, 10)
   client.logic(cx)
 
+  var tpX = Math.floor(canvas.width / 2 - camera.x)
   var tpY = Math.floor(canvas.height / 2 - camera.y)
-  for (let y = 0; y < grid.length; y++) {
-    var tpX = Math.floor(canvas.width / 2 - camera.x)
-    for (let x = 0; x < grid[y].length; x++) {
-      let t = idToTile[grid[y][x]]
-      cx.drawImage(tilesets[t[0]].image, t[1], t[2], 16, 16, tpX, tpY, 32.2, 32.2)
-      tpX += 32
-    }
-    tpY += 32
+  for (let i in chunks) {
+    chunks[i].render(cx, tpX, tpY)
   }
 
   for (let id in players) {
