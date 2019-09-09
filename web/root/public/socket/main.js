@@ -52,7 +52,7 @@ function main() {
     else if( type == "tileUpdate" ){
       let chunkName = `${content.cx},${content.cy}`
       if( chunks[chunkName] ){
-        chunks[chunkName][content.ty][content.tx] = content.value
+        chunks[chunkName].grid[content.ty][content.tx] = content.value
       }
     }
   })
@@ -106,9 +106,9 @@ function loop() {
 }
 
 function updateTile(cx, cy, tx, ty, value) {
-  let chunkName = `${content.cx},${content.cy}`
+  let chunkName = `${cx},${cy}`
   if( chunks[chunkName] ){
-    chunks[chunkName][content.ty][content.tx] = content.value
+    chunks[chunkName].grid[ty][tx] = value
   }
   socket.emit('data', {
     type: "tileUpdate",
