@@ -16,7 +16,9 @@ class Chunk {
         var tpX = ax + this.x * 512
         for (let x = 0; x < this.grid[y].length; x++) {
           let t = idToTile[this.grid[y][x]]
-          cx.drawImage(tilesets[t[0]].image, t[1], t[2], 16, 16, tpX, tpY, 32.5, 32.5)
+          if (t) {
+            cx.drawImage(tilesets[t[0]].image, t[1], t[2], 16, 16, tpX, tpY, 32.5, 32.5)
+          }
           tpX += 32
         }
         tpY += 32

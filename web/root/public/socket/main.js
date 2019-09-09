@@ -14,10 +14,12 @@ var chunks = {}
 
 var tilesets = [new Tileset('img/armm1998/Overworld.png')]
 
-var idToTile = [[0, 0, 0], [0, 3 * 16, 6 * 16]]
+var idToTile = [[0, 0, 0], [0, 3 * 16, 6 * 16], [0, 2 * 16, 30 * 16], [0, 3 * 16, 32 * 16]]
 
 chunks['0,0'] = new Chunk(0, 0)
 chunks['1,0'] = new Chunk(1, 0)
+chunks['0,1'] = new Chunk(0, 1)
+chunks['1,1'] = new Chunk(1, 1)
 
 canvas.fullscreen = function() {
   let wH = window.innerHeight
