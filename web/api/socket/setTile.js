@@ -1,20 +1,20 @@
 const pg = require('../../../db')
 
 const { Site } = require('vnft-tools')
-const site = new Site('/socket/setTile/:cx/:cy/:x/:y/:tile')
+const site = new Site('/socket/setTile/:cx/:cy/:tx/:ty/:value')
 
 site.get = async (req, res) => {
   let query = await pg.query(
     `
-    UPDATE socket_chunks SET chunk[$(y)][$(x)] = $(tile)
+    UPDATE socket_chunks SET chunk[$(ty)][$(tx)] = $(value)
       WHERE x = $(cx) and y = $(cy)
     `,
     {
-      x: Number(req.params.x+1),
-      y: Number(req.params.y+1),
+      tx: Number(req.params.tx)+1,
+      ty: Number(req.params.ty)+1,
       cx: Number(req.params.cx),
       cy: Number(req.params.cy),
-      tile: Number(req.params.tile),
+      value: Number(req.params.value),
     },
   )
 
