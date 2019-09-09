@@ -43,7 +43,7 @@ class Player extends GameObject {
       y: this.y,
       width: this.width,
       height: this.height,
-      animFrame: this.movingSince != 0 ? Math.round((new Date() - this.movingSince) / 200) : 0,
+      animFrame: this.movingSince != 0 ? Math.round((new Date() - this.movingSince) / 200) + 1 : 0,
     }
   }
 }
