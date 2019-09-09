@@ -114,6 +114,7 @@ function updateTile(cx, cy, tx, ty, value) {
     type: "tileUpdate",
     data: {cx, cy, tx, ty, value}
   })
+  axios.get(`https://api.vnft.cc/socket/setTile/${cx}/${cy}/${tx}/${ty}/${value}`)
 }
 
 // requestAnimationFrame polyfill by Erik Moeller
