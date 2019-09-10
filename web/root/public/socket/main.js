@@ -14,7 +14,12 @@ var chunks = {}
 
 var tilesets = [new Tileset('img/armm1998/Overworld.png')]
 
-var idToTile = [[0, 0, 0], [0, 3 * 16, 6 * 16], [0, 2 * 16, 30 * 16], [0, 3 * 16, 32 * 16]]
+var idToTile = [
+  [0, 0, 0 , 1],
+  [0, 3 * 16, 6 * 16, 0],
+  [0, 2 * 16, 30 * 16, 0],
+  [0, 3 * 16, 32 * 16, 1]
+]
 
 chunks['0,0'] = new Chunk(0, 0)
 chunks['1,0'] = new Chunk(1, 0)
@@ -84,7 +89,7 @@ function loop() {
     x: Math.floor((pointer.x-tpX)/32),
     y: Math.floor((pointer.y-tpY)/32)
   }
-
+  
   cx.fillStyle="rgba(0,0,0,.5)"
   cx.fillRect( mt.x*32 + tpX, mt.y*32+ tpY, 32, 32)
 
