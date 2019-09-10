@@ -4,20 +4,18 @@ class Line {
     this.color = "red"
   }
   addDot(x, y, size) {
-    this.dots.push([x, y, size])
+    let dot = new Dot(x,y,size)
+    this.dots.push(dot)
   }
   drawInCanvas(canvas) {
     var context = canvas.getContext('2d')
     context.strokeStyle = this.color
     for (var dot of this.dots) {
-      var x = dot[0]
-      var y = dot[1]
-      var size = dot[2]
       context.lineCap = 'round'
       context.lineWidth = size
       context.beginPath()
-      context.moveTo(x, y)
-      context.lineTo(x + 0.1, y + 0.1)
+      context.moveTo(dot.x, dot.y)
+      context.lineTo(dot.x + 0.4, dot.y + 0.4)
       context.stroke()
     }
   }
