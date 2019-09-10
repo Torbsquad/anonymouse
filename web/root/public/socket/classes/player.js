@@ -42,8 +42,8 @@ class Player extends GameObject {
   moveX(value) {
     if(value != 0) {
       this.x += value
-      if(value>0)while(this.inGridCollision())this.x--
-      if(value<0)while(this.inGridCollision())this.x++
+      if(value>0)while(this.inCollision())this.x--
+      if(value<0)while(this.inCollision())this.x++
     }
   }
 
