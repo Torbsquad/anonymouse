@@ -50,22 +50,22 @@ class Player extends GameObject {
   moveY(value) {
     if(value != 0) {
       this.y += value
-      if(value>0)while(this.inGridCollision())this.y--
-      if(value<0)while(this.inGridCollision())this.y++
+      if(value>0)while(this.inCollision())this.y--
+      if(value<0)while(this.inCollision())this.y++
     }
   }
 
-  inGridCollision() {
+  inCollision() {
     function posToTile(y, x){
       let cx = Math.floor(x/16)
       let cy = Math.floor(y/16)
       let tx = x - cx*16
       let ty = y - cy*16
       let chunk = chunks[cx+','+cy]
-      if(chunk){
+      if(chunk && chunk.grid){
         return idToTile[chunk.grid[ty][tx]][3]
       }
-      return false
+      return true
     }
 
     let hbx = this.x + this.hitboxX
