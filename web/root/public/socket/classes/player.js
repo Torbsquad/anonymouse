@@ -56,15 +56,32 @@ class Player extends GameObject {
   }
 
   inGridCollision() {
+    function posToTile(y, x){
+      let cx = Math.floor(x/16)
+      let cy = Math.floor(y/16)
+      let tx = x - cx*16
+      let ty = y - cy*16
+      let chunk = chunks[cx+','+cy]
+      if(chunk){
+        return idToTile[chunk.grid[ty][tx]][3]
+      }
+      return false
+    }
+
     let hbx = this.x + this.hitboxX
     let hby = this.y + this.hitboxY
     
     let left = Math.floor(hbx/32)
     let top = Math.floor(hby/32)
-    let right = Math.ceil((hbx+this.hitboxWidth)/32)
-    let down = Math.ceil((hby+this.hitboxHeight)/32)
+    let right = Math.floor((hbx+this.hitboxWidth)/32)
+    let down = Math.floor((hby+this.hitboxHeight)/32)
 
-    return left < 0 || top < 0 || down > 16 || right > 16
+    let topLeft = posToTile(top, left)
+    let topRight = posToTile(top, right)
+    let downLeft = posToTile(down, left)
+    let downRight = posToTile(down, right)
+
+    return topLeft || topRight || downRight || downLeft
   }
 
 }
