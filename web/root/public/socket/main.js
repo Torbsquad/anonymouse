@@ -37,6 +37,7 @@ canvas.fullscreen = function() {
 canvas.fullscreen()
 
 function main() {
+  initInputs()
   canvas.fullscreen()
 
   socket.on('data', data => {
@@ -73,11 +74,19 @@ function loop() {
   camera.slideTowards(client.x + client.width / 2, client.y + client.height / 2, 10)
   client.logic(cx)
 
-  var tpX = Math.floor(canvas.width / 2 - camera.x)
-  var tpY = Math.floor(canvas.height / 2 - camera.y)
+  var tpX = Math.floor(canvas.width/2-camera.x)
+  var tpY = Math.floor(canvas.height/2-camera.y)
   for (let i in chunks) {
     chunks[i].render(cx, tpX, tpY)
   }
+
+  let mt = {
+    x: Math.floor((pointer.x-tpX)/32),
+    y: Math.floor((pointer.y-tpY)/32)
+  }
+  console.log(mt)
+  cx.fillStyle="rgba(0,0,0,.5)"
+  cx.fillRect( mt.x*32 + tpX, mt.y*32+ tpY, 32, 32)
 
   for (let id in players) {
     for (let attr in players[id].data) {
