@@ -7,7 +7,7 @@ site.get = async (req, res) => {
   let table = await pg.any('SELECT * FROM idToTable')
 
   let indexlist = ["tileset","x","y","collision"]
-  let response = table.data.map(d=>indexlist.map(i=>d[i]))
+  let response = table.map(d=>indexlist.map(i=>d[i]))
   res.json(response)
 }
 
