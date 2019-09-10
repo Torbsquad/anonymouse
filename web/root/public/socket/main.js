@@ -20,6 +20,9 @@ var idToTile = [
   [0, 2 * 16, 30 * 16, 0],
   [0, 3 * 16, 32 * 16, 1]
 ]
+axios.get(`https://api.vnft.cc/socket/getIdToTileTable`).then(data=>{
+  idToTile = data.data
+})
 
 chunks['0,0'] = new Chunk(0, 0)
 chunks['1,0'] = new Chunk(1, 0)
