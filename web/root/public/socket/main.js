@@ -84,7 +84,7 @@ function loop() {
     x: Math.floor((pointer.x-tpX)/32),
     y: Math.floor((pointer.y-tpY)/32)
   }
-  console.log(mt)
+
   cx.fillStyle="rgba(0,0,0,.5)"
   cx.fillRect( mt.x*32 + tpX, mt.y*32+ tpY, 32, 32)
 
