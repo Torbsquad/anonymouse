@@ -14,13 +14,8 @@ var chunks = {}
 
 var tilesets = [new Tileset('img/armm1998/Overworld.png')]
 
-var idToTile = [
-  [0, 0, 0 , 0],
-  [0, 3 * 16, 6 * 16, 0],
-  [0, 2 * 16, 30 * 16, 0],
-  [0, 3 * 16, 32 * 16, 1]
-]
-axios.get(`https://api.vnft.cc/socket/getIdToTileTable`).then(data=>{
+var idToTile = [[0, 0, 0, 0], [0, 3 * 16, 6 * 16, 0], [0, 2 * 16, 30 * 16, 0], [0, 3 * 16, 32 * 16, 1]]
+axios.get(`https://api.vnft.cc/socket/getIdToTileTable`).then(data => {
   idToTile = data.data
 })
 
@@ -52,15 +47,14 @@ function main() {
     let type = data.data.type
     let id = data.id
     let content = data.data.data
-    
-    if( type == "positionUpdate" ){
+
+    if (type == 'positionUpdate') {
       if (!players[id]) players[id] = content
       players[id].data = content
       players[id].lastTick = new Date()
-    }
-    else if( type == "tileUpdate" ){
+    } else if (type == 'tileUpdate') {
       let chunkName = `${content.cx},${content.cy}`
-      if( chunks[chunkName] ){
+      if (chunks[chunkName]) {
         chunks[chunkName].grid[content.ty][content.tx] = content.value
       }
     }
@@ -69,8 +63,8 @@ function main() {
   window.requestAnimationFrame(loop)
   setInterval(() => {
     socket.emit('data', {
-      type: "positionUpdate",
-      data: client.toData()
+      type: 'positionUpdate',
+      data: client.toData(),
     })
   }, 1000 / 20)
 }
@@ -82,19 +76,19 @@ function loop() {
   camera.slideTowards(client.x + client.width / 2, client.y + client.height / 2, 10)
   client.logic(cx)
 
-  var tpX = Math.floor(canvas.width/2-camera.x)
-  var tpY = Math.floor(canvas.height/2-camera.y)
+  var tpX = Math.floor(canvas.width / 2 - camera.x)
+  var tpY = Math.floor(canvas.height / 2 - camera.y)
   for (let i in chunks) {
     chunks[i].render(cx, tpX, tpY)
   }
 
   let mt = {
-    x: Math.floor((pointer.x-tpX)/32),
-    y: Math.floor((pointer.y-tpY)/32)
+    x: Math.floor((pointer.x - tpX) / 32),
+    y: Math.floor((pointer.y - tpY) / 32),
   }
 
-  cx.fillStyle="rgba(0,0,0,.5)"
-  cx.fillRect( mt.x*32 + tpX, mt.y*32+ tpY, 32, 32)
+  cx.fillStyle = 'rgba(0,0,0,.5)'
+  cx.fillRect(mt.x * 32 + tpX, mt.y * 32 + tpY, 32, 32)
 
   for (let id in players) {
     for (let attr in players[id].data) {
@@ -124,12 +118,12 @@ function loop() {
 
 function updateTile(cx, cy, tx, ty, value) {
   let chunkName = `${cx},${cy}`
-  if( chunks[chunkName] ){
+  if (chunks[chunkName]) {
     chunks[chunkName].grid[ty][tx] = value
   }
   socket.emit('data', {
-    type: "tileUpdate",
-    data: {cx, cy, tx, ty, value}
+    type: 'tileUpdate',
+    data: { cx, cy, tx, ty, value },
   })
   axios.get(`https://api.vnft.cc/socket/setTile/${cx}/${cy}/${tx}/${ty}/${value}`)
 }
