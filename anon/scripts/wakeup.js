@@ -1,12 +1,12 @@
 const { Script } = require('vnftjs')
 const { sleep } = require('vnft-tools')
 
-const wakeup = new Script()
+const script = new Script()
 
-wakeup.funct = async bot => {
+script.funct = async bot => {
   bot.user.setActivity('Hi!')
   await sleep(5000)
   bot.user.setActivity('')
 }
 
-module.exports = wakeup
+module.exports = script
