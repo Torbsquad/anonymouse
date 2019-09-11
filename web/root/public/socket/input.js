@@ -1,10 +1,10 @@
 var inputs = {}
-var pointer = {x:0, y:0}
+var pointer = { x: 0, y: 0 }
 function isPressed(key) {
   return inputs[key] == true
 }
 
-function initInputs(){
+function initInputs() {
   document.addEventListener('keydown', event => {
     inputs[event.key] = true
   })
