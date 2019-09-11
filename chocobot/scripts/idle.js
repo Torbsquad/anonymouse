@@ -1,9 +1,9 @@
 const { Script } = require('vnftjs')
 
-const idle = new Script()
+const script = new Script()
 
-idle.funct = client => {
+script.funct = client => {
   client.user.setStatus('idle')
 }
 
-module.exports = idle
+module.exports = script
