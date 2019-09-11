@@ -10,8 +10,8 @@ site.get = async (req, res) => {
       WHERE x = $(cx) and y = $(cy)
     `,
     {
-      tx: Number(req.params.tx)+1,
-      ty: Number(req.params.ty)+1,
+      tx: Number(req.params.tx) + 1,
+      ty: Number(req.params.ty) + 1,
       cx: Number(req.params.cx),
       cy: Number(req.params.cy),
       value: Number(req.params.value),
