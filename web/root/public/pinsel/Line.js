@@ -1,10 +1,10 @@
 class Line {
   constructor() {
     this.dots = []
-    this.color = "red"
+    this.color = 'red'
   }
   addDot(x, y, size) {
-    let dot = new Dot(x,y,size)
+    let dot = new Dot(x, y, size)
     this.dots.push(dot)
   }
   drawInCanvas(canvas) {
@@ -20,4 +20,3 @@ class Line {
     }
   }
 }
-
