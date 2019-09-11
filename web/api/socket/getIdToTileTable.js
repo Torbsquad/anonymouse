@@ -6,8 +6,8 @@ const site = new Site('/socket/getIdToTileTable')
 site.get = async (req, res) => {
   let table = await pg.any('SELECT * FROM idToTable order by id')
 
-  let indexlist = ["tileset","x","y","collision"]
-  let response = table.map(d=>indexlist.map(i=>d[i]))
+  let indexlist = ['tileset', 'x', 'y', 'collision']
+  let response = table.map(d => indexlist.map(i => d[i]))
   res.json(response)
 }
 
