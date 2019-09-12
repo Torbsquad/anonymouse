@@ -142,7 +142,7 @@ function updateTileByPos(x, y, value) {
   updateTile(cx, cy, tx, ty, value)
 }
 
-function posToTileId(y, x) {
+function posToTileId(x, y) {
   let cx = Math.floor(x / 16)
   let cy = Math.floor(y / 16)
   let tx = x - cx * 16
