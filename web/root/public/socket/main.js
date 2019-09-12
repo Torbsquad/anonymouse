@@ -20,9 +20,6 @@ axios.get(`https://api.vnft.cc/socket/getIdToTileTable`).then(data => {
 })
 
 chunks['0,0'] = new Chunk(0, 0)
-chunks['1,0'] = new Chunk(1, 0)
-chunks['0,1'] = new Chunk(0, 1)
-chunks['1,1'] = new Chunk(1, 1)
 
 canvas.fullscreen = function() {
   let wH = window.innerHeight
