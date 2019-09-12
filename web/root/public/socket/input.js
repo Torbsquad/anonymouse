@@ -1,5 +1,5 @@
 var inputs = {}
-var pointer = { x: 0, y: 0 }
+var pointer = { x: 0, y: 0, pressed: false }
 function isPressed(key) {
   return inputs[key] == true
 }
@@ -17,4 +17,13 @@ function initInputs() {
     pointer.x = event.layerX
     pointer.y = event.layerY
   })
+  
+  canvas.addEventListener('mousedown', event => {
+    pointer.pressed = true
+  })
+  
+  canvas.addEventListener('mouseup', event => {
+    pointer.pressed = false
+  })
+  
 }
