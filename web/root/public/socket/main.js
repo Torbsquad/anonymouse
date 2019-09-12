@@ -89,7 +89,7 @@ function loop() {
   
   if(pointer.pressed) {
      if(posToTileId(mt.x,mt.y) != 1) {
-        updateTile(mt.x, mt.y, 1)
+        updateTileByPos(mt.x, mt.y, 1)
      }
   }
 
