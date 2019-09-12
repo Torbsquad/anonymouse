@@ -14,7 +14,7 @@ var chunks = {}
 
 var tilesets = [new Tileset('img/armm1998/Overworld.png')]
 
-var idToTile = [[0, 0, 0, 0], [0, 3 * 16, 6 * 16, 0], [0, 2 * 16, 30 * 16, 0], [0, 3 * 16, 32 * 16, 1]]
+var idToTile = [[0, 3 * 16, 7 * 16, 0], [0, 0, 0, 0], [0, 2 * 16, 30 * 16, 0], [0, 3 * 16, 32 * 16, 1]]
 axios.get(`https://api.vnft.cc/socket/getIdToTileTable`).then(data => {
   idToTile = data.data
 })
@@ -25,8 +25,8 @@ canvas.fullscreen = function() {
   let wH = window.innerHeight
   let wW = window.innerWidth
 
-  wH = wH < 1104 ? wH : 1104
-  wW = wW < 1936 ? wW : 1936
+  wH = wH < 720 ? wH : 720
+  wW = wW < 1280 ? wW : 1280
 
   canvas.width = wW
   canvas.height = wH
@@ -75,29 +75,29 @@ function loop() {
 
   var tpX = Math.floor(canvas.width / 2 - camera.x)
   var tpY = Math.floor(canvas.height / 2 - camera.y)
-  for (let i in chunks) {
-    chunks[i].render(cx, tpX, tpY)
-  }
 
   let mt = {
     x: Math.floor((pointer.x - tpX) / 32),
     y: Math.floor((pointer.y - tpY) / 32),
   }
-  
-  if(pointer.pressed) {
-     if(posToTileId(mt.x,mt.y) != 1) {
-        updateTileByPos(mt.x, mt.y, 1)
-     }
+
+  if (pointer.pressed) {
+    if (posToTileId(mt.x, mt.y) != 1) {
+      updateTileByPos(mt.x, mt.y, 1)
+    }
   }
-  
-  let playerChunkX = Math.floor(client.x/512)
-  let playerChunkY = Math.floor(client.y/512)
-  for(let y = -1; y < 1; y++) {
-    let cy = playerChunkY+y
-    for(let x = -1; x < 1; x++) {
-      let cx = playerChunkX+x
-      if(!chunks[cx+","+cy]) {
-        chunks[cx+","+cy] = new Chunk(cx, cy)
+
+  let playerChunkX = Math.floor(client.x / 512)
+  let playerChunkY = Math.floor(client.y / 512)
+  for (let y = -1; y <= 1; y++) {
+    let chy = playerChunkY + y
+    for (let x = -2; x <= 2; x++) {
+      let chx = playerChunkX + x
+      let cn = chx + ',' + chy
+      if (!chunks[cn]) {
+        chunks[cn] = new Chunk(chx, chy)
+      } else {
+        chunks[cn].render(cx, tpX, tpY)
       }
     }
   }

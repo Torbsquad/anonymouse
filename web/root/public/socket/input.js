@@ -17,13 +17,12 @@ function initInputs() {
     pointer.x = event.layerX
     pointer.y = event.layerY
   })
-  
+
   canvas.addEventListener('mousedown', event => {
     pointer.pressed = true
   })
-  
+
   canvas.addEventListener('mouseup', event => {
     pointer.pressed = false
   })
-  
 }

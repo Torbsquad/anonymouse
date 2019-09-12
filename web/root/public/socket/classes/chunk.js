@@ -30,6 +30,12 @@ class Chunk {
     let e = await axios.get(`https://api.vnft.cc/socket/getChunk/${this.x}/${this.y}`)
     if (!e.data.error) {
       this.grid = e.data.chunk
+    } else {
+      await axios.get(`https://api.vnft.cc/socket/createChunk/${this.x}/${this.y}`)
+      let e = await axios.get(`https://api.vnft.cc/socket/getChunk/${this.x}/${this.y}`)
+      if (!e.data.error) {
+        this.grid = e.data.chunk
+      }
     }
   }
 }

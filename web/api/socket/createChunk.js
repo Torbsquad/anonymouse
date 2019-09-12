@@ -24,12 +24,12 @@ site.get = async (req, res) => {
     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
   }')`
 
-  let table = await pg.any(sql,{
+  let table = await pg.any(sql, {
     x: Number(req.params.x),
-    y: Number(req.params.y)
+    y: Number(req.params.y),
   })
 
-  res.json({status: "ok"})
+  res.json({ status: 'ok' })
 }
 
 module.exports = site
