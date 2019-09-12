@@ -128,6 +128,18 @@ function updateTile(cx, cy, tx, ty, value) {
   axios.get(`https://api.vnft.cc/socket/setTile/${cx}/${cy}/${tx}/${ty}/${value}`)
 }
 
+function posToTileId(y, x) {
+  let cx = Math.floor(x / 16)
+  let cy = Math.floor(y / 16)
+  let tx = x - cx * 16
+  let ty = y - cy * 16
+  let chunk = chunks[cx + ',' + cy]
+  if (chunk && chunk.grid) {
+    return chunk.grid[ty][tx]
+  }
+  return true
+}
+
 // requestAnimationFrame polyfill by Erik Moeller
 var lastTime = 0
 var vendors = ['webkit', 'moz']
