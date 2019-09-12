@@ -86,6 +86,12 @@ function loop() {
     x: Math.floor((pointer.x - tpX) / 32),
     y: Math.floor((pointer.y - tpY) / 32),
   }
+  
+  if(pointer.pressed) {
+     if(posToTileId(mt.x,mt.y) != 1) {
+        updateTile(mt.x, mt.y, 1)
+     }
+  }
 
   cx.fillStyle = 'rgba(0,0,0,.5)'
   cx.fillRect(mt.x * 32 + tpX, mt.y * 32 + tpY, 32, 32)
@@ -126,6 +132,14 @@ function updateTile(cx, cy, tx, ty, value) {
     data: { cx, cy, tx, ty, value },
   })
   axios.get(`https://api.vnft.cc/socket/setTile/${cx}/${cy}/${tx}/${ty}/${value}`)
+}
+
+function updateTileByPos(x, y, value) {
+  let cx = Math.floor(x / 16)
+  let cy = Math.floor(y / 16)
+  let tx = x - cx * 16
+  let ty = y - cy * 16
+  updateTile(cx, cy, tx, ty, value)
 }
 
 function posToTileId(y, x) {
