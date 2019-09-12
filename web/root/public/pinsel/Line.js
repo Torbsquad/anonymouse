@@ -12,7 +12,7 @@ class Line {
     context.strokeStyle = this.color
     for (var dot of this.dots) {
       context.lineCap = 'round'
-      context.lineWidth = size
+      context.lineWidth = dot.size
       context.beginPath()
       context.moveTo(dot.x, dot.y)
       context.lineTo(dot.x + 0.4, dot.y + 0.4)
