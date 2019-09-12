@@ -92,6 +92,18 @@ function loop() {
         updateTileByPos(mt.x, mt.y, 1)
      }
   }
+  
+  let playerChunkX = Math.floor(client.x/512)
+  let playerChunkY = Math.floor(client.y/512)
+  for(let y = -1; y < 1; y++) {
+    let cy = playerChunkY+y
+    for(let x = -1; x < 1; x++) {
+      let cx = playerChunkX+x
+      if(!chunks[cx+","+cy]) {
+        chunks[cx+","+cy] = new Chunk(cx, cy)
+      }
+    }
+  }
 
   cx.fillStyle = 'rgba(0,0,0,.5)'
   cx.fillRect(mt.x * 32 + tpX, mt.y * 32 + tpY, 32, 32)
