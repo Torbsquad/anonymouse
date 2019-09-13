@@ -5,7 +5,7 @@ function main() {
   cx.fillRect(0, 0, 100, 100)
 }
 
-window.onresize = event => {
-    canvas.height = window.innerHeight-1
-    canvas.width = window.innerWidth-1
-}
+window.addEventListener('resize', event => {
+  canvas.height = window.innerHeight - 1
+  canvas.width = window.innerWidth - 1
+})
