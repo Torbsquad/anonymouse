@@ -1,5 +1,7 @@
-console.log("1")
-var canvas = document.getElementById("canvas")
-var cx = canvas.getContext("2d")
+var canvas = document.getElementById('canvas')
+var cx = canvas.getContext('2d')
 
-cx.fillRect(0,0,100,100)
+function main() {
+  cx.fillRect(0, 0, 100, 100)
+  console.log('1')
+}
