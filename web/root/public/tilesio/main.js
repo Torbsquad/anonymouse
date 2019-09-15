@@ -11,6 +11,7 @@ var client = new Player()
 var world = new Block()
 var camera = new Camera()
 var chunks = {}
+var gamepointer = new Tileset('./img/pointer.png')
 
 var tilesets = [new Tileset('img/armm1998/Overworld.png')]
 
@@ -66,7 +67,7 @@ function main() {
   }, 1000 / 20)
 }
 
-function loop() {
+function loop(e) {
   cx.clearRect(0, 0, canvas.width, canvas.height)
   window.requestAnimationFrame(loop)
 
@@ -102,9 +103,6 @@ function loop() {
     }
   }
 
-  cx.fillStyle = 'rgba(0,0,0,.5)'
-  cx.fillRect(mt.x * 32 + tpX, mt.y * 32 + tpY, 32, 32)
-
   for (let id in players) {
     for (let attr in players[id].data) {
       if (attr == 'x' || attr == 'y') {
@@ -128,6 +126,12 @@ function loop() {
       GameObject.draw_(cx, p, canvas, camera)
       cx.fillStyle = 'black'
     }
+  }
+
+  if (gamepointer.loaded) {
+    let t = Math.sin(e / 250) * 2 + 5
+    cx.fillStyle = 'rgba(0,0,0,.5)'
+    cx.drawImage(gamepointer.image, mt.x * 32 + tpX - t, mt.y * 32 + tpY - t, 32 + t * 2, 32 + t * 2)
   }
 }
 
