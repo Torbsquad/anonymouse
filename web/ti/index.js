@@ -8,10 +8,6 @@ app.use(function(req, res, next) {
   next()
 })
 
-app.get('/', (req, res) => {
-  res.redirect('https://twitter.com/VonFriedricht')
-})
-
 app.get('/axios.js', (req, res) => {
   res.sendFile(path.join(__dirname, '..', '..', 'node_modules', 'axios', 'dist', 'axios.js'))
 })
