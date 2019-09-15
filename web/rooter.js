@@ -14,7 +14,7 @@ global.io = require('socket.io').listen(Server.https)
 global.root_directory = path.resolve('../')
 
 if (process.env.NODE_ENV == 'dev') {
-  app.use(vhost('localhost', require('./root')))
+  app.use(vhost('localhost', require('./ti')))
 } else {
   app.use(vhost('vnft.cc', require('./root')))
   app.use(vhost('api.vnft.cc', require('./api')))
