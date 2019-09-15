@@ -18,5 +18,6 @@ if (process.env.NODE_ENV == 'dev') {
 } else {
   app.use(vhost('vnft.cc', require('./root')))
   app.use(vhost('api.vnft.cc', require('./api')))
+  app.use(vhost('ti.vnft.cc', require('./ti')))
   // app.use(vhost('anon-spirit.herokuapp.com', require('./core')))
 }
