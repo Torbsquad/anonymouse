@@ -13,6 +13,8 @@ var camera = new Camera()
 var chunks = {}
 var gamepointer = new Tileset('./img/pointer.png')
 
+var mouseTile = 1
+
 var tilesets = [new Tileset('img/armm1998/Overworld.png')]
 
 var idToTile = [[0, 3 * 16, 7 * 16, 0], [0, 0, 0, 0], [0, 2 * 16, 30 * 16, 0], [0, 3 * 16, 32 * 16, 1]]
@@ -83,8 +85,8 @@ function loop(e) {
   }
 
   if (pointer.pressed) {
-    if (posToTileId(mt.x, mt.y) != 1) {
-      updateTileByPos(mt.x, mt.y, 1)
+    if (posToTileId(mt.x, mt.y) != mouseTile) {
+      updateTileByPos(mt.x, mt.y, mouseTile)
     }
   }
 
