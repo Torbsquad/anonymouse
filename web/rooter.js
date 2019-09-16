@@ -17,6 +17,7 @@ if (process.env.NODE_ENV == 'dev') {
   app.use(vhost('localhost', require('./rpg ')))
 } else {
   app.use(vhost('rpg.vnft.cc', require('./rpg')))
+  app.use(vhost('socket.vnft.cc', require('./rpg')))
   app.use(vhost('vnft.cc', require('./root')))
   app.use(vhost('api.vnft.cc', require('./api')))
   // app.use(vhost('anon-spirit.herokuapp.com', require('./core')))
