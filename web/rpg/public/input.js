@@ -21,6 +21,7 @@ function initInputs() {
   canvas.addEventListener('mousedown', event => {
     pointer.pressed = true
     if (event.button == 2) {
+      event.preventDefault()
       return false
     }
   })
