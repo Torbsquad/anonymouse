@@ -20,7 +20,7 @@ function initInputs() {
 
   canvas.addEventListener('mousedown', event => {
     pointer.pressed = true
-    if(event.button == 2){
+    if (event.button == 2) {
       return false
     }
   })
