@@ -9,7 +9,7 @@ command.funct = async (bot, message, args) => {
   const canvas = Canvas.createCanvas(100, 100)
   const ctx = canvas.getContext('2d')
 
-  const userImg = Canvas.loadImage(message.author.avatarURL)
+  const userImg = await Canvas.loadImage(message.author.avatarURL)
 
   ctx.fillStyle = args
   ctx.drawImage(userImg, 0, 0, canvas.width, canvas.height)
