@@ -24,10 +24,10 @@ function filter(cxd) {
   let avgs = new Array()
   let result = new Array()
   for (let i = 0; i < subPixelCount; i += 4) {
-    let r = cxd.data[i]
-    let g = cxd.data[i + 1]
-    let b = cxd.data[i + 2]
-    let v = (r + g + b) / 3
+    let r = cxd.data[i]**2
+    let g = cxd.data[i + 1]**2
+    let b = cxd.data[i + 2]**2
+    let v = Math.sqrt(r + g + b) 
     avgs.push(v)
     result.push(0)
   }
@@ -66,14 +66,12 @@ function filter(cxd) {
           }
         }
         let i = getIndex(cxd, x, y)
-        if(fsum > 61){
-          result[i] += 255/4
+        if(fsum > 0){
+          result[i] += fsum/4
         }
       }
     }
   }
-
-  result = result.map(r=>r>=64?255:0)
 
   for (let y = 0; y < cxd.height; y++) {
     for (let x = 0; x < cxd.width; x++) {
