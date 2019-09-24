@@ -6,6 +6,10 @@ const command = new Command()
 command.name = 'moustache'
 
 command.funct = async (bot, message, args) => {
+  if( message.mentions ){
+    args = message.users.first().avatarURL
+  }
+
   const userImg = await Canvas.loadImage(args || message.author.avatarURL)
   const moustache = await Canvas.loadImage('./anon/img/moustache.png')
   
