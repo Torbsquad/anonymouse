@@ -6,7 +6,7 @@ const command = new Command()
 command.name = 'moustache'
 
 command.funct = async (bot, message, args) => {
-  if( message.mentions ){
+  if( message.mentions.users.array().length ){
     args = message.users.first().avatarURL
   }
 
