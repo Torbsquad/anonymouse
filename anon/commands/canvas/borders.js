@@ -3,7 +3,7 @@ const Discord = require('discord.js')
 const { Command } = require('vnftjs')
 
 const command = new Command()
-command.name = 'filter2'
+command.name = 'borders'
 
 command.funct = async (bot, message, args) => {
   const userImg = await Canvas.loadImage(args || message.author.avatarURL)
