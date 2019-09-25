@@ -3,7 +3,7 @@ const Discord = require('discord.js')
 const { Command } = require('vnftjs')
 
 const command = new Command()
-command.name = 'desaturate'
+command.name = 'daturate'
 
 command.funct = async (bot, message, args) => {
   const canvas = Canvas.createCanvas(100, 100)
@@ -25,9 +25,9 @@ function greyscale(cxd) {
     let r = cxd.data[i]
     let g = cxd.data[i + 1]
     let b = cxd.data[i + 2]
-    cxd.data[i] = r / 2 + 127
-    cxd.data[i + 1] = g / 2 + 127 
-    cxd.data[i + 2] = b / 2 + 127
+    cxd.data[i] = r * 2 - 127
+    cxd.data[i + 1] = g * 2 - 127
+    cxd.data[i + 2] = b * 2 - 127
   }
   return cxd
 }
