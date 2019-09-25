@@ -9,7 +9,6 @@ command.funct = async (bot, message, args) => {
   if( message.mentions.users.array().length ){
     args = message.mentions.users.first().avatarURL
   }
-  console.log(args)
 
   const userImg = await Canvas.loadImage(args || message.author.avatarURL)
   const moustache = await Canvas.loadImage('./anon/img/moustache.png')
