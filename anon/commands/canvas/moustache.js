@@ -6,13 +6,13 @@ const command = new Command()
 command.name = 'moustache'
 
 command.funct = async (bot, message, args) => {
-  if( message.mentions.users.array().length ){
+  if (message.mentions.users.array().length) {
     args = message.mentions.users.first().avatarURL
   }
 
   const userImg = await Canvas.loadImage(args || message.author.avatarURL)
   const moustache = await Canvas.loadImage('./anon/img/moustache.png')
-  
+
   const canvas = Canvas.createCanvas(userImg.width, userImg.height)
   const ctx = canvas.getContext('2d')
 
