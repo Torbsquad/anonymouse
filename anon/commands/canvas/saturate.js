@@ -3,7 +3,7 @@ const Discord = require('discord.js')
 const { Command } = require('vnftjs')
 
 const command = new Command()
-command.name = 'daturate'
+command.name = 'saturate'
 
 command.funct = async (bot, message, args) => {
   const canvas = Canvas.createCanvas(100, 100)
