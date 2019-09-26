@@ -26,9 +26,9 @@ function greyscale(cxd) {
     let g = cxd.data[i + 1]
     let b = cxd.data[i + 2]
     let value = ( r + g + b )
-    cxd.data[i] = r / value * 255
-    cxd.data[i + 1] = g / value * 255
-    cxd.data[i + 2] = b / value * 255
+    cxd.data[i] = r / value * 127*3
+    cxd.data[i + 1] = g / value * 127*3
+    cxd.data[i + 2] = b / value * 127*3
   }
   return cxd
 }
