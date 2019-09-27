@@ -1,4 +1,3 @@
-const Canvas = require('canvas')
 const loadCanvasByImage = require("./canvasByImage")
 const Discord = require('discord.js')
 const { Command } = require('vnftjs')
@@ -7,7 +6,7 @@ const command = new Command()
 command.name = 'filter'
 
 command.funct = async (bot, message, args) => {
-  const canvas = await loadCanvasByImage(message.author.avatarURL)
+  const canvas = await loadCanvasByImage(args || message.author.avatarURL)
   const ctx = canvas.getContext('2d')
 
   let cxd = ctx.getImageData(0, 0, canvas.width, canvas.height)
