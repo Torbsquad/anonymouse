@@ -7,7 +7,7 @@ const command = new Command()
 command.name = 'filter'
 
 command.funct = async (bot, message, args) => {
-  const userImg = await loadCanvasByImage(message.author.avatarURL)
+  const canvas = await loadCanvasByImage(message.author.avatarURL)
   const ctx = canvas.getContext('2d')
 
   let cxd = ctx.getImageData(0, 0, canvas.width, canvas.height)
