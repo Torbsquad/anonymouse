@@ -12,4 +12,10 @@ class Leinwand {
   addLine(line) {
     this.lines.push(line)
   }
+  draw() {
+    let context = this.canvas.getContext('2d')
+    for (let line of this.lines) {
+      line.draw(context)
+    }
+  }
 }

@@ -9,5 +9,7 @@ function main() {
   for (var i = 0; i < 100; i++) {
     l.addDot(10 + i, 10 + i, 100 - i)
   }
-  l.drawInCanvas(c)
+  leinwand.addLine(l)
+
+  leinwand.draw()
 }
