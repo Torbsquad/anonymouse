@@ -1,4 +1,5 @@
 const Canvas = require('canvas')
+const loadCanvasByImage = require("./canvasByImage")
 const Discord = require('discord.js')
 const { Command } = require('vnftjs')
 
