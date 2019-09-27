@@ -1,4 +1,6 @@
-const loadCanvasByImage = require("./canvasByImage")
+const loadCanvasByImage = require("./helperFunctions/loadCanvasByImage")
+const applyFilterToImageData = require("./helperFunctions/applyFilterToImageData")
+
 const Discord = require('discord.js')
 const { Command } = require('vnftjs')
 
@@ -7,10 +9,7 @@ command.name = 'filter'
 
 command.funct = async (bot, message, args) => {
   const canvas = await loadCanvasByImage(args || message.author.avatarURL)
-  const ctx = canvas.getContext('2d')
-
-  let cxd = ctx.getImageData(0, 0, canvas.width, canvas.height)
-  ctx.putImageData(filter(cxd), 0, 0)
+  applyFilterToImageData(canvas, filter)
 
   const attachment = new Discord.Attachment(canvas.toBuffer(), `user ${message.author.username}.png`)
   message.channel.send(``, attachment)
