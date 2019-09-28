@@ -10,12 +10,12 @@ class Line {
   draw(ctx) {
     ctx.strokeStyle = this.color
     for (var dot of this.dots) {
-        ctx.lineCap = 'round'
-        ctx.lineWidth = dot.size
-        ctx.beginPath()
-        ctx.moveTo(dot.x, dot.y)
-        ctx.lineTo(dot.x + 0.4, dot.y + 0.4)
-        ctx.stroke()
+      ctx.lineCap = 'round'
+      ctx.lineWidth = dot.size
+      ctx.beginPath()
+      ctx.moveTo(dot.x, dot.y)
+      ctx.lineTo(dot.x + 0.4, dot.y + 0.4)
+      ctx.stroke()
     }
   }
 }
