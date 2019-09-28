@@ -1,4 +1,5 @@
-const Canvas = require('canvas')
+const loadCanvasByImage = require("./helperFunctions/loadCanvasByImage")
+
 const Discord = require('discord.js')
 const { Command } = require('vnftjs')
 
@@ -10,13 +11,9 @@ command.funct = async (bot, message, args) => {
     args = message.mentions.users.first().avatarURL
   }
 
-  const userImg = await Canvas.loadImage(args || message.author.avatarURL)
-  const moustache = await Canvas.loadImage('./anon/img/moustache.png')
-
-  const canvas = Canvas.createCanvas(userImg.width, userImg.height)
+  const canvas = await loadCanvasByImage(args || message.author.avatarURL)
   const ctx = canvas.getContext('2d')
-
-  ctx.drawImage(userImg, 0, 0, canvas.width, canvas.height)
+  const moustache = await Canvas.loadImage('./anon/img/moustache.png')
   ctx.drawImage(moustache, 0, 0, canvas.width, canvas.height)
 
   const attachment = new Discord.Attachment(canvas.toBuffer(), `user ${message.author.username}.png`)
