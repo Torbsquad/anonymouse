@@ -57,9 +57,9 @@ function filter(cxd) {
     for (let x = 0; x < cxd.width; x++) {
       let p = getPixel(cxd, result, x, y)
       let i = (x + y * cxd.width) * 4
-      cxd.data[i] = p * cxd.data[i]/255
-      cxd.data[i + 1] = p * cxd.data[i + 1]/255
-      cxd.data[i + 2] = p * cxd.data[i + 2]/255
+      cxd.data[i] = p * cxd.data[i]/32
+      cxd.data[i + 1] = p * cxd.data[i + 1]/32
+      cxd.data[i + 2] = p * cxd.data[i + 2]/32
     }
   }
   return cxd
