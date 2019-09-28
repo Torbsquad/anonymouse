@@ -5,7 +5,7 @@ const Discord = require('discord.js')
 const { Command } = require('vnftjs')
 
 const command = new Command()
-command.name = 'borders'
+command.name = 'border'
 
 command.funct = async (bot, message, args) => {
   const canvas = await loadCanvasByImage(args || message.author.avatarURL)
@@ -19,7 +19,6 @@ function filter(cxd) {
   let subPixelCount = Object.keys(cxd.data).length
   let avgs = new Array()
   let result = new Array()
-  let resultF = new Array()
   for (let i = 0; i < subPixelCount; i += 4) {
     let r = cxd.data[i] ** 2
     let g = cxd.data[i + 1] ** 2
@@ -27,7 +26,6 @@ function filter(cxd) {
     let v = Math.sqrt(r + g + b)
     avgs.push(v)
     result.push(0)
-    resultF.push(0)
   }
 
   let filters = []
@@ -48,22 +46,20 @@ function filter(cxd) {
           }
         }
         let i = getIndex(cxd, x, y)
-        if (fsum > 35) {
+        if (fsum > 0) {
           result[i] += fsum / 4
-          resultF[i] += 1
         }
       }
     }
   }
 
-  result = result.map((r, i) => (resultF[i] > 1 ? r : 0))
-
   for (let y = 0; y < cxd.height; y++) {
     for (let x = 0; x < cxd.width; x++) {
-      let p = getPixel(cxd, result, x, y)
-      cxd.data[(x + y * cxd.width) * 4] = p
-      cxd.data[(x + y * cxd.width) * 4 + 1] = p
-      cxd.data[(x + y * cxd.width) * 4 + 2] = p
+      let p = getPixel(cxd, result, x, y) / 32 + .9
+      let i = (x + y * cxd.width) * 4
+      cxd.data[i] = cxd.data[i] * p
+      cxd.data[i + 1] = cxd.data[i + 1] * p
+      cxd.data[i + 2] = cxd.data[i + 2] * p
     }
   }
   return cxd
