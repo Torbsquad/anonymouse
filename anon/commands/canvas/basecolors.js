@@ -8,14 +8,14 @@ const command = new Command()
 command.name = 'basecolors'
 
 command.funct = async (bot, message, args) => {
-  const canvas = await loadCanvasByImage(message.author.avatarURL)
-  applyFilterToImageData(canvas, greyscale)
+  const canvas = await loadCanvasByImage(args || message.author.avatarURL)
+  applyFilterToImageData(canvas, filter)
 
   const attachment = new Discord.Attachment(canvas.toBuffer(), `user ${message.author.username}.png`)
   message.channel.send(``, attachment)
 }
 
-function greyscale(cxd) {
+function filter(cxd) {
   let subPixelCount = Object.keys(cxd.data).length
   for (let i = 0; i < subPixelCount; i += 4) {
     let r = cxd.data[i]
