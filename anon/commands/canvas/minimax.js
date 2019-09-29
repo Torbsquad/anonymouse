@@ -18,14 +18,14 @@ command.funct = async (bot, message, args) => {
 }
 
 function filter(cxd) {
-  let subPixelCount = Object.keys(cxd.data).length
-  for (let y = 0; y < cxd.height; y += 2) {
-    for (let x = 0; x < cxd.height; x += 2) {
+  var pixelsize = 5
+  for (let y = 0; y < cxd.height; y += pixelsize) {
+    for (let x = 0; x < cxd.height; x += pixelsize) {
       var mr = 0
       var mg = 0
       var mb = 0
-      for (let sy = 0; sy < 2; sy++) {
-        for (let sx = 0; sx < 2; sx++) {
+      for (let sy = 0; sy < pixelsize; sy++) {
+        for (let sx = 0; sx < pixelsize; sx++) {
           let i = getIndex(cxd, x + sx, y + sy) * 4
           let r = cxd.data[i]
           if (mr < r) mr = r
@@ -35,8 +35,8 @@ function filter(cxd) {
           if (mb < b) mb = b
         }
       }
-      for (let sy = 0; sy < 2; sy++) {
-        for (let sx = 0; sx < 2; sx++) {
+      for (let sy = 0; sy < pixelsize; sy++) {
+        for (let sx = 0; sx < pixelsize; sx++) {
           let i = getIndex(cxd, x + sx, y + sy) * 4
           cxd.data[i] = mr
           cxd.data[i + 1] = mg
