@@ -1,5 +1,5 @@
-const loadCanvasByImage = require("./helperFunctions/loadCanvasByImage")
-const applyFilterToImageData = require("./helperFunctions/applyFilterToImageData")
+const loadCanvasByImage = require('./helperFunctions/loadCanvasByImage')
+const applyFilterToImageData = require('./helperFunctions/applyFilterToImageData')
 
 const Discord = require('discord.js')
 const { Command } = require('vnftjs')

@@ -1,5 +1,5 @@
-const loadCanvasByImage = require("./helperFunctions/loadCanvasByImage")
-const applyFilterToImageData = require("./helperFunctions/applyFilterToImageData")
+const loadCanvasByImage = require('./helperFunctions/loadCanvasByImage')
+const applyFilterToImageData = require('./helperFunctions/applyFilterToImageData')
 
 const Discord = require('discord.js')
 const { Command } = require('vnftjs')
@@ -21,10 +21,10 @@ function filter(cxd) {
     let r = cxd.data[i]
     let g = cxd.data[i + 1]
     let b = cxd.data[i + 2]
-    let value = ( r + g + b )
-    cxd.data[i] = r / value * 127*3
-    cxd.data[i + 1] = g / value * 127*3
-    cxd.data[i + 2] = b / value * 127*3
+    let value = r + g + b
+    cxd.data[i] = (r / value) * 127 * 3
+    cxd.data[i + 1] = (g / value) * 127 * 3
+    cxd.data[i + 2] = (b / value) * 127 * 3
   }
   return cxd
 }

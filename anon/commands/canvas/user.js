@@ -1,4 +1,4 @@
-const loadCanvasByImage = require("./helperFunctions/loadCanvasByImage")
+const loadCanvasByImage = require('./helperFunctions/loadCanvasByImage')
 
 const Discord = require('discord.js')
 const { Command } = require('vnftjs')
