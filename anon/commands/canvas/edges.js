@@ -1,5 +1,7 @@
-const loadCanvasByImage = require("./helperFunctions/loadCanvasByImage")
-const applyFilterToImageData = require("./helperFunctions/applyFilterToImageData")
+const loadCanvasByImage = require('./helperFunctions/loadCanvasByImage')
+const applyFilterToImageData = require('./helperFunctions/applyFilterToImageData')
+const getPixel = require("./helperFunctions/getPixel")
+const getIndex = require("./helperFunctions/getIndex")
 
 const Discord = require('discord.js')
 const { Command } = require('vnftjs')
@@ -67,17 +69,6 @@ function filter(cxd) {
     }
   }
   return cxd
-}
-
-function getPixel(cxd, data, x, y) {
-  if (x < 0 || y < 0 || x >= cxd.width || y >= cxd.height) return 0
-  let i = x + y * cxd.width
-  return data[i]
-}
-
-function getIndex(cxd, x, y) {
-  if (x < 0 || y < 0 || x >= cxd.width || y >= cxd.height) return -1
-  return x + y * cxd.width
 }
 
 module.exports = command

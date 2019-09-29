@@ -1,5 +1,7 @@
-const loadCanvasByImage = require("./helperFunctions/loadCanvasByImage")
-const applyFilterToImageData = require("./helperFunctions/applyFilterToImageData")
+const loadCanvasByImage = require('./helperFunctions/loadCanvasByImage')
+const applyFilterToImageData = require('./helperFunctions/applyFilterToImageData')
+const getPixel = require("./helperFunctions/getPixel")
+const getIndex = require("./helperFunctions/getIndex")
 
 const Discord = require('discord.js')
 const { Command } = require('vnftjs')
@@ -8,6 +10,10 @@ const command = new Command()
 command.name = 'edges2'
 
 command.funct = async (bot, message, args) => {
+  if (message.mentions.users.array().length) {
+    args = message.mentions.users.first().avatarURL
+  }
+
   const canvas = await loadCanvasByImage(args || message.author.avatarURL)
   applyFilterToImageData(canvas, filter)
 
@@ -68,17 +74,6 @@ function filter(cxd) {
     }
   }
   return cxd
-}
-
-function getPixel(cxd, data, x, y) {
-  if (x < 0 || y < 0 || x >= cxd.width || y >= cxd.height) return 0
-  let i = x + y * cxd.width
-  return data[i]
-}
-
-function getIndex(cxd, x, y) {
-  if (x < 0 || y < 0 || x >= cxd.width || y >= cxd.height) return -1
-  return x + y * cxd.width
 }
 
 module.exports = command
