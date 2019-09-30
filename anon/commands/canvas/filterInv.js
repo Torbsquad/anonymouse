@@ -17,7 +17,7 @@ command.funct = async (bot, message, args) => {
   message.channel.send(``, attachment)
 }
 
-function filter(cxd) {
+function filter(cxd, arg = 1) {
   let subPixelCount = Object.keys(cxd.data).length
   let avgs = new Array()
   let result = new Array()
@@ -57,7 +57,7 @@ function filter(cxd) {
 
   for (let y = 0; y < cxd.height; y++) {
     for (let x = 0; x < cxd.width; x++) {
-      let p = getPixel(cxd, result, x, y)
+      let p = getPixel(cxd, result, x, y) * arg
       cxd.data[(x + y * cxd.width) * 4] = 255 - p
       cxd.data[(x + y * cxd.width) * 4 + 1] = 255 - p
       cxd.data[(x + y * cxd.width) * 4 + 2] = 255 - p
