@@ -11,7 +11,7 @@ command.name = 'filterInv'
 
 command.funct = async (bot, message, args) => {
   const canvas = await loadCanvasByImage(args || message.author.avatarURL)
-  applyFilterToImageData(canvas, filter)
+  applyFilterToImageData(canvas, filter, args)
 
   const attachment = new Discord.Attachment(canvas.toBuffer(), `user ${message.author.username}.png`)
   message.channel.send(``, attachment)
