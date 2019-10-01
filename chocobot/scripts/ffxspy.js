@@ -30,7 +30,7 @@ const TRANSLATIONS = {
 }
 
 async function pg_get() {
-  return (await pg.query(`SELECT CONTENT FROM FFXSPY LIMIT 1`))[0].content
+  return JSON.parse((await pg.query(`SELECT CONTENT FROM FFXSPY LIMIT 1`))[0].content)
 }
 
 async function pg_set(value) {
@@ -41,7 +41,7 @@ const spy = new Script()
 spy.intervalTime = 120000 * 2
 spy.funct = async bot => {
   const channel = bot.channels.find(c => c.id == TARGET_CHANNEL)
-  const data = JSON.parse(await pg_get())
+  const data = await pg_get()
 
   for (let id of TARGET_CHARACTERS) {
     const targetSite = await get(`https://xivapi.com/character/${id}?data=FC`)
