@@ -86,7 +86,7 @@ spy.funct = async bot => {
       }
 
       channel.send('', { embed: response })
-      channel.send({ file: char.Portrait })
+      channel.send({ file: char.Portrait.split("?")[0] })
 
       data[id] = chardata
     }
