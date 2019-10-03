@@ -18,4 +18,7 @@ class Line {
       ctx.stroke()
     }
   }
+  collisionWithMouse(mouseX, mouseY) {
+
+  }
 }

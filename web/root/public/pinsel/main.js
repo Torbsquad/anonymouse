@@ -1,7 +1,6 @@
 function main() {
-  var leinwand = new Leinwand('leinwand')
-  var c = leinwand.canvas
-
+  leinwand = new Leinwand('leinwand')
+  
   var l = new Line()
   l.addDot(10 + i, 10 + i, 10)
   for (var i = 0; i < 100; i++) {

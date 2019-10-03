@@ -16,4 +16,7 @@ class Leinwand {
       line.draw(context)
     }
   }
+  collisionWithMouse(mouseX, mouseY) {
+    console.log("check")
+  }
 }
