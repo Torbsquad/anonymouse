@@ -17,9 +17,7 @@ command.funct = async (bot, message, args) => {
 
 function filter(cxd) {
   let subPixelCount = Object.keys(cxd.data).length
-  for (let i = 0; i < subPixelCount; i += 4) {
-    cxd.data[i + 1] = 0
-  }
+  for (let i = 1; i < subPixelCount; i += 4) cxd.data[i] = 0
   return cxd
 }
 
