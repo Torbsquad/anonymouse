@@ -10,7 +10,7 @@ const command = new Command()
 command.name = 'filterInv'
 
 command.funct = async (bot, message, args) => {
-  const arrgs = args.split(" ")
+  const arrgs = args.split(' ')
   const canvas = await loadCanvasByImage(arrgs[1] || message.author.avatarURL)
   applyFilterToImageData(canvas, filter, arrgs[0])
 
