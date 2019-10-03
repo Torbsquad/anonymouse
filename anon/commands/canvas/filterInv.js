@@ -10,8 +10,9 @@ const command = new Command()
 command.name = 'filterInv'
 
 command.funct = async (bot, message, args) => {
-  const canvas = await loadCanvasByImage(args || message.author.avatarURL)
-  applyFilterToImageData(canvas, filter, args)
+  const arrgs = args.split(" ")
+  const canvas = await loadCanvasByImage(arrgs[0] || message.author.avatarURL)
+  applyFilterToImageData(canvas, filter, arrgs[1])
 
   const attachment = new Discord.Attachment(canvas.toBuffer(), `user ${message.author.username}.png`)
   message.channel.send(``, attachment)
