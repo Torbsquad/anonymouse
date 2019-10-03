@@ -17,11 +17,7 @@ function tableFromArray(array) {
 }
 
 function inputCell() {
-  var format = [
-    [0, 1, 0],
-    [1, 0, 1],
-    [0, 1, 0]
-  ]
+  var format = [[0, 1, 0], [1, 0, 1], [0, 1, 0]]
   return tableFromArray(format.map(a => a.map(b => (b ? "<input type='button'/>" : ''))))
 }
 
