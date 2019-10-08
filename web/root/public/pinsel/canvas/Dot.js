@@ -5,6 +5,6 @@ class Dot {
     this.size = size
   }
   collisionWithMouse(mouseX, mouseY) {
-
+    
   }
 }

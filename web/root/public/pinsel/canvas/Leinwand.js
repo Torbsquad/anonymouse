@@ -4,7 +4,7 @@ class Leinwand {
     this.canvas.width = '500'
     this.canvas.height = '500'
     this.canvas.style.background = 'white'
-    this.cursor = new Cursor(this.canvas)
+    this.cursor = new Cursor(this)
     this.lines = []
   }
   addLine(line) {
@@ -18,5 +18,8 @@ class Leinwand {
   }
   collisionWithMouse(mouseX, mouseY) {
     console.log("check")
+    for(let line of this.lines){
+      console.log(line)
+    }
   }
 }

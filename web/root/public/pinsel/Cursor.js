@@ -1,13 +1,14 @@
 class Cursor {
-    constructor(canvas) {
-        this.mode = "select"
-        this.canvas = canvas
-        this.canvas.addEventListener("click", () => this.onclick(this) )
+  constructor(leinwand) {
+    this.mode = 'select'
+    this.leinwand = leinwand
+    this.canvas = leinwand.canvas
+    this.canvas.addEventListener('click', () => this.onclick(this))
+  }
+  onclick(el) {
+    if (el.mode == 'select') {
+      console.log(5)
     }
-    onclick(el) {
-        if(el.mode == "select"){
-            console.log(5)
-        }
-        console.log(1+1)
-    }
+    console.log(1 + 1)
+  }
 }

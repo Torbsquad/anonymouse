@@ -19,6 +19,6 @@ class Line {
     }
   }
   collisionWithMouse(mouseX, mouseY) {
-
+    
   }
 }
