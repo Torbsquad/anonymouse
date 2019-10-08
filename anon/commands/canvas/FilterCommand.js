@@ -3,11 +3,11 @@ const loadCanvasByImage = require('./helperFunctions/loadCanvasByImage')
 
 class FilterCommand extends Command {
   constructor(filter) {
+    super()
     this.bind(filter)
   }
 
   bind(filter) {
-    super()
     this.funct = async (bot, message, args) => {
       const arrgs = args.split(' ')
       const canvas = await loadCanvasByImage(arrgs[1] || message.author.avatarURL)
@@ -17,7 +17,7 @@ class FilterCommand extends Command {
       message.channel.send(``, attachment)
     }
   }
-  
+
 }
 
 module.exports = FilterCommand
