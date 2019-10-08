@@ -1,5 +1,6 @@
 const { Command } = require('vnftjs')
 const loadCanvasByImage = require('./helperFunctions/loadCanvasByImage')
+const Discord = require('discord.js')
 
 class FilterCommand extends Command {
   constructor(filter) {
