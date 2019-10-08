@@ -10,15 +10,16 @@ const command = new Command()
 command.name = 'minimax'
 
 command.funct = async (bot, message, args) => {
-  const canvas = await loadCanvasByImage(args || message.author.avatarURL)
-  applyFilterToImageData(canvas, filter)
+  const arrgs = args.split(' ')
+  const canvas = await loadCanvasByImage(arrgs[1] || message.author.avatarURL)
+  applyFilterToImageData(canvas, filter, arrgs[0])
 
   const attachment = new Discord.Attachment(canvas.toBuffer(), `user ${message.author.username}.png`)
   message.channel.send(``, attachment)
 }
 
-function filter(cxd) {
-  var pixelsize = 5
+function filter(cxd, arg = 5) {
+  var pixelsize = arg
   for (let y = 0; y < cxd.height; y += pixelsize) {
     for (let x = 0; x < cxd.height; x += pixelsize) {
       var mr = 0
