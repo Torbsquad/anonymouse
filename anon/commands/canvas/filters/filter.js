@@ -3,19 +3,10 @@ const applyFilterToImageData = require('../helperFunctions/applyFilterToImageDat
 const getPixel = require('../helperFunctions/getPixel')
 const getIndex = require('../helperFunctions/getIndex')
 
-const Discord = require('discord.js')
-const { Command } = require('vnftjs')
+const FilterCommand = require('../FilterCommand')
 
-const command = new Command()
+const command = new FilterCommand(filter)
 command.name = 'filter'
-
-command.funct = async (bot, message, args) => {
-  const canvas = await loadCanvasByImage(args || message.author.avatarURL)
-  applyFilterToImageData(canvas, filter)
-
-  const attachment = new Discord.Attachment(canvas.toBuffer(), `user ${message.author.username}.png`)
-  message.channel.send(``, attachment)
-}
 
 function filter(cxd) {
   let subPixelCount = Object.keys(cxd.data).length
