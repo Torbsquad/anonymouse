@@ -4,7 +4,7 @@ const applyFilterToImageData = require('../helperFunctions/applyFilterToImageDat
 const Discord = require('discord.js')
 const FilterCommand = require('../FilterCommand')
 
-const command = new FilterCommand()
+const command = new FilterCommand(filter)
 command.name = 'greyscale'
 
 function filter(cxd) {
