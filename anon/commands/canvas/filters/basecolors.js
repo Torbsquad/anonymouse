@@ -2,9 +2,9 @@ const loadCanvasByImage = require('../helperFunctions/loadCanvasByImage')
 const applyFilterToImageData = require('../helperFunctions/applyFilterToImageData')
 
 const Discord = require('discord.js')
-const { Command } = require('vnftjs')
+const FilterCommand = require('../FilterCommand')
 
-const command = new Command()
+const command = new FilterCommand()
 command.name = 'basecolors'
 
 command.funct = async (bot, message, args) => {
