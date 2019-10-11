@@ -1,4 +1,3 @@
-const Discord = require('discord.js')
 const FilterCommand = require('../FilterCommand')
 
 const command = new FilterCommand(filter)
