@@ -1,25 +1,9 @@
-const loadCanvasByImage = require('../helperFunctions/loadCanvasByImage')
-const applyFilterToImageData = require('../helperFunctions/applyFilterToImageData')
-const getPixel = require('../helperFunctions/getPixel')
-const getIndex = require('../helperFunctions/getIndex')
-
-const Discord = require('discord.js')
-const { Command } = require('vnftjs')
-
-const command = new Command()
+const FilterCommand = require('../FilterCommand')
+const command = new FilterCommand(filter)
 command.name = 'edges2'
 
-command.funct = async (bot, message, args) => {
-  if (message.mentions.users.array().length) {
-    args = message.mentions.users.first().avatarURL
-  }
-
-  const canvas = await loadCanvasByImage(args || message.author.avatarURL)
-  applyFilterToImageData(canvas, filter)
-
-  const attachment = new Discord.Attachment(canvas.toBuffer(), `user ${message.author.username}.png`)
-  message.channel.send(``, attachment)
-}
+const getPixel = require('../helperFunctions/getPixel')
+const getIndex = require('../helperFunctions/getIndex')
 
 function filter(cxd) {
   let subPixelCount = Object.keys(cxd.data).length
