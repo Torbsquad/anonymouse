@@ -12,6 +12,10 @@ class FilterCommand extends Command {
   bind(filter) {
     if(filter.length > 1){
       this.funct = async (bot, message, args) => {
+        if (message.mentions.users.array().length) {
+          args = message.mentions.users.first().avatarURL
+        }
+
         const arrgs = args.split(' ')
         const canvas = await loadCanvasByImage(arrgs[1] || message.author.avatarURL)
         applyFilterToImageData(canvas, filter, arrgs[0])
@@ -22,6 +26,10 @@ class FilterCommand extends Command {
     }
     else{
       this.funct = async (bot, message, args) => {
+        if (message.mentions.users.array().length) {
+          args = message.mentions.users.first().avatarURL
+        }
+        
         const arrgs = args.split(' ')
         const canvas = await loadCanvasByImage(arrgs[0] || message.author.avatarURL)
         applyFilterToImageData(canvas, filter)
