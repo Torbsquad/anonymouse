@@ -1,5 +1,3 @@
-const loadCanvasByImage = require('../helperFunctions/loadCanvasByImage')
-const applyFilterToImageData = require('../helperFunctions/applyFilterToImageData')
 const getPixel = require('../helperFunctions/getPixel')
 const getIndex = require('../helperFunctions/getIndex')
 
