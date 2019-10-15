@@ -1,5 +1,4 @@
-const FilterCommand = require('../FilterCommand')
-
+const FilterCommand = require('../../FilterCommand')
 const command = new FilterCommand(filter)
 command.name = 'yellow'
 
