@@ -10,7 +10,7 @@ class FilterCommand extends Command {
   }
 
   bind(filter) {
-    if(filter.length > 1){
+    if (filter.length > 1) {
       this.funct = async (bot, message, args) => {
         if (message.mentions.users.array().length) {
           args = message.mentions.users.first().avatarURL
@@ -23,13 +23,12 @@ class FilterCommand extends Command {
         const attachment = new Discord.Attachment(canvas.toBuffer(), `FilterCommand-Image.png`)
         message.channel.send(``, attachment)
       }
-    }
-    else{
+    } else {
       this.funct = async (bot, message, args) => {
         if (message.mentions.users.array().length) {
           args = message.mentions.users.first().avatarURL
         }
-        
+
         const arrgs = args.split(' ')
         const canvas = await loadCanvasByImage(arrgs[0] || message.author.avatarURL)
         applyFilterToImageData(canvas, filter)
@@ -39,7 +38,6 @@ class FilterCommand extends Command {
       }
     }
   }
-
 }
 
 module.exports = FilterCommand
