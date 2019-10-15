@@ -1,13 +1,9 @@
-const loadCanvasByImage = require('../helperFunctions/loadCanvasByImage')
-const applyFilterToImageData = require('../helperFunctions/applyFilterToImageData')
-const getPixel = require('../helperFunctions/getPixel')
-const getIndex = require('../helperFunctions/getIndex')
-
-const Discord = require('discord.js')
 const FilterCommand = require('../FilterCommand')
-
 const command = new FilterCommand(filter)
 command.name = 'filterInv'
+
+const getPixel = require('../helperFunctions/getPixel')
+const getIndex = require('../helperFunctions/getIndex')
 
 function filter(cxd, arg = 1) {
   let subPixelCount = Object.keys(cxd.data).length
