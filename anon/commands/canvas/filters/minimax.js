@@ -1,22 +1,8 @@
-const loadCanvasByImage = require('../helperFunctions/loadCanvasByImage')
-const applyFilterToImageData = require('../helperFunctions/applyFilterToImageData')
-const getPixel = require('../helperFunctions/getPixel')
-const getIndex = require('../helperFunctions/getIndex')
-
-const Discord = require('discord.js')
-const { Command } = require('vnftjs')
-
-const command = new Command()
+const FilterCommand = require('../FilterCommand')
+const command = new FilterCommand(filter)
 command.name = 'minimax'
 
-command.funct = async (bot, message, args) => {
-  const arrgs = args.split(' ')
-  const canvas = await loadCanvasByImage(arrgs[1] || message.author.avatarURL)
-  applyFilterToImageData(canvas, filter, arrgs[0])
-
-  const attachment = new Discord.Attachment(canvas.toBuffer(), `user ${message.author.username}.png`)
-  message.channel.send(``, attachment)
-}
+const getIndex = require('../helperFunctions/getIndex')
 
 function filter(cxd, arg = 5) {
   var pixelsize = arg
