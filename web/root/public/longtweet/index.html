@@ -5,6 +5,7 @@ html, textarea{
 	background:rgb(01, 12, 23);
 	line-height:1.3125;
 	font-size:15px;
+	font-kerning: auto;
 }
 
 .marked{
@@ -19,10 +20,11 @@ html, textarea{
 
 #outputText{
 	background:rgb(21, 32, 43);
-	padding: 6px 4px;
-	width: 980px;
-	height: 544px;
+	padding: 8px 0px;
+	width: 988px;
+	height: 540px;
 	font-size: 30px;
+	font-weight:400;
 	word-break: break-word;
 }
 
@@ -36,7 +38,7 @@ h5{
 
 </style>
 <h5>Input:</h5>
-<textarea id="input" oninput="updateText()"></textarea>
+<textarea id="input" oninput="updateText()">Hello World! [o]This is a different color.[/o]</textarea>
 
 <div id="textBlock">
 	<h5>Rendering...</h5>
