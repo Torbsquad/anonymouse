@@ -1,87 +1,87 @@
 <style>
-html, textarea{
-	font-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
-	color:rgb(255,255,255);
-	background:rgb(01, 12, 23);
-	line-height:1.3125;
-	font-size:15px;
-	font-kerning: auto;
-}
+  html,
+  textarea {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+    color: rgb(255, 255, 255);
+    background: rgb(01, 12, 23);
+    line-height: 1.3125;
+    font-size: 15px;
+    font-kerning: auto;
+  }
 
-.marked{
-	color:rgb(27, 149, 224);
-}
+  .marked {
+    color: rgb(27, 149, 224);
+  }
 
-#input{
-	width:100%;
-	height:33%;
-	background:rgb(21, 32, 43);
-}
+  #input {
+    width: 100%;
+    height: 33%;
+    background: rgb(21, 32, 43);
+  }
 
-#outputText{
-	background:rgb(21, 32, 43);
-	padding: 8px 0px;
-	width: 988px;
-	height: 540px;
-	font-size: 30px;
-	font-weight:400;
-	word-break: break-word;
-}
+  #outputText {
+    background: rgb(21, 32, 43);
+    padding: 8px 0px;
+    width: 988px;
+    height: 540px;
+    font-size: 30px;
+    font-weight: 400;
+    word-break: break-word;
+  }
 
-h5{
-	margin:0;
-	margin-top:12px;
-	margin-bottom:6px;
-	font-weight: normal;
-	font-size:1.5em;
-}
-
+  h5 {
+    margin: 0;
+    margin-top: 12px;
+    margin-bottom: 6px;
+    font-weight: normal;
+    font-size: 1.5em;
+  }
 </style>
 <h5>Input:</h5>
 <textarea id="input" oninput="updateText()">Hello World! [o]This is a different color.[/o]</textarea>
 
 <div id="textBlock">
-	<h5>Rendering...</h5>
-	<div id="outputText"></div>
+  <h5>Rendering...</h5>
+  <div id="outputText"></div>
 </div>
 
 <div id="imageBlock">
-	<h5>Rendering done:</h5>
-	<div id="outputImage"></div>
+  <h5>Rendering done:</h5>
+  <div id="outputImage"></div>
 </div>
-	
+
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 <script>
-var input = document.getElementById("input")
-var outputText = document.getElementById("outputText")
-var outputImage = document.getElementById("outputImage")
-var textBlock = document.getElementById("textBlock")
-var imageBlock = document.getElementById("imageBlock")
+  var input = document.getElementById("input");
+  var outputText = document.getElementById("outputText");
+  var outputImage = document.getElementById("outputImage");
+  var textBlock = document.getElementById("textBlock");
+  var imageBlock = document.getElementById("imageBlock");
 
-async function updateText(){
-	show(textBlock)
-	hide(imageBlock)
-	
-	outputText.innerHTML = input.value
-		.replace(/\[o\]/g,'<span class="marked">')
-		.replace(/\[\/o\]/g,'</span>')
-		.replace(/\n/g,'</br>')
-		
-	var canvas = await html2canvas(outputText)
-	outputImage.innerHTML = ""
-	outputImage.appendChild(canvas)
+  async function updateText() {
+    show(textBlock);
+    hide(imageBlock);
 
-	hide(textBlock)
-	show(imageBlock)
-}
+    outputText.innerHTML = input.value
+      .replace(/\[o\]/g, '<span class="marked">')
+      .replace(/\[\/o\]/g, "</span>")
+      .replace(/\n/g, "</br>");
 
-function hide(el){
-	el.style.display = "none";
-}
-function show(el){
-	el.style.display = "";
-}
+    var canvas = await html2canvas(outputText);
+    outputImage.innerHTML = "";
+    outputImage.appendChild(canvas);
 
-updateText()
+    hide(textBlock);
+    show(imageBlock);
+  }
+
+  function hide(el) {
+    el.style.display = "none";
+  }
+  function show(el) {
+    el.style.display = "";
+  }
+
+  updateText();
 </script>
