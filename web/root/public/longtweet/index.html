@@ -1,5 +1,3 @@
-<!-- what -->
-
 <style>
 *{
 font-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
@@ -20,9 +18,10 @@ background:rgb(21, 32, 43);
 
 #outputText{
 background:rgb(21, 32, 43);
-padding:2px 4px;
-width: 486px;
-height: 274px;
+padding: 4px 8px;
+width: 972px;
+height: 548px;
+font-size: 2em;
 word-break: break-word;
 }
 
@@ -38,29 +37,47 @@ h5{
 <h5>Input:</h5>
 <textarea id="input" oninput="updateText()"></textarea>
 
-<h5>Output(Text):</h5>
-<div id="outputText"></div>
+<div id="textBlock">
+	<h5>Rendering...</h5>
+	<div id="outputText"></div>
+</div>
 
-<h5>Output(Image):</h5>
-<div id="outputImage"></div>
-
+<div id="imageBlock">
+	<h5>Rendering done:</h5>
+	<div id="outputImage"></div>
+</div>
+	
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 <script>
 var input = document.getElementById("input")
 var outputText = document.getElementById("outputText")
 var outputImage = document.getElementById("outputImage")
+var textBlock = document.getElementById("textBlock")
+var imageBlock = document.getElementById("imageBlock")
 
-function updateText(){
+async function updateText(){
+	show(textBlock)
+	hide(imageBlock)
+	
 	outputText.innerHTML = input.value
 		.replace(/\[o\]/g,'<span class="marked">')
 		.replace(/\[\/o\]/g,'</span>')
 		.replace(/\n/g,'</br>')
 		
-	html2canvas(outputText).then(function(canvas) {
-		outputImage.innerHTML = ""
-		outputImage.appendChild(canvas)
-	});
+	var canvas = await html2canvas(outputText)
+	outputImage.innerHTML = ""
+	outputImage.appendChild(canvas)
+
+	hide(textBlock)
+	show(imageBlock)
+}
+
+function hide(el){
+	el.style.display = "none";
+}
+function show(el){
+	el.style.display = "";
 }
 
 updateText()
