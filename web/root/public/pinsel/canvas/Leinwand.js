@@ -21,8 +21,8 @@ class Leinwand {
     for (let lineIndex in this.lines) {
       let line = this.lines[lineIndex]
       let lineCollision = line.collisionWithPoint(x, y)
-      if(lineCollision){
-        id = {lineIndex,lineCollision}
+      if (lineCollision) {
+        id = { lineIndex, lineCollision }
       }
     }
     return id

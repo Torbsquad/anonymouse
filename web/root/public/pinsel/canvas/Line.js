@@ -20,11 +20,11 @@ class Line {
   }
   collisionWithPoint(x, y) {
     let id = false
-    for(let dotIndex in this.dots) {
+    for (let dotIndex in this.dots) {
       let dot = this.dots[dotIndex]
       let dotCollision = dot.collisionWithPoint(x, y)
       console.log(dotIndex, dotCollision)
-      if(dotCollision){
+      if (dotCollision) {
         id = dotIndex
       }
     }

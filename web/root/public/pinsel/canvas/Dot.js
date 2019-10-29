@@ -5,6 +5,6 @@ class Dot {
     this.size = size
   }
   collisionWithPoint(x, y) {
-    return Math.sqrt((this.x-x)**2 + (this.y-y)**2) <= this.size
+    return Math.sqrt((this.x - x) ** 2 + (this.y - y) ** 2) <= this.size
   }
 }
