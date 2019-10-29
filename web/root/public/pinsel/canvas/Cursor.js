@@ -6,9 +6,10 @@ class Cursor {
     this.canvas.addEventListener('click', () => this.onclick(this))
   }
   onclick(el) {
+    let mouseX = event.offsetX
+    let mouseY = event.offsetY
     if (el.mode == 'select') {
-      console.log(5)
+      console.log(leinwand.collisionWithPoint(mouseX, mouseY))
     }
-    console.log(1 + 1)
   }
 }
