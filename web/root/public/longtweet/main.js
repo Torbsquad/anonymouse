@@ -9,8 +9,8 @@ async function updateText() {
   hide(imageBlock)
 
   outputText.innerHTML = input.value
-    .replace(/\[o\]/g, '<span class="marked">')
-    .replace(/\[\/o\]/g, '</span>')
+    .replace(/\[b\]/g, '<span class="marked">')
+    .replace(/\[\/b\]/g, '</span>')
     .replace(/\n/g, '</br>')
 
   var canvas = await html2canvas(outputText)
