@@ -4,7 +4,7 @@ class Dot {
     this.y = y
     this.size = size
   }
-  collisionWithMouse(mouseX, mouseY) {
-    
+  collisionWithPoint(x, y) {
+    return Math.sqrt((this.x-x)**2 + (this.y-y)**2) <= this.size
   }
 }

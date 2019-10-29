@@ -16,10 +16,15 @@ class Leinwand {
       line.draw(context)
     }
   }
-  collisionWithMouse(mouseX, mouseY) {
-    console.log("check")
-    for(let line of this.lines){
-      console.log(line)
+  collisionWithPoint(x, y) {
+    let id = false
+    for (let lineIndex in this.lines) {
+      let line = this.lines[lineIndex]
+      let lineCollision = line.collisionWithPoint(x, y)
+      if(lineCollision){
+        id = {lineIndex,lineCollision}
+      }
     }
+    return id
   }
 }

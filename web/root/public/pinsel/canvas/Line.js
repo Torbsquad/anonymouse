@@ -18,7 +18,16 @@ class Line {
       ctx.stroke()
     }
   }
-  collisionWithMouse(mouseX, mouseY) {
-    
+  collisionWithPoint(x, y) {
+    let id = false
+    for(let dotIndex in this.dots) {
+      let dot = this.dots[dotIndex]
+      let dotCollision = dot.collisionWithPoint(x, y)
+      console.log(dotIndex, dotCollision)
+      if(dotCollision){
+        id = dotIndex
+      }
+    }
+    return id
   }
 }
