@@ -13,7 +13,8 @@ function round(x, digits) {
 }
 async function main() {
   let e = await axios.get('https://api.vnft.cc/twitter/all_followers')
-  for (let data of e.data) {
+  let datas = e.data.sort(e=>(a,b)=>{a.still_following > b.still_following})
+  for (let data of datas) {
     var entry = document.createElement('div')
     entry.className = 'entry'
     mainContainer.appendChild(entry)
@@ -37,9 +38,8 @@ async function main() {
     content.className = 'contentarea'
     entry.appendChild(content)
 
-    let entryContent = `<a href="https://twitter.com/${data.screen_name}">${
-      data.name
-    }</a> <a class="sidenote" href="https://twitter.com/${data.screen_name}">@${data.screen_name}</a>
+    let entryContent = `<a href="https://twitter.com/${data.screen_name}">${data.name}</a>
+        <a class="sidenote" href="https://twitter.com/${data.screen_name}">@${data.screen_name}</a>
         Followers: ${data.followers}
         Following: ${data.following}
         Follow-Rate: ${round(data.followers / data.following, 2)}
