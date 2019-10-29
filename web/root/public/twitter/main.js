@@ -13,7 +13,9 @@ function round(x, digits) {
 }
 async function main() {
   let e = await axios.get('https://api.vnft.cc/twitter/all_followers')
-  let datas = e.data.sort(e=>(a,b)=>{a.still_following > b.still_following})
+  let datas = e.data.sort(e => (a, b) => {
+    a.still_following > b.still_following
+  })
   for (let data of datas) {
     var entry = document.createElement('div')
     entry.className = 'entry'
