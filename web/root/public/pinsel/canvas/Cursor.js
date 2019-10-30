@@ -1,6 +1,5 @@
 class Cursor {
   constructor(leinwand) {
-    this.mode = 'select'
     this.leinwand = leinwand
     this.canvas = leinwand.canvas
     this.canvas.addEventListener('click', () => this.onclick(this))
@@ -11,5 +10,8 @@ class Cursor {
     if (el.mode == 'select') {
       console.log(leinwand.collisionWithPoint(mouseX, mouseY))
     }
+  }
+  get mode() {
+    return this.leinwand.mode
   }
 }

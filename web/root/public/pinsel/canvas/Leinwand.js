@@ -5,6 +5,7 @@ class Leinwand {
     this.canvas.height = '500'
     this.canvas.style.background = 'white'
     this.cursor = new Cursor(this)
+    this.toolbar = new Toolbar(this)
     this.lines = []
   }
   addLine(line) {
@@ -26,5 +27,11 @@ class Leinwand {
       }
     }
     return id
+  }
+  set mode(value) {
+    this.toolbar.mode = value
+  }
+  get mode() {
+    return this.toolbar.mode
   }
 }
