@@ -3,17 +3,15 @@ async function url2Base64(url) {
   return Buffer.from(imageFromUrl.data, 'binary').toString('base64')
 }
 
-function tweetImage(base64image) {
-  var b64content = base64image
-  T.post('media/upload', { media_data: b64content }, function(err, data, response) {
-    var mediaId = data.media_id_string
-    T.post('media/metadata/create', { media_id: mediaId }, function(err, data, response) {
-      if (!err) {
-        var params = { status: 'this tweet should not have a alt-tag to it', media_ids: [mediaId] }
-        T.post('statuses/update', params, function(err, data, response) {
-          console.log(data)
-        })
-      }
+function tweetImage(base64image, status = ' ') {
+  T.post('media/upload', { media_data: base64image }, function(err, data, response) {
+    var media_id = data.media_id_string
+    T.post('media/metadata/create', { media_id }, function(err, data, response) {
+      if (err) return false
+      var params = { status, media_ids: [media_id] }
+      T.post('statuses/update', params, function(err, data, response) {
+        console.log(data)
+      })
     })
   })
 }
