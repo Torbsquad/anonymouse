@@ -1,5 +1,6 @@
 require('./anon/main.js')
 require('./chocobot/main.js')
 require('./web/rooter.js')
-require('./nazrin/index.js')
-require('./kuu/main.js')
+require('./miscbots/nazrin/index.js')
+require('./miscbots/kuu/main.js')
+require('./miscbots/vnft/main.js')
