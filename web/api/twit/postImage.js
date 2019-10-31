@@ -1,3 +1,4 @@
+/*
 async function url2Base64(url) {
   let imageFromUrl = await axios.get(url, { responseType: 'arraybuffer' })
   return Buffer.from(imageFromUrl.data, 'binary').toString('base64')
@@ -18,3 +19,4 @@ function tweetImage(base64image, status = ' ') {
 
 let img = await url2Base64('https://cdn.discordapp.com/attachments/442743346079858692/638435374024359946/unknown.png')
 //tweetImage(img)
+*/
