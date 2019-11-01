@@ -1,5 +1,5 @@
 const { Command } = require('vnftjs')
-const pg = require('../../db')
+const pg = require('../../../db')
 const axios = require('axios')
 const { sleep } = require('vnft-tools')
 let fetchStrike = new Command()
