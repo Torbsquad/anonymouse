@@ -1,4 +1,4 @@
-const nazrin = require('../../../nazrin')
+const nazrin = require('./nazrin')
 
 const { Site } = require('vnft-tools')
 const site = new Site('/nazrin/coffee')
