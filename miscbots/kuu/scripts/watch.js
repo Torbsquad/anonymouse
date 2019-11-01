@@ -1,5 +1,5 @@
 const { Script } = require('vnftjs')
-const pg = require('../../db')
+const pg = require('../../../db')
 const axios = require('axios')
 
 let fetchStrike = new Script()
