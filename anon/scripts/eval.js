@@ -22,7 +22,17 @@ function evalorino(el) {
   var schleep = 'var sleep = time=>new Promise((res,rej)=>{setTimeout(function(){res()},time*1000)})\n'
   if (el.includes('//sync')) {
     eval(schleep + el)
-  } else {
+  } else if(el.includes('//canvas')){
+    eval(schleep + `async function main(){try{
+      const canvas = Canvas.createCanvas(500, 300)
+      const ctx = canvas.getContext('2d')
+      ${el}
+      const attachment = new Discord.Attachment(canvas.toBuffer(), evalresult.png)
+      message.channel.send(args, attachment)
+    }catch(err){
+      message.reply(err.message)
+    }}main()`)
+  } else{
     eval(schleep + `async function main(){try{${el}}catch(err){message.reply(err.message)}}main()`)
   }
 }
