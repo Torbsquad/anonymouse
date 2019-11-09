@@ -30,7 +30,7 @@ function evalorino(el) {
       const ctx = canvas.getContext('2d')
       ${el}
       const attachment = new Discord.Attachment(canvas.toBuffer(), "evalresult.png")
-      message.channel.send(args, attachment)
+      message.channel.send("Eval-Canvas:", attachment)
     }catch(err){
       message.reply(err.message)
     }}main()`)
