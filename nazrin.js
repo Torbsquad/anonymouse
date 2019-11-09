@@ -1,1 +1,1 @@
-module.exports = require("./miscbots/nazrin")
+module.exports = require('./miscbots/nazrin')
