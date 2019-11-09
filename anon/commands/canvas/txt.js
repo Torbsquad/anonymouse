@@ -11,6 +11,8 @@ command.funct = async (bot, message, args) => {
 
   ctx.fillStyle = "white"
   ctx.font = "2em sans-serif"
+  ctx.textBaseline = "Top"
+  ctx.textAlign = "left"
   ctx.fillText(args,10,10)
 
   const attachment = new Discord.Attachment(canvas.toBuffer(), `a.png`)
