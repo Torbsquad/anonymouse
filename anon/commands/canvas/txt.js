@@ -9,6 +9,8 @@ command.funct = async (bot, message, args) => {
   const canvas = Canvas.createCanvas(100, 100)
   const ctx = canvas.getContext('2d')
 
+  ctx.fillStyle = "white"
+  ctx.font = "2em sans-serif"
   ctx.fillText(args,10,10)
 
   const attachment = new Discord.Attachment(canvas.toBuffer(), `a.png`)
