@@ -30,10 +30,10 @@ const TRANSLATIONS = {
   Race: [
     'Missing No. 0',
     'likely Hyur',
-    'likely Elezen',
+    'Elezen',
     'Lalafell',
     "Miqo'te",
-    'likely Roegadyn',
+    'Roegadyn',
     'Au Ra',
     'likely Hrothgar',
     'likely Viera'
