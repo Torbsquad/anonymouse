@@ -1,5 +1,6 @@
 const pg = require('../../db')
 const { Script } = require('vnftjs')
+const { sleep } = require('vnft-tools')
 const { get } = require('axios')
 const { RichEmbed } = require('discord.js')
 
@@ -94,7 +95,8 @@ spy.funct = async bot => {
         let text = before == after ? after : `${before} **⇛ ${after}**`
         response.addField(label, text)
       }
-
+      
+      await sleep(10)
       channel.send('', { embed: response })
       channel.send({ file: char.Portrait.split('?')[0] })
 
