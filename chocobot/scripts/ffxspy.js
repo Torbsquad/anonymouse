@@ -26,7 +26,17 @@ const FCPREFIX = 'Free Company-'
 
 const TRANSLATIONS = {
   Gender: ['Genderless', 'Male', 'Female'],
-  Race: ['Missing No. 0', 1, 2, 'Lalafell', "Miqo'te", 5, 'Au Ra'],
+  Race: [
+    'Missing No. 0',
+    'likely Hyur',
+    'likely Elezen',
+    'Lalafell',
+    "Miqo'te",
+    'likely Roegadyn',
+    'Au Ra',
+    'likely Hrothgar',
+    'likely Viera'
+  ],
 }
 
 async function pg_get() {
