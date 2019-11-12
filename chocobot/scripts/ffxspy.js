@@ -50,6 +50,7 @@ async function pg_set(value) {
 
 const spy = new Script()
 spy.intervalTime = 120000 * 2
+
 spy.funct = async bot => {
   const channel = bot.channels.find(c => c.id == TARGET_CHANNEL)
   const data = await pg_get()
@@ -96,7 +97,7 @@ spy.funct = async bot => {
         response.addField(label, text)
       }
       
-      await sleep(10)
+      await sleep(10000)
       channel.send('', { embed: response })
       channel.send({ file: char.Portrait.split('?')[0] })
 
