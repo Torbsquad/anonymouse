@@ -26,16 +26,16 @@ function evalorino(el) {
     eval(
       schleep +
         `async function main(){try{
-      const Discord = require('discord.js')
-      const Canvas = require('canvas')
-      const canvas = Canvas.createCanvas(500, 300)
-      const ctx = canvas.getContext('2d')
-      ${el}
-      const attachment = new Discord.Attachment(canvas.toBuffer(), "evalresult.png")
-      message.channel.send("Eval-Canvas:", attachment)
-    }catch(err){
-      message.reply(err.message)
-    }}main()`,
+          const Discord = require('discord.js')
+          const Canvas = require('canvas')
+          const canvas = Canvas.createCanvas(500, 300)
+          const ctx = canvas.getContext('2d')
+          ${el}
+          const attachment = new Discord.Attachment(canvas.toBuffer(), "evalresult.png")
+          message.channel.send("Eval-Canvas:", attachment)
+        }catch(err){
+          message.reply(err.message)
+        }}main()`,
     )
   } else {
     eval(schleep + `async function main(){try{${el}}catch(err){message.reply(err.message)}}main()`)
