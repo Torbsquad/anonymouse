@@ -5,8 +5,8 @@ class Toolbar {
     this.mode = 'select'
   }
   addTool(name) {
-    let tool = new Tool()
-    tool.element.innerHTML = name
+    let tool = new Tool(this.leinwand)
+    tool.name = name
     this.element.appendChild(tool.element)
   }
 }

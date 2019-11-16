@@ -29,6 +29,7 @@ class Leinwand {
     return id
   }
   set mode(value) {
+    console.log(value)
     this.toolbar.mode = value
   }
   get mode() {
