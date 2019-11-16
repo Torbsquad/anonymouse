@@ -36,7 +36,7 @@ const TRANSLATIONS = {
     'Roegadyn',
     'Au Ra',
     'likely Hrothgar',
-    'likely Viera'
+    'likely Viera',
   ],
 }
 
@@ -96,7 +96,7 @@ spy.funct = async bot => {
         let text = before == after ? after : `${before} **⇛ ${after}**`
         response.addField(label, text)
       }
-      
+
       await sleep(10000)
       channel.send('', { embed: response })
       channel.send({ file: char.Portrait.split('?')[0] })

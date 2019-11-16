@@ -22,8 +22,10 @@ function evalorino(el) {
   var schleep = 'var sleep = time=>new Promise((res,rej)=>{setTimeout(function(){res()},time*1000)})\n'
   if (el.includes('//sync')) {
     eval(schleep + el)
-  } else if(el.includes('//canvas')){
-    eval(schleep + `async function main(){try{
+  } else if (el.includes('//canvas')) {
+    eval(
+      schleep +
+        `async function main(){try{
       const Discord = require('discord.js')
       const Canvas = require('canvas')
       const canvas = Canvas.createCanvas(500, 300)
@@ -33,8 +35,9 @@ function evalorino(el) {
       message.channel.send("Eval-Canvas:", attachment)
     }catch(err){
       message.reply(err.message)
-    }}main()`)
-  } else{
+    }}main()`,
+    )
+  } else {
     eval(schleep + `async function main(){try{${el}}catch(err){message.reply(err.message)}}main()`)
   }
 }
