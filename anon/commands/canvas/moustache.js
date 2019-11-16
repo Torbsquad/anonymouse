@@ -13,7 +13,7 @@ command.funct = async (bot, message, args) => {
 
   const canvas = await loadCanvasByImage(args || message.author.avatarURL)
   const ctx = canvas.getContext('2d')
-  const moustache = await Canvas.loadImage('./anon/img/moustache.png')
+  const moustache = await Canvas.loadImage('../../img/moustache.png')
   ctx.drawImage(moustache, 0, 0, canvas.width, canvas.height)
 
   const attachment = new Discord.Attachment(canvas.toBuffer(), `user ${message.author.username}.png`)
