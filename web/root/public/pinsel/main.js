@@ -44,8 +44,8 @@ function main() {
     l.addDot(50 + i, 50 + Math.sqrt(i) * 20, size * Math.sin(i / 10) * 1 + size * 1.5)
   }
 
-  leinwand.toolbar.addTool("select")
-  leinwand.toolbar.addTool("draw")
+  leinwand.toolbar.addTool('select')
+  leinwand.toolbar.addTool('draw')
 
   leinwand.draw()
 }

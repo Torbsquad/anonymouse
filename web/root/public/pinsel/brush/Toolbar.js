@@ -1,7 +1,7 @@
 class Toolbar {
   constructor(leinwand) {
     this.leinwand = leinwand
-    this.element = document.getElementById("toolbar")
+    this.element = document.getElementById('toolbar')
     this.mode = 'select'
   }
   addTool(name) {
