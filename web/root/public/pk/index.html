@@ -32,10 +32,10 @@ effectmap = [
   [2, 1, 2, 2, 2, 2, 4, 1, 2, 2, 2, 2, 2, 2, 4, 4, 1, 2]
 ]
 
-for( let attackIndex in types ){
-  let attackType = types[attackIndex]
+for( var attackIndex in types ){
+  var attackType = types[attackIndex]
   effectivity[attackType] = {}
-  for( let defendIndex in types ){
+  for( var defendIndex in types ){
     let defendType = types[defendIndex]
     effectivity[defendType] = effectivity[attackIndex][defendIndex]
   }
