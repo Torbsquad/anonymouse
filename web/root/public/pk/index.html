@@ -37,7 +37,7 @@ for( var attackIndex in types ){
   effectivity[attackType] = {}
   for( var defendIndex in types ){
     let defendType = types[defendIndex]
-    effectivity[defendType] = effectivity[attackIndex][defendIndex]
+    effectivity[attackIndex] = effectmap[attackIndex][defendIndex]
   }
 }
 
