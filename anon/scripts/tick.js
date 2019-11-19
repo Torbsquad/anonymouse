@@ -9,7 +9,7 @@ function tick(bot){
 
 script.funct = async bot => {
   await sleep(10000)
-  setInterval(function(){tick(bot)},5000)
+  setInterval(function(){tick(bot)},990)
 }
 
 module.exports = script
