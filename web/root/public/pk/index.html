@@ -7,12 +7,10 @@
   }
 </style>
 
-<table id="effectivity" border="1">
-
-</table>
+<table id="effectivity" border="1"></table>
 
 <script>
-  var effectivityTable = document.getElementById("effectivity")
+  var effectivityTable = document.getElementById('effectivity')
 
   // effectivity.attack.defend
 
@@ -69,9 +67,9 @@
     }
   }
 
-  for(let attacker in effectivity){
-    let row = document.createElement("tr")
-    let cell = document.createElement("td")
+  for (let attacker in effectivity) {
+    let row = document.createElement('tr')
+    let cell = document.createElement('td')
     row.appendChild(cell)
     cell.innerHTML = attacker
     effectivityTable.appendChild(row)
