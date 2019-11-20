@@ -5,7 +5,13 @@
   }
 </style>
 
+<table id="effectivity">
+
+</table>
+
 <script>
+  var effectivityTable = document.getElementById("effectivity")
+
   // effectivity.attack.defend
 
   effectivity = {}
@@ -59,6 +65,14 @@
       let defendType = types[defendIndex]
       effectivity[attackType][defendType] = effectmap[attackIndex][defendIndex]
     }
+  }
+
+  for(let attacker of effectivity){
+    let row = document.createElement("tr")
+    let cell = document.createElement("td")
+    row.appendChild(cell)
+    cell.innerHTML = attacker
+    effectivityTable.appendChild(row)
   }
 
   console.log(effectivity)
