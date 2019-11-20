@@ -67,6 +67,15 @@
     }
   }
 
+
+  var row = document.createElement('tr')
+  for (let defender in effectivity) {
+    let cell = document.createElement('td')
+    row.appendChild(cell)
+    cell.innerHTML = defender
+  }
+  effectivityTable.appendChild(row)
+
   for (let attacker in effectivity) {
     let row = document.createElement('tr')
     let cell = document.createElement('td')
