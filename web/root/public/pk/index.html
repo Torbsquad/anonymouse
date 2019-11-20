@@ -73,16 +73,23 @@
   row.appendChild(cell)
   for (let defender in effectivity) {
     let cell = document.createElement('td')
-    row.appendChild(cell)
     cell.innerHTML = defender
+    row.appendChild(cell)
   }
   effectivityTable.appendChild(row)
 
-  for (let attacker in effectivity) {
-    let row = document.createElement('tr')
+  for (var attacker in effectivity) {
+    var row = document.createElement('tr')
     let cell = document.createElement('td')
-    row.appendChild(cell)
     cell.innerHTML = attacker
+    row.appendChild(cell)
+
+    for (var defender in effectivity) {
+      let cell = document.createElement('td')
+      cell.innerHTML = effectivity[attacker][defender]
+      row.appendChild(cell)
+    }
+
     effectivityTable.appendChild(row)
   }
 
