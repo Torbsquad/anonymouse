@@ -58,6 +58,13 @@
     [2, 1, 2, 2, 2, 2, 4, 1, 2, 2, 2, 2, 2, 2, 4, 4, 1, 2],
   ].map(e => e.map(f => f / 2))
 
+  effectcolor = {
+    "0": "grey",
+    "0.5": "red",
+    "1": "yellow",
+    "2": "green"
+  }
+  
   for (var attackIndex in types) {
     var attackType = types[attackIndex]
     effectivity[attackType] = {}
@@ -67,7 +74,7 @@
     }
   }
 
-  // very first row of table, with the defenders names
+  // defenders names; the very first row of table
   var row = document.createElement('tr')
   let cell = document.createElement('td')
   row.appendChild(cell)
@@ -79,7 +86,7 @@
   effectivityTable.appendChild(row)
 
   for (var attacker in effectivity) {
-    // first cell of the row with the attackers names
+    // attackers names; the first cell of the row
     var row = document.createElement('tr')
     let cell = document.createElement('td')
     cell.innerHTML = attacker
@@ -87,8 +94,10 @@
 
     // 0, 0.5, 1, 2 of the tables; the effectivity of attacker to defender
     for (var defender in effectivity) {
+      let effect = effectivity[attacker][defender]
       let cell = document.createElement('td')
-      cell.innerHTML = effectivity[attacker][defender]
+      cell.style.background = effectcolor[effect]
+      cell.innerHTML = effect
       row.appendChild(cell)
     }
 
