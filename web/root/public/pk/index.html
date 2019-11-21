@@ -67,7 +67,7 @@
     }
   }
 
-
+  // very first row of table, with the defenders names
   var row = document.createElement('tr')
   let cell = document.createElement('td')
   row.appendChild(cell)
@@ -79,11 +79,13 @@
   effectivityTable.appendChild(row)
 
   for (var attacker in effectivity) {
+    // first cell of the row with the attackers names
     var row = document.createElement('tr')
     let cell = document.createElement('td')
     cell.innerHTML = attacker
     row.appendChild(cell)
 
+    // 0, 0.5, 1, 2 of the tables; the effectivity of attacker to defender
     for (var defender in effectivity) {
       let cell = document.createElement('td')
       cell.innerHTML = effectivity[attacker][defender]
