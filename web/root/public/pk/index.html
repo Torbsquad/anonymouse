@@ -5,9 +5,20 @@
     color: white;
     font-family: Arial, Helvetica, sans-serif;
   }
+  table, tr, td{
+    border-collapse: collapse;
+    padding: 3px;
+    border: 1px solid white;
+  }
+  .types{
+    min-height: 24px;
+  }
+  .effectivity{
+    text-align: center;
+  }
 </style>
 
-<table id="effectivity" border="1"></table>
+<table id="effectivity"></table>
 
 <script>
   var effectivityTable = document.getElementById('effectivity')
@@ -59,10 +70,10 @@ types = [
   ].map(e => e.map(f => f / 2))
 
   effectcolor = {
-    "0": "grey",
-    "0.5": "red",
-    "1": "yellow",
-    "2": "green"
+    "0": "#3d3d3d",
+    "0.5": "#e50d0d",
+    "1": "#6cba71",
+    "2": "#098b29"
   }
   
   for (var attackIndex in types) {
@@ -81,7 +92,8 @@ types = [
   for (let defender in effectivity) {
     let cell = document.createElement('td')
     let img = document.createElement('img')
-    img.src = './img/'+defender.toLocaleLowerCase()+'.png'
+    img.className = "types"
+    img.src = `./img/${defender.toLocaleLowerCase()}.png`
     cell.appendChild(img)
     row.appendChild(cell)
   }
@@ -90,10 +102,10 @@ types = [
   for (var attacker in effectivity) {
     // attackers names; the first cell of the row
     var row = document.createElement('tr')
-    
     let cell = document.createElement('td')
     let img = document.createElement('img')
-    img.src = './img/'+defender.toLocaleLowerCase()+'.png'
+    img.className = "types"
+    img.src = `./img/${attacker.toLocaleLowerCase()}.png`
     cell.appendChild(img)
     row.appendChild(cell)
 
@@ -101,6 +113,7 @@ types = [
     for (var defender in effectivity) {
       let effect = effectivity[attacker][defender]
       let cell = document.createElement('td')
+      cell.className = "effectivity"
       cell.style.background = effectcolor[effect]
       cell.innerHTML = effect
       row.appendChild(cell)
