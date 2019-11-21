@@ -16,26 +16,26 @@
 
   effectivity = {}
 
-  types = [
-    'Normal',
-    'Fire',
-    'Water',
-    'Electric',
-    'Grass',
-    'Ice',
-    'Fighting',
-    'Poison',
-    'Ground',
-    'Flying',
-    'Psychic',
-    'Bug',
-    'Rock',
-    'Ghost',
-    'Dragon',
-    'Dark',
-    'Steel',
-    'Fairy',
-  ]
+  types = {
+    'Normal': 'brown',
+    'Fire': 'red',
+    'Water': 'blue',
+    'Electric': 'yellow',
+    'Grass': 'green',
+    'Ice': 'lightblue',
+    'Fighting': 'brown',
+    'Poison': 'purple',
+    'Ground': 'brown',
+    'Flying': 'lightblue',
+    'Psychic': 'pink',
+    'Bug': 'cyan',
+    'Rock': 'brown',
+    'Ghost': 'grey',
+    'Dragon': 'darkblue',
+    'Dark': 'darkgrey',
+    'Steel': 'lightgrey',
+    'Fairy': 'pink'
+  }
 
   effectmap = [
     [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 2, 2, 1, 2],
@@ -65,11 +65,11 @@
     "2": "green"
   }
   
-  for (var attackIndex in types) {
+  for (var attackIndex in Object.keys(types)) {
     var attackType = types[attackIndex]
-    effectivity[attackType] = {}
-    for (var defendIndex in types) {
-      let defendType = types[defendIndex]
+    effectivity[attackType.type] = {}
+    for (var defendIndex in Object.keys(types)) {
+      let defendType = types[defendIndex].type
       effectivity[attackType][defendType] = effectmap[attackIndex][defendIndex]
     }
   }
@@ -80,6 +80,7 @@
   row.appendChild(cell)
   for (let defender in effectivity) {
     let cell = document.createElement('td')
+    cell.style.background = effectcolor[defender]
     cell.innerHTML = defender
     row.appendChild(cell)
   }
@@ -89,6 +90,7 @@
     // attackers names; the first cell of the row
     var row = document.createElement('tr')
     let cell = document.createElement('td')
+    cell.style.background = effectcolor[attacker]
     cell.innerHTML = attacker
     row.appendChild(cell)
 
