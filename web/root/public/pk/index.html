@@ -80,8 +80,9 @@ types = [
   row.appendChild(cell)
   for (let defender in effectivity) {
     let cell = document.createElement('td')
-    cell.style.background = effectcolor[defender]
-    cell.innerHTML = defender
+    let img = document.createElement('img')
+    img.src = './img/'+defender.toLocaleLowerCase()+'.png'
+    cell.appendChild(img)
     row.appendChild(cell)
   }
   effectivityTable.appendChild(row)
@@ -89,9 +90,11 @@ types = [
   for (var attacker in effectivity) {
     // attackers names; the first cell of the row
     var row = document.createElement('tr')
+    
     let cell = document.createElement('td')
-    cell.style.background = effectcolor[attacker]
-    cell.innerHTML = attacker
+    let img = document.createElement('img')
+    img.src = './img/'+defender.toLocaleLowerCase()+'.png'
+    cell.appendChild(img)
     row.appendChild(cell)
 
     // 0, 0.5, 1, 2 of the tables; the effectivity of attacker to defender
