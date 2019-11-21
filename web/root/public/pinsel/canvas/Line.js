@@ -6,16 +6,12 @@ class Line {
   addDot(x, y, size) {
     let dot = new Dot(x, y, size)
     this.dots.push(dot)
+    return dot
   }
   draw(ctx) {
     ctx.strokeStyle = this.color
     for (var dot of this.dots) {
-      ctx.lineCap = 'round'
-      ctx.lineWidth = dot.size
-      ctx.beginPath()
-      ctx.moveTo(dot.x, dot.y)
-      ctx.lineTo(dot.x + 0.4, dot.y + 0.4)
-      ctx.stroke()
+      dot.draw(ctx)
     }
   }
   collisionWithPoint(x, y) {
