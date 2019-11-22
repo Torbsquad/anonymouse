@@ -9,7 +9,9 @@ function tick(bot) {
 }
 
 function currentTime(){
-  let time = new Date().toString().split(" ")[4]
+  let time = new Date()
+  time.setHours(time.getHours()+1)
+  time = time.toString().split(" ")[4]
   time = time.split(":")
   time.shift()
   time = time.join(":")
