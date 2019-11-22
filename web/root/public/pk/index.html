@@ -12,6 +12,9 @@ td {
   padding: 3px;
   border: 1px solid white;
 }
+table{
+  margin:3px;
+}
 .types {
   min-height: 24px;
 }
@@ -21,11 +24,11 @@ td {
 </style>
 
 <table id="effectivity"></table>
-<table id="dualtype"></table>
+<table id="dualtypetable"></table>
 
 <script>
 var effectivityTable = document.getElementById("effectivity");
-var dualtypeTable = document.getElementById("dualtype");
+var dualtypeTable = document.getElementById("dualtypetable");
 
 // effectivity-table
 // effectivity.attack.defend
@@ -129,10 +132,34 @@ for (var attacker in effectivity) {
 
 // dualtype table
 // top left
+dualtypeSelection = ["Normal","Flying"]
 let tr = document.createElement("tr")
 let td = document.createElement("td")
 tr.appendChild(td)
 dualtypeTable.appendChild(tr)
+for (var selection of dualtypeSelection) {
+  // init type-rows
+  let td = document.createElement("td")
+  let img = document.createElement("img")
+  console.log(selection)
+  let type = types.find(e=>e.type==selection)
+  let imageUrl = `./img/${type.type.toLocaleLowerCase()}.png`
+  img.className = "types";
+  img.src = imageUrl
+  td.appendChild(img)
+  tr.appendChild(td)
+  dualtypeTable.appendChild(tr)
+}
+let result = document.createElement("td")
+for(var selection of dualtypeSelection){
+  let img = document.createElement("img")
+  let type = types.find(e=>e.type==selection)
+  let imageUrl = `./img/${type.type.toLocaleLowerCase()}.png`
+  img.className = "types";
+  img.src = imageUrl
+  result.appendChild(img)
+}
+tr.appendChild(result)
 
 for (var type of types) {
   // init type-rows
@@ -144,38 +171,47 @@ for (var type of types) {
   img.src = imageUrl
   td.appendChild(img)
   tr.appendChild(td)
+  for(var index in dualtypeSelection){
+	let td = document.createElement("td")
+	td.className =  "singleType"
+	td.id = type.type + "+" + index
+	td.name = type
+	td.innerHTML = "singleType "+index
+	tr.appendChild(td)
+  }
+  let resulttd = document.createElement("td")
+  resulttd.id = type.type
+  resulttd.className = "dualType"
+  tr.appendChild(resulttd)
+  
   dualtypeTable.appendChild(tr)
 }
 
-dualtypeSelection = ["Normal","Flying"]
-  
-for (var type of dualtypeSelection) {
-  // init type-rows
-  let tr = document.createElement("tr")
-  let td = document.createElement("td")
-  let img = document.createElement("img")
-  let imageUrl = `./img/${type.type.toLocaleLowerCase()}.png`
-  img.className = "types";
-  img.src = imageUrl
-  td.appendChild(img)
-  tr.appendChild(td)
-  dualtypeTable.appendChild(tr)
+function updateDualType(){
+  var singleTypes = Array.from(document.getElementsByClassName("singleType"))
+  for(let el of singleTypes){
+	let cellId = el.id.split("+")
+	let attacker = cellId[0]
+	let defender = dualtypeSelection[cellId[1]]
+	effect = effectivity[attacker][defender]
+    el.className = "effectivity";
+    el.style.background = effectcolor[effect];
+    el.innerHTML = effect;
+  }
+  var dualTypes = Array.from(document.getElementsByClassName("dualType"))
+  for(let el of dualTypes){
+	let effect = 1
+	let attacker = el.id
+	for ( let defender of dualtypeSelection ) {
+		console.log(attacker)
+		effect *= effectivity[attacker][defender]
+	}
+    el.className = "effectivity";
+    el.style.background = effectcolor[effect];
+    el.innerHTML = effect;
+  }
 }
 
-  /*
-  let td = document.createElement("td")
+updateDualType()
 
-  tr.appendChild(td)
-    
-  let img = document.createElement("img")
-  let imageUrl = `./img/${type.type.toLocaleLowerCase()}.png`
-  img.className = "types";
-  img.src = imageUrl
-  
-  td.appendChild(img)
-  
-  */
-  
-resetDualtype(dualtypeTable,0)
-resetDualtype(dualtypeTable,1)
 </script>
