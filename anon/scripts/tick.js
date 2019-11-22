@@ -34,6 +34,7 @@ function getTimeUntil(hh,mm=0){
 
 script.funct = async bot => {
   await sleep(10000)
+  tick(bot)
   setInterval(function() {
     tick(bot)
   }, 30000)
