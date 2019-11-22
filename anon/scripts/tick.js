@@ -10,7 +10,7 @@ function tick(bot) {
 
 function currentTime(){
   let time = new Date().toString().split(" ")[4]
-  time = activity.split(":")
+  time = time.split(":")
   time.shift()
   time = time.join(":")
   return time
