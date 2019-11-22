@@ -21,12 +21,14 @@ td {
 </style>
 
 <table id="effectivity"></table>
+<table id="dualtype"></table>
 
 <script>
 var effectivityTable = document.getElementById("effectivity");
+var dualtypeTable = document.getElementById("dualtype");
 
+// effectivity-table
 // effectivity.attack.defend
-
 effectivity = {};
 
 types = [
@@ -124,5 +126,17 @@ for (var attacker in effectivity) {
   effectivityTable.appendChild(row);
 }
 
-console.log(effectivity);
+
+// dualtype table
+function initColumn(element, column){
+  for (var type of types) {
+    let imageUrl = `./img/${type.type.toLocaleLowerCase()}.png`
+    let img = document.createElement("img")
+    img.src = imageUrl
+    element.appendChild(img)
+  }
+}
+
+initColumn(dualtypeTable, 0)
+initColumn(dualtypeTable, 1)
 </script>
