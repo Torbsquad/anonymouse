@@ -78,9 +78,11 @@ effectmap = [
 
 effectcolor = {
   "0": "#3d3d3d",
+  "0.25": "#e50d0d",
   "0.5": "#e50d0d",
   "1": "#6cba71",
-  "2": "#098b29"
+  "2": "#098b29",
+  "4": "#098b29"
 };
 
 for (var attackIndex in types) {
@@ -136,15 +138,16 @@ dualtypeSelection = ["Normal","Flying"]
 let tr = document.createElement("tr")
 let td = document.createElement("td")
 tr.appendChild(td)
+
+
 dualtypeTable.appendChild(tr)
 for (var selection of dualtypeSelection) {
-  // init type-rows
   let td = document.createElement("td")
   let img = document.createElement("img")
   console.log(selection)
   let type = types.find(e=>e.type==selection)
   let imageUrl = `./img/${type.type.toLocaleLowerCase()}.png`
-  img.className = "types";
+  img.className = "types selectionSingle";
   img.src = imageUrl
   td.appendChild(img)
   tr.appendChild(td)
@@ -155,25 +158,26 @@ for(var selection of dualtypeSelection){
   let img = document.createElement("img")
   let type = types.find(e=>e.type==selection)
   let imageUrl = `./img/${type.type.toLocaleLowerCase()}.png`
-  img.className = "types";
+  img.className = "types selectionMultiple";
   img.src = imageUrl
   result.appendChild(img)
 }
 tr.appendChild(result)
 
 for (var type of types) {
-  // init type-rows
   let tr = document.createElement("tr")
   let td = document.createElement("td")
   let img = document.createElement("img")
   let imageUrl = `./img/${type.type.toLocaleLowerCase()}.png`
   img.className = "types";
+  img.id = type.type
+  img.onclick = pushDualTyping
   img.src = imageUrl
   td.appendChild(img)
   tr.appendChild(td)
   for(var index in dualtypeSelection){
 	let td = document.createElement("td")
-	td.className =  "singleType"
+	td.className =  "singleType effectivity"
 	td.id = type.type + "+" + index
 	td.name = type
 	td.innerHTML = "singleType "+index
@@ -181,10 +185,17 @@ for (var type of types) {
   }
   let resulttd = document.createElement("td")
   resulttd.id = type.type
-  resulttd.className = "dualType"
+  resulttd.className = "dualType effectivity"
   tr.appendChild(resulttd)
   
   dualtypeTable.appendChild(tr)
+}
+
+function pushDualTyping(){
+  let newType = this.id
+  dualtypeSelection.push(newType)
+  dualtypeSelection.shift()
+  updateDualType()
 }
 
 function updateDualType(){
@@ -194,7 +205,6 @@ function updateDualType(){
 	let attacker = cellId[0]
 	let defender = dualtypeSelection[cellId[1]]
 	effect = effectivity[attacker][defender]
-    el.className = "effectivity";
     el.style.background = effectcolor[effect];
     el.innerHTML = effect;
   }
@@ -203,12 +213,21 @@ function updateDualType(){
 	let effect = 1
 	let attacker = el.id
 	for ( let defender of dualtypeSelection ) {
-		console.log(attacker)
-		effect *= effectivity[attacker][defender]
+	  console.log(dualtypeSelection)
+	  effect *= effectivity[attacker][defender]
 	}
-    el.className = "effectivity";
     el.style.background = effectcolor[effect];
     el.innerHTML = effect;
+  }
+  var selectionImages = Array.from(document.getElementsByClassName("selectionSingle"))
+  for(let index in selectionImages){
+	let selection = dualtypeSelection[index]
+	selectionImages[index].src = `./img/${selection.toLocaleLowerCase()}.png`
+  }
+  var selectionImages = Array.from(document.getElementsByClassName("selectionMultiple"))
+  for(let index in selectionImages){
+	let selection = dualtypeSelection[index]
+	selectionImages[index].src = `./img/${selection.toLocaleLowerCase()}.png`
   }
 }
 
