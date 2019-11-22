@@ -128,15 +128,27 @@ for (var attacker in effectivity) {
 
 
 // dualtype table
-function initColumn(element, column){
-  for (var type of types) {
-    let imageUrl = `./img/${type.type.toLocaleLowerCase()}.png`
-    let img = document.createElement("img")
-    img.src = imageUrl
-    element.appendChild(img)
-  }
+for (var type of types) {
+  // init type-rows
+  let tr = document.createElement("tr")
+  tr.innerHTML = type.type
+  dualtypeTable.appendChild(tr)
 }
 
-initColumn(dualtypeTable, 0)
-initColumn(dualtypeTable, 1)
+  /*
+  let td = document.createElement("td")
+
+  tr.appendChild(td)
+    
+  let img = document.createElement("img")
+  let imageUrl = `./img/${type.type.toLocaleLowerCase()}.png`
+  img.className = "types";
+  img.src = imageUrl
+  
+  td.appendChild(img)
+  
+  */
+  
+resetDualtype(dualtypeTable,0)
+resetDualtype(dualtypeTable,1)
 </script>
