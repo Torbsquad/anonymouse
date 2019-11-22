@@ -13,9 +13,7 @@ function currentTime(){
   time.setHours(time.getHours()+1)
   time = time.toString().split(" ")[4]
   time = time.split(":")
-  time.shift()
-  time = time.join(":")
-  return time
+  return time[0]+":"+time[1]
 }
 
 function doubleDigits(number){
