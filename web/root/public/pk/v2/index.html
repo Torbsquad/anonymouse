@@ -1,0 +1,38 @@
+<script src="./effectivity.js"></script>
+<script src="./arrayToTable.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css" />
+
+<table border="1" id="array"></table>
+
+<script>
+  var table = document.getElementById('array')
+
+  function main() {
+    var array = [['A↓ \\ D→']]
+    for (let i in types) {
+      array[0].push(`Type:../img/${types[i]}.png`)
+    }
+
+    for (let attacker of types) {
+      array.push()
+      let row = [`Type:../img/${attacker}.png`]
+      let sum = 0
+      let faktor = 1
+
+      for (let defender of types) {
+        let eff = effectivity[attacker][defender]
+        row.push('Effect:' + eff)
+        faktor *= eff
+        sum += eff
+      }
+
+      row.push(faktor)
+      row.push(sum)
+      array.push(row)
+    }
+
+    arrayToTable(table, array, true)
+  }
+
+  main()
+</script>
