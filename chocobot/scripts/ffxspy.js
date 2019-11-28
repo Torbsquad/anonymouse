@@ -48,6 +48,14 @@ async function pg_set(value) {
   return await pg.query(`UPDATE FFXSPY SET CONTENT = $1 WHERE true`, [value])
 }
 
+function currentTime(){
+  let time = new Date()
+  time.setHours(time.getHours()+1)
+  time = time.toString().split(" ")[4]
+  time = time.split(":")
+  return time[0]+":"+time[1]
+}
+
 const spy = new Script()
 spy.intervalTime = 120000 * 2
 
@@ -104,7 +112,7 @@ spy.funct = async bot => {
       data[id] = chardata
     }
   }
-
+  bot.user.setActivity(`last check: ${currentTime()}`)
   await pg_set(data)
 }
 
