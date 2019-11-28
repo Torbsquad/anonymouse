@@ -6,8 +6,8 @@
 
 <script>
   var table = document.getElementById('array')
-  var attackerOrder = types
-  var defenderOrder = types
+  var attackerOrder = types.slice()
+  var defenderOrder = types.slice()
 
   function refreshmain() {
     var array = [['A↓ \\ D→']]
