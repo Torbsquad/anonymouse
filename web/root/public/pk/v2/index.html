@@ -12,7 +12,7 @@
   function refreshmain() {
     var array = [['A↓ \\ D→']]
     for (let i in defenderOrder) {
-      array[0].push(`Type:../img/${types[i]}.png,defend`)
+      array[0].push(`Type:../img/${defenderOrder[i]}.png,defend`)
     }
 
     for (let attacker of attackerOrder) {
