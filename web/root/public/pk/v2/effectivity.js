@@ -21,7 +21,7 @@ types = [
   'Dark',
   'Steel',
   'Fairy'
-]
+].map(e => e.toLowerCase())
 
 effectmap = [
   [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 2, 2, 1, 2],
