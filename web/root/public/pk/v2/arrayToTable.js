@@ -45,4 +45,12 @@ function topup() {
     attackerOrder.unshift(this.type)
     refreshmain()
   }
+  if (this.position == 'defend') {
+    var i = defenderOrder.indexOf(this.type)
+    if (i > -1) {
+      defenderOrder.splice(i, 1)
+    }
+    defenderOrder.unshift(this.type)
+    refreshmain()
+  }
 }
