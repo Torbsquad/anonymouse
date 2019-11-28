@@ -8,15 +8,19 @@ function arrayToTable(table, array, refresh = false) {
       var td = document.createElement('td')
 
       let c = String(cell)
-      let regImage = new RegExp('Type:(.*)')
+      let regImage = new RegExp('Type:(.*?),(.*?)$')
       let regEffect = new RegExp('Effect:(.*)')
 
       if (c.match(regImage)) {
         let result = c.match(regImage)
         let img = document.createElement('img')
         img.className = 'type'
+        img.position = result[2]
+        img.type = result[1].match(/img\/(.*?).png/)[1]
+        console.log(img.type)
         img.src = result[1]
         td.appendChild(img)
+        img.addEventListener('click', topup)
       } else if (c.match(regEffect)) {
         let result = c.match(regEffect)
         td.innerHTML = result[1]
@@ -29,5 +33,16 @@ function arrayToTable(table, array, refresh = false) {
       tr.appendChild(td)
     }
     table.appendChild(tr)
+  }
+}
+
+function topup() {
+  if (this.position == 'attack') {
+    var i = attackerOrder.indexOf(this.type)
+    if (i > -1) {
+      attackerOrder.splice(i, 1)
+    }
+    attackerOrder.unshift(this.type)
+    refreshmain()
   }
 }
