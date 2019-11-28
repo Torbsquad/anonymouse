@@ -6,33 +6,29 @@
 
 <script>
   var table = document.getElementById('array')
+  var attackerOrder = types
+  var defenderOrder = types
 
-  function main() {
+  function refreshmain() {
     var array = [['A↓ \\ D→']]
     for (let i in types) {
-      array[0].push(`Type:../img/${types[i]}.png`)
+      array[0].push(`Type:../img/${types[i]}.png,defend`)
     }
 
-    for (let attacker of types) {
+    for (let attacker of attackerOrder) {
       array.push()
-      let row = [`Type:../img/${attacker}.png`]
-      let sum = 0
-      let faktor = 1
+      let row = [`Type:../img/${attacker}.png,attack`]
 
-      for (let defender of types) {
+      for (let defender of defenderOrder) {
         let eff = effectivity[attacker][defender]
         row.push('Effect:' + eff)
-        faktor *= eff
-        sum += eff
       }
 
-      row.push(faktor)
-      row.push(sum)
       array.push(row)
     }
 
     arrayToTable(table, array, true)
   }
 
-  main()
+  refreshmain()
 </script>
