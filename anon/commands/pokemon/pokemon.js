@@ -2,7 +2,7 @@ const { Command } = require('vnftjs')
 const Discord = require("discord.js")
 const axios = require("axios")
 
-function asBar(value, icons){
+function asBar(value, icons = 16){
   let result = ""
   let filled = "🟩"
   let empty = "⬛"
