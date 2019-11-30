@@ -3,10 +3,10 @@ const axios = require("axios")
 
 const command = new Command()
 command.name = 'pk'
-command.funct = (bot, message, args) => {
-  url = `https://pokeapi.co/api/v2/pokemon/${args}`
-
+command.funct = async (bot, message, args) => {
+  let url = `https://pokeapi.co/api/v2/pokemon/${args}`
   let request = await axios.get(url)
+  
   var d = {}
   var f = request.data.stats.map(e=>[e.stat.name,e.base_stat])
 
