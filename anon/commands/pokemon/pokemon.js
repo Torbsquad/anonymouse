@@ -7,7 +7,7 @@ command.funct = async (bot, message, args) => {
   let pokewiki_url = `https://www.pokewiki.de/${args}`
   let pokewiki = await axios.get(pokewiki_url)
 
-  let name = pokewiki.data.match(/<b>(.*?)<\/b>/g)[2].match(/<b>(.*?)<\/b>/)[1].toLowerCase()
+  let name = pokewiki.data.match(/title=\"Englisch\">en<\/span><span.*?>(.*?)<\/span><\/div>/)[1].toLowerCase()
   
   let url = `https://pokeapi.co/api/v2/pokemon/${name}`
   let request = await axios.get(url)
