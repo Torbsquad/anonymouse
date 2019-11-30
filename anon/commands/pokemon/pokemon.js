@@ -4,7 +4,18 @@ const axios = require("axios")
 
 function asBar(value, icons = 16){
   let result = ""
-  let filled = "🟩"
+  let filled = ""
+  if(value < 50) {
+    filled = "🟥"
+  } else if (value < 100) {
+    filled = "🟧"
+  } else if (value < 150) {
+    filled = "🟩"
+  } else if (value < 200) {
+    filled = "🟩"
+  } else {
+    filled = "🟦"
+  }
   let empty = "⬛"
   for(let i = 0; i < icons; i++){
     result += value > i*256/icons ? filled : empty
