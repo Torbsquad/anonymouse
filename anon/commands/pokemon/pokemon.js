@@ -2,6 +2,16 @@ const { Command } = require('vnftjs')
 const Discord = require("discord.js")
 const axios = require("axios")
 
+function asBar(value, icons){
+  let result = ""
+  let filled = "🟩"
+  let empty = "⬛"
+  for(let i = 0; i <= icons; i++){
+    result += Math.round(value/256)*icons < i ? filled : empty
+  }
+  return result + " " + value
+}
+
 const command = new Command()
 command.name = 'pk'
 command.funct = async (bot, message, args) => {
@@ -24,12 +34,12 @@ command.funct = async (bot, message, args) => {
 
     embed.addField("Name", pokemon.name)
     embed.addField("Abilities", abilities)
-    embed.addField("Base-HP", stats.hp)
-    embed.addField("Base Attack", stats.attack)
-    embed.addField("Base Defense", stats.defense)
-    embed.addField("Base Special Attack", stats["special-attack"])
-    embed.addField("Base Special Defense", stats["special-defense"])
-    embed.addField("Base Speed", stats.speed)
+    embed.addField("Base HP", asBar(stats.hp))
+    embed.addField("Base Attack", asBar(stats.attack))
+    embed.addField("Base Defense", asBar(stats.defense))
+    embed.addField("Base Special Attack", asBar(stats["special-attack"]))
+    embed.addField("Base Special Defense", asBar(stats["special-defense"]))
+    embed.addField("Base Speed", asBar(stats.speed))
     embed.setColor("RED")
     embed.setImage(image)
 
