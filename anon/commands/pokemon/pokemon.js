@@ -19,7 +19,7 @@ command.funct = async (bot, message, args) => {
     pokemon.stats.map(e=>{stats[e.stat.name] = e.base_stat})
     
     let embed = new Discord.RichEmbed()
-    let abilities = pokemon.abilities.sort((a,b)=>a.is_hidden<b.is_hidden).map(e=>`${e.ability.name}${e.is_hidden?' (hidden)':''}`).join(", ")
+    let abilities = pokemon.abilities.sort((a,b)=>a.is_hidden>b.is_hidden).map(e=>`${e.ability.name}${e.is_hidden?' (hidden)':''}`).join(", ")
     let image = pokemon.sprites.front_default
 
     embed.addField("Name", pokemon.name)
