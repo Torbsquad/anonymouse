@@ -7,7 +7,7 @@ function asBar(value, icons = 16){
   let filled = "🟩"
   let empty = "⬛"
   for(let i = 0; i < icons; i++){
-    result += value <= i*256/icons ? filled : empty
+    result += value > i*256/icons ? filled : empty
   }
   return result + " " + value
 }
