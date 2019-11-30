@@ -1,4 +1,5 @@
 const { Command } = require('vnftjs')
+const Discord = require("discord.js")
 const axios = require("axios")
 
 const command = new Command()
