@@ -1,10 +1,10 @@
 const { Command } = require('vnftjs')
+const axios = require("axios")
 
 const command = new Command()
 command.name = 'pk'
 command.funct = (bot, message, args) => {
   url = `https://pokeapi.co/api/v2/pokemon/${args}`
-  axios = require("axios")
 
   let request = await axios.get(url)
   var d = {}
