@@ -13,14 +13,24 @@ command.funct = async (bot, message, args) => {
     let url = `https://pokeapi.co/api/v2/pokemon/${name}`
     let request = await axios.get(url)
 
-    let p = request.data
-    var d = {}
-    var f = p.stats.map(e=>{d[e.stat.name] = e.base_stat})
-    d.name = p.name
-    d.image = p.sprites.front_default
-    d.abilities = p.abilities.sort(e=>e.is_hidden).map(e=>`${e.ability.name}${e.is_hidden?' (hidden)':''}`).join(", ")
+    let pokemon = request.data
+    let stats = pokemon.stats
+    let embed = new Discord.RichEmbed()
+    let abilities = p.abilities.sort((a,b)=a.is_hidden<b.is_hidden).map(e=>`${e.ability.name}${e.is_hidden?' (hidden)':''}`).join(", ")
+    let image = pokemon.sprites.front_default
 
-    message.reply(JSON.stringify(d,null,2))
+    embed.addField("Name", pokemon.name)
+    embed.addField("Abilities", abilities)
+    embed.addField("Base-HP", stats.hp)
+    embed.addField("Base Attack", stats.attack)
+    embed.addField("Base Defense", stats.defense)
+    embed.addField("Base Special Attack", stats["special-attack"])
+    embed.addField("Base Special Defense", stats["special-defense"])
+    embed.addField("Base Speed", stats.speed)
+    embed.setColor("RED")
+    embed.setImage(image)
+
+    message.reply("",embed)
   }
   catch(err){
     message.reply(err.message)
