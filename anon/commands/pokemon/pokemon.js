@@ -5,13 +5,15 @@ const axios = require("axios")
 function asBar(value, icons = 16){
   let result = ""
   let filled = ""
-  if(value < 50) {
+  if(value < 30) {
     filled = "🟥"
-  } else if (value < 100) {
+  } else if (value < 60) {
     filled = "🟧"
-  } else if (value < 150) {
+  } else if (value < 90) {
+    filled = "🟨"
+  } else if (value < 120) {
     filled = "🟩"
-  } else if (value < 200) {
+  } else if (value < 150) {
     filled = "🟩"
   } else {
     filled = "🟦"
