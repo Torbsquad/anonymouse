@@ -11,7 +11,7 @@ var rights = [
   "529646358764716047"
 ]
 
-command.addUserWhitelist( u => rights.contains(u.id))
+command.addUserWhitelist( u => rights.includes(u.id))
 
 command.funct = (bot, message, args) => {
   message.reply(eval(args))
