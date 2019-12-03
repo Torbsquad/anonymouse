@@ -22,7 +22,7 @@ class Cursor {
     if (el.mode == 'draw') {
       this.currentLine = new Line()
       let dot = this.currentLine.addDot(mouseX, mouseY)
-      
+
       let context = this.leinwand.canvas.getContext('2d')
       dot.draw(context)
     }
@@ -32,7 +32,7 @@ class Cursor {
     let mouseY = event.offsetY
     if (el.mode == 'draw' && this.currentLine) {
       let dot = this.currentLine.addDot(mouseX, mouseY)
-      
+
       let context = this.leinwand.canvas.getContext('2d')
       dot.draw(context)
     }
