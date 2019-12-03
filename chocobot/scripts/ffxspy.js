@@ -5,13 +5,13 @@ const { get } = require('axios')
 const { RichEmbed } = require('discord.js')
 
 const TARGET_CHANNEL = '539802587239677963'
-const TARGET_CHARACTERS = [ 
-  23945254, // Lily Rose (Sakura Lily)  
+const TARGET_CHARACTERS = [
+  23945254, // Lily Rose (Sakura Lily)
   25212840, // Aba Remillard
   3206978, //  Abaddon Seraph
   15530979, // Ava Aoyagi
-  9894204, //  Miyoki Malicera  
-  23076248, // Atinuviel I'lave  
+  9894204, //  Miyoki Malicera
+  23076248, // Atinuviel I'lave
 ]
 
 const TARGET_ATTRIBUTES = ['Name', 'Server', 'Race', 'Gender']
@@ -41,12 +41,12 @@ async function pg_set(value) {
   return await pg.query(`UPDATE FFXSPY SET CONTENT = $1 WHERE true`, [value])
 }
 
-function currentTime(){
+function currentTime() {
   let time = new Date()
-  time.setHours(time.getHours()+1)
-  time = time.toString().split(" ")[4]
-  time = time.split(":")
-  return time[0]+":"+time[1]
+  time.setHours(time.getHours() + 1)
+  time = time.toString().split(' ')[4]
+  time = time.split(':')
+  return time[0] + ':' + time[1]
 }
 
 const spy = new Script()
@@ -78,7 +78,10 @@ spy.funct = async bot => {
       let response = new RichEmbed()
       response.setColor('FFFF99')
 
-      const TARGET = [].concat(TARGET_ATTRIBUTES, TARGET_FREECOMPANY.map(fc => FCPREFIX + fc))
+      const TARGET = [].concat(
+        TARGET_ATTRIBUTES,
+        TARGET_FREECOMPANY.map(fc => FCPREFIX + fc),
+      )
 
       for (let attribute of TARGET) {
         let before = data[id][attribute] || 'null'

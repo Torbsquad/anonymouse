@@ -164,7 +164,13 @@ var output = document.getElementById('output')
 var drawBoard = document.getElementById('drawBoard')
 var defaultBlock = document.getElementById('defaultBlock')
 
-grid = new Grid([[0, 0], [0, 1], [1, 0, 1, 1], [0, 0], [0, 1, 1, 1, 0, 1]])
+grid = new Grid([
+  [0, 0],
+  [0, 1],
+  [1, 0, 1, 1],
+  [0, 0],
+  [0, 1, 1, 1, 0, 1],
+])
 
 var table = new Table(grid.grid)
 table.el.className = 'noselect bordered'
@@ -183,7 +189,12 @@ table.cellToggle = function(event) {
   }
 }
 
-defaultBlockTable = new Table([[0, 0], [0, 0], [0, 0], [0, 0]])
+defaultBlockTable = new Table([
+  [0, 0],
+  [0, 0],
+  [0, 0],
+  [0, 0],
+])
 defaultBlockTable.el.className = 'noselect bordered'
 defaultBlockTable.value = function(x = 0, y = 0) {
   return (

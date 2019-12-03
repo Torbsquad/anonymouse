@@ -17,7 +17,12 @@ var mouseTile = 1
 
 var tilesets = [new Tileset('img/armm1998/Overworld.png')]
 
-var idToTile = [[0, 3 * 16, 7 * 16, 0], [0, 0, 0, 0], [0, 2 * 16, 30 * 16, 0], [0, 3 * 16, 32 * 16, 1]]
+var idToTile = [
+  [0, 3 * 16, 7 * 16, 0],
+  [0, 0, 0, 0],
+  [0, 2 * 16, 30 * 16, 0],
+  [0, 3 * 16, 32 * 16, 1],
+]
 axios.get(`https://api.vnft.cc/socket/getIdToTileTable`).then(data => {
   idToTile = data.data
 })

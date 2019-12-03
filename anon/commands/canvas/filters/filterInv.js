@@ -20,10 +20,26 @@ function filter(cxd, arg = 1) {
 
   let filters = []
 
-  filters.push([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]])
-  filters.push([[1, 0, -1], [2, 0, -2], [1, 0, -1]])
-  filters.push([[-1, -2, -1], [0, 0, 0], [1, 2, 1]])
-  filters.push([[1, 2, 1], [0, 0, 0], [-1, -2, -1]])
+  filters.push([
+    [-1, 0, 1],
+    [-2, 0, 2],
+    [-1, 0, 1],
+  ])
+  filters.push([
+    [1, 0, -1],
+    [2, 0, -2],
+    [1, 0, -1],
+  ])
+  filters.push([
+    [-1, -2, -1],
+    [0, 0, 0],
+    [1, 2, 1],
+  ])
+  filters.push([
+    [1, 2, 1],
+    [0, 0, 0],
+    [-1, -2, -1],
+  ])
 
   for (let y = 0; y < cxd.height; y++) {
     for (let x = 0; x < cxd.width; x++) {

@@ -18,7 +18,11 @@ class Field {
   }
 
   getInputCell() {
-    var format = [[0, 1, 0], [1, 0, 1], [0, 1, 0]]
+    var format = [
+      [0, 1, 0],
+      [1, 0, 1],
+      [0, 1, 0],
+    ]
     return this.getTableFromArray(format.map(a => a.map(b => (b ? "<input type='button'/>" : ''))))
   }
 
