@@ -1,0 +1,30 @@
+table#array {
+  background: #484848;
+  color: #5d5d5d;
+  font-family: Arial, Helvetica, sans-serif;
+}
+table td {
+  text-align: center;
+}
+table td.effect0 {
+  background: rgb(140, 140, 140);
+}
+table td.effect1 {
+  background: rgb(255, 140, 140);
+}
+table td.effect2 {
+  background: rgb(255, 163, 163);
+}
+table td.effect3 {
+  background: rgb(226, 255, 191);
+}
+table td.effect4 {
+  background: rgb(163, 242, 109);
+}
+table td.effect5 {
+  background: rgb(103, 191, 42);
+}
+
+.type {
+  min-height: 24px;
+}

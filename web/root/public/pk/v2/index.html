@@ -1,0 +1,34 @@
+<script src="./effectivity.js"></script>
+<script src="./arrayToTable.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css" />
+
+<table border="1" id="array"></table>
+
+<script>
+  var table = document.getElementById('array')
+  var attackerOrder = types.slice()
+  var defenderOrder = types.slice()
+
+  function refreshmain() {
+    var array = [['A↓ \\ D→']]
+    for (let i in defenderOrder) {
+      array[0].push(`Type:../img/${defenderOrder[i]}.png,defend`)
+    }
+
+    for (let attacker of attackerOrder) {
+      array.push()
+      let row = [`Type:../img/${attacker}.png,attack`]
+
+      for (let defender of defenderOrder) {
+        let eff = effectivity[attacker][defender]
+        row.push('Effect:' + eff)
+      }
+
+      array.push(row)
+    }
+
+    arrayToTable(table, array, true)
+  }
+
+  refreshmain()
+</script>
