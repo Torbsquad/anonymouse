@@ -5,6 +5,10 @@ const axios = require('axios')
 const command = new Command()
 command.name = 'pp'
 command.funct = async (bot, message, args) => {
+  if (!args) {
+    message.reply('Usage: .pp Pokemon-Name')
+    return false
+  }
   try {
     let pokewiki_url = `https://www.pokewiki.de/${args}`
     let pokewiki = await axios.get(pokewiki_url)
