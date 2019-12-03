@@ -6,11 +6,23 @@ class PokeWiki {
     let pokewiki_url = `https://www.pokewiki.de/${this.name}`
     let request = await axios.get(pokewiki_url)
     this.data = request.data
+    this.squashed = this.data.split('\n').join('')
     return this.data
   }
   get english() {
-    let e = this.data.match(/title=\"Englisch\">en<\/span><span.*?>(.*?)<\/span><\/div>/)[1].toLowerCase()
+    let e = this.data.match(/title=\"Englisch\">en<\/span><span.*?>(.*?)<\/span><\/div>/)[1]
     return e
+  }
+  get german() {
+    let e = this.data.match(/span style="padding:4px 0px 2px 0px;display: inline-block;"><b>(.*?)<\/b><\/span/)[1]
+    return e
+  }
+  get typing() {
+    let t = this.squashed.match(/Allgemeine Informationen.*?style="background:#ffffff">(.*?)Fangen/)[1]
+    t = t
+      .match(/<a href="\/.*?" title="(.*?)"><img alt=".*?\.png"/g)
+      .map(e => e.match(/<a href="\/.*?" title="(.*?)"><img alt=".*?\.png"/)[1])
+    return t.join(', ')
   }
   get image() {
     let a = this.data.match(/<div style=\"float: right;\"><img(.*?)\/div/g)[0]
@@ -34,8 +46,10 @@ command.funct = async (bot, message, args) => {
     let p = new PokeWiki(args)
     await p.load()
 
-    message.reply(p.image)
-    message.reply(p.english)
+    message.channel.send({ file: p.image })
+    message.channel.send(p.german)
+    message.channel.send(p.english)
+    message.channel.send(p.typing)
   } catch (err) {
     message.reply(err.message)
   }
