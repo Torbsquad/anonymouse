@@ -11,16 +11,31 @@ class PokeWiki {
     let request = await axios.get(pokewiki_url)
     this.data = request.data
     this.squashed = this.data.split('\n').join('')
+    request = await axios.get(`https://www.serebii.net/pokedex-swsh/${this.english.toLowerCase()}/`)
+    this.serebii = request.data
+    this.serebii = this.serebii.split("\n").join(" ").replace(/\s+/g," ")
     return this.data
   }
-  async load2(){
-    var a = await axios.get(`https://www.serebii.net/pokedex-swsh/${this.english.toLowerCase()}/`)
-    var b = a.data.split("\n").join(" ").replace(/\s+/g," ")
-    var c = b.match(/Stats.{1,100}h2.*?table>/g)
-    var d = c.map(d=>{
-        return d.match(/Base Stats - Total: (.*?)<\/tr>/)[1].replace(/<.*?>/g,"")
-    })
-    return d
+  get stats(){
+    var stats = []
+    var c = this.serebii.match(/Stats(.{0,100})h2.*?table>/g)
+    for(let d of c) {
+      let name = d.match(/Stats(.{0,100})<\/h2/)[1]
+      if(name.includes(" - ")){
+        name = name.replace(/^ - /,"")
+      }
+      else{
+        name = "Default"
+      }
+      let values = d.match(/Base Stats - Total: (.*?)<\/tr>/)[1].replace(/<.*?>/g,"").split(" ")
+      let hp = values[0]
+      let atk = values[1]
+      let def = values[2]
+      let spatk = values[3]
+      let spdef = values[4]
+      stats.push({name, hp, atk, def, spatk, spdef})
+    }
+    return stats
   }
   get english() {
     let e = this.data.match(/title=\"Englisch\">en<\/span><span.*?>(.*?)<\/span><\/div>/)[1]
@@ -54,11 +69,10 @@ command.funct = async (bot, message, args) => {
   try {
     let p = new PokeWiki(args)
     await p.load()
-    var e = await p.load2()
     message.channel.send(p.german)
     message.channel.send(p.english)
     message.channel.send({ file: p.image })
-    message.channel.send(JSON.stringify(e))
+    message.channel.send(JSON.stringify(e.stats))
   } catch (err) {
     message.reply(err.message)
   }
