@@ -13,27 +13,32 @@ class PokeWiki {
     this.squashed = this.data.split('\n').join('')
     request = await axios.get(`https://www.serebii.net/pokedex-swsh/${this.english.toLowerCase()}/`)
     this.serebii = request.data
-    this.serebii = this.serebii.split("\n").join(" ").replace(/\s+/g," ")
+    this.serebii = this.serebii
+      .split('\n')
+      .join(' ')
+      .replace(/\s+/g, ' ')
     return this.data
   }
-  get stats(){
+  get stats() {
     var stats = []
     var c = this.serebii.match(/Stats(.{0,100})h2.*?table>/g)
-    for(let d of c) {
+    for (let d of c) {
       let name = d.match(/Stats(.{0,100})<\/h2/)[1]
-      if(name.includes(" - ")){
-        name = name.replace(/^ - /,"")
+      if (name.includes(' - ')) {
+        name = name.replace(/^ - /, '')
+      } else {
+        name = 'Default'
       }
-      else{
-        name = "Default"
-      }
-      let values = d.match(/Base Stats - Total: (.*?)<\/tr>/)[1].replace(/<.*?>/g,"").split(" ")
+      let values = d
+        .match(/Base Stats - Total: (.*?)<\/tr>/)[1]
+        .replace(/<.*?>/g, '')
+        .split(' ')
       let hp = values[0]
       let atk = values[1]
       let def = values[2]
       let spatk = values[3]
       let spdef = values[4]
-      stats.push({name, hp, atk, def, spatk, spdef})
+      stats.push({ name, hp, atk, def, spatk, spdef })
     }
     return stats
   }
