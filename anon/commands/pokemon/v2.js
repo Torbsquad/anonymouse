@@ -1,4 +1,5 @@
 const { Command } = require('vnftjs')
+const Discord = require('discord.js')
 const axios = require('axios')
 
 class PokeWiki {
@@ -37,7 +38,7 @@ class PokeWiki {
     return t.join(', ')
   }
   get image() {
-    let a = this.data.match(/<div style=\"float: right;\"><img(.*?)\/div/g)[0]
+    let a = this.squashed.match(/float: right.{1,100}pokemon_icon.{1,100}<img(.*?)\/div/g)[0]
     a = a.match(/src=\"(.*?)\"/)[1]
     return 'https://www.pokewiki.de' + a
   }
@@ -54,11 +55,9 @@ command.funct = async (bot, message, args) => {
     let p = new PokeWiki(args)
     await p.load()
     var e = await p.load2()
-    
-    message.channel.send({ file: p.image })
     message.channel.send(p.german)
     message.channel.send(p.english)
-    message.channel.send(p.typing)
+    message.channel.send({ file: p.image })
     message.channel.send(JSON.stringify(e))
   } catch (err) {
     message.reply(err.message)
