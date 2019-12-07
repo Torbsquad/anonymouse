@@ -1,3 +1,6 @@
+const { Command } = require('vnftjs')
+const axios = require('axios')
+
 class PokeWiki {
   constructor(args) {
     this.name = args
@@ -8,6 +11,15 @@ class PokeWiki {
     this.data = request.data
     this.squashed = this.data.split('\n').join('')
     return this.data
+  }
+  async load2(){
+    var a = await axios.get(`https://www.serebii.net/pokedex-swsh/${this.english.toLowerCase()}/`)
+    var b = a.data.split("\n").join(" ").replace(/\s+/g," ")
+    var c = b.match(/Stats.{1,100}h2.*?table>/g)
+    var d = c.map(d=>{
+        return d.match(/Base Stats - Total: (.*?)<\/tr>/)[1].replace(/<.*?>/g,"")
+    })
+    return d
   }
   get english() {
     let e = this.data.match(/title=\"Englisch\">en<\/span><span.*?>(.*?)<\/span><\/div>/)[1]
@@ -31,10 +43,6 @@ class PokeWiki {
   }
 }
 
-const { Command } = require('vnftjs')
-const Discord = require('discord.js')
-const axios = require('axios')
-
 const command = new Command()
 command.name = 'pp'
 command.funct = async (bot, message, args) => {
@@ -45,11 +53,13 @@ command.funct = async (bot, message, args) => {
   try {
     let p = new PokeWiki(args)
     await p.load()
-
+    var e = await p.load2()
+    
     message.channel.send({ file: p.image })
     message.channel.send(p.german)
     message.channel.send(p.english)
     message.channel.send(p.typing)
+    message.channel.send(JSON.stringify(e))
   } catch (err) {
     message.reply(err.message)
   }
