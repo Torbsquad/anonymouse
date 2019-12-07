@@ -14,7 +14,7 @@ global.io = require('socket.io').listen(Server.https)
 global.root_directory = path.resolve('../')
 
 if (process.env.NODE_ENV == 'dev') {
-  app.use(vhost('localhost', require('./rpg ')))
+  app.use(vhost('localhost', require('./api')))
 } else {
   app.use(vhost('rpg.vnft.cc', require('./rpg')))
   app.use(vhost('socket.vnft.cc', require('./rpg')))
