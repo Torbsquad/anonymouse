@@ -38,8 +38,6 @@ class Cursor {
     }
   }
   mouseup(el) {
-    let mouseX = event.offsetX
-    let mouseY = event.offsetY
     if (el.mode == 'draw' && this.currentLine) {
       this.leinwand.addLine(this.currentLine)
       this.currentLine = false
