@@ -51,13 +51,6 @@ class PokeWiki {
     return e
   }
   get typing() {
-    let t = this.squashed.match(/Allgemeine Informationen.*?style="background:#ffffff">(.*?)Fangen/)[1]
-    t = t
-      .match(/<a href="\/.*?" title="(.*?)"><img alt=".*?\.png"/g)
-      .map(e => e.match(/<a href="\/.*?" title="(.*?)"><img alt=".*?\.png"/)[1])
-    return t.join(', ')
-  }
-  get typing2() {
     var typeBlock = this.serebii.match(/<td class=\"fooevo\">Type<\/td>.*?<\/tr>.*?"cen">(.*?)<\/table>/m)[1]
     var variants = typeBlock.split('</tr><tr>')
     var typing = variants.map(e => {
@@ -75,7 +68,7 @@ class PokeWiki {
   }
   get defaultResponse() {
     return {
-      typingso: this.typing2,
+      typings: this.typing,
       stats: this.stats,
     }
   }
