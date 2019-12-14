@@ -25,7 +25,7 @@ class PokeWiki {
       if (name.includes(' - ')) {
         name = name.replace(/^ - /, '')
       } else {
-        name = 'Default'
+        name = 'Normal'
       }
       let values = d
         .match(/Base Stats - Total: (.*?)<\/tr>/)[1]
@@ -57,10 +57,27 @@ class PokeWiki {
       .map(e => e.match(/<a href="\/.*?" title="(.*?)"><img alt=".*?\.png"/)[1])
     return t.join(', ')
   }
+  get typing2() {
+    var typeBlock = this.serebii.match(/<td class=\"fooevo\">Type<\/td>.*?<\/tr>.*?"cen">(.*?)<\/table>/m)[1]
+    var variants = typeBlock.split("</tr><tr>")
+    var typing = variants.map(e=>{
+      var data = {}
+      data.name = e.match(/<td width=\"50%\">(.*?)<\/td>/)[1]
+      data.types = e.match(/alt=\"(.*?)-type\"/g).map(f=>f.match(/alt=\"(.*?)-type\"/)[1])
+      return data
+    })
+    return typing
+  }
   get image() {
     let a = this.squashed.match(/float: right.{1,100}pokemon_icon.{1,100}<img(.*?)\/div/g)[0]
     a = a.match(/src=\"(.*?)\"/)[1]
     return 'https://www.pokewiki.de' + a
+  }
+  get defaultResponse() {
+    return {
+      typingso: this.typing2,
+      stats: this.stats
+    }
   }
 }
 
