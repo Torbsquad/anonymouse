@@ -50,6 +50,8 @@ class PokeWiki {
     let e = this.data.match(/span style="padding:4px 0px 2px 0px;display: inline-block;"><b>(.*?)<\/b><\/span/)[1]
     return e
   }
+
+  /*
   get typing() {
     var typeBlock = this.serebii.match(/<td class=\"fooevo\">Type<\/td>.*?<\/tr>.*?"cen">(.*?)<\/table>/m)[1]
     var variants = typeBlock.split('</tr><tr>')
@@ -61,11 +63,15 @@ class PokeWiki {
     })
     return typing
   }
+  */
+
   get image() {
     let a = this.squashed.match(/float: right.{1,100}pokemon_icon.{1,100}<img(.*?)\/div/g)[0]
     a = a.match(/src=\"(.*?)\"/)[1]
     return 'https://www.pokewiki.de' + a
   }
+
+  /*
   get defaultResponse() {
     return {
       typings: this.typing,
@@ -84,6 +90,10 @@ class PokeWiki {
       })
     }
     return {variants, image: base.image}
+  */
+
+  get debug() {
+    return this.stats
   }
 }
 
