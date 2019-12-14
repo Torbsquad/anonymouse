@@ -38,7 +38,7 @@ class PokeWiki {
       let spatk = values[4]
       let spdef = values[5]
       let speed = values[6]
-      stats.push({ name, total, hp, atk, def, spatk, spdef, speed })
+      stats.push({ name, stats : { total, hp, atk, def, spatk, spdef, speed }})
     }
     return stats
   }
@@ -71,6 +71,18 @@ class PokeWiki {
       typings: this.typing,
       stats: this.stats,
     }
+  }
+  get variants() {
+    var base = this.defaultResponse
+    var variants = []
+    for(var variant in base.stats){
+      variants.push({
+        name: base.stats[variant].name,
+        type: base.typings[variant].types,
+        stats: base.stats[variant].stats,
+      })
+    }
+    return variants
   }
 }
 

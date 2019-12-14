@@ -6,7 +6,7 @@ site.get = async (req, res) => {
   var PokeWiki = require('./PokeWiki')
   let p = new PokeWiki(req.params.pokemon)
   await p.load()
-  res.json(p.defaultResponse)
+  res.json(p.variants)
 }
 
 module.exports = site
