@@ -38,7 +38,7 @@ class PokeWiki {
       let spatk = values[4]
       let spdef = values[5]
       let speed = values[6]
-      stats.push({ name, stats : { total, hp, atk, def, spatk, spdef, speed }})
+      stats.push({ name, stats: { total, hp, atk, def, spatk, spdef, speed } })
     }
     return stats
   }
