@@ -70,6 +70,7 @@ class PokeWiki {
     return {
       typings: this.typing,
       stats: this.stats,
+      image: this.image
     }
   }
   get variants() {
@@ -82,7 +83,7 @@ class PokeWiki {
         stats: base.stats[variant].stats,
       })
     }
-    return variants
+    return {variants, image: base.image}
   }
 }
 
