@@ -59,11 +59,11 @@ class PokeWiki {
   }
   get typing2() {
     var typeBlock = this.serebii.match(/<td class=\"fooevo\">Type<\/td>.*?<\/tr>.*?"cen">(.*?)<\/table>/m)[1]
-    var variants = typeBlock.split("</tr><tr>")
-    var typing = variants.map(e=>{
+    var variants = typeBlock.split('</tr><tr>')
+    var typing = variants.map(e => {
       var data = {}
       data.name = e.match(/<td width=\"50%\">(.*?)<\/td>/)[1]
-      data.types = e.match(/alt=\"(.*?)-type\"/g).map(f=>f.match(/alt=\"(.*?)-type\"/)[1])
+      data.types = e.match(/alt=\"(.*?)-type\"/g).map(f => f.match(/alt=\"(.*?)-type\"/)[1])
       return data
     })
     return typing
@@ -76,7 +76,7 @@ class PokeWiki {
   get defaultResponse() {
     return {
       typingso: this.typing2,
-      stats: this.stats
+      stats: this.stats,
     }
   }
 }

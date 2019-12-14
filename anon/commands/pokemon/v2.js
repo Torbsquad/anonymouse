@@ -12,7 +12,7 @@ command.funct = async (bot, message, args) => {
   try {
     let request = await axios.get(`https://api.vnft.cc/pk/${args}`)
     let data = request.data
-    message.channel.send(JSON.stringify(data,null,2))
+    message.channel.send(JSON.stringify(data, null, 2))
   } catch (err) {
     message.reply(err.message)
   }
