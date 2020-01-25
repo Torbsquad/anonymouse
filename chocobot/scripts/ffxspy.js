@@ -77,6 +77,7 @@ spy.funct = async bot => {
     if (hasChanged) {
       let response = new RichEmbed()
       response.setColor('FFFF99')
+      response.setFooter('id: '+id)
 
       const TARGET = [].concat(
         TARGET_ATTRIBUTES,
