@@ -1,5 +1,4 @@
-const nazrin = require('../../../nazrin')
-const pg = require('../../../db')
+const nazrin = require('../../../nazrin
 
 const { Site } = require('vnft-tools')
 const site = new Site('/torb/getUsers')
