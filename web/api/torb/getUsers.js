@@ -9,9 +9,10 @@ site.get = async (req, res) => {
     var torb = nazrin.guilds.find(guild => guild.id == "209673980200615939")
     var members = torb.members
     var memberStatus = members.map(member => {
+      var user_id = member.user.id
       var username = member.user.username
       var status = member.user.presence.status
-      return {username, status}
+      return {user_id, username, status}
     })
     res.json(memberStatus)
   }
