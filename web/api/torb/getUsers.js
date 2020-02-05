@@ -11,7 +11,7 @@ site.get = async (req, res) => {
     var username = member.user.username
     var status = member.user.presence.status
     return {username, status}
-  )
+  })
   res.json(memberStatus)
 }
 
