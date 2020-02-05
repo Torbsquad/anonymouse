@@ -21,6 +21,7 @@ if (process.env.NODE_ENV == 'dev') {
   siteHandler.loadFolder(path.join(__dirname, 'emoji'))
   siteHandler.loadFolder(path.join(__dirname, 'socket'))
   siteHandler.loadFolder(path.join(__dirname, 'nazrin'))
+  siteHandler.loadFolder(path.join(__dirname, 'torb'))
 }
 
 module.exports = app
