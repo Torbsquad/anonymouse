@@ -11,7 +11,7 @@ site.get = async (req, res) => {
       insert into torbstatus(user_id, username)
       values ${users.data.map(user => "('"+user.user_id+"','"+user.username+"')").join(",")}
     `
-    //await pg.query(insertQuery)
+    await pg.query(insertQuery)
     res.json(insertQuery)
   }
   catch(err){
