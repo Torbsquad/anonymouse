@@ -15,7 +15,7 @@ const TARGET_CHARACTERS = [
 ]
 
 const TARGET_ATTRIBUTES = ['Name', 'Server', 'Race', 'Gender']
-const TARGET_FREECOMPANY = ['Name']
+const TARGET_FREECOMPANY = []//['Name']
 const FCPREFIX = 'Free Company-'
 
 const TRANSLATIONS = {
