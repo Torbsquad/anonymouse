@@ -40,6 +40,6 @@
     "vnftjs": "^1.2.10"
   },
   "devDependencies": {
-    "prettier": "^1.19.1"
+    "prettier": "^2.0.3"
   }
 }
