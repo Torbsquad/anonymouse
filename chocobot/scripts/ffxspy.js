@@ -12,6 +12,7 @@ const TARGET_CHARACTERS = [
   15530979, // Ava Aoyagi
   9894204, //  Miyoki Malicera
   23076248, // Atinuviel I'lave
+  16466788 // Nin Ten (Do)
 ]
 
 const TARGET_ATTRIBUTES = ['Name', 'Server', 'Race', 'Gender']
