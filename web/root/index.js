@@ -20,6 +20,10 @@ app.get('/axios.js', (req, res) => {
   res.sendFile(path.join(__dirname, '..', '..', 'node_modules', 'axios', 'dist', 'axios.js'))
 })
 
+app.get('/axios.map', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', '..', 'node_modules', 'axios', 'dist', 'axios.map'))
+})
+
 app.get('/phaser.js', (req, res) => {
   res.sendFile(path.join(__dirname, '..', '..', 'node_modules', 'phaser', 'dist', 'phaser.js'))
 })
