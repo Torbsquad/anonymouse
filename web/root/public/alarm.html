@@ -1,7 +1,19 @@
 <script>
-function startTimer(objectId){
-  setInterval(tick, 1000, objectId)
+  
+function toggleTimer(objectId){
+  var toggleButton = document.getElementById("toggleButton")
+  if(!toggleButton.running)
+    toggleButton.intervalId = setInterval(tick, 1000, objectId)
+    toggleButton.running = true
+    toggleButton.value = "Stop"
+  }
+  else{
+    clearInterval(toggleButton.intervalId)
+    toggleButton.running = false
+    toggleButton.value = "Start"
+  }
 }
+
 function tick(objectId){
   var timer = document.getElementById(objectId)
   var time = timer.value.split(":").reverse().map(e=>Number(e))
@@ -31,4 +43,4 @@ function nDigits(target, n){
 }
 
 </script>
-time<input id="timer" value="03:00"/><input type="button" value="start" onclick="startTimer('timer')"/>
+time<input id="timer" value="03:00"/><input id="toggleButton" type="button" value="start" onclick="toggleTimer('timer')"/>
