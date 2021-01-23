@@ -9,10 +9,10 @@ function tick(objectId){
   
   time[0]--
   if(time[0] < 0 && time.length > 1){
-    time[0] = 60 - time[0]
+    time[0] = 60 + time[0]
     time[1]--
     if(time[1] < 0 && time.length > 2){
-      time[1] = 60 - time[1]
+      time[1] = 60 + time[1]
       time[2]--
     }
   }
