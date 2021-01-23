@@ -4,7 +4,7 @@ function startTimer(objectId){
 }
 function tick(objectId){
   var timer = document.getElementById(objectId)
-  var time = timer.value.split(":").reverse()
+  var time = timer.value.split(":").reverse().map(e=>Number(e))
   //time = subtractTime(time,0) recursive to be done ↓
   
   time[0]--
@@ -17,7 +17,17 @@ function tick(objectId){
     }
   }
   
+  time = time.map(e=>nDigits(e,2))
   timer.value = time.reverse().join(":")
+}
+  
+// adds zeros in front of a number until the number is n digits long
+function nDigits(target, n){
+  target = String(target)
+  while(target.length < n){
+    target = "0"+target
+  }
+  return target
 }
 
 </script>
