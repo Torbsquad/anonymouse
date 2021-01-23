@@ -1,0 +1,22 @@
+<script>
+function startTimer(objectId){
+  setInterval(tick, 1000, objectId)
+}
+function tick(objectId){
+  var timer = document.getElementById(objectId)
+  var time = timer.value.split(":").reverse()
+  //time = subtractTime(time,0) recursive to be done ↓
+  
+  time[0]--
+  if(time[0] < 0 && time.length > 1){
+    time[0] = 60 - time[0]
+    time[1]--
+    if(time[1] < 0 && time.length > 2){
+      time[1] = 60 - time[1]
+      time[2]--
+    }
+  }
+}
+
+</script>
+time<input id="timer" value="03:00"/><input type="button" value="start" onclick="startTimer('timer')"/>
