@@ -1,46 +1,49 @@
 <script>
-  
-function toggleTimer(objectId){
-  var toggleButton = document.getElementById("toggleButton")
-  if(!toggleButton.running)
-    toggleButton.intervalId = setInterval(tick, 1000, objectId)
-    toggleButton.running = true
-    toggleButton.value = "Stop"
-  }
-  else{
-    clearInterval(toggleButton.intervalId)
-    toggleButton.running = false
-    toggleButton.value = "Start"
-  }
-}
-
-function tick(objectId){
-  var timer = document.getElementById(objectId)
-  var time = timer.value.split(":").reverse().map(e=>Number(e))
-  //time = subtractTime(time,0) recursive to be done ↓
-  
-  time[0]--
-  if(time[0] < 0 && time.length > 1){
-    time[0] = 60 + time[0]
-    time[1]--
-    if(time[1] < 0 && time.length > 2){
-      time[1] = 60 + time[1]
-      time[2]--
+  function toggleTimer(objectId) {
+    var toggleButton = document.getElementById('toggleButton')
+    if (!toggleButton.running) {
+      toggleButton.intervalId = setInterval(tick, 1000, objectId)
+      toggleButton.running = true
+      toggleButton.value = 'Stop'
+    } else {
+      clearInterval(toggleButton.intervalId)
+      toggleButton.running = false
+      toggleButton.value = 'Start'
     }
   }
-  
-  time = time.map(e=>nDigits(e,2))
-  timer.value = time.reverse().join(":")
-}
-  
-// adds zeros in front of a number until the number is n digits long
-function nDigits(target, n){
-  target = String(target)
-  while(target.length < n){
-    target = "0"+target
-  }
-  return target
-}
 
+  function tick(objectId) {
+    var title = document.getElementById('title')
+    var timer = document.getElementById(objectId)
+    var time = timer.value
+      .split(':')
+      .reverse()
+      .map((e) => Number(e))
+    //time = subtractTime(time,0) recursive to be done ↓
+
+    time[0]--
+    if (time[0] < 0 && time.length > 1) {
+      time[0] = 60 + time[0]
+      time[1]--
+      if (time[1] < 0 && time.length > 2) {
+        time[1] = 60 + time[1]
+        time[2]--
+      }
+    }
+
+    time = time.map((e) => nDigits(e, 2))
+    timer.value = time.reverse().join(':')
+    title.innerHTML = timer.value
+  }
+
+  // adds zeros in front of a number until the number is n digits long
+  function nDigits(target, n) {
+    target = String(target)
+    while (target.length < n) {
+      target = '0' + target
+    }
+    return target
+  }
 </script>
-time<input id="timer" value="03:00"/><input id="toggleButton" type="button" value="start" onclick="toggleTimer('timer')"/>
+<title id="title"></title>
+Time <input id="timer" value="03:00" /> <input id="toggleButton" type="button" value="start" onclick="toggleTimer('timer')" />
