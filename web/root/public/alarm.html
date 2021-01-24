@@ -30,6 +30,10 @@
         time[2]--
       }
     }
+    
+    if(time.reverse()[0] < 0){
+      playSound("hint")
+    }
 
     time = time.map((e) => nDigits(e, 2))
     timer.value = time.reverse().join(':')
@@ -44,6 +48,16 @@
     }
     return target
   }
+  
+  function playSound(objectId) {
+    document.getElementById(objectId).play()
+  }
 </script>
 <title id="title"></title>
 Time <input id="timer" value="03:00" /> <input id="toggleButton" type="button" value="start" onclick="toggleTimer('timer')" />
+
+<audio id="hint">
+  <source src="sounds/hint.ogg" type="audio/ogg">
+  <source src="sounds/hint.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
