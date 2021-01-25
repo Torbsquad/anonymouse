@@ -31,12 +31,14 @@
       }
     }
     
-    if(time.reverse()[0] < 0){
+    time = time.reverse()
+    
+    if(time[0] < 0){
       playSound("hint")
     }
 
     time = time.map((e) => nDigits(e, 2))
-    timer.value = time.reverse().join(':')
+    timer.value = time.join(':')
     title.innerHTML = timer.value
   }
 
