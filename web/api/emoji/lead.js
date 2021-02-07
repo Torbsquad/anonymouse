@@ -9,7 +9,9 @@ all.get = async (req, res) => {
     offset: Number(req.params.page) * 100,
     limit: 100,
   }
-  res.json(await pg.query(query, options))
+  let re = await pg.query(query, options)
+  console.log(re)
+  res.json(re)
 }
 
 module.exports = all
