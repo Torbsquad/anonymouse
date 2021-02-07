@@ -13,8 +13,7 @@ all.get = async (req, res) => {
   }
 
   console.log("LEAD 3")
-  res.json(await pg.any(query, options))
-  .catch(e=>console.log(e))
+  res.json(await pg.any(query, options).catch(e=>console.log(e)))
 }
 
 module.exports = all

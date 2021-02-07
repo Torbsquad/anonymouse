@@ -28,7 +28,7 @@ add.get = async (req, res) => {
     DO UPDATE SET POINTS = EMOJIS2.POINTS + 1
     `,
     emoji,
-  )
+  ).catch(e=>console.log(e))
 
   res.json({ done: true })
 }
