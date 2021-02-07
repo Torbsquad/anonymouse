@@ -1,2 +1,7 @@
-const postgres = require('pg-promise')()(process.env.db + '?ssl=true')
-module.exports = postgres
+const { Client } = require('pg')
+const connectionString = process.env.db
+const client = new Client({
+  connectionString,
+})
+client.connect()
+module.exports = client
