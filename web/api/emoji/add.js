@@ -4,7 +4,7 @@ const analyse = require('../../../js/emojiAnalysis')
 const { Site } = require('vnft-tools')
 const add = new Site('/emoji/add/:emoji')
 
-add.get = async (req, res) => {
+add.get = async (req, res) => {/*
   let emoji = await analyse(req.params.emoji)
   if (!emoji.hash) {
     res.send(`${req.params.emoji} is not valid`)
@@ -29,7 +29,7 @@ add.get = async (req, res) => {
     `,
     emoji,
   ).catch(e=>console.log(e))
-
+*/
   res.json({ done: true })
 }
 
