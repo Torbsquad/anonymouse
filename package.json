@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Torbsquad/anonymouse/issues"
   },
-  "homepage": "https://github.com/Torbsquad/anonymouse#readme"
+  "homepage": "https://github.com/Torbsquad/anonymouse#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
