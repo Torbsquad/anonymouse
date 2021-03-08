@@ -5,9 +5,6 @@ module.exports = async function(input){
     json.animated = data[1] == "a"
     json.name = data[2]
     json.id = data[3]
-
-    const res = await client.query('SELECT $1::text as message', ['Hello world!'])
-    console.log(res.rows[0].message) // Hello world!
-
-    return {data,json,res:res.rows}
+    const res = await client.query('INSERT INTO EMOTES (id, name, animated) VALUES ($1, $2, $3) ON CONFLICT DO NOTHING', [json.id, json.name, json.animated])
+    return json
 }
