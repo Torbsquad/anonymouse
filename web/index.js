@@ -17,7 +17,30 @@ app.get('/api/:namespace/:action/:data', async function (req, res) {
   }
   catch(err){
     console.log(err)
-    res.sendStatus(404)
+    if(process.env.debug){
+      res.send(err.message)
+    }
+    else{
+      res.sendStatus(404)
+    }
+  }
+})
+
+app.get('/api/:namespace/:action', async function (req, res) {
+  try{
+    if(process.env.debug){
+      delete require.cache[require.resolve(`../api/${req.params.namespace}/${req.params.action}`)]
+    }
+    res.json(await require(`../api/${req.params.namespace}/${req.params.action}`)())
+  }
+  catch(err){
+    console.log(err)
+    if(process.env.debug){
+      res.send(err.message)
+    }
+    else{
+      res.sendStatus(404)
+    }
   }
 })
 
