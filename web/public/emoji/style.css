@@ -1,0 +1,11 @@
+body{
+    background-color: rgba(0,0,0,.8);
+}
+.emoteholder{
+    float: left;
+    margin: 3px
+}
+.icon{
+    width: 80px;
+    height: 80px;
+}
