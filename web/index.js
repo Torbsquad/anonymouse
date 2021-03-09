@@ -13,6 +13,7 @@ app.get('/api/:namespace/:action/:data', async function (req, res) {
     if(process.env.debug){
       delete require.cache[require.resolve(`../api/${req.params.namespace}/${req.params.action}`)]
     }
+    res.header("Access-Control-Allow-Origin", "*");
     res.json(await require(`../api/${req.params.namespace}/${req.params.action}`)(req.params.data))
   }
   catch(err){
@@ -31,6 +32,7 @@ app.get('/api/:namespace/:action', async function (req, res) {
     if(process.env.debug){
       delete require.cache[require.resolve(`../api/${req.params.namespace}/${req.params.action}`)]
     }
+    res.header("Access-Control-Allow-Origin", "*");
     res.json(await require(`../api/${req.params.namespace}/${req.params.action}`)())
   }
   catch(err){
