@@ -7,6 +7,7 @@ function addEmote(emote){
     emoteHolder.className = "emoteholder"
     var icon = document.createElement("img")
     icon.className = "icon"
+    icon.title = emote.name
     icon.src = `https://cdn.discordapp.com/emojis/${emote.id}.${emote.animated?"gif":"png"}`
     emoteHolder.appendChild(icon)
     content.appendChild(emoteHolder)
