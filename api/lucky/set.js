@@ -1,4 +1,14 @@
 module.exports = async function(input){
-    var a = input
-    return {status: a}
+    try{
+        const client = require("../../connect.js")
+        
+        const res = await client.query(`
+            UPDATE LUCKY SET VALUE = $1
+        `, [input])
+
+        return {status: "OK"}
+    }
+    catch(err){
+        return {status: "failed"}
+    }
 }
