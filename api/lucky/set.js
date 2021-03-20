@@ -4,7 +4,7 @@ module.exports = async function(input){
         
         const res = await client.query(`
             UPDATE LUCKY SET VALUE = $1
-        `, [JSON.parse(input)])
+        `, [input])
 
         return {status: "OK"}
     }
