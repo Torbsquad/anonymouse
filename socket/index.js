@@ -14,6 +14,7 @@ function main(server){
     })
 
     init("./scoreboard/ppt2", io)
+    init("./tts/vanfriedricht", io)
 }
 
 module.exports = main
