@@ -1,10 +1,18 @@
 <script src="https://cdn.socket.io/3.1.1/socket.io.min.js" integrity="sha384-gDaozqUvc4HTgo8iZjwth73C6dDDeOJsAgpxBcMpZYztUfjHXpzrpdrHRdVp8ySO" crossorigin="anonymous"></script>
 <script>
+    var textqueue = []
+    var audio = new Audio()
 
     function sayTTS(text){
-        var link = `http://api.voicerss.org/?key=7aa35102ee4343848c7f0fa8b7ec1a09&hl=ja-jp&c=MP3&f=16khz_16bit_stereo&v=Airi&src=${text}`
-        var audio = new Audio(link)
-        audio.play()
+        textqueue.push(`http://api.voicerss.org/?key=7aa35102ee4343848c7f0fa8b7ec1a09&hl=ja-jp&c=MP3&f=16khz_16bit_stereo&v=Airi&src=${text}`)
+    }
+
+    function nextAudio(){
+        console.log(textqueue)
+        if(textqueue.length && audio.paused){
+            audio.src = textqueue.shift()
+            audio.play()
+        }
     }
 
     var socket = io.connect(window.location.host+'/tts/vanfriedricht')
@@ -12,6 +20,8 @@
         console.log(data)
         sayTTS(data)
     })
+
+    setInterval(nextAudio, 250)
 
 
 </script>
